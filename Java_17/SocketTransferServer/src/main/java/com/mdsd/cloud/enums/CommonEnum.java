@@ -9,12 +9,12 @@ import java.util.Arrays;
  */
 public enum CommonEnum {
 
-    WEB_SOCKET_TYJW( "TYJW"),
-    WEB_SOCKET_DJI( "DJI"),
+    WEB_SOCKET_TYJW("TYJW"),
+    WEB_SOCKET_DJI("DJI"),
 
-    TCP_SOCKET_TYJW( null),
+    TCP_TO_TYJW(null),
 
-    UDP_SOCKET_DJI(null);
+    UDP_TO_DJI(null);
 
     private final String value;
 
@@ -23,6 +23,6 @@ public enum CommonEnum {
     }
 
     public static CommonEnum getEnumByDesc(String desc) {
-        return Arrays.stream(CommonEnum.values()).filter(el -> desc.equals(el.value)).findFirst().orElseThrow(() -> new BusinessException("未知平台指令!"));
+        return Arrays.stream(CommonEnum.values()).filter(el -> desc.equals(el.value)).findFirst().orElseThrow(() -> new BusinessException("未知平台!"));
     }
 }

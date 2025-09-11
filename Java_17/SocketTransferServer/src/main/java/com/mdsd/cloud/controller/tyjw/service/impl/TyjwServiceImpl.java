@@ -184,7 +184,7 @@ public class TyjwServiceImpl implements ITyjwService {
     class TyjwChannelInboundHandler extends SimpleChannelInboundHandler<ByteBuf> {
         @Override
         protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-            publisher.publishEvent(new CommonEvent(CommonEnum.TCP_SOCKET_TYJW, msg));
+            publisher.publishEvent(new CommonEvent(CommonEnum.TCP_TO_TYJW, msg));
         }
 
         @Override

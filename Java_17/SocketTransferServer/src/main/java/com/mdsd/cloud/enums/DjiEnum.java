@@ -32,9 +32,9 @@ public enum DjiEnum {
 
     云台管理_反初始化(云台管理.module, 0x0400, null),
     云台管理_初始化(云台管理.module, 0x0401, null),
-    云台管理_设置工作模式(云台管理.module, 0x0402, "{\"mountPosition\":%d,\"mode\":%d}"),
-    云台管理_重置角度(云台管理.module, 0x0403, "{\"mountPosition\":%d,\"resetMode\":%d}"),
-    云台管理_旋转角度(云台管理.module, 0x0404, "{\"mountPosition\":%d,\"rotation\":[%d,%d,%d,%d,%f]}"),
+    云台管理_设置工作模式(云台管理.module, 0x0402, ",\"mountPosition\":%d,\"mode\":%d"),
+    云台管理_重置角度(云台管理.module, 0x0403, ",\"mountPosition\":%d,\"resetMode\":%d"),
+    云台管理_旋转角度(云台管理.module, 0x0404, ",\"mountPosition\":%d,\"rotation\":[%d,%d,%d,%d,%f]"),
     云台管理_设置俯仰限位扩展(云台管理.module, 0x0405, null),
     云台管理_设置最大速度百分比(云台管理.module, 0x0406, null),
     云台管理_设置云台控制器的平滑因子(云台管理.module, 0x0407, null),

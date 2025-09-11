@@ -75,7 +75,6 @@ public class WebSocketServiceImpl implements IWebSocketService {
                         String serialNumber = jsonNode.get("serialNumber").asText();
                         String taskId = jsonNode.get("taskId").asText();
                         String userId = jsonNode.get("userId").asText();
-
                         // 判断云盒是否已经注册
                         if (wsMap.containsKey(serialNumber)) {
                             WsChannelDetails wsChannelDetails = wsMap.get(serialNumber);

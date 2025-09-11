@@ -42,7 +42,7 @@ public class DjiServiceImpl implements IDjiService {
 
     private final static String STREAM_PATH = "rtmp://192.168.0.221/live/%s";
 
-    private final static String PAYLOAD = "{\"serialNumber\":%s,\"module\":%d,\"directive\":%d,\"body\":%s}";
+    private final static String PAYLOAD = "{\"serialNumber\":\"%s\",\"module\":%d,\"directive\":%d%s}";
 
     @Value("${env.port.sts.udp}")
     private int port;
@@ -107,7 +107,7 @@ public class DjiServiceImpl implements IDjiService {
 //                        }).start();
                     }
                 } else {
-                    publisher.publishEvent(new CommonEvent(CommonEnum.UDP_SOCKET_DJI, jsonNode));
+                    publisher.publishEvent(new CommonEvent(CommonEnum.UDP_TO_DJI, jsonNode));
                 }
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
