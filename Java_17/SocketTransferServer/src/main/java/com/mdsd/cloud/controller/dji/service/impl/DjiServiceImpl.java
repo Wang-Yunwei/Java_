@@ -11,7 +11,6 @@ import com.mdsd.cloud.controller.websocket.service.impl.WebSocketServiceImpl;
 import com.mdsd.cloud.enums.CommonEnum;
 import com.mdsd.cloud.enums.DjiEnum;
 import com.mdsd.cloud.event.CommonEvent;
-import com.mdsd.cloud.util.ByteUtil;
 import com.mdsd.cloud.util.SocketUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

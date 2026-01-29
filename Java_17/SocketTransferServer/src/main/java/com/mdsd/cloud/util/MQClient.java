@@ -55,9 +55,10 @@ public class MQClient {
 
     /**
      * 单层通配符: STS/M350/PUBLISH/+
-     * STS/M350/PUBLISH/+ 将匹配 TS/M350/PUBLISH/x26123 和 TS/M350/PUBLISH/x26127，但不会匹配 TS/M350/PUBLISH/x26123/subtopic
+     * - STS/M350/PUBLISH/+ 将匹配 TS/M350/PUBLISH/x26123 和 TS/M350/PUBLISH/x26127，但不会匹配 TS/M350/PUBLISH/x26123/subtopic
+     * <br>
      * 多层通配符: STS/M350/PUBLISH/#
-     * TS/M350/PUBLISH/# 将匹配 TS/M350/PUBLISH/x26123、TS/M350/PUBLISH/x26127 和 TS/M350/PUBLISH/x26123/subtopic
+     * - TS/M350/PUBLISH/# 将匹配 TS/M350/PUBLISH/x26123、TS/M350/PUBLISH/x26127 和 TS/M350/PUBLISH/x26123/subtopic
      */
     public static void main(String[] args) {
         try {
