@@ -1,5 +1,12 @@
 server:
   port: ${env.port.sts.api}
+  tomcat:
+    max-connections: 4 # max-threads(最大线程数) + accept-count(等待队列)
+    accept-count: 2
+    connection-timeout: 5S
+    threads:
+      min-spare: 1 # 最小空闲线程数
+      max: 2 # 最大线程数，数值范围：2 x CPU Cores + 1 (纯CPU计算型) 或 3 x CPU Cores + 1 (I/O密集型)
 #  ssl:
 #    # 填写jks-password.txt文件内的密码
 #    key-store-password: 123456
@@ -10,7 +17,7 @@ server:
 
 spring:
   application:
-    name: STS_240714
+    name: STS_DEV
 
 # IP and port configuration
 env:

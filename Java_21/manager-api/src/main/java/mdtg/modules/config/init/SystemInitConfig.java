@@ -1,18 +1,16 @@
 package mdtg.modules.config.init;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-
 import jakarta.annotation.PostConstruct;
 import mdtg.common.constant.Constant;
 import mdtg.common.redis.RedisKeys;
 import mdtg.common.redis.RedisUtils;
 import mdtg.modules.config.service.ConfigService;
 import mdtg.modules.sys.service.SysParamsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@DependsOn("liquibase")
+//@DependsOn("liquibase")
 public class SystemInitConfig {
 
     @Autowired

@@ -1,5 +1,13 @@
 server:
   port: ${env.port.sts.api}
+  tomcat:
+    max-connections: 256
+    connection-timeout: 20S
+    accept-count: 56
+    threads:
+      max: 200
+      min-spare: 10
+
 spring:
   application:
     name: STS_LINUX

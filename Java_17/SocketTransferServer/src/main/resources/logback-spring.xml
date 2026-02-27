@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <springProperty name="APP_NAME" scope="context" source="spring.application.name"/>
-    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
-    <conversionRule conversionWord="wex"
-                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
-    <conversionRule conversionWord="wEx"
-                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+    <!-- 1、引入 Spring Boot 默认的变量和规则 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <!-- 2、引入控制台输出组件 -->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <springProperty name="APP_NAME" scope="context" source="spring.application.name" defaultValue="default-app"/>
+
+    <!-- 日志文件存储位置 -->
     <property name="LOG_PATH" value="./logs"/>
-    <property name="MY_CONSOLE_LOG_PATTERN"
-              value="${MY_CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd'T'HH:mm:ss.SSSXXX}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
-    <property name="MY_FILE_LOG_PATTERN"
-              value="${MY_FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd'T'HH:mm:ss.SSSXXX}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+    <!-- 单个文件大小上限 -->
+    <property name="LOG_MAX_FILE_SIZE" value="10MB"/>
+    <!-- 最大保留天数 -->
     <property name="LOG_MAX_HISTORY" value="7"/>
+    <!-- 总磁盘空间上限 -->
     <property name="LOG_TOTAL_SIZE_CAP" value="1GB"/>
-    <property name="LOG_MAX_FILE_SIZE" value="9MB"/>
+
 
     <appender name="MY_FILE_LOG_JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/json.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>
-                {"requestIP": "%X{requestIP:-}", "username": "%X{username}", "timestamp": "%d{yyyy-MM-dd HH:mm:ss}",
-                "requestDispatcherPath":
-                "%X{requestDispatcherPath}", "message": "%message", "stackTrace": "%exception", "userAgents":
-                "%X{userAgent:-}","logType":
-                "%level","serviceName": "${APP_NAME:-}"}%n
+                {"requestIP": "%X{requestIP:-}",
+                "username": "%X{username}",
+                "timestamp": "%d{yyyy-MM-dd HH:mm:ss}",
+                "requestDispatcherPath": "%X{requestDispatcherPath}",
+                "message": "%message",
+                "stackTrace": "%exception",
+                "userAgents": "%X{userAgent:-}",
+                "logType": "%level",
+                "serviceName": "${APP_NAME:-}"
+                }%n
             </pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
@@ -33,25 +41,29 @@
             <MaxFileSize>${LOG_MAX_FILE_SIZE}</MaxFileSize>
         </rollingPolicy>
     </appender>
-    <appender name="MY_FILE_LOG_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <!-- 文件输出配置 - 仅错误日志 -->
+    <appender name="MYSELF_FILE_LOG_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/error.log</file>
         <encoder charset="UTF-8">
-            <pattern>${MY_FILE_LOG_PATTERN}</pattern>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <FileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <MaxHistory>${LOG_MAX_HISTORY}</MaxHistory>
             <totalSizeCap>${LOG_TOTAL_SIZE_CAP}</totalSizeCap>
             <MaxFileSize>${LOG_MAX_FILE_SIZE}</MaxFileSize>
         </rollingPolicy>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>ERROR</level>
-        </filter>
     </appender>
-    <appender name="MY_FILE_LOG_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <!-- 文件输出配置 - 所有日志 -->
+    <appender name="MYSELF_FILE_LOG_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/info.log</file>
         <encoder charset="UTF-8">
-            <pattern>${MY_FILE_LOG_PATTERN}</pattern>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <FileNamePattern>${LOG_PATH}/info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
@@ -63,30 +75,30 @@
             <level>INFO</level>
         </filter>
     </appender>
-    <appender name="MY_CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${MY_CONSOLE_LOG_PATTERN}</pattern>
-        </encoder>
-    </appender>
 
-    <!-- 本地环境:打印控制台 -->
+    <!-- 本地环境: 打印控制台 -->
     <springProfile name="dev">
-        <!-- logger name="com.zaxxer.hikari" level="DEBUG"/ -->
         <root level="INFO">
-            <appender-ref ref="MY_CONSOLE_LOG"/>
+            <appender-ref ref="CONSOLE"/>
         </root>
+        <!-- 设置特定包的日志级别 -->
+        <logger name="business" level="DEBUG" />
+        <logger name="org.springframework.web" level="INFO" />
+        <logger name="org.springboot.sample" level="INFO" />
     </springProfile>
+
+    <!-- 服务器环境: 记录日志文件-->
     <springProfile name="linux">
-        <logger name="com.mdsd.cloud.feign" level="DEBUG"/>
         <root level="INFO">
-            <appender-ref ref="MY_CONSOLE_LOG">
-                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                    <level>DEBUG</level>
-                </filter>
-            </appender-ref>
+            <appender-ref ref="CONSOLE" />
             <appender-ref ref="MY_FILE_LOG_INFO"/>
             <appender-ref ref="MY_FILE_LOG_ERROR"/>
             <!-- appender-ref ref="MY_FILE_LOG_JSON"/ -->
         </root>
+        <!-- 设置特定包的日志级别 -->
+        <logger name="business" level="INFO" />
+        <logger name="business.feign" level="DEBUG"/>
+        <logger name="org.springframework.web" level="ERROR" />
+        <logger name="org.springboot.sample" level="ERROR" />
     </springProfile>
 </configuration>
