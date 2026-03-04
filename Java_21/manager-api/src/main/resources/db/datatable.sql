@@ -25,7 +25,7 @@ CREATE TABLE `mdtg_user` (
 DROP TABLE IF EXISTS `mdtg_role`;
 CREATE TABLE `mdtg_role` (
     `id`                BIGINT          NOT NULL        COMMENT '角色ID',
-    `code`              VARCHAR(50)     DEFAULT NULL    COMMENT '角色编码 (如: role_admin)',
+    `code`              VARCHAR(50)     DEFAULT NULL    COMMENT '角色编码 (如: admin)',
     `description`       VARCHAR(200)    DEFAULT NULL    COMMENT '描述',
     `permission_ids`    VARCHAR(250)    DEFAULT NULL    COMMENT '权限ID',
     `status`            TINYINT         DEFAULT 0       COMMENT '状态(0:系统默认,1:自定义)',
@@ -36,7 +36,7 @@ CREATE TABLE `mdtg_role` (
     `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名字',
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-正常,1-删除)',
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
 
 -- 权限
@@ -44,9 +44,9 @@ DROP TABLE IF EXISTS `mdtg_permission`;
 CREATE TABLE `mdtg_permission` (
     `id`            BIGINT          NOT NULL        COMMENT '权限ID',
     `parent_id`     BIGINT          DEFAULT NULL    COMMENT '父级ID',
-    `code`          VARCHAR(100)    NOT NULL        COMMENT '编码 (如: user_manage:r/w/x)',
+    `code`          VARCHAR(100)    NOT NULL        COMMENT '编码 (如: user_manage:list:create/read/update/delete)',
     `level`         TINYINT         NOT NULL        COMMENT '级别',
-    `menu_path`     VARCHAR(100)    NOT NULL        COMMENT '菜单路径 (/user_manage/...)',
+    `menu_path`     VARCHAR(100)    NOT NULL        COMMENT '菜单路径 (user_manage:list:read)',
     `status`        TINYINT         DEFAULT 0       COMMENT '状态(0:系统默认,1:自定义)',
     `create_by`     BIGINT          DEFAULT NULL    COMMENT '创建者ID',
     `create_name`   VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名字',

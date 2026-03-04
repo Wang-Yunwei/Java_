@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -89,6 +92,10 @@ public class LoginController {
     @PostMapping("/login")
     @Operation(summary = "登录")
     public Result<TokenDTO> login(@RequestBody LoginDTO login) {
+
+        Subject subject = SecurityUtils.getSubject();
+        subject.login(new UsernamePasswordToken(login.getUsername(), login.getPassword()));
+
         String password = login.getPassword();
 
         // 使用工具类解密并验证验证码

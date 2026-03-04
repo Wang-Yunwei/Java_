@@ -4,7 +4,7 @@ server:
 
 spring:
   profiles:
-    include: @profiles.active@
+    include: dev
 
 minio:
   endpoint: http://192.168.0.221:9000
