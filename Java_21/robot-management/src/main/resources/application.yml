@@ -1,1 +1,9 @@
-spring.application.name=robot-management
+server:
+  servlet:
+    context-path: /mdtg-robot-management
+
+spring:
+  application:
+    name: mdtg-robot-management
+  profiles:
+    include: dev

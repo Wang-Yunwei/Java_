@@ -72,8 +72,8 @@ public class CustomBeanRegistry {
         return new OpenAPI().info(new Info().title("SocketTransferServer").description("This is a forwarding service").version("20140712"));
     }
 
-//    @Bean
-//    public MinioClient minioClient() {
-//        return MinioClient.builder().endpoint(endpoint).credentials(accessKey, secretKey).build();
-//    }
+    @Bean
+    public MinioClient minioClient() {
+        return MinioClient.builder().endpoint(endpoint).credentials(accessKey, secretKey).build();
+    }
 }

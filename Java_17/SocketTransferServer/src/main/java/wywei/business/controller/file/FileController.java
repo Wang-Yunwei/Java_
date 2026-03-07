@@ -1,6 +1,5 @@
 package wywei.business.controller.file;
 
-import wywei.business.response.ResponseDto;
 import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.MinioClient;
 import io.minio.ObjectWriteResponse;
@@ -16,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import wywei.business.response.ResponseDto;
 
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +32,6 @@ public class FileController {
     String bucketName;
 
     MinioClient minioClient;
-
 
     public FileController(MinioClient minioClient) {
 

@@ -1,0 +1,123 @@
+server:
+  port: ${mdtg.port}
+  servlet:
+    context-path: /mdtg_robot_server
+  # Tomcat 容器优化
+  tomcat:
+    uri-encoding: UTF-8 # 请求/响应编码
+    threads: # 线程池配置: 避免默认值过高导致线程上下文切换开销过大
+      max: 200      # 生产环境通常 200-500 足够, 1000 容易导致 CPU 上下文切换风暴
+      min-spare: 10 # 降低最小空闲线程, 节省资源
+    # 连接相关优化
+    accept-count: 100   # 等待队列长度, 当所有线程忙时, 排队的请求个数
+    max-connections: 8192 # 最大连接数, 超过此数的连接将被拒绝
+    # 安全: 隐藏版本信息
+    basedir: /tmp/tomcat # 指定工作目录, 避免使用默认的临时目录可能带来的权限问题
+
+  # HTTP/HTTPS 配置（如果使用 HTTPS）
+  # ssl:
+  #   enabled: true
+  #   key-store: classpath:keystore.p12
+  #   key-store-password: secret
+  #   key-store-type: PKCS12
+
+spring:
+  profiles:
+    active: dev
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages
+  servlet:
+    multipart:
+      max-file-size: 10MB    # 建议减小单文件大小，防止 OOM
+      max-request-size: 10MB # 建议减小总请求大小
+      enabled: true
+      # 临时文件存储位置（防止系统 TMP 目录空间不足）
+      location: /tmp/uploads
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${mdtg.ip}:3307/mdtg_robot_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: root
+    druid:
+      # --- 连接池大小配置 ---
+      initial-size: 10
+      max-active: 20 # 生产环境建议降低，防止数据库连接数被打满
+      min-idle: 10 # 最小空闲可以比 initial-size 小一点，节省资源，让池子动态伸缩
+      max-wait: 5000 # 5秒超时，快速失败
+      # --- 连接有效性检测 (性能优化) ---
+      test-on-borrow: false # 优化2: 关闭借出时检测，减少高并发下的延迟
+      test-while-idle: true # 开启空闲时检测
+      test-on-return: false # 归还时通常不需要检测
+      validation-query: SELECT 1 # 显式指定轻量级检测语句
+      time-between-eviction-runs-millis: 60000 # 优化3: 60秒检测一次空闲连接即可，无需30秒那么频
+      min-evictable-idle-time-millis: 300000 # 优化4: 空闲5分钟后再回收，避免频繁重建连接
+      max-evictable-idle-time-millis: 900000 # 可选：空闲15分钟强制回收
+      # --- PSCache 配置 (性能优化) ---
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20 # 优化5: 适当调大，提升复杂SQL性能
+      # --- 监控配置 (安全加固) ---
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false # 禁止通过网页重置统计数据，防止误操作
+        login-username: admin
+        login-password: admin # 使用变量
+        allow: 127.0.0.1,192.168.1.0/24 # 优化6: IP白名单，只允许特定网段访问
+        deny: # IP黑名单 (可选)
+      # --- 过滤器配置 ---
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 2000 # 优化7: 2秒以上算慢SQL，避免日志过多 (根据业务调整)
+          merge-sql: true
+        wall:
+          config:
+            # 如果 URL 中去掉了 allowMultiQueries，这里必须为 false
+            multi-statement-allow: false
+            # 其他安全配置
+            select-into-allow: false
+
+springdoc: # SpringDoc (Knife4j 底层基于 SpringDoc) 配置
+  api-docs:
+    enabled: true # 启用 API 文档生成
+  swagger-ui:
+    enabled: true # 启用 Swagger UI
+
+# 增强版的 Swagger UI
+knife4j:
+  enable: true
+  basic:
+    enable: false
+    username: admin
+    password: admin
+  setting:
+    enableFooter: false
+
+# Mybatis-plus 配置
+mybatis-plus:
+  configuration:
+    # 开启驼峰命名映射 (user_name -> userName)
+    map-underscore-to-camel-case: true
+    # 打印 SQL 日志 (开发环境开启，生产建议关闭或设为 debug 级别)
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: false # 关闭二级缓存 (分布式环境下建议关闭，避免数据不一致)
+    call-setters-on-nulls: true # 当查询结果为 null 时，MyBatis 会自动调用 Setter 方法 (防止 DTO 中 null 值不返回)
+    jdbc-type-for-null: null # 将 null 值作为 JDBC 的 NULL 传递，而不是 "null" 字符串
+  global-config:
+    db-config:
+      # 主键策略：ASSIGN_ID (雪花算法)，AUTO (自增)，UUID 等
+      id-type: assign_id
+      # 逻辑删除字段名 (全局默认)
+      logic-delete-field: deleted deleteFlag
+      # 逻辑删除值：1=已删除，0=未删除
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  # Mapper XML 文件位置 (如果使用了 XML)
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+mdtg:
+  ip: 192.168.0.129
+  port: 8002
+  bucket: 'mdtg-robot-v1.0'
