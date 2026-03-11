@@ -5,12 +5,13 @@ CREATE TABLE `mdtg_user`(
     `username`      VARCHAR(50)  NOT NULL       COMMENT '用户名',
     `password`      VARCHAR(100) NOT NULL       COMMENT '密码',
     `gender`        TINYINT      DEFAULT 0      COMMENT '性别(0-未知,1-男,2-女)',
-    `identity_card` DATETIME     DEFAULT NULL   COMMENT '居民身份证',
-    `phone`         VARCHAR(20)  DEFAULT NULL   COMMENT '手机号',
+    `identity_card` VARCHAR(50)  DEFAULT NULL   COMMENT '居民身份证',
+    `phone`         VARCHAR(20)  NOT NULL       COMMENT '手机号',
     `email`         VARCHAR(20)  DEFAULT NULL   COMMENT '邮箱',
     `address`       VARCHAR(300) DEFAULT NULL   COMMENT '住址',
     `role_ids`      JSON         DEFAULT NULL   COMMENT '角色列表',
-    `status`        TINYINT      DEFAULT 0      COMMENT '状态(0:系统默认,1:自定义)',
+    `type`          TINYINT      DEFAULT 0      COMMENT '类型(0:系统默认,1:自定义)',
+    `org_code`      VARCHAR(50)  DEFAULT NULL   COMMENT '机构标识',
     `create_by`     BIGINT       DEFAULT NULL   COMMENT '创建者ID',
     `create_name`   VARCHAR(50)  DEFAULT NULL   COMMENT '创建者名字',
     `create_date`   DATETIME     DEFAULT NOW()  COMMENT '创建时间',
@@ -18,7 +19,8 @@ CREATE TABLE `mdtg_user`(
     `update_name`   VARCHAR(50)  DEFAULT NULL   COMMENT '更新者名字',
     `update_date`   DATETIME     DEFAULT NOW()  COMMENT '更新时间',
     `delete_flag`   TINYINT      DEFAULT 0      COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `udx_mdtg_user_phone` (`phone`) COMMENT '创建手机号唯一索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='用户表';
 
 -- 角色
@@ -28,8 +30,7 @@ CREATE TABLE `mdtg_role`(
     `code`           VARCHAR(50)    DEFAULT NULL    COMMENT '角色编码(如: admin)',
     `description`    VARCHAR(200)   DEFAULT NULL    COMMENT '描述',
     `permission_ids` JSON           DEFAULT NULL    COMMENT '权限列表',
-    `status`         TINYINT        DEFAULT 0       COMMENT '状态(0-系统默认,1-自定义)',
-    `type`         	 TINYINT        DEFAULT 0       COMMENT '状态(0-用户角色,1-设备角色)',
+    `type`           TINYINT        DEFAULT 0       COMMENT '类型(0-系统默认,1-自定义)',
     `create_by`      BIGINT         DEFAULT NULL    COMMENT '创建者ID',
     `create_name`    VARCHAR(50)    DEFAULT NULL    COMMENT '创建者名字',
     `create_date`    DATETIME       DEFAULT NOW()   COMMENT '创建时间',
@@ -48,7 +49,7 @@ CREATE TABLE `mdtg_permission`(
     `code`        VARCHAR(100)  NOT NULL        COMMENT '编码(如: user_manage:list:create/read/update/delete)',
     `level`       TINYINT       NOT NULL        COMMENT '级别',
     `menu_path`   VARCHAR(100)  NOT NULL        COMMENT '菜单路径(user_manage:list:read)',
-    `status`      TINYINT       DEFAULT 0       COMMENT '状态(0-系统默认,1-自定义)',
+    `type`        TINYINT       DEFAULT 0       COMMENT '类型(0-系统默认,1-自定义)',
     `create_by`   BIGINT        DEFAULT NULL    COMMENT '创建者ID',
     `create_name` VARCHAR(50)   DEFAULT NULL    COMMENT '创建者名字',
     `create_date` DATETIME      DEFAULT NOW()   COMMENT '创建时间',
@@ -56,7 +57,8 @@ CREATE TABLE `mdtg_permission`(
     `update_name` VARCHAR(50)   DEFAULT NULL    COMMENT '更新者名字',
     `update_date` DATETIME      DEFAULT NOW()   COMMENT '更新时间',
     `delete_flag` TINYINT       DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    KEY `idx_mdtg_permission_parent_id` (`parent_id`) COMMENT '创建父级ID普通索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='权限表';
 
 -- 设备信息
@@ -78,7 +80,7 @@ CREATE TABLE `mdtg_device`(
     `update_date`       DATETIME    DEFAULT NOW()   COMMENT '更新时间',
     `delete_flag`       TINYINT     DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    UNIQUE KEY `udx_mdtg_device_mac_address` (`mac_address`) COMMENT '创建mac地址的唯一索引,用于快速查找设备信息'
+    UNIQUE KEY `udx_mdtg_device_mac_address` (`mac_address`) COMMENT '创建mac地址唯一索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='设备信息表';
 
 -- 固件信息
@@ -129,7 +131,7 @@ CREATE TABLE `mdtg_agent`(
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    KEY `idx_mdtg_agent_create_by` (`create_by`) COMMENT '创建用户ID普通索引,用于快速查找用户下的智能体信息'
+    KEY `idx_mdtg_agent_create_by` (`create_by`) COMMENT '创建用户ID普通索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='智能体配置表';
 
 -- 声纹识别
@@ -140,6 +142,7 @@ CREATE TABLE `mdtg_voiceprint`(
     `description`       VARCHAR(255)  DEFAULT NULL    COMMENT '声纹描述',
     `embedding`         LONGTEXT      DEFAULT NULL    COMMENT '声纹特征向量(JSON 数组格式)',
     `chat_history_ids`  JSON          DEFAULT NULL    COMMENT '关联记忆数据',
+    `permission_ids`    JSON          DEFAULT NULL    COMMENT '权限列表',
     `create_by`         BIGINT        DEFAULT NULL    COMMENT '创建者ID',
     `create_name`       VARCHAR(50)   DEFAULT NULL    COMMENT '创建者名字',
     `create_date`       DATETIME      DEFAULT NOW()   COMMENT '创建时间',
@@ -190,7 +193,7 @@ CREATE TABLE `mdtg_model_info`(
     `update_date` DATETIME      DEFAULT NOW()   COMMENT '更新时间',
     `delete_flag` TINYINT       DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    KEY `idx_mdtg_model_info_type` (`type`) COMMENT '创建类型普通索引,用于快速查找特定类型下的所有模型信息'
+    KEY `idx_mdtg_model_info_type` (`type`) COMMENT '创建类型普通索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='模型信息表';
 
 -- 知识库
@@ -218,8 +221,8 @@ CREATE TABLE `mdtg_dict_data`(
     `id`            BIGINT          NOT NULL        COMMENT 'id',
     `parent_id`     BIGINT          DEFAULT NULL    COMMENT '父级ID',
     `label`         VARCHAR(255)    NOT NULL        COMMENT '标签名',
-    `key`           VARCHAR(255)    NOT NULL        COMMENT '键',
-    `value`         VARCHAR(255)    NOT NULL        COMMENT '值',
+    `key`           VARCHAR(255)    DEFAULT NULL    COMMENT '键',
+    `value`         VARCHAR(255)    DEFAULT NULL    COMMENT '值',
     `remark`        VARCHAR(255)    DEFAULT NULL    COMMENT '备注',
     `status`        TINYINT         DEFAULT 1       COMMENT '状态(0-停用,1-启用)',
     `create_by`     BIGINT          DEFAULT NULL    COMMENT '创建者ID',
@@ -230,8 +233,8 @@ CREATE TABLE `mdtg_dict_data`(
     `update_date`   DATETIME        DEFAULT NOW()   COMMENT '更新时间',
     `delete_flag`   TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    KEY `idx_mdtg_dict_data_parent_id` (`parent_id`) COMMENT '创建父级ID普通索引,用于快速查找子项字典值',
-    KEY `idx_mdtg_dict_data_label` (`parent_id`) COMMENT '创建标签名普通索引,用于快速查找字典类'
+    KEY `idx_mdtg_dict_data_parent_id` (`parent_id`) COMMENT '创建父级ID普通索引',
+    KEY `idx_mdtg_dict_data_label` (`parent_id`) COMMENT '创建标签名普通索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='字典数据表';
 
 -- TTS 音色
@@ -255,7 +258,7 @@ CREATE TABLE `mdtg_tts_voice`(
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    KEY `idx_mdtg_tts_voice_tts_model_id` (`tts_model_id`) COMMENT '创建TTS模型ID的普通索引,用于快速查找对应模型的音色信息'
+    KEY `idx_mdtg_tts_voice_tts_model_id` (`tts_model_id`) COMMENT '创建TTS模型ID的普通索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='TTS 音色表';
 
 -- 智能体聊天记录
@@ -269,7 +272,7 @@ CREATE TABLE `mdtg_agent_chat_history`(
     `chat_history`  JSON        DEFAULT NULL            COMMENT '聊天内容[{"content": "xxx", "audioFileUrl": "xx","time":"xx-xx-xx","reply":[{"content":"xxx","audioFileUrl": "xx"}]}]',
     `create_date`   DATE        DEFAULT CURRENT_DATE    COMMENT '创建时间',
     PRIMARY KEY (`id`),
-    KEY `idx_mdtg_agent_chat_history_voiceprint_id` (`voiceprint_id`) COMMENT '创建声纹ID的普通索引,用于快速分组查询'
+    KEY `idx_mdtg_agent_chat_history_voiceprint_id` (`voiceprint_id`) COMMENT '创建声纹ID的普通索引'
 ) ENGINE = InnoDB AUTO_INCREMENT = 2730 DEFAULT CHARSET = utf8mb4 COMMENT ='智能体聊天记录表';
 -- 将下一个自增设置为 5000: ALTER TABLE mdtg_agent_chat_history AUTO_INCREMENT = 5000;
 

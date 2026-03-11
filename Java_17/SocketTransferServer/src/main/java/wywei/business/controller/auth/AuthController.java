@@ -24,7 +24,7 @@ public class AuthController {
 
     @Operation(summary = "获取用户信息")
     @GetMapping(name = "鉴权 - 获取用户信息")
-    public ResponseDto<String> getUserInfo() {
+    public getUserInfo() {
 
         return ResponseDto.wrapSuccess();
     }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdtg.robot.module.user.mapper.PermissionMapper">
+
+    <resultMap id="BaseResultMap" type="com.mdtg.robot.module.user.entity.Permission">
+        <id property="id" column="id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="code" column="code"/>
+        <result property="level" column="level"/>
+        <result property="menuPath" column="menu_path"/>
+        <result property="type" column="type"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createName" column="create_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="Permission_Column_List">
+        id,parent_id,code,level,menu_path,type,
+        create_by,create_name,create_date,update_by,update_name,
+        update_date,delete_flag
+    </sql>
+</mapper>
