@@ -1,13 +1,16 @@
 package com.mdtg.robot.common.exception;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 
 /**
  * @author WangYunwei [2024-08-09]
  */
+@Getter
 public class BusinessException extends RuntimeException implements Serializable {
 
-    private Byte code = 0;
+    private int code = 0;
 
     private String message;
 
@@ -16,19 +19,9 @@ public class BusinessException extends RuntimeException implements Serializable 
         this.message = message;
     }
 
-    public BusinessException(Byte code, String message) {
+    public BusinessException(int code, String message) {
         super(message);
         this.code = code;
         this.message = message;
-    }
-
-    public Byte getCode() {
-        return code;
-    }
-
-    @Override
-    public String getMessage() {
-
-        return this.message;
     }
 }

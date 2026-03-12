@@ -2,11 +2,14 @@ package com.mdtg.robot.module.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mdtg.robot.common.exception.BusinessException;
+import com.mdtg.robot.module.user.dto.RegisterInputDTO;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.mapper.UserMapper;
 import com.mdtg.robot.module.user.service.UserService;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.lang.util.ByteSource;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -39,6 +42,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getUserByPhone(String phone) {
         return this.baseMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getPhone, phone));
+    }
+
+    /**
+     * 注册用户
+     * @return userID
+     */
+    @Override
+    public String register(RegisterInputDTO inputDTO) {
+
+        User user = new User();
+        BeanUtils.copyProperties(inputDTO, user);
+        int result = this.baseMapper.insert(user);
+        if (result == 1) {
+            return Long.toString(user.getId());
+        }
+        throw new BusinessException("注册失败!");
     }
 }
 

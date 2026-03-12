@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * @author WangYunwei [2024-07-11]
@@ -15,29 +15,23 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Accessors(chain = true)
+@Schema(description = "接口统一返回的包装类")
 public final class ResponseDto<T> implements Serializable {
 
     @Schema(description = "业务状态码,除0以外都是错误状态")
-    private Byte code = 0;
+    private int code = 0;
 
     private String message = "SUCCESS";
 
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
 
     private T body;
 
+    public static final String MSG_SUCCESS = "SUCCESS";
+
+    public static final String MSG_ERROR = "ERROR";
+
     public ResponseDto() {
-    }
-
-    public ResponseDto(RuntimeException e) {
-
-        this.message = e.getMessage();
-    }
-
-    public ResponseDto(BusinessException e) {
-
-        this.code = e.getCode();
-        this.message = e.getMessage();
     }
 
     public static <T> ResponseDto<T> wrapSuccess() {
@@ -50,14 +44,14 @@ public final class ResponseDto<T> implements Serializable {
         return new ResponseDto<T>().setBody(body);
     }
 
-    public static <T> ResponseDto<T> wrapException(final RuntimeException e) {
+    public static <T> ResponseDto<T> wrapException(String message) {
 
-        return new ResponseDto<>(e);
+        return new ResponseDto<T>().setCode(-1).setMessage(message);
     }
 
-    public static <T> ResponseDto<T> wrapException(final BusinessException e) {
+    public static <T> ResponseDto<T> wrapException(int code,String message) {
 
-        return new ResponseDto<>(e);
+        return new ResponseDto<T>().setCode(code).setMessage(message);
     }
 
 }

@@ -4,6 +4,7 @@ import com.mdtg.robot.module.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.DefaultSecurityManager;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.springframework.boot.ApplicationRunner;
@@ -66,56 +67,5 @@ public class CustomBeans {
     @Bean
     public RestClient restClient() {
         return RestClient.builder().build();
-    }
-
-    /**
-     * === 1. 最底层：配置密码匹配器(加密规则) ===
-     * 这里的配置必须和你 encryptPassword() 工具类中的配置完全一致
-     */
-    @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
-        // 设置算法名称 - 必须与工具类一致 (例如: SHA-256, MD5)
-        matcher.setHashAlgorithmName("SHA-256");
-        // 设置迭代次数 - 必须与工具类一致 (例如: 100000)
-        matcher.setHashIterations(1024);
-        return matcher;
-    }
-
-    /**
-     * === 2. 中间层：配置 Realm，并注入密码匹配器 ===
-     */
-    @Bean
-    public CustomRealm customRealm(UserService userService, HashedCredentialsMatcher hashedCredentialsMatcher) {
-        CustomRealm customRealm = new CustomRealm(userService);
-        // 将配置好的凭证匹配器设置给 Realm
-        customRealm.setCredentialsMatcher(hashedCredentialsMatcher);
-        return customRealm;
-    }
-
-    /**
-     * === 3. 上层：配置 SecurityManager，并注入 Realm ===
-     */
-    @Bean
-    public DefaultSecurityManager securityManager(CustomRealm customRealm) {
-        DefaultSecurityManager securityManager = new DefaultSecurityManager();
-        // 这里的 customRealm() 会自动注入上面配置好的 Realm
-        securityManager.setRealm(customRealm);
-        return securityManager;
-    }
-
-    /**
-     * === 4. 其他配置：过滤器链 ===
-     */
-    @Bean
-    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
-        DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-        // 配置 anon (匿名可访问) 的路径
-        chainDefinition.addPathDefinition("/login", "anon");
-        chainDefinition.addPathDefinition("/css/**", "anon");
-        chainDefinition.addPathDefinition("/js/**", "anon");
-        // 配置 authc (需要认证) 的路径
-        chainDefinition.addPathDefinition("/**", "authc");
-        return chainDefinition;
     }
 }

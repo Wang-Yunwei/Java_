@@ -1,7 +1,9 @@
 package com.mdtg.robot.common.exception;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -10,16 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    
-    /**
-     * 默认异常处理
-     */
-    @ExceptionHandler({Exception.class})
-    public ResponseDto<?> defaultHandleException(final RuntimeException e) {
-
-        log.error(e.getMessage(), e);
-        return ResponseDto.wrapException(e);
-    }
 
     /**
      * 处理业务异常
@@ -28,6 +20,20 @@ public class GlobalExceptionHandler {
     public ResponseDto<?> handleBusinessException(final BusinessException e) {
 
         log.error(e.getMessage(), e);
-        return ResponseDto.wrapException(e);
+        if(e.getCode() != 0) {
+            return ResponseDto.wrapException(e.getCode(),e.getMessage());
+        }
+        return ResponseDto.wrapException(e.getMessage());
+    }
+
+    /**
+     * 默认异常处理
+     */
+    @ExceptionHandler({RuntimeException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseDto<?> defaultHandleException(final RuntimeException e) {
+
+        log.error(e.getMessage(), e);
+        return ResponseDto.wrapException(e.getMessage());
     }
 }
