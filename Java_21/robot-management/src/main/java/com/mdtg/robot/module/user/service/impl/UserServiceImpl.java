@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mdtg.robot.common.exception.BusinessException;
 import com.mdtg.robot.common.exception.ResponseDto;
+import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
+import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
 import com.mdtg.robot.module.user.dto.RegisterInputDTO;
+import com.mdtg.robot.module.user.dto.UpdateInputDTO;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.mapper.UserMapper;
 import com.mdtg.robot.module.user.service.UserService;
@@ -39,8 +42,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 通过手机号获取用户信息
-     *
-     * @param phone
      */
     @Override
     public User getUserByPhone(String phone) {
@@ -49,10 +50,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 注册用户
+     * 
      * @return userID
      */
     @Override
-    public ResponseDto<?> register(RegisterInputDTO inputDTO) {
+    public ResponseDto<?> registerUser(RegisterInputDTO inputDTO) {
 
         Long cou = this.baseMapper.selectCount(new LambdaQueryWrapper<User>().eq(User::getPhone, inputDTO.getPhone()));
         if (cou > 0) {
@@ -65,6 +67,46 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return ResponseDto.wrapSuccess(Long.toString(user.getId()));
         }
         throw new BusinessException("注册失败!");
+    }
+
+    /**
+     * 删除用户
+     *
+     * @return Boolean
+     */
+    @Override
+    public ResponseDto<?> deleteUser(String userId) {
+        return null;
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @return Boolean
+     */
+    @Override
+    public ResponseDto<?> updateUser(UpdateInputDTO inputDTO) {
+        return null;
+    }
+
+    /**
+     * 修改密码
+     *
+     * @return Boolean
+     */
+    @Override
+    public ResponseDto<?> changePassword(ChangePasswordInputDTO inputDTO) {
+        return null;
+    }
+
+    /**
+     * 查询用户信息
+     *
+     * @return DTO
+     */
+    @Override
+    public ResponseDto<?> queryUser(QueryUserInputDTO inputDTO) {
+        return null;
     }
 }
 

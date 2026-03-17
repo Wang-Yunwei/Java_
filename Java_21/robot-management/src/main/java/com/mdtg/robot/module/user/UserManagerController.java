@@ -1,9 +1,9 @@
 package com.mdtg.robot.module.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.mdtg.robot.common.config.JwtUtil;
+import com.mdtg.robot.module.user.config.JwtUtil;
 import com.mdtg.robot.common.exception.ResponseDto;
-import com.mdtg.robot.module.user.dto.RegisterInputDTO;
+import com.mdtg.robot.module.user.dto.*;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.service.PermissionService;
 import com.mdtg.robot.module.user.service.RoleService;
@@ -11,7 +11,6 @@ import com.mdtg.robot.module.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,15 +60,81 @@ public class UserManagerController {
         return ResponseDto.wrapSuccess("登出成功!");
     }
 
-    @Operation(summary = "注册")
+    @Operation(summary = "用户-注册")
     @PostMapping("/user/register")
-    public ResponseDto<?> register(@RequestBody RegisterInputDTO inputDTO) {
+    public ResponseDto<?> registerUser(@RequestBody RegisterInputDTO inputDTO) {
 
-        return userService.register(inputDTO);
+        return userService.registerUser(inputDTO);
     }
 
+    @Operation(summary = "用户-删除")
+    @GetMapping("/user/delete/{userId}")
+    public ResponseDto<?> deleteUser(@PathVariable String userId) {
 
-    public ResponseDto<?> update(User user) {
         return null;
     }
+
+    @Operation(summary = "用户-更新")
+    @PostMapping("/user/update")
+    public ResponseDto<?> updateUser(@RequestBody UpdateInputDTO inputDTO) {
+
+        return null;
+    }
+
+    @Operation(summary = "用户-修改密码")
+    @PostMapping("/user/change-password")
+    public ResponseDto<?> changePassword(@RequestBody ChangePasswordInputDTO inputDTO) {
+
+        return null;
+    }
+
+    @Operation(summary = "用户-查询")
+    @PostMapping("/user/query")
+    public ResponseDto<?> queryUser(@RequestBody QueryUserInputDTO inputDTO) {
+
+        return null;
+    }
+
+    @Operation(summary = "角色-新增or更新")
+    @PostMapping("/role/add-or-update")
+    public ResponseDto<?> addRole(@RequestBody AddRoleInputDTO inputDTO) {
+
+        return null;
+    }
+
+    @Operation(summary = "角色-删除")
+    @GetMapping ("/role/delete/{roleId}")
+    public ResponseDto<?> deleteRole(@PathVariable String roleId) {
+
+        return null;
+    }
+
+    @Operation(summary = "角色-查询")
+    @PostMapping("/role/query")
+    public ResponseDto<?> queryRole(@RequestBody QueryRoleInputDTO inputDTO) {
+
+        return null;
+    }
+
+    @Operation(summary = "权限-新增or更新")
+    @PostMapping("/permission/add-or-update")
+    public ResponseDto<?> addPermission(@RequestBody AddPermissionInputDTO inputDTO) {
+
+        return null;
+    }
+
+    @Operation(summary = "权限-删除")
+    @GetMapping ("/permission/delete/{permissionId}")
+    public ResponseDto<?> deletePermission(@PathVariable String permissionId) {
+
+        return null;
+    }
+
+    @Operation(summary = "权限-查询")
+    @PostMapping("/permission/query")
+    public ResponseDto<?> queryPermission(@RequestBody QueryPermissionInputDTO inputDTO) {
+
+        return null;
+    }
+
 }

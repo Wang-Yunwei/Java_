@@ -16,11 +16,7 @@ public class CustomMetaObjectHandler implements MetaObjectHandler {
 
     public User getCurrentUser() {
         User user = new User();
-        // 1. 获取当前登录的用户主体 (Subject)
         Object principal = SecurityUtils.getSubject().getPrincipal();
-        /* 2. 假设你的 User 实体类叫 User，或者你存入的是用户名字符串
-         * 这里需要根据你 Realm 中 doGetAuthenticationInfo 返回的 Principal 类型来定
-         */
         if (principal != null && principal instanceof User) {
             user = (User) principal;
         }
