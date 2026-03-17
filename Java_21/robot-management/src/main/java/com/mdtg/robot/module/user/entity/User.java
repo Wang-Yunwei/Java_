@@ -72,6 +72,11 @@ public class User extends BaseEntity {
     private Integer type;
 
     /**
+     * 状态(0-正常,1-锁定)
+     */
+    private Integer status;
+
+    /**
      * 机构标识
      */
     private String orgCode;

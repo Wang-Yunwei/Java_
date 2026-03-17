@@ -3,6 +3,7 @@ package com.mdtg.robot.module.user.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mdtg.robot.common.exception.BusinessException;
+import com.mdtg.robot.common.exception.ResponseDto;
 import com.mdtg.robot.module.user.dto.RegisterInputDTO;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.mapper.UserMapper;
@@ -11,6 +12,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.lang.util.ByteSource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author WangYunwei
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
  * @createDate 2026-03-10 14:11:49
  */
 @Service
+@Transactional(rollbackFor = RuntimeException.class)
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     /**
@@ -49,13 +52,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return userID
      */
     @Override
-    public String register(RegisterInputDTO inputDTO) {
+    public ResponseDto<?> register(RegisterInputDTO inputDTO) {
 
+        Long cou = this.baseMapper.selectCount(new LambdaQueryWrapper<User>().eq(User::getPhone, inputDTO.getPhone()));
+        if (cou > 0) {
+            return ResponseDto.wrapException("该账户已近存在!");
+        }
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
         int result = this.baseMapper.insert(user);
         if (result == 1) {
-            return Long.toString(user.getId());
+            return ResponseDto.wrapSuccess(Long.toString(user.getId()));
         }
         throw new BusinessException("注册失败!");
     }

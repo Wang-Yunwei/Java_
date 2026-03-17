@@ -1,9 +1,5 @@
-server:
-  servlet:
-    context-path: /mdtg-robot-management
-
 spring:
   application:
-    name: mdtg-robot-management
+    name: mdtg_robot_server
   profiles:
     include: dev

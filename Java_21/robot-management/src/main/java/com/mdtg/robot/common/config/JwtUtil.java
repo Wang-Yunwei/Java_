@@ -23,7 +23,7 @@ import java.util.Map;
 @Component
 public class JwtUtil {
     private static final String SECRET = "zxcvbnmfdasaererafafafafafafakjlkjalkfafadffdafadfafafaaafadfadfaf1234567890";
-    private static final long EXPIRE = 60 * 24 * 7;
+    private static final long EXPIRE = 24 * 60;
     public static final String HEADER = "Authorization";
 
     /**
@@ -54,8 +54,6 @@ public class JwtUtil {
 
     /**
      * 检查token是否过期
-     *
-     * @return true：过期
      */
     public boolean isTokenExpired(Date expiration) {
         return expiration.before(new Date());
@@ -63,9 +61,6 @@ public class JwtUtil {
 
     /**
      * 获得token中的自定义信息,一般是获取token的username，无需secret解密也能获得
-     * @param token
-     * @param filed
-     * @return
      */
     public String getClaimFiled(String token, String filed){
         try{

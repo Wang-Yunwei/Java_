@@ -1,7 +1,5 @@
 server:
   port: ${mdtg.port}
-  servlet:
-    context-path: /mdtg_robot_server
   # Tomcat 容器优化
   tomcat:
     uri-encoding: UTF-8 # 请求/响应编码

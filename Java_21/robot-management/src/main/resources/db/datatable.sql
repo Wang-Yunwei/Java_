@@ -10,7 +10,7 @@ CREATE TABLE `mdtg_user`(
     `email`         VARCHAR(20)  DEFAULT NULL   COMMENT '邮箱',
     `address`       VARCHAR(300) DEFAULT NULL   COMMENT '住址',
     `role_ids`      JSON         DEFAULT NULL   COMMENT '角色列表',
-    `type`          TINYINT      DEFAULT 0      COMMENT '类型(0:系统默认,1:自定义)',
+    `type`          TINYINT      DEFAULT 0      COMMENT '类型(0-系统默认,1-自定义)',
     `status` 	    TINYINT      DEFAULT 0      COMMENT '状态(0-正常,1-锁定)',
     `org_code`      VARCHAR(50)  DEFAULT NULL   COMMENT '机构标识',
     `create_by`     BIGINT       DEFAULT NULL   COMMENT '创建者ID',

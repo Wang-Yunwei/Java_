@@ -57,9 +57,9 @@ public class ShiroConfig {
         shiroFilter.setShiroFilterConfiguration(config);
 
         Map<String, Filter> filters = new HashMap<>();
-        // oauth过滤
+        // 注册oauth过滤
         filters.put("oauth2", new Oauth2Filter());
-        // 服务密钥过滤
+        // 注册服务密钥过滤
         filters.put("server", new ServerSecretFilter(sysParamsService));
         shiroFilter.setFilters(filters);
 

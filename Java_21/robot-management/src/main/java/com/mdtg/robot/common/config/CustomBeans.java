@@ -1,12 +1,7 @@
 package com.mdtg.robot.common.config;
 
-import com.mdtg.robot.module.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.mgt.DefaultSecurityManager;
-import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
-import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +13,9 @@ import org.springframework.web.client.RestClient;
 @Slf4j
 @Configuration
 public class CustomBeans {
+
+    @Value("${server.port}")
+    private Integer port;
 
     /**
      * CommandLineRunner
@@ -57,7 +55,10 @@ public class CustomBeans {
      */
     @Bean
     ApplicationRunner startImmediatelyExecute() {
-        return args -> log.info("================== 【START-UP SUCCESSFUL】 ==================");
+        return args -> {
+            log.info("http://127.0.0.1:{}/doc.html",port);
+            System.out.println("================== 【START-UP SUCCESSFUL】 ==================");
+        };
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.mdtg.robot.module.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mdtg.robot.common.exception.ResponseDto;
 import com.mdtg.robot.module.user.dto.RegisterInputDTO;
 import com.mdtg.robot.module.user.entity.User;
 
@@ -25,6 +26,6 @@ public interface UserService extends IService<User> {
      * 注册用户
      * @return userID
      */
-    String register(RegisterInputDTO inputDTO);
+    ResponseDto<?> register(RegisterInputDTO inputDTO);
 
 }

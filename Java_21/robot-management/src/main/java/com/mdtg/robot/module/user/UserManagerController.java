@@ -39,20 +39,16 @@ public class UserManagerController {
 
     @Operation(summary = "登录")
     @PostMapping("/login")
-    public ResponseDto<Object> login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) {
+    public ResponseDto<?> login(@RequestParam String accountNumber, @RequestParam String password) {
 
-        User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
+        User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getPhone, accountNumber));
         if (user == null) {
-            return ResponseDto.wrapSuccess("用户名不存在");
+            return ResponseDto.wrapSuccess("账户不存在");
         }
-
         if (!user.getPassword().equals(password)) {
-            return ResponseDto.wrapSuccess("用户名或密码错误");
+            return ResponseDto.wrapSuccess("账户或密码错误");
         }
-
-        String token = jwtUtil.generateToken(username);
-        response.setHeader(JwtUtil.HEADER, token);
-        response.setHeader("Access-control-Expost-Headers", JwtUtil.HEADER);
+        String token = jwtUtil.generateToken(accountNumber);
         Map<String, String> map = new HashMap<>();
         map.put("token", token);
         return ResponseDto.wrapSuccess(map);
@@ -60,15 +56,20 @@ public class UserManagerController {
 
     @Operation(summary = "登出")
     @GetMapping("/logout")
-    public ResponseDto<String> logout() {
+    public ResponseDto<?> logout() {
         SecurityUtils.getSubject().logout();
         return ResponseDto.wrapSuccess("登出成功!");
     }
 
     @Operation(summary = "注册")
     @PostMapping("/user/register")
-    public ResponseDto<String> register(@RequestBody RegisterInputDTO inputDTO) {
+    public ResponseDto<?> register(@RequestBody RegisterInputDTO inputDTO) {
 
-        return ResponseDto.wrapSuccess(userService.register(inputDTO));
+        return userService.register(inputDTO);
+    }
+
+
+    public ResponseDto<?> update(User user) {
+        return null;
     }
 }

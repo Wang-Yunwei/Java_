@@ -1,79 +1,92 @@
 package com.mdtg.robot.common.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mdtg.robot.common.exception.BusinessException;
-import com.mdtg.robot.common.exception.ResponseDto;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.AccessControlFilter;
-import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author WangYunwei [2026-03-12]
  */
 @Slf4j
-@Component
 public class JwtFilter extends AccessControlFilter {
 
-    private final ObjectMapper objectMapper;
+    private static final Set<String> ALLOW_LIST = Set.of(
+            "/doc.html"
+    );
+    private static final List<String> PATTERN_ALLOW_LIST = Arrays.asList(
+            "/webjars/js/**",
+            "/webjars/css/**",
+            "/v3/api-docs/**"
+    );
+    private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
 
-    public JwtFilter(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
+
 
     /**
+     * 是否允许访问
      * isAccessAllowed()判断是否携带了有效的JwtToken
-     * onAccessDenied()是没有携带JwtToken的时候进行账号密码登录，登录成功允许访问，登录失败拒绝访问
+     * <p>
+     * 1. 返回true: shiro就直接允许访问url
+     * 2. 返回false: shiro才会根据onAccessDenied的方法的返回值决定是否允许访问url
      */
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-        /**
-         * 1. 返回true，shiro就直接允许访问url
-         * 2. 返回false，shiro才会根据onAccessDenied的方法的返回值决定是否允许访问url
-         *  这里先让它始终返回false来使用onAccessDenied()方法
-         */
-        log.info("isAccessAllowed方法被调用");
-        return false;
-    }
 
-    @Override
-    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        /**
-         *  跟前端约定将jwtToken放在请求的Header的Authorization中，Authorization:token
-         */
-        log.info("onAccessDenied方法被调用");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+//        String requestURI = request.getRequestURI();
+//        // 1.如果在精确白名单中，直接放行
+//        if (ALLOW_LIST.contains(requestURI)) {
+//            return true;
+//        }
+//        // 2.如果匹配模式白名单，放行
+//        for (String pattern : PATTERN_ALLOW_LIST) {
+//            if (ANT_PATH_MATCHER.match(pattern, requestURI)) {
+//                return true;
+//            }
+//        }
+        // 3.验证Token
         String token = request.getHeader(JwtUtil.HEADER);
-        //如果token为空的话，返回true，交给控制层@RequiresAuthentication进行判断；也会达到没有权限的作用
         if (token == null) {
-            HttpServletResponse response = (HttpServletResponse) servletResponse;
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json;charset=UTF-8");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().print(objectMapper.writeValueAsString(ResponseDto.wrapException("The token is null!")));
             return false;
         }
         JwtToken jwtToken = new JwtToken(token);
         try {
-            //进行登录处理，委托realm进行登录认证，调用AccountRealm进行的认证
+            //进行登录处理,委托realm进行登录认证,调用Realm进行的认证
             getSubject(servletRequest, servletResponse).login(jwtToken);
         } catch (Exception e) {
             log.error("Subject login error:", e);
             return false;
         }
-        //如果走到这里，那么就返回true，代表登录成功
         return true;
     }
 
-    //登录失败要执行的方法
-    private void onLoginFail(ServletResponse response) throws IOException {
-        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        httpServletResponse.getWriter().print("login error");
+    /**
+     * 访问被拒绝时
+     * onAccessDenied()是没有携带JwtToken的时候进行账号密码登录,登录成功允许访问,登录失败拒绝访问
+     */
+    @Override
+    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+
+        log.info("onAccessDenied方法被调用");
+
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        String requestURI = request.getRequestURI();
+        log.info("== {}",requestURI);
+
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.getWriter().print("123123");
+        response.flushBuffer();
+        return false;
     }
 }
