@@ -13,7 +13,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Schema(description = "用户-更新")
 public class UpdateInputDTO {
     @Schema(description = "用户名",example = "张三")
     @NotBlank(message = "用户名不能为空")

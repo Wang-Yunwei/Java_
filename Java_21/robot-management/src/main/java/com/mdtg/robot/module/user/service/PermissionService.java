@@ -1,7 +1,7 @@
 package com.mdtg.robot.module.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.mdtg.robot.common.exception.ResponseDto;
+import com.mdtg.robot.common.exception.ResponseDTO;
 import com.mdtg.robot.module.user.dto.AddPermissionInputDTO;
 import com.mdtg.robot.module.user.dto.QueryPermissionInputDTO;
 import com.mdtg.robot.module.user.entity.Permission;
@@ -13,9 +13,9 @@ import com.mdtg.robot.module.user.entity.Permission;
  */
 public interface PermissionService extends IService<Permission> {
 
-    ResponseDto<?> addPermission(AddPermissionInputDTO inputDTO);
+    ResponseDTO<?> addPermission(AddPermissionInputDTO inputDTO);
 
-    ResponseDto<?> deletePermission(String permissionId);
+    ResponseDTO<?> deletePermission(String permissionId);
 
-    ResponseDto<?> queryPermission(QueryPermissionInputDTO inputDTO);
+    ResponseDTO<?> queryPermission(QueryPermissionInputDTO inputDTO);
 }

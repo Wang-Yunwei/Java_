@@ -9,6 +9,5 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Schema(description = "角色-添加")
 public class AddRoleInputDTO {
 }

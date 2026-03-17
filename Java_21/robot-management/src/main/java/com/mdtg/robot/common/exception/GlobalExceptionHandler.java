@@ -17,13 +17,13 @@ public class GlobalExceptionHandler {
      * 处理业务异常
      */
     @ExceptionHandler({BusinessException.class})
-    public ResponseDto<?> handleBusinessException(final BusinessException e) {
+    public ResponseDTO<?> handleBusinessException(final BusinessException e) {
 
         log.error(e.getMessage(), e);
         if(e.getCode() != 0) {
-            return ResponseDto.wrapException(e.getCode(),e.getMessage());
+            return ResponseDTO.wrapException(e.getCode(),e.getMessage());
         }
-        return ResponseDto.wrapException(e.getMessage());
+        return ResponseDTO.wrapException(e.getMessage());
     }
 
     /**
@@ -31,9 +31,9 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({RuntimeException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseDto<?> defaultHandleException(final RuntimeException e) {
+    public ResponseDTO<?> defaultHandleException(final RuntimeException e) {
 
         log.error(e.getMessage(), e);
-        return ResponseDto.wrapException(e.getMessage());
+        return ResponseDTO.wrapException(e.getMessage());
     }
 }

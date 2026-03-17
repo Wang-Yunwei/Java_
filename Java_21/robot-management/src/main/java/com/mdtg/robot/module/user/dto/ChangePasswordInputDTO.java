@@ -12,7 +12,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Schema(description = "用户-修改密码")
 public class ChangePasswordInputDTO {
 
     @Schema(description = "手机号",example = "18168960416")

@@ -1,14 +1,12 @@
 package com.mdtg.robot.module.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.mdtg.robot.common.exception.ResponseDto;
+import com.mdtg.robot.common.exception.ResponseDTO;
 import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
 import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
 import com.mdtg.robot.module.user.dto.RegisterInputDTO;
 import com.mdtg.robot.module.user.dto.UpdateInputDTO;
 import com.mdtg.robot.module.user.entity.User;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author WangYunwei
@@ -31,29 +29,29 @@ public interface UserService extends IService<User> {
      * 注册用户
      * @return userID
      */
-    ResponseDto<?> registerUser(RegisterInputDTO inputDTO);
+    ResponseDTO<?> registerUser(RegisterInputDTO inputDTO);
 
     /**
      * 删除用户
      * @return Boolean
      */
-    ResponseDto<?> deleteUser(String userId);
+    ResponseDTO<?> deleteUser(String userId);
 
     /**
      * 更新用户信息
      * @return Boolean
      */
-    ResponseDto<?> updateUser(UpdateInputDTO inputDTO);
+    ResponseDTO<?> updateUser(UpdateInputDTO inputDTO);
 
     /**
      * 修改密码
      * @return Boolean
      */
-    ResponseDto<?> changePassword(ChangePasswordInputDTO inputDTO);
+    ResponseDTO<?> changePassword(ChangePasswordInputDTO inputDTO);
 
     /**
      * 查询用户信息
      * @return DTO
      */
-    ResponseDto<?> queryUser(QueryUserInputDTO inputDTO);
+    ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO);
 }

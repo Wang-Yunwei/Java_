@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit;
 @Setter
 @Accessors(chain = true)
 @Schema(description = "接口统一返回的包装类")
-public final class ResponseDto<T> implements Serializable {
+public final class ResponseDTO<T> implements Serializable {
 
     @Schema(description = "业务状态码,除0以外都是错误状态")
     private int code = 0;
@@ -31,27 +31,27 @@ public final class ResponseDto<T> implements Serializable {
 
     public static final String MSG_ERROR = "ERROR";
 
-    public ResponseDto() {
+    public ResponseDTO() {
     }
 
-    public static <T> ResponseDto<T> wrapSuccess() {
+    public static <T> ResponseDTO<T> wrapSuccess() {
 
-        return new ResponseDto<>();
+        return new ResponseDTO<>();
     }
 
-    public static <T> ResponseDto<T> wrapSuccess(final T body) {
+    public static <T> ResponseDTO<T> wrapSuccess(final T body) {
 
-        return new ResponseDto<T>().setBody(body);
+        return new ResponseDTO<T>().setBody(body);
     }
 
-    public static <T> ResponseDto<T> wrapException(String message) {
+    public static <T> ResponseDTO<T> wrapException(String message) {
 
-        return new ResponseDto<T>().setCode(-1).setMessage(message);
+        return new ResponseDTO<T>().setCode(-1).setMessage(message);
     }
 
-    public static <T> ResponseDto<T> wrapException(int code,String message) {
+    public static <T> ResponseDTO<T> wrapException(int code, String message) {
 
-        return new ResponseDto<T>().setCode(code).setMessage(message);
+        return new ResponseDTO<T>().setCode(code).setMessage(message);
     }
 
 }

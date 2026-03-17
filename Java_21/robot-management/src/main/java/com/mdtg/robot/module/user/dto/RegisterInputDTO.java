@@ -15,7 +15,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Schema(description = "用户-注册")
 public class RegisterInputDTO {
 
     @Schema(description = "用户名",example = "张三")

@@ -9,6 +9,5 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Schema(description = "权限-查询")
 public class QueryPermissionInputDTO {
 }

@@ -3,7 +3,7 @@ package com.mdtg.robot.module.user.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mdtg.robot.common.exception.BusinessException;
-import com.mdtg.robot.common.exception.ResponseDto;
+import com.mdtg.robot.common.exception.ResponseDTO;
 import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
 import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
 import com.mdtg.robot.module.user.dto.RegisterInputDTO;
@@ -50,21 +50,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 注册用户
-     * 
+     *
      * @return userID
      */
     @Override
-    public ResponseDto<?> registerUser(RegisterInputDTO inputDTO) {
+    public ResponseDTO<?> registerUser(RegisterInputDTO inputDTO) {
 
         Long cou = this.baseMapper.selectCount(new LambdaQueryWrapper<User>().eq(User::getPhone, inputDTO.getPhone()));
         if (cou > 0) {
-            return ResponseDto.wrapException("该账户已近存在!");
+            return ResponseDTO.wrapException("该账户已近存在!");
         }
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
         int result = this.baseMapper.insert(user);
         if (result == 1) {
-            return ResponseDto.wrapSuccess(Long.toString(user.getId()));
+            return ResponseDTO.wrapSuccess(Long.toString(user.getId()));
         }
         throw new BusinessException("注册失败!");
     }
@@ -75,7 +75,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return Boolean
      */
     @Override
-    public ResponseDto<?> deleteUser(String userId) {
+    public ResponseDTO<?> deleteUser(String userId) {
         return null;
     }
 
@@ -85,7 +85,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return Boolean
      */
     @Override
-    public ResponseDto<?> updateUser(UpdateInputDTO inputDTO) {
+    public ResponseDTO<?> updateUser(UpdateInputDTO inputDTO) {
         return null;
     }
 
@@ -95,7 +95,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return Boolean
      */
     @Override
-    public ResponseDto<?> changePassword(ChangePasswordInputDTO inputDTO) {
+    public ResponseDTO<?> changePassword(ChangePasswordInputDTO inputDTO) {
         return null;
     }
 
@@ -105,7 +105,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return DTO
      */
     @Override
-    public ResponseDto<?> queryUser(QueryUserInputDTO inputDTO) {
+    public ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO) {
         return null;
     }
 }
