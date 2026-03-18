@@ -19,11 +19,6 @@ public interface UserService extends IService<User> {
     String encryptPassword(String password, String salt);
 
     /**
-     * 通过手机号获取用户信息
-     */
-    User getUserByPhone(String phone);
-
-    /**
      * 注册用户
      * @return userID
      */

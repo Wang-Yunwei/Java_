@@ -3,3 +3,5 @@ spring:
     name: mdtg_robot_server
   profiles:
     include: dev
+  jackson:
+    default-property-inclusion: non_null #序列化时忽略 null

@@ -10,4 +10,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QueryRoleInputDTO {
+
+    @Schema(description = "角色ID")
+    private Long id;
+
+    @Schema(description = "角色编码(如: admin)")
+    private String code;
+
+    @Schema(description = "类型(0-系统默认,1-自定义)")
+    private Integer type;
 }

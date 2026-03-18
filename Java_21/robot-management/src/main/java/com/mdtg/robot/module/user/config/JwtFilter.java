@@ -1,11 +1,17 @@
 package com.mdtg.robot.module.user.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mdtg.robot.common.exception.ResponseDTO;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.AccessControlFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.Arrays;
@@ -21,14 +27,41 @@ public class JwtFilter extends AccessControlFilter {
     private static final Set<String> ALLOW_LIST = Set.of(
             "/doc.html"
     );
+
     private static final List<String> PATTERN_ALLOW_LIST = Arrays.asList(
             "/webjars/js/**",
             "/webjars/css/**",
             "/v3/api-docs/**"
     );
+
     private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
 
+    private ObjectMapper om;
 
+    public JwtFilter(){
+        this.om = new ObjectMapper();
+        this.om.registerModule(new JavaTimeModule());
+        this.om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
+
+    private static String getToken(HttpServletRequest servletRequest) {
+
+        HttpServletRequest request = servletRequest;
+//        String requestURI = request.getRequestURI();
+//        // 1.如果在精确白名单中，放行
+//        if (ALLOW_LIST.contains(requestURI)) {
+//            return true;
+//        }
+//        // 2.如果匹配模式白名单，放行
+//        for (String pattern : PATTERN_ALLOW_LIST) {
+//            if (ANT_PATH_MATCHER.match(pattern, requestURI)) {
+//                return true;
+//            }
+//        }
+
+        String token = request.getHeader(JwtUtil.HEADER);
+        return token;
+    }
 
     /**
      * 是否允许访问
@@ -40,29 +73,22 @@ public class JwtFilter extends AccessControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
 
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-//        String requestURI = request.getRequestURI();
-//        // 1.如果在精确白名单中，直接放行
-//        if (ALLOW_LIST.contains(requestURI)) {
-//            return true;
-//        }
-//        // 2.如果匹配模式白名单，放行
-//        for (String pattern : PATTERN_ALLOW_LIST) {
-//            if (ANT_PATH_MATCHER.match(pattern, requestURI)) {
-//                return true;
-//            }
-//        }
         // 3.验证Token
-        String token = request.getHeader(JwtUtil.HEADER);
+        String token = getToken((HttpServletRequest) servletRequest);
         if (token == null) {
             return false;
         }
         JwtToken jwtToken = new JwtToken(token);
         try {
-            //进行登录处理,委托realm进行登录认证,调用Realm进行的认证
+            // 进行登录处理,委托realm进行登录认证,调用Realm进行的认证
             getSubject(servletRequest, servletResponse).login(jwtToken);
         } catch (Exception e) {
-            log.error("Subject login error:", e);
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json;charset=UTF-8");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().print(om.writeValueAsString(ResponseDTO.wrapException(e.getMessage())));
+            response.flushBuffer();
             return false;
         }
         return true;
@@ -75,18 +101,9 @@ public class JwtFilter extends AccessControlFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
 
-        log.info("onAccessDenied方法被调用");
-
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String requestURI = request.getRequestURI();
-        log.info("== {}",requestURI);
-
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json;charset=UTF-8");
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().print("请登录!");
-        response.flushBuffer();
+        log.info("拒绝访问路径 ==> {}", requestURI);
         return false;
     }
 }

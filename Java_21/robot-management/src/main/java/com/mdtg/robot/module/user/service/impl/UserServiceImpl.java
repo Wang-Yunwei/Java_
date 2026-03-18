@@ -24,7 +24,7 @@ import java.util.Optional;
  * @author WangYunwei
  */
 @Service
-@Transactional(rollbackFor = RuntimeException.class)
+@Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     /**
@@ -39,14 +39,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 参数：算法、明文、盐、迭代次数
         SimpleHash hash = new SimpleHash("SHA-256", password, ByteSource.Util.bytes(salt), 1024);
         return hash.toHex(); // 转为 16 进制字符串存储
-    }
-
-    /**
-     * 通过手机号获取用户信息
-     */
-    @Override
-    public User getUserByPhone(String phone) {
-        return this.baseMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getPhone, phone));
     }
 
     /**
@@ -114,15 +106,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO) {
         // 1.按ID精确查询 (返回单个用户)
-        assert inputDTO != null;
+        assert inputDTO != null : "入参为空!";
         if (inputDTO.getUserId() != null && inputDTO.getUserId() > 0) {
             User user = this.baseMapper.selectById(inputDTO.getUserId());
-            if (user == null) {
-                return ResponseDTO.wrapException("用户不存在");
-            }
-            QueryUserOutputDTO outputDTO = new QueryUserOutputDTO();
-            BeanUtils.copyProperties(user, outputDTO);
-            return ResponseDTO.wrapSuccess(outputDTO);
+            return ResponseDTO.wrapSuccess(user);
         }
         // 2.按条件查询 (返回用户列表)
         IPage<User> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
@@ -133,8 +120,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .ifPresent(gender -> queryWrapper.eq(User::getGender, gender));
         Optional.ofNullable(inputDTO.getAddress())
                 .ifPresent(address -> queryWrapper.eq(User::getAddress, address));
-        List<QueryUserOutputDTO> list = this.baseMapper.selectPageDTOList(page, queryWrapper);
-        return ResponseDTO.wrapSuccess(list);
+        IPage<User> userIPage = this.baseMapper.selectPage(page, queryWrapper);
+        return ResponseDTO.wrapSuccess(userIPage);
     }
 }
 

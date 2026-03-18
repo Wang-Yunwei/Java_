@@ -3,6 +3,7 @@ package com.mdtg.robot.common.exception;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.time.temporal.ChronoUnit;
  */
 @Getter
 @Setter
+@ToString
 @Accessors(chain = true)
 @Schema(description = "接口统一返回的包装类")
 public final class ResponseDTO<T> implements Serializable {
@@ -25,7 +27,7 @@ public final class ResponseDTO<T> implements Serializable {
     private String message = "SUCCESS";
 
     @Schema(description = "时间戳，精度: 毫秒")
-    private LocalDateTime timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+    private LocalDateTime timestamp;
 
     private T body;
 
@@ -34,6 +36,7 @@ public final class ResponseDTO<T> implements Serializable {
     public static final String MSG_ERROR = "ERROR";
 
     public ResponseDTO() {
+        this.timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
     public static <T> ResponseDTO<T> wrapSuccess() {

@@ -3,6 +3,9 @@ package com.mdtg.robot.module.user.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.mdtg.robot.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +21,7 @@ public class User extends BaseEntity {
      * 主键
      */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**
@@ -27,7 +31,9 @@ public class User extends BaseEntity {
 
     /**
      * 密码
+     * - @JsonIgnore 敏感字段永远不返回
      */
+    @JsonIgnore
     private String password;
 
     /**
