@@ -22,10 +22,6 @@ public class User extends BaseEntity {
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
-    public Long getId() {
-        return this.id;
-    }
-
     /**
      * 用户名
      */

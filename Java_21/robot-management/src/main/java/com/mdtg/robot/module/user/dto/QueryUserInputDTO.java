@@ -1,7 +1,5 @@
 package com.mdtg.robot.module.user.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +12,6 @@ import lombok.Setter;
 public class QueryUserInputDTO {
 
     @Schema(description = "用户ID",example = "3208261518615861")
-    @JsonDeserialize(using = NumberDeserializers.LongDeserializer.class)
     private Long userId;
 
     @Schema(description = "用户名",example = "张三")
@@ -25,4 +22,10 @@ public class QueryUserInputDTO {
 
     @Schema(description = "住址",example = "江苏省苏州市工业园区归家港路222号麦迪斯顿南门")
     private String address;
+
+    @Schema(description = "页码")
+    private Long pageNum = 0L;
+
+    @Schema(description = "页长")
+    private Long pageSize = 10L;
 }

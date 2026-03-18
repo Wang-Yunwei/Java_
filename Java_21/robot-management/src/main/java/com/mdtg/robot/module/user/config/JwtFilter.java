@@ -85,7 +85,7 @@ public class JwtFilter extends AccessControlFilter {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().print("123123");
+        response.getWriter().print("请登录!");
         response.flushBuffer();
         return false;
     }

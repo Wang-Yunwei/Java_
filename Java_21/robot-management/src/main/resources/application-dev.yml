@@ -91,6 +91,7 @@ knife4j:
   setting:
     enableFooter: false
 
+
 # Mybatis-plus 配置
 mybatis-plus:
   configuration:

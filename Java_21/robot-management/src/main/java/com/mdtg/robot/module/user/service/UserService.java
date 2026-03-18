@@ -5,7 +5,7 @@ import com.mdtg.robot.common.exception.ResponseDTO;
 import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
 import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
 import com.mdtg.robot.module.user.dto.RegisterInputDTO;
-import com.mdtg.robot.module.user.dto.UpdateInputDTO;
+import com.mdtg.robot.module.user.dto.UpdateUserInputDTO;
 import com.mdtg.robot.module.user.entity.User;
 
 /**
@@ -41,7 +41,7 @@ public interface UserService extends IService<User> {
      * 更新用户信息
      * @return Boolean
      */
-    ResponseDTO<?> updateUser(UpdateInputDTO inputDTO);
+    ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO);
 
     /**
      * 修改密码

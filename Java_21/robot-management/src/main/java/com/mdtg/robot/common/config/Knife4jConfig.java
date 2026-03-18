@@ -1,5 +1,6 @@
 package com.mdtg.robot.common.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
@@ -21,14 +22,15 @@ public class Knife4jConfig {
                         .version("1.0.0")
                         .description("机器人管理服务接口文档，基于 Knife4j 增强"))
                 // 全局添加安全认证方案 (例如 JWT)
-                .addSecurityItem(new SecurityRequirement().addList("BearerAuth"))
-                .components(new io.swagger.v3.oas.models.Components()
-                        .addSecuritySchemes("BearerAuth",
+                .addSecurityItem(new SecurityRequirement().addList("Authorization"))
+                .components(new Components()
+                        .addSecuritySchemes("Authorization",
                                 new SecurityScheme()
-                                        .type(SecurityScheme.Type.HTTP)
-                                        .scheme("bearer")
-                                        .bearerFormat("JWT")
-                                        .description("请在下方输入 JWT Token，格式：Bearer <token>")));
+                                        .name("Authorization") // Header 的名称
+                                        .type(SecurityScheme.Type.APIKEY) // 类型：API Key
+                                        .in(SecurityScheme.In.HEADER) // 位置：Header
+                                        .description("请输入 Bearer Token") // 描述
+                        ));
     }
 
     // 可选：全局过滤掉某些包或路径

@@ -77,7 +77,7 @@ public class UserManagerController {
 
     @Operation(summary = "用户-更新")
     @PostMapping("/user/update")
-    public ResponseDTO<?> updateUser(@RequestBody UpdateInputDTO inputDTO) {
+    public ResponseDTO<?> updateUser(@RequestBody UpdateUserInputDTO inputDTO) {
 
         return userService.updateUser(inputDTO);
     }

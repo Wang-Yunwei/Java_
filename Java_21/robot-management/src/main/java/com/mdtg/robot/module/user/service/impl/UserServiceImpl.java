@@ -1,13 +1,13 @@
 package com.mdtg.robot.module.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mdtg.robot.common.exception.BusinessException;
 import com.mdtg.robot.common.exception.ResponseDTO;
-import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
-import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
-import com.mdtg.robot.module.user.dto.RegisterInputDTO;
-import com.mdtg.robot.module.user.dto.UpdateInputDTO;
+import com.mdtg.robot.module.user.dto.*;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.mapper.UserMapper;
 import com.mdtg.robot.module.user.service.UserService;
@@ -16,6 +16,9 @@ import org.apache.shiro.lang.util.ByteSource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author WangYunwei
@@ -55,7 +58,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseDTO<?> registerUser(RegisterInputDTO inputDTO) {
-
         Long cou = this.baseMapper.selectCount(new LambdaQueryWrapper<User>().eq(User::getPhone, inputDTO.getPhone()));
         if (cou > 0) {
             return ResponseDTO.wrapException("该账户已近存在!");
@@ -76,7 +78,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseDTO<?> deleteUser(String userId) {
-        return null;
+        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(userId) == 0 ? false : true);
     }
 
     /**
@@ -85,8 +87,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return Boolean
      */
     @Override
-    public ResponseDTO<?> updateUser(UpdateInputDTO inputDTO) {
-        return null;
+    public ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO) {
+        User user = new User();
+        BeanUtils.copyProperties(inputDTO, user);
+        return ResponseDTO.wrapSuccess(this.baseMapper.updateById(user) == 0 ? false : true);
     }
 
     /**
@@ -96,17 +100,42 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseDTO<?> changePassword(ChangePasswordInputDTO inputDTO) {
-        return null;
+
+        // 1. 新旧密码不能相同
+        if (inputDTO.getOldPassword().equals(inputDTO.getNewPassword())) {
+            return ResponseDTO.wrapException("新密码不能和旧密码相同!");
+        }
+        return ResponseDTO.wrapSuccess(this.baseMapper.update(new LambdaUpdateWrapper<User>().eq(User::getId, inputDTO.getId()).set(User::getPassword, inputDTO.getNewPassword())) == 0 ? false : true);
     }
 
     /**
      * 查询用户信息
      *
-     * @return DTO
+     * @return DTO or List<DTO>
      */
     @Override
     public ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO) {
-        return null;
+        // 1.按ID精确查询 (返回单个用户)
+        if (inputDTO != null && inputDTO.getUserId() != null) {
+            User user = this.baseMapper.selectById(inputDTO.getUserId());
+            if (user == null) {
+                return ResponseDTO.wrapException("用户不存在");
+            }
+            QueryUserOutputDTO outputDTO = new QueryUserOutputDTO();
+            BeanUtils.copyProperties(user, outputDTO);
+            return ResponseDTO.wrapSuccess(outputDTO);
+        }
+        // 2.按条件查询 (返回用户列表)
+        IPage<User> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        Optional.ofNullable(inputDTO.getUserName())
+                .ifPresent(username -> queryWrapper.eq(User::getUsername, username));
+        Optional.ofNullable(inputDTO.getGender())
+                .ifPresent(gender -> queryWrapper.eq(User::getGender, gender));
+        Optional.ofNullable(inputDTO.getAddress())
+                .ifPresent(address -> queryWrapper.eq(User::getAddress, address));
+        List<QueryUserOutputDTO> list = this.baseMapper.selectPageDTOList(page, queryWrapper);
+        return ResponseDTO.wrapSuccess(list);
     }
 }
 

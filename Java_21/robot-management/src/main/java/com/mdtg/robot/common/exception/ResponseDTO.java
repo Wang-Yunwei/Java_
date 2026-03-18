@@ -18,11 +18,13 @@ import java.time.temporal.ChronoUnit;
 @Schema(description = "接口统一返回的包装类")
 public final class ResponseDTO<T> implements Serializable {
 
-    @Schema(description = "业务状态码,除0以外都是错误状态")
+    @Schema(description = "业务状态码，除 0 以外都是错误状态")
     private int code = 0;
 
+    @Schema(description = "执行信息")
     private String message = "SUCCESS";
 
+    @Schema(description = "时间戳，精度: 毫秒")
     private LocalDateTime timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
 
     private T body;
