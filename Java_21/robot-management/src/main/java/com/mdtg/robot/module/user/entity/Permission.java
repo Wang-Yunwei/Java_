@@ -9,7 +9,6 @@ import lombok.Setter;
 
 /**
  * 权限表
- * @TableName mdtg_permission
  */
 @Getter
 @Setter

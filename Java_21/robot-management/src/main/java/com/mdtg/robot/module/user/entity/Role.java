@@ -15,7 +15,6 @@ import lombok.Setter;
 
 /**
  * 角色表
- * @TableName mdtg_role
  */
 @Getter
 @Setter

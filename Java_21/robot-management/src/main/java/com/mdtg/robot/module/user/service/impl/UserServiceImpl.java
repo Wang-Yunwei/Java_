@@ -22,8 +22,6 @@ import java.util.Optional;
 
 /**
  * @author WangYunwei
- * @description 针对表【mdtg_user(用户表)】的数据库操作Service实现
- * @createDate 2026-03-10 14:11:49
  */
 @Service
 @Transactional(rollbackFor = RuntimeException.class)
@@ -78,7 +76,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseDTO<?> deleteUser(String userId) {
-        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(userId) == 0 ? false : true);
+        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(userId) != 0);
     }
 
     /**
@@ -90,7 +88,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO) {
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
-        return ResponseDTO.wrapSuccess(this.baseMapper.updateById(user) == 0 ? false : true);
+        return ResponseDTO.wrapSuccess(this.baseMapper.updateById(user) != 0);
     }
 
     /**
@@ -105,7 +103,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (inputDTO.getOldPassword().equals(inputDTO.getNewPassword())) {
             return ResponseDTO.wrapException("新密码不能和旧密码相同!");
         }
-        return ResponseDTO.wrapSuccess(this.baseMapper.update(new LambdaUpdateWrapper<User>().eq(User::getId, inputDTO.getId()).set(User::getPassword, inputDTO.getNewPassword())) == 0 ? false : true);
+        return ResponseDTO.wrapSuccess(this.baseMapper.update(new LambdaUpdateWrapper<User>().eq(User::getId, inputDTO.getId()).set(User::getPassword, inputDTO.getNewPassword())) != 0);
     }
 
     /**
@@ -116,7 +114,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO) {
         // 1.按ID精确查询 (返回单个用户)
-        if (inputDTO != null && inputDTO.getUserId() != null) {
+        assert inputDTO != null;
+        if (inputDTO.getUserId() != null && inputDTO.getUserId() > 0) {
             User user = this.baseMapper.selectById(inputDTO.getUserId());
             if (user == null) {
                 return ResponseDTO.wrapException("用户不存在");

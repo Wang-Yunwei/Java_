@@ -9,8 +9,6 @@ import lombok.Setter;
 
 /**
  * 用户表
- *
- * @TableName mdtg_user
  */
 @Getter
 @Setter

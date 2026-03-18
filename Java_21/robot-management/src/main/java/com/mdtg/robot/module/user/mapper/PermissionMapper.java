@@ -6,9 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author WangYunwei
-* @description 针对表【mdtg_permission(权限表)】的数据库操作Mapper
-* @createDate 2026-03-10 14:11:49
-* @Entity generator.domain.Permission
 */
 @Mapper
 public interface PermissionMapper extends BaseMapper<Permission> {
