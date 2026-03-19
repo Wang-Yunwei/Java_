@@ -48,7 +48,11 @@ public class UserManagerController {
         if (!user.getPassword().equals(inputDTO.getPassword())) {
             return ResponseDTO.wrapException("账户或密码错误");
         }
-        return ResponseDTO.wrapSuccess(jwtUtil.generateToken(inputDTO.getAccountNumber()));
+        String token = jwtUtil.generateToken(inputDTO.getAccountNumber());
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("token", token);
+        result.put("user", user);
+        return ResponseDTO.wrapSuccess(result);
     }
 
     @Operation(summary = "登出")
