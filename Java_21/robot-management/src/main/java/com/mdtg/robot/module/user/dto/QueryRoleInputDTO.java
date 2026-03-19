@@ -19,4 +19,10 @@ public class QueryRoleInputDTO {
 
     @Schema(description = "类型(0-系统默认,1-自定义)")
     private Integer type;
+
+    @Schema(description = "页码")
+    private Long pageNum = 0L;
+
+    @Schema(description = "页长")
+    private Long pageSize = 10L;
 }

@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.apache.shiro.SecurityUtils;
+import org.simpleframework.xml.core.Validate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -38,19 +39,16 @@ public class UserManagerController {
 
     @Operation(summary = "登录")
     @PostMapping("/login")
-    public ResponseDTO<?> login(@RequestParam String accountNumber, @RequestParam String password) {
+    public ResponseDTO<?> login(@RequestBody LoginInputDTO inputDTO) {
 
-        User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getPhone, accountNumber));
+        User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getPhone, inputDTO.getAccountNumber()));
         if (user == null) {
-            return ResponseDTO.wrapSuccess("账户不存在");
+            return ResponseDTO.wrapException("账户不存在");
         }
-        if (!user.getPassword().equals(password)) {
-            return ResponseDTO.wrapSuccess("账户或密码错误");
+        if (!user.getPassword().equals(inputDTO.getPassword())) {
+            return ResponseDTO.wrapException("账户或密码错误");
         }
-        String token = jwtUtil.generateToken(accountNumber);
-        Map<String, String> map = new HashMap<>();
-        map.put("token", token);
-        return ResponseDTO.wrapSuccess(map);
+        return ResponseDTO.wrapSuccess(jwtUtil.generateToken(inputDTO.getAccountNumber()));
     }
 
     @Operation(summary = "登出")

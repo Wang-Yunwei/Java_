@@ -50,17 +50,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseDTO<?> registerUser(RegisterInputDTO inputDTO) {
-        Long cou = this.baseMapper.selectCount(new LambdaQueryWrapper<User>().eq(User::getPhone, inputDTO.getPhone()));
-        if (cou > 0) {
-            return ResponseDTO.wrapException("该账户已近存在!");
+
+        Long count = this.baseMapper.selectCount(new LambdaQueryWrapper<User>().eq(User::getPhone, inputDTO.getPhone()));
+        if (count > 0) {
+            return ResponseDTO.wrapException("该账户已存在!");
         }
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
-        int result = this.baseMapper.insert(user);
-        if (result == 1) {
-            return ResponseDTO.wrapSuccess(Long.toString(user.getId()));
-        }
-        throw new BusinessException("注册失败!");
+        return ResponseDTO.wrapSuccess(this.baseMapper.insert(user) != 0?user.getId():"注册失败!");
     }
 
     /**
