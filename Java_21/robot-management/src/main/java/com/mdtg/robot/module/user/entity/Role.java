@@ -1,13 +1,11 @@
 package com.mdtg.robot.module.user.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.mdtg.robot.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.Getter;
@@ -39,6 +37,7 @@ public class Role extends BaseEntity {
     /**
      * 权限列表
      */
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private Object permissionIds;
 
     /**

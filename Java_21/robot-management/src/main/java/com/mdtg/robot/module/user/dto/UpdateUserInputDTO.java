@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class UpdateUserInputDTO {
 
-    @Schema(description = "用户ID", example = "32082619561543")
+    @Schema(description = "用户ID", example = "2032370008612429825")
     @NotNull(message = "ID不能为空")
     private Long id;
 
@@ -42,4 +42,15 @@ public class UpdateUserInputDTO {
     @Schema(description = "住址", example = "江苏省苏州市工业园区归家港路222号麦迪斯顿南门")
     @Size(max = 255, message = "住址长度不能超过255个字符")
     private String address;
+
+    @Schema(description = "角色列表", example = "[1,2,3]")
+    private Object roleIds;
+
+    @Schema(description = "类型(0:系统默认,1:自定义)", example = "1")
+    @Size(min = 0, max = 1, message = "类型值错误")
+    private Integer type;
+
+    @Schema(description = "状态(0-正常,1-锁定)", example = "0")
+    @Size(min = 0, max = 1, message = "状态值错误")
+    private Integer status;
 }

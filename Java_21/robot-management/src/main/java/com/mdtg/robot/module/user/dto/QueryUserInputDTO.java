@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class QueryUserInputDTO {
 
-    @Schema(description = "用户ID",example = "3208261518615861")
+    @Schema(description = "用户ID",example = "2032370008612429825")
     private Long userId;
 
     @Schema(description = "用户名",example = "张三")

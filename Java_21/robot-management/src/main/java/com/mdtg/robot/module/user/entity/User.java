@@ -1,14 +1,18 @@
 package com.mdtg.robot.module.user.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.mdtg.robot.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * 用户表
@@ -64,6 +68,7 @@ public class User extends BaseEntity {
     /**
      * 角色列表
      */
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private Object roleIds;
 
     /**

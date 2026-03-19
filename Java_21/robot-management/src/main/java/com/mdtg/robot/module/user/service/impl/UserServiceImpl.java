@@ -7,7 +7,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mdtg.robot.common.exception.BusinessException;
 import com.mdtg.robot.common.exception.ResponseDTO;
-import com.mdtg.robot.module.user.dto.*;
+import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
+import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
+import com.mdtg.robot.module.user.dto.RegisterInputDTO;
+import com.mdtg.robot.module.user.dto.UpdateUserInputDTO;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.mapper.UserMapper;
 import com.mdtg.robot.module.user.service.UserService;
@@ -17,7 +20,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 /**

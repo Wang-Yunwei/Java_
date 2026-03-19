@@ -1,5 +1,9 @@
 package com.mdtg.robot.common.config;
 
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.mdtg.robot.common.toolkit.CustomUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
@@ -56,7 +60,7 @@ public class CustomBeans {
     @Bean
     ApplicationRunner startImmediatelyExecute() {
         return args -> {
-            log.info("http://127.0.0.1:{}/doc.html",port);
+            log.info("http://{}:{}/doc.html", CustomUtils.getInetAddresses(),port);
             System.out.println("================== 【START-UP SUCCESSFUL】 ==================");
         };
     }
@@ -68,5 +72,17 @@ public class CustomBeans {
     @Bean
     public RestClient restClient() {
         return RestClient.builder().build();
+    }
+
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 1. 乐观锁插件
+//        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        // 2. 防止全表更新/删除插件
+//        interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
+        // 3. 分页插件（放最后）
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
     }
 }

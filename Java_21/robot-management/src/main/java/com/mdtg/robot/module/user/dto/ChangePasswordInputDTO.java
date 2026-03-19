@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 public class ChangePasswordInputDTO {
 
-    @Schema(description = "用户ID",example = "32082619561543")
+    @Schema(description = "用户ID",example = "2032370008612429825")
     @NotNull(message = "ID不能为空")
     private Long id;
 

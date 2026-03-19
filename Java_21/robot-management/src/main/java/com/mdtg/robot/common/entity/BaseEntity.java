@@ -2,6 +2,8 @@ package com.mdtg.robot.common.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +19,7 @@ public class BaseEntity {
      * 创建者ID
      */
     @TableField(fill = FieldFill.INSERT)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long createBy;
 
     /**
@@ -35,6 +38,7 @@ public class BaseEntity {
      * 更新者ID
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long updateBy;
 
     /**

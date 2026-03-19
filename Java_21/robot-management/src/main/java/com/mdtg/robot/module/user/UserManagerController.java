@@ -84,7 +84,7 @@ public class UserManagerController {
 
     @Operation(summary = "用户-修改密码")
     @PostMapping("/user/change-password")
-    public ResponseDTO<?> changePassword(@RequestParam ChangePasswordInputDTO inputDTO) {
+    public ResponseDTO<?> changePassword(@RequestBody ChangePasswordInputDTO inputDTO) {
 
         return userService.changePassword(inputDTO);
     }

@@ -28,7 +28,7 @@ public class CustomMetaObjectHandler implements MetaObjectHandler {
         User currentUser = getCurrentUser();
         this.strictInsertFill(metaObject, "createBy", Long.class, currentUser.getId());
         this.strictInsertFill(metaObject, "createName", String.class, currentUser.getUsername());
-        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "createDate", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "updateBy", Long.class, currentUser.getId());
         this.strictInsertFill(metaObject, "updateName", String.class, currentUser.getUsername());
         this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
@@ -39,6 +39,6 @@ public class CustomMetaObjectHandler implements MetaObjectHandler {
         User currentUser = getCurrentUser();
         this.strictInsertFill(metaObject, "updateBy", Long.class, currentUser.getId());
         this.strictInsertFill(metaObject, "updateName", String.class, currentUser.getUsername());
-        this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "updateDate", LocalDateTime.class, LocalDateTime.now());
     }
 }
