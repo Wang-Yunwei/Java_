@@ -1,22 +1,22 @@
 package com.mdtg.robot.module.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.mdtg.robot.module.user.config.JwtUtil;
 import com.mdtg.robot.common.exception.ResponseDTO;
+import com.mdtg.robot.module.user.config.JwtUtil;
 import com.mdtg.robot.module.user.dto.*;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.service.PermissionService;
 import com.mdtg.robot.module.user.service.RoleService;
 import com.mdtg.robot.module.user.service.UserService;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.apache.shiro.SecurityUtils;
-import org.simpleframework.xml.core.Validate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author WangYunwei [2026-03-09]
@@ -26,12 +26,16 @@ import java.util.Map;
 public class UserManagerController {
 
     UserService userService;
+
     RoleService roleService;
+
     PermissionService permissionService;
+
     @Resource
     private JwtUtil jwtUtil;
 
     public UserManagerController(UserService userService, RoleService roleService, PermissionService permissionService) {
+
         this.userService = userService;
         this.roleService = roleService;
         this.permissionService = permissionService;
@@ -61,6 +65,22 @@ public class UserManagerController {
 
         SecurityUtils.getSubject().logout();
         return ResponseDTO.wrapSuccess("登出成功!");
+    }
+
+    @Operation(summary = "验证Token")
+    @PostMapping("/verify-token")
+    public ResponseDTO<?> verifyToken(@RequestBody VerifyTokenInputDTO inputDTO) {
+
+        try {
+            JwtUtil.isTokenExpired(inputDTO.getToken());
+        } catch (ExpiredJwtException e) {
+            // 如果抛出这个异常，说明确实过期了
+            return ResponseDTO.wrapException("该Token已经过期!");
+        } catch (JwtException e) {
+            // 其他JWT异常（签名错误、格式错误等）
+            return ResponseDTO.wrapException("Token验证失败!");
+        }
+        return ResponseDTO.wrapSuccess();
     }
 
     @Operation(summary = "用户-注册")
@@ -106,7 +126,7 @@ public class UserManagerController {
     }
 
     @Operation(summary = "角色-删除")
-    @GetMapping ("/role/delete/{roleId}")
+    @GetMapping("/role/delete/{roleId}")
     public ResponseDTO<?> deleteRole(@PathVariable String roleId) {
 
         return roleService.deleteRole(roleId);
@@ -127,7 +147,7 @@ public class UserManagerController {
     }
 
     @Operation(summary = "权限-删除")
-    @GetMapping ("/permission/delete/{permissionId}")
+    @GetMapping("/permission/delete/{permissionId}")
     public ResponseDTO<?> deletePermission(@PathVariable String permissionId) {
 
         return permissionService.deletePermission(permissionId);

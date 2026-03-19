@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79360502-f8a5-4cea-89e7-c1c04653992a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/LoginOutputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/VerifyTokenInputDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management.7z" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management.7z" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/common/exception/ResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/common/exception/ResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/UserManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/UserManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/QueryPermissionInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/QueryPermissionInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/impl/PermissionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/impl/PermissionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/config/CustomRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/config/CustomRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/config/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/config/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/QueryUserInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/QueryUserInputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

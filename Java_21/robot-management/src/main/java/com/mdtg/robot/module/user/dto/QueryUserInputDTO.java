@@ -20,6 +20,9 @@ public class QueryUserInputDTO {
     @Schema(description = "性别(0-未知,1-男,2-女)",example = "0")
     private Integer gender;
 
+    @Schema(description = "手机号",example = "18168960416")
+    private String phone;
+
     @Schema(description = "住址",example = "江苏省苏州市工业园区归家港路222号麦迪斯顿南门")
     private String address;
 

@@ -22,14 +22,50 @@ import java.util.Map;
 @Slf4j
 @Component
 public class JwtUtil {
-    private static final String SECRET = "zxcvbnmfdasaererafafafafafafakjlkjalkfafadffdafadfafafaaafadfadfaf1234567890";
-    private static final long EXPIRE = 24 * 60;
+
     public static final String HEADER = "Authorization";
+
+    private static final long EXPIRE = 24 * 60;
+
+    private static final String SECRET = "zxcvbnmfdasaererafafafafafafakjlkjalkfafadffdafadfafafaaafadfadfaf1234567890";
+
+    private static final SecretKey SIGNING_KEY = Keys.hmacShaKeyFor(
+            SECRET.getBytes(StandardCharsets.UTF_8)
+    );
+
+    public static void main(String[] args) {
+
+        JwtUtil jwtUtil = new JwtUtil();
+        String token = jwtUtil.generateToken("admin");
+        System.out.println("token = " + token + ", xx=" + jwtUtil.isTokenExpired("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3NzM5MTE4MjIsInN1YiI6ImFkbWluIiwiZXhwIjoxNzczOTExODgyLCJ1c2VybmFtZSI6ImFkbWluIn0.kw3hKLeC95v8NjO-zPvoNuh9VGYxIVRYJmFSwj0vJLXfA8LHKnuBRzpJi5cF1KLXg4vetolLAZ5ZkJsLe0bf7A"));
+
+        Claims claims = jwtUtil.getClaimsByToken(token);
+        System.out.println("claims = " + claims);
+
+        String username = jwtUtil.getClaimFiled(token, "username");
+        System.out.println("username = " + username);
+    }
+
+    /**
+     * 检查JWT是否已过期
+     */
+    public static boolean isTokenExpired(String token) {
+
+        Claims claims = Jwts.parser()
+                .verifyWith(SIGNING_KEY)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        Date expiration = claims.getExpiration();
+        return expiration.before(new Date());
+    }
 
     /**
      * 生成jwt token
      */
     public String generateToken(String username) {
+
         SecretKey signingKey = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
         //过期时间
         LocalDateTime tokenExpirationTime = LocalDateTime.now().plusMinutes(EXPIRE);
@@ -44,6 +80,7 @@ public class JwtUtil {
     }
 
     public Claims getClaimsByToken(String token) {
+
         SecretKey signingKey = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
         return Jwts.parser()
                 .verifyWith(signingKey)
@@ -53,34 +90,16 @@ public class JwtUtil {
     }
 
     /**
-     * 检查token是否过期
+     * 获得token中的自定义信息,一般是获取token的username,无需secret解密也能获得
      */
-    public boolean isTokenExpired(Date expiration) {
-        return expiration.before(new Date());
-    }
+    public String getClaimFiled(String token, String filed) {
 
-    /**
-     * 获得token中的自定义信息,一般是获取token的username，无需secret解密也能获得
-     */
-    public String getClaimFiled(String token, String filed){
-        try{
+        try {
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getClaim(filed).asString();
-        } catch (JWTDecodeException e){
+        } catch (JWTDecodeException e) {
             log.error("JwtUtil getClaimFiled error: ", e);
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        JwtUtil jwtUtil = new JwtUtil();
-        String token = jwtUtil.generateToken("admin");
-        System.out.println("token = " + token);
-
-        Claims claims = jwtUtil.getClaimsByToken(token);
-        System.out.println("claims = " + claims);
-
-        String username = jwtUtil.getClaimFiled(token, "username");
-        System.out.println("username = " + username);
     }
 }

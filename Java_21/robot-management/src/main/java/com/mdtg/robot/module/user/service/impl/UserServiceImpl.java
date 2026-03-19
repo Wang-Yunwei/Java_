@@ -57,7 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
-        return ResponseDTO.wrapSuccess(this.baseMapper.insert(user) != 0?user.getId():"注册失败!");
+        return this.baseMapper.insert(user) != 0? ResponseDTO.wrapSuccess(user.getId()): ResponseDTO.wrapException("注册失败!");
     }
 
     /**
@@ -117,6 +117,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .ifPresent(username -> queryWrapper.eq(User::getUsername, username));
         Optional.ofNullable(inputDTO.getGender())
                 .ifPresent(gender -> queryWrapper.eq(User::getGender, gender));
+        Optional.ofNullable(inputDTO.getPhone())
+                .ifPresent(phone -> queryWrapper.eq(User::getPhone, phone));
         Optional.ofNullable(inputDTO.getAddress())
                 .ifPresent(address -> queryWrapper.eq(User::getAddress, address));
         IPage<User> userIPage = this.baseMapper.selectPage(page, queryWrapper);

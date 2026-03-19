@@ -45,9 +45,9 @@ public class CustomRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 
         log.info("doGetAuthenticationInfo");
-        String jwt = (String) authenticationToken.getCredentials();
+        String token = (String) authenticationToken.getCredentials();
         // 获取jwt中关于用户名
-        String phone = jwtUtil.getClaimsByToken(jwt).getSubject();
+        String phone = jwtUtil.getClaimsByToken(token).getSubject();
         // 查询用户
         User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getPhone, phone));
         if (user == null) {
@@ -56,11 +56,10 @@ public class CustomRealm extends AuthorizingRealm {
         if (user.getStatus() == 1) {
             throw new LockedAccountException("账号已被锁定，请稍后重试!");
         }
-        Claims claims = jwtUtil.getClaimsByToken(jwt);
-        if (jwtUtil.isTokenExpired(claims.getExpiration())) {
+        if (jwtUtil.isTokenExpired(token)) {
             throw new ExpiredCredentialsException("Token已过期");
         }
-        return new SimpleAuthenticationInfo(user, jwt, getName());
+        return new SimpleAuthenticationInfo(user, token, getName());
     }
 
     @Override

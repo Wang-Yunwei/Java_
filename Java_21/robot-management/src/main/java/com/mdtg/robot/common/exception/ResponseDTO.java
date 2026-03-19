@@ -7,8 +7,8 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 /**
  * @author WangYunwei [2024-07-11]
@@ -20,6 +20,10 @@ import java.time.temporal.ChronoUnit;
 @Schema(description = "接口统一返回的包装类")
 public final class ResponseDTO<T> implements Serializable {
 
+    public static final String MSG_SUCCESS = "SUCCESS";
+
+    public static final String MSG_ERROR = "ERROR";
+
     @Schema(description = "业务状态码，除 0 以外都是错误状态")
     private int code = 0;
 
@@ -27,16 +31,14 @@ public final class ResponseDTO<T> implements Serializable {
     private String message = "SUCCESS";
 
     @Schema(description = "时间戳，精度: 毫秒")
-    private LocalDateTime timestamp;
+    private Long timestamp;
 
     private T body;
 
-    public static final String MSG_SUCCESS = "SUCCESS";
-
-    public static final String MSG_ERROR = "ERROR";
-
     public ResponseDTO() {
-        this.timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+//        this.timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        this.timestamp = Instant.now().toEpochMilli();
+
     }
 
     public static <T> ResponseDTO<T> wrapSuccess() {
