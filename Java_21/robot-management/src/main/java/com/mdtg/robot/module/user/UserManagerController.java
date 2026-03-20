@@ -8,8 +8,6 @@ import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.service.PermissionService;
 import com.mdtg.robot.module.user.service.RoleService;
 import com.mdtg.robot.module.user.service.UserService;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -71,16 +69,7 @@ public class UserManagerController {
     @PostMapping("/verify-token")
     public ResponseDTO<?> verifyToken(@RequestBody VerifyTokenInputDTO inputDTO) {
 
-        try {
-            JwtUtil.isTokenExpired(inputDTO.getToken());
-        } catch (ExpiredJwtException e) {
-            // 如果抛出这个异常，说明确实过期了
-            return ResponseDTO.wrapException("该Token已经过期!");
-        } catch (JwtException e) {
-            // 其他JWT异常（签名错误、格式错误等）
-            return ResponseDTO.wrapException("Token验证失败!");
-        }
-        return ResponseDTO.wrapSuccess();
+        return userService.verifyToken(inputDTO);
     }
 
     @Operation(summary = "用户-注册")

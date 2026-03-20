@@ -2,11 +2,9 @@ package com.mdtg.robot.module.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mdtg.robot.common.exception.ResponseDTO;
-import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
-import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
-import com.mdtg.robot.module.user.dto.RegisterInputDTO;
-import com.mdtg.robot.module.user.dto.UpdateUserInputDTO;
+import com.mdtg.robot.module.user.dto.*;
 import com.mdtg.robot.module.user.entity.User;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author WangYunwei
@@ -14,9 +12,10 @@ import com.mdtg.robot.module.user.entity.User;
 public interface UserService extends IService<User> {
 
     /**
-     * 密码加密
+     * 验证 Token
+     * @return DTO
      */
-    String encryptPassword(String password, String salt);
+    ResponseDTO<?> verifyToken(VerifyTokenInputDTO inputDTO);
 
     /**
      * 注册用户

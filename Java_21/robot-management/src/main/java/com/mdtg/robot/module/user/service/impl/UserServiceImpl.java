@@ -5,17 +5,15 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.mdtg.robot.common.exception.BusinessException;
 import com.mdtg.robot.common.exception.ResponseDTO;
-import com.mdtg.robot.module.user.dto.ChangePasswordInputDTO;
-import com.mdtg.robot.module.user.dto.QueryUserInputDTO;
-import com.mdtg.robot.module.user.dto.RegisterInputDTO;
-import com.mdtg.robot.module.user.dto.UpdateUserInputDTO;
+import com.mdtg.robot.module.user.config.JwtUtil;
+import com.mdtg.robot.module.user.dto.*;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.mapper.UserMapper;
 import com.mdtg.robot.module.user.service.UserService;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.lang.util.ByteSource;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
+import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,18 +27,36 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
+    @Resource
+    private JwtUtil jwtUtil;
+
     /**
-     * 生成加密后的密码
+     * 验证 Token
      *
-     * @param password 明文密码
-     * @param salt     盐值
-     * @return 密文
+     * @return DTO
      */
     @Override
-    public String encryptPassword(String password, String salt) {
-        // 参数：算法、明文、盐、迭代次数
-        SimpleHash hash = new SimpleHash("SHA-256", password, ByteSource.Util.bytes(salt), 1024);
-        return hash.toHex(); // 转为 16 进制字符串存储
+    public ResponseDTO<?> verifyToken(VerifyTokenInputDTO inputDTO) {
+
+        VerifyTokenOutputDTO outputDTO = new VerifyTokenOutputDTO();
+        try {
+            jwtUtil.isTokenExpired(inputDTO.getToken());
+        } catch (ExpiredJwtException e) {
+            // 如果抛出这个异常，说明确实过期了
+            outputDTO.setValid(false);
+            outputDTO.setMessage("该Token已经过期!");
+            return ResponseDTO.wrapSuccess(outputDTO);
+        } catch (JwtException e) {
+            // 其他JWT异常(签名错误、格式错误等)
+            outputDTO.setValid(false);
+            outputDTO.setMessage("Token验证失败(签名错误、格式错误)");
+            return ResponseDTO.wrapSuccess(outputDTO);
+        }
+        String phone = jwtUtil.getClaimFiled(inputDTO.getToken(), "phone");
+        User user = this.baseMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getPhone, phone));
+        BeanUtils.copyProperties(user, outputDTO);
+        outputDTO.setValid(true);
+        return ResponseDTO.wrapSuccess(outputDTO);
     }
 
     /**
@@ -57,7 +73,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
-        return this.baseMapper.insert(user) != 0? ResponseDTO.wrapSuccess(user.getId()): ResponseDTO.wrapException("注册失败!");
+        return this.baseMapper.insert(user) != 0 ? ResponseDTO.wrapSuccess(user.getId()) : ResponseDTO.wrapException("注册失败!");
     }
 
     /**
@@ -67,6 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseDTO<?> deleteUser(String userId) {
+
         return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(userId) != 0);
     }
 
@@ -77,6 +94,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO) {
+
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
         return ResponseDTO.wrapSuccess(this.baseMapper.updateById(user) != 0);

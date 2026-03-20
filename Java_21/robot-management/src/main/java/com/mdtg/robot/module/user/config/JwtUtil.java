@@ -7,6 +7,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.lang.util.ByteSource;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -29,9 +31,7 @@ public class JwtUtil {
 
     private static final String SECRET = "zxcvbnmfdasaererafafafafafafakjlkjalkfafadffdafadfafafaaafadfadfaf1234567890";
 
-    private static final SecretKey SIGNING_KEY = Keys.hmacShaKeyFor(
-            SECRET.getBytes(StandardCharsets.UTF_8)
-    );
+    private static final SecretKey SIGNING_KEY = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
     public static void main(String[] args) {
 
@@ -42,51 +42,35 @@ public class JwtUtil {
         Claims claims = jwtUtil.getClaimsByToken(token);
         System.out.println("claims = " + claims);
 
-        String username = jwtUtil.getClaimFiled(token, "username");
+        String username = jwtUtil.getClaimFiled(token, "phone");
         System.out.println("username = " + username);
     }
 
     /**
      * 检查JWT是否已过期
      */
-    public static boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
 
-        Claims claims = Jwts.parser()
-                .verifyWith(SIGNING_KEY)
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
-
+        Claims claims = Jwts.parser().verifyWith(SIGNING_KEY).build().parseSignedClaims(token).getPayload();
         Date expiration = claims.getExpiration();
         return expiration.before(new Date());
     }
 
     /**
-     * 生成jwt token
+     * 生成 JwtToken
      */
     public String generateToken(String username) {
 
         SecretKey signingKey = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
         //过期时间
         LocalDateTime tokenExpirationTime = LocalDateTime.now().plusMinutes(EXPIRE);
-        return Jwts.builder()
-                .signWith(signingKey, Jwts.SIG.HS512)
-                .header().add("typ", "JWT").and()
-                .issuedAt(Timestamp.valueOf(LocalDateTime.now()))
-                .subject(username)
-                .expiration(Timestamp.valueOf(tokenExpirationTime))
-                .claims(Map.of("username", username))
-                .compact();
+        return Jwts.builder().signWith(signingKey, Jwts.SIG.HS512).header().add("typ", "JWT").and().issuedAt(Timestamp.valueOf(LocalDateTime.now())).subject(username).expiration(Timestamp.valueOf(tokenExpirationTime)).claims(Map.of("phone", username)).compact();
     }
 
     public Claims getClaimsByToken(String token) {
 
         SecretKey signingKey = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
-        return Jwts.parser()
-                .verifyWith(signingKey)
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+        return Jwts.parser().verifyWith(signingKey).build().parseSignedClaims(token).getPayload();
     }
 
     /**
@@ -101,5 +85,18 @@ public class JwtUtil {
             log.error("JwtUtil getClaimFiled error: ", e);
             return null;
         }
+    }
+
+    /**
+     * 生成加密后的密码
+     *
+     * @param password 明文密码
+     * @param salt     盐值
+     * @return 密文
+     */
+    public String encryptPassword(String password, String salt) {
+        // 参数：算法、明文、盐、迭代次数
+        SimpleHash hash = new SimpleHash("SHA-256", password, ByteSource.Util.bytes(salt), 1024);
+        return hash.toHex(); // 转为 16 进制字符串存储
     }
 }

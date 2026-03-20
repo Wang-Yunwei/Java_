@@ -73,6 +73,7 @@ public class ShiroConfig {
         map.put("/v3/api-docs/**", "anon");
         map.put("/favicon.ico", "anon");
 
+        map.put("/verify-token", "anon");
         map.put("/login", "anon");
         map.put("/**", "jwt");
         shiroFilter.setFilterChainDefinitionMap(map);
