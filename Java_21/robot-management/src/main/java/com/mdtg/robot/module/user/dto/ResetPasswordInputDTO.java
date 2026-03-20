@@ -12,19 +12,15 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ChangePasswordInputDTO {
+public class ResetPasswordInputDTO {
 
     @Schema(description = "用户ID",example = "2032370008612429825")
     @NotNull(message = "ID不能为空")
-    private Long id;
+    private Long userId;
 
     @Schema(description = "旧密码",example = "123@123")
-    @NotBlank(message = "密码不能为空")
-    @Size(min = 6, max = 20, message = "密码长度必须在6-20之间")
     private String oldPassword;
 
     @Schema(description = "新密码",example = "123@123")
-    @NotBlank(message = "密码不能为空")
-    @Size(min = 6, max = 20, message = "密码长度必须在6-20之间")
     private String newPassword;
 }

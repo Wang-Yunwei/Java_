@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.mdtg.robot.common.exception.ResponseDTO;
 import com.mdtg.robot.module.user.dto.*;
 import com.mdtg.robot.module.user.entity.User;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author WangYunwei
@@ -39,7 +38,7 @@ public interface UserService extends IService<User> {
      * 修改密码
      * @return Boolean
      */
-    ResponseDTO<?> changePassword(ChangePasswordInputDTO inputDTO);
+    ResponseDTO<?> changePassword(ResetPasswordInputDTO inputDTO);
 
     /**
      * 查询用户信息

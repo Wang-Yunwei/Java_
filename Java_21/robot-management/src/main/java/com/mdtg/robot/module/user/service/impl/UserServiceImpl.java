@@ -55,6 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String phone = jwtUtil.getClaimFiled(inputDTO.getToken(), "phone");
         User user = this.baseMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getPhone, phone));
         BeanUtils.copyProperties(user, outputDTO);
+        outputDTO.setUserId(user.getId().toString());
         outputDTO.setValid(true);
         return ResponseDTO.wrapSuccess(outputDTO);
     }
@@ -73,6 +74,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
+
         return this.baseMapper.insert(user) != 0 ? ResponseDTO.wrapSuccess(user.getId()) : ResponseDTO.wrapException("注册失败!");
     }
 
@@ -106,13 +108,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return Boolean
      */
     @Override
-    public ResponseDTO<?> changePassword(ChangePasswordInputDTO inputDTO) {
+    public ResponseDTO<?> changePassword(ResetPasswordInputDTO inputDTO) {
 
-        // 1. 新旧密码不能相同
+        // 1.如果新旧密码都为空则重置为系统默认密码
+        if (inputDTO.getOldPassword() == null || inputDTO.getNewPassword() == null) {
+            int update = this.baseMapper.update(new LambdaUpdateWrapper<User>().eq(User::getId, inputDTO.getUserId()).set(User::getPassword, "123456"));
+            return update > 0 ? ResponseDTO.wrapSuccess("密码已重置为默认密码: 123456") : ResponseDTO.wrapException("密码重置失败");
+        }
+        // 2.新旧密码不能相同
         if (inputDTO.getOldPassword().equals(inputDTO.getNewPassword())) {
             return ResponseDTO.wrapException("新密码不能和旧密码相同!");
         }
-        return ResponseDTO.wrapSuccess(this.baseMapper.update(new LambdaUpdateWrapper<User>().eq(User::getId, inputDTO.getId()).set(User::getPassword, inputDTO.getNewPassword())) != 0);
+        return ResponseDTO.wrapSuccess(this.baseMapper.update(new LambdaUpdateWrapper<User>().eq(User::getId, inputDTO.getUserId()).set(User::getPassword, inputDTO.getNewPassword())) != 0);
     }
 
     /**

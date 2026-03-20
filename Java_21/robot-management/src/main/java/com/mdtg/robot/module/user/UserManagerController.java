@@ -93,9 +93,9 @@ public class UserManagerController {
         return userService.updateUser(inputDTO);
     }
 
-    @Operation(summary = "用户-修改密码")
-    @PostMapping("/user/change-password")
-    public ResponseDTO<?> changePassword(@RequestBody ChangePasswordInputDTO inputDTO) {
+    @Operation(summary = "用户-重置密码")
+    @PostMapping("/user/reset-password")
+    public ResponseDTO<?> resetPassword(@RequestBody ResetPasswordInputDTO inputDTO) {
 
         return userService.changePassword(inputDTO);
     }

@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class CustomMetaObjectHandler implements MetaObjectHandler {
 
     public User getCurrentUser() {
+
         User user = new User();
         Object principal = SecurityUtils.getSubject().getPrincipal();
         if (principal != null && principal instanceof User) {
@@ -25,7 +26,9 @@ public class CustomMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
+
         User currentUser = getCurrentUser();
+        this.strictInsertFill(metaObject, "orgCode", Long.class, currentUser.getId());
         this.strictInsertFill(metaObject, "createBy", Long.class, currentUser.getId());
         this.strictInsertFill(metaObject, "createName", String.class, currentUser.getUsername());
         this.strictInsertFill(metaObject, "createDate", LocalDateTime.class, LocalDateTime.now());
@@ -36,6 +39,7 @@ public class CustomMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
+
         User currentUser = getCurrentUser();
         this.strictInsertFill(metaObject, "updateBy", Long.class, currentUser.getId());
         this.strictInsertFill(metaObject, "updateName", String.class, currentUser.getUsername());
