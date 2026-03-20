@@ -3,7 +3,6 @@ package com.mdtg.robot.module.user.config;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.mdtg.robot.module.user.entity.User;
 import com.mdtg.robot.module.user.service.UserService;
-import io.jsonwebtoken.Claims;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;

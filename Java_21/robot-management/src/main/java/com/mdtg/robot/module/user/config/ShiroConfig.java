@@ -19,7 +19,6 @@ import java.util.Map;
 /**
  * @author WangYunwei [2026-03-12]
  */
-
 @Configuration
 public class ShiroConfig {
 
@@ -48,6 +47,7 @@ public class ShiroConfig {
 
     @Bean("securityManager")
     public DefaultWebSecurityManager securityManager(CustomRealm customRealm, SessionManager sessionManager) {
+
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(customRealm);
         securityManager.setSessionManager(sessionManager);
@@ -57,6 +57,7 @@ public class ShiroConfig {
 
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
+
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
         /**
@@ -85,6 +86,7 @@ public class ShiroConfig {
      */
     @Bean("lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+
         return new LifecycleBeanPostProcessor();
     }
 
@@ -99,6 +101,7 @@ public class ShiroConfig {
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
+
         DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         advisorAutoProxyCreator.setProxyTargetClass(true);
         return advisorAutoProxyCreator;
@@ -109,6 +112,7 @@ public class ShiroConfig {
      */
     @Bean("authorizationAttributeSourceAdvisor")
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
