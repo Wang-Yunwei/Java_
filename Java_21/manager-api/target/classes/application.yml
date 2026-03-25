@@ -66,5 +66,6 @@ mybatis-plus:
     boolValue: TRUE
 
 mdtg:
-  ip: 47.101.196.164
+#  ip: 47.101.196.164
+  ip: 127.0.0.1
   port: 8002
