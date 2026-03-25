@@ -7,6 +7,7 @@ D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\dt
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\dto\QueryPermissionInputDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\dto\QueryRoleInputDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\dto\QueryUserInputDTO.java
+D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\dto\RegisterUserDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\entity\Permission.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\entity\Role.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\entity\User.java

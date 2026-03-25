@@ -1,20 +1,9 @@
 package mdtg.modules.sys.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-
 import lombok.AllArgsConstructor;
+import mdtg.business.user.service.UserService;
 import mdtg.common.constant.Constant;
 import mdtg.common.exception.ErrorCode;
 import mdtg.common.exception.RenException;
@@ -33,6 +22,16 @@ import mdtg.modules.sys.enums.SuperAdminEnum;
 import mdtg.modules.sys.service.SysParamsService;
 import mdtg.modules.sys.service.SysUserService;
 import mdtg.modules.sys.vo.AdminPageUserVO;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 系统用户
@@ -40,6 +39,11 @@ import mdtg.modules.sys.vo.AdminPageUserVO;
 @AllArgsConstructor
 @Service
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntity> implements SysUserService {
+
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+
+    private static final Random random = new Random();
+
     private final SysUserDao sysUserDao;
 
     private final DeviceService deviceService;
@@ -48,8 +52,11 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
 
     private final SysParamsService sysParamsService;
 
+
+
     @Override
     public SysUserDTO getByUsername(String username) {
+
         QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
         List<SysUserEntity> users = sysUserDao.selectList(queryWrapper);
@@ -62,6 +69,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
 
     @Override
     public SysUserDTO getByUserId(Long userId) {
+
         SysUserEntity sysUserEntity = sysUserDao.selectById(userId);
 
         return ConvertUtils.sourceToTarget(sysUserEntity, SysUserDTO.class);
@@ -69,7 +77,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(SysUserDTO dto) {
+    public SysUserEntity save(SysUserDTO dto) {
+
         SysUserEntity entity = ConvertUtils.sourceToTarget(dto, SysUserEntity.class);
 
         // 密码强度
@@ -91,6 +100,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
         entity.setStatus(1);
 
         insert(entity);
+        return entity;
     }
 
     @Override
@@ -107,6 +117,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void changePassword(Long userId, PasswordDTO passwordDTO) {
+
         SysUserEntity sysUserEntity = sysUserDao.selectById(userId);
 
         if (null == sysUserEntity) {
@@ -146,18 +157,21 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
     @Override
     @Transactional(rollbackFor = Exception.class)
     public String resetPassword(Long userId) {
+
         String password = generatePassword();
         changePasswordDirectly(userId, password);
         return password;
     }
 
     private Long getUserCount() {
+
         QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
         return baseDao.selectCount(queryWrapper);
     }
 
     @Override
     public PageData<AdminPageUserVO> page(AdminPageUserDTO dto) {
+
         Map<String, Object> params = new HashMap<String, Object>();
         params.put(Constant.PAGE, dto.getPage());
         params.put(Constant.LIMIT, dto.getLimit());
@@ -187,17 +201,15 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
         return matcher.matches();
     }
 
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
-    private static final Random random = new Random();
-
     /**
      * 生成随机密码
-     * 
+     *
      * @return 随机生成的密码
      */
     private String generatePassword() {
+
         StringBuilder password = new StringBuilder();
-        
+
         // 确保包含至少一个数字
         password.append("0123456789".charAt(random.nextInt(10)));
         // 确保包含至少一个小写字母
@@ -206,12 +218,12 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
         password.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(random.nextInt(26)));
         // 确保包含至少一个特殊符号
         password.append("!@#$%^&*()".charAt(random.nextInt(10)));
-        
+
         // 生成剩余的8个字符
         for (int i = 4; i < 12; i++) {
             password.append(CHARACTERS.charAt(random.nextInt(CHARACTERS.length())));
         }
-        
+
         // 打乱密码中字符的顺序
         char[] passwordChars = password.toString().toCharArray();
         for (int i = 0; i < passwordChars.length; i++) {
@@ -220,13 +232,14 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
             passwordChars[i] = passwordChars[randomIndex];
             passwordChars[randomIndex] = temp;
         }
-        
+
         return new String(passwordChars);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void changeStatus(Integer status, String[] userIds) {
+
         for (String userId : userIds) {
             SysUserEntity entity = new SysUserEntity();
             entity.setId(Long.parseLong(userId));
@@ -237,6 +250,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
 
     @Override
     public boolean getAllowUserRegister() {
+
         String allowUserRegister = sysParamsService.getValue(Constant.SERVER_ALLOW_USER_REGISTER, true);
         if (allowUserRegister.equals("true")) {
             return true;

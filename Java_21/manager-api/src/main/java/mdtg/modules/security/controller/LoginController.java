@@ -6,7 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mdtg.business.user.entity.User;
+import mdtg.business.user.service.UserService;
+import mdtg.modules.sys.entity.SysUserEntity;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -57,6 +61,7 @@ public class LoginController {
     private final CaptchaService captchaService;
     private final SysParamsService sysParamsService;
     private final SysDictDataService sysDictDataService;
+    private final UserService userService;
 
     @GetMapping("/captcha")
     @Operation(summary = "验证码")
@@ -112,7 +117,7 @@ public class LoginController {
 
     @PostMapping("/register")
     @Operation(summary = "注册")
-    public Result<Void> register(@RequestBody LoginDTO login) {
+    public Result<?> register(@RequestBody LoginDTO login) {
         if (!sysUserService.getAllowUserRegister()) {
             throw new RenException(ErrorCode.USER_REGISTER_DISABLED);
         }
@@ -150,7 +155,16 @@ public class LoginController {
         userDTO = new SysUserDTO();
         userDTO.setUsername(login.getUsername());
         userDTO.setPassword(login.getPassword());
-        sysUserService.save(userDTO);
+        SysUserEntity save = sysUserService.save(userDTO);
+        if(save.getId() != null && save.getId()>0){
+            User user = new User();
+            BeanUtils.copyProperties(login, user);
+            BeanUtils.copyProperties(save, user,"id");
+            user.setSysUserId(save.getId());
+            userService.save(user);
+            Result<User> result = new Result<>();
+            return result.ok(user);
+        }
         return new Result<>();
     }
 

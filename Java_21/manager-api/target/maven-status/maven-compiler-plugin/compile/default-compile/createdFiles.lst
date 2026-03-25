@@ -215,6 +215,7 @@ mdtg\modules\security\password\PasswordEncoder.class
 mdtg\modules\knowledge\rag\KnowledgeBaseAdapter.class
 mdtg\modules\sms\service\imp\ALiYunSmsService.class
 mdtg\business\user\entity\Role.class
+mdtg\business\user\dto\RegisterUserDTO.class
 mdtg\business\user\service\impl\UserServiceImpl.class
 mdtg\modules\sys\service\SysParamsService.class
 mdtg\modules\security\service\CaptchaService.class

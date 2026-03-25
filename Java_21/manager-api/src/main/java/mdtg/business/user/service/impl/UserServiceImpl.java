@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.common.toolkits.ResponseDTO;
-import mdtg.business.user.dto.AddUserInputDTO;
+import mdtg.business.user.dto.UpdateUserInputDTO;
 import mdtg.business.user.dto.QueryUserInputDTO;
 import mdtg.business.user.entity.User;
 import mdtg.business.user.mapper.UserMapper;
@@ -24,7 +24,7 @@ import java.util.Optional;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
-    public ResponseDTO<?> addUser(AddUserInputDTO inputDTO) {
+    public ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO) {
 
         assert inputDTO != null : "入参为空!";
         User user = new User();

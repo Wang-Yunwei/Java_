@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author WangYunwei [2026-03-25]
  */
-@Tag(name = "用户管理")
+@Tag(name = "MDTG - 用户管理")
 @RestController
 public class UserManagerController {
 
@@ -29,63 +29,63 @@ public class UserManagerController {
         this.permissionService = permissionService;
     }
 
-    @Operation(summary = "用户-新增or更新")
-    @PostMapping("/user/add-or-update")
-    public ResponseDTO<?> addUser(@RequestBody AddUserInputDTO inputDTO) {
+    @Operation(summary = "用户 - 更新",hidden = true)
+    @PostMapping("/user/update")
+    public ResponseDTO<?> updateUser(@RequestBody UpdateUserInputDTO inputDTO) {
 
-        return null;
+        return userService.updateUser(inputDTO);
     }
 
-    @Operation(summary = "用户-删除")
+    @Operation(summary = "用户 - 删除",hidden = true)
     @PostMapping("/user/delete/{userId}")
     public ResponseDTO<?> deleteUser(@PathVariable String userId) {
 
-        return null;
+        return userService.deleteUser(userId);
     }
 
-    @Operation(summary = "用户-查询")
+    @Operation(summary = "用户 - 查询")
     @PostMapping("/user/query")
     public ResponseDTO<?> queryUser(@RequestBody QueryUserInputDTO inputDTO) {
 
-        return null;
+        return userService.queryUser(inputDTO);
     }
 
-    @Operation(summary = "角色-新增or更新")
+    @Operation(summary = "角色 - 新增or更新")
     @PostMapping("/role/add-or-update")
     public ResponseDTO<?> addRole(@RequestBody AddRoleInputDTO inputDTO) {
 
         return roleService.addRole(inputDTO);
     }
 
-    @Operation(summary = "角色-删除")
+    @Operation(summary = "角色 - 删除")
     @GetMapping("/role/delete/{roleId}")
     public ResponseDTO<?> deleteRole(@PathVariable String roleId) {
 
         return roleService.deleteRole(roleId);
     }
 
-    @Operation(summary = "角色-查询")
+    @Operation(summary = "角色 - 查询")
     @PostMapping("/role/query")
     public ResponseDTO<?> queryRole(@RequestBody QueryRoleInputDTO inputDTO) {
 
         return roleService.queryRole(inputDTO);
     }
 
-    @Operation(summary = "权限-新增or更新")
+    @Operation(summary = "权限 - 新增or更新")
     @PostMapping("/permission/add-or-update")
     public ResponseDTO<?> addPermission(@RequestBody AddPermissionInputDTO inputDTO) {
 
         return permissionService.addPermission(inputDTO);
     }
 
-    @Operation(summary = "权限-删除")
+    @Operation(summary = "权限 - 删除")
     @GetMapping("/permission/delete/{permissionId}")
     public ResponseDTO<?> deletePermission(@PathVariable String permissionId) {
 
         return permissionService.deletePermission(permissionId);
     }
 
-    @Operation(summary = "权限-查询")
+    @Operation(summary = "权限 - 查询")
     @PostMapping("/permission/query")
     public ResponseDTO<?> queryPermission(@RequestBody QueryPermissionInputDTO inputDTO) {
 
