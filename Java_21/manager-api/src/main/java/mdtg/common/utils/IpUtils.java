@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * IP地址
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Slf4j
 public class IpUtils {

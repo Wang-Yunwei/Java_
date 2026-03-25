@@ -5,8 +5,6 @@ import mdtg.modules.sys.entity.SysUserEntity;
 
 /**
  * shiro相关接口
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public interface ShiroService {
 

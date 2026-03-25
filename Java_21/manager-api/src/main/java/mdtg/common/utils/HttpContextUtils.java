@@ -18,8 +18,6 @@ import mdtg.common.exception.RenException;
 
 /**
  * Http
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class HttpContextUtils {
 

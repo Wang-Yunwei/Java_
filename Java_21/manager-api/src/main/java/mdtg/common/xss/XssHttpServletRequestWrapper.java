@@ -18,8 +18,6 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 
 /**
  * XSS过滤处理
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 

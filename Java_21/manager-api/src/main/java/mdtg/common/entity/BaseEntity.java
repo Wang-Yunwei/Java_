@@ -11,8 +11,6 @@ import lombok.Data;
 
 /**
  * 基础实体类，所有实体都需要继承
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Data
 public abstract class BaseEntity implements Serializable {

@@ -9,8 +9,6 @@ import mdtg.common.validator.AssertUtils;
 
 /**
  * 树形结构工具类，如：菜单、部门等
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class TreeUtils {
 

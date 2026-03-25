@@ -9,8 +9,6 @@ import java.util.Date;
 
 /**
  * 日期处理
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class DateUtils {
     /**

@@ -23,8 +23,6 @@ import mdtg.modules.sys.service.SysParamsService;
 
 /**
  * Shiro的配置文件
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Configuration
 public class ShiroConfig {
@@ -57,9 +55,9 @@ public class ShiroConfig {
         shiroFilter.setShiroFilterConfiguration(config);
 
         Map<String, Filter> filters = new HashMap<>();
-        // 注册oauth过滤
+        // oauth过滤
         filters.put("oauth2", new Oauth2Filter());
-        // 注册服务密钥过滤
+        // 服务密钥过滤
         filters.put("server", new ServerSecretFilter(sysParamsService));
         shiroFilter.setFilters(filters);
 

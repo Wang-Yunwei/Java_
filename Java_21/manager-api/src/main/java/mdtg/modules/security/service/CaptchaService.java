@@ -6,8 +6,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 验证码
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public interface CaptchaService {
 

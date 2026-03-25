@@ -9,8 +9,6 @@ import mdtg.modules.sys.dto.SysUserDTO;
 
 /**
  * 用户Token
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public interface SysUserTokenService extends BaseService<SysUserTokenEntity> {
 

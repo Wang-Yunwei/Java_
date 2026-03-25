@@ -2,8 +2,6 @@ package mdtg.modules.security.password;
 
 /**
  * 密码工具类
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class PasswordUtils {
     private static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

@@ -18,8 +18,6 @@ import mdtg.common.utils.Result;
 
 /**
  * 异常处理器
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Slf4j
 @AllArgsConstructor

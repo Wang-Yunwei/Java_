@@ -11,8 +11,6 @@ import jakarta.annotation.Resource;
 
 /**
  * Redis配置
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Configuration
 public class RedisConfig {

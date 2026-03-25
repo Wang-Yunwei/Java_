@@ -8,8 +8,6 @@ import mdtg.common.exception.ErrorCode;
 
 /**
  * 响应数据
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Data
 @Schema(description = "响应")

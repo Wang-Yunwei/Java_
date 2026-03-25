@@ -22,8 +22,6 @@ import net.sf.jsqlparser.statement.select.Select;
 
 /**
  * 数据过滤
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class DataFilterInterceptor implements InnerInterceptor {
 

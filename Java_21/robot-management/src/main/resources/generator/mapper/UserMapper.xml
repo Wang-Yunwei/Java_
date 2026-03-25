@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generator.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="generator.domain.User">
+            <id property="id" column="id" />
+            <result property="username" column="username" />
+            <result property="password" column="password" />
+            <result property="gender" column="gender" />
+            <result property="identityCard" column="identity_card" />
+            <result property="phone" column="phone" />
+            <result property="email" column="email" />
+            <result property="address" column="address" />
+            <result property="roleIds" column="role_ids" />
+            <result property="type" column="type" />
+            <result property="status" column="status" />
+            <result property="sysUserId" column="sys_user_id" />
+            <result property="createBy" column="create_by" />
+            <result property="createName" column="create_name" />
+            <result property="createDate" column="create_date" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateName" column="update_name" />
+            <result property="updateDate" column="update_date" />
+            <result property="companyCode" column="company_code" />
+            <result property="companyName" column="company_name" />
+            <result property="secondOrgCode" column="second_org_code" />
+            <result property="secondOrgName" column="second_org_name" />
+            <result property="orgCode" column="org_code" />
+            <result property="orgName" column="org_name" />
+            <result property="deleteFlag" column="delete_flag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,password,gender,identity_card,phone,
+        email,address,role_ids,type,status,
+        sys_user_id,create_by,create_name,create_date,update_by,
+        update_name,update_date,company_code,company_name,second_org_code,
+        second_org_name,org_code,org_name,delete_flag
+    </sql>
+</mapper>

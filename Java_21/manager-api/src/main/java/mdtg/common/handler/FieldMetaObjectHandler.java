@@ -1,5 +1,6 @@
 package mdtg.common.handler;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.apache.ibatis.reflection.MetaObject;
@@ -13,8 +14,6 @@ import mdtg.modules.security.user.SecurityUser;
 
 /**
  * 公共字段，自动填充值
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Component
 public class FieldMetaObjectHandler implements MetaObjectHandler {
@@ -52,6 +51,13 @@ public class FieldMetaObjectHandler implements MetaObjectHandler {
 
         // 数据标识
         strictInsertFill(metaObject, DATA_OPERATION, String.class, Constant.DataOperation.INSERT.getValue());
+
+        this.strictInsertFill(metaObject, "createBy", Long.class, user.getId());
+        this.strictInsertFill(metaObject, "createName", String.class, user.getUsername());
+        this.strictInsertFill(metaObject, "createDate", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "updateBy", Long.class, user.getId());
+        this.strictInsertFill(metaObject, "updateName", String.class, user.getUsername());
+        this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
     }
 
     @Override
@@ -70,5 +76,9 @@ public class FieldMetaObjectHandler implements MetaObjectHandler {
 
         // 数据标识
         strictInsertFill(metaObject, DATA_OPERATION, String.class, Constant.DataOperation.UPDATE.getValue());
+
+        this.strictInsertFill(metaObject, "updateBy", Long.class,  SecurityUser.getUserId());
+        this.strictInsertFill(metaObject, "updateName", String.class, SecurityUser.getUser().getUsername());
+        this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
     }
 }

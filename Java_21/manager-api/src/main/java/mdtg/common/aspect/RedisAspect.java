@@ -12,8 +12,6 @@ import mdtg.common.exception.RenException;
 
 /**
  * Redis切面处理类
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Slf4j
 @Aspect

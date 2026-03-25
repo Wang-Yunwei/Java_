@@ -9,8 +9,6 @@ import io.swagger.v3.oas.models.info.Info;
 
 /**
  * Swagger配置
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Configuration
 public class SwaggerConfig {

@@ -13,8 +13,6 @@ import mdtg.common.exception.RenException;
 
 /**
  * 校验工具类
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class AssertUtils {
 

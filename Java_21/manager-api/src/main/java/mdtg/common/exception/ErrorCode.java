@@ -5,8 +5,6 @@ package mdtg.common.exception;
  * <p>
  * 如：10001（10代表系统模块，001代表业务代码）
  * </p>
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public interface ErrorCode {
     int INTERNAL_SERVER_ERROR = 500;

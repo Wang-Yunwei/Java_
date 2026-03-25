@@ -10,8 +10,6 @@ import mdtg.modules.security.entity.SysUserTokenEntity;
 
 /**
  * 系统用户Token
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Mapper
 public interface SysUserTokenDao extends BaseDao<SysUserTokenEntity> {

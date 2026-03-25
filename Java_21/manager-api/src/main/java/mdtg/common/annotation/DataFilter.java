@@ -8,8 +8,6 @@ import java.lang.annotation.Target;
 
 /**
  * 数据过滤注解
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

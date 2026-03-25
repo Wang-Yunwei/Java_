@@ -12,7 +12,8 @@ import java.util.List;
 @Getter
 @Schema(description = "设备固件信息上报求请求体")
 public class DeviceReportReqDTO implements Serializable {
-
+    private static final long serialVersionUID = 1L;
+    // region 实体属性
     @Schema(description = "板子固件版本号")
     private Integer version;
 
@@ -51,6 +52,8 @@ public class DeviceReportReqDTO implements Serializable {
 
     @Schema(description = "板子配置信息")
     private BoardInfo board;
+
+    // endregion
 
     @Getter
     @Setter

@@ -17,8 +17,6 @@ import mdtg.common.utils.ResourcesUtils;
 
 /**
  * Redis工具类
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Component
 public class RedisUtils {

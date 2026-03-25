@@ -5,8 +5,6 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 /**
  * 国际化
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class MessageUtils {
     private static MessageSource messageSource;

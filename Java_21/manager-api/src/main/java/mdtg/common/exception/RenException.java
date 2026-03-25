@@ -4,8 +4,6 @@ import mdtg.common.utils.MessageUtils;
 
 /**
  * 自定义异常
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class RenException extends RuntimeException {
 

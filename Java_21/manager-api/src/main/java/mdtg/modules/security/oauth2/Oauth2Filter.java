@@ -22,8 +22,6 @@ import mdtg.common.utils.Result;
 
 /**
  * oauth2过滤器
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class Oauth2Filter extends AuthenticatingFilter {
 

@@ -31,8 +31,6 @@ import mdtg.modules.sys.enums.SuperAdminEnum;
 
 /**
  * 认证
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Component
 public class Oauth2Realm extends AuthorizingRealm {

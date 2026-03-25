@@ -8,8 +8,6 @@ import mdtg.common.exception.RenException;
 
 /**
  * 生成token
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class TokenGenerator {
 

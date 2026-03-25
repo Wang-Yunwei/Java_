@@ -7,8 +7,6 @@ import mdtg.common.user.UserDetail;
 
 /**
  * Shiro工具类
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public class SecurityUser {
 

@@ -15,8 +15,6 @@ import lombok.AllArgsConstructor;
 
 /**
  * XSS过滤
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @AllArgsConstructor
 public class XssFilter implements Filter {

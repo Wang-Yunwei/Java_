@@ -9,8 +9,6 @@ import lombok.Data;
 
 /**
  * XSS 配置项
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Data
 @ConfigurationProperties(prefix = "renren.xss")

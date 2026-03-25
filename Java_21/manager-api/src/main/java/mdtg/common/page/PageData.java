@@ -8,8 +8,6 @@ import lombok.Data;
 
 /**
  * 分页工具类
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Data
 @Schema(description = "分页数据")

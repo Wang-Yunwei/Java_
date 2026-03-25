@@ -7,8 +7,6 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 
 /**
  * 基础服务接口，所有Service接口都要继承
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public interface BaseService<T> {
     Class<T> currentModelClass();

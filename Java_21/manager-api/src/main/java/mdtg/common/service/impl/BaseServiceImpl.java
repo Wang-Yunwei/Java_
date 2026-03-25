@@ -33,8 +33,6 @@ import mdtg.common.utils.ConvertUtils;
 
 /**
  * 基础服务类，所有Service都要继承
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<T> {
     @Autowired

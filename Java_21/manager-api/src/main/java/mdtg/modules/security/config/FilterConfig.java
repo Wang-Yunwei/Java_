@@ -7,8 +7,6 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 /**
  * Filter配置
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Configuration
 public class FilterConfig {

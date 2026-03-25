@@ -5,11 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import mdtg.common.exception.ErrorCode;
 import mdtg.common.exception.RenException;
 
-/**
- * SQL过滤
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
- */
 public class SqlFilter {
 
     /**

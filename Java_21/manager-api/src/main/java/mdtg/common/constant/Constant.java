@@ -4,8 +4,6 @@ import lombok.Getter;
 
 /**
  * 常量
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 public interface Constant {
     /**

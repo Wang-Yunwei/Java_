@@ -4,20 +4,136 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79360502-f8a5-4cea-89e7-c1c04653992a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/device/DeviceManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/resource/ResourceManagerController.java" afterDir="false" />
+    <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/ResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/UserManagerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/AddPermissionInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/AddRoleInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/AddUserInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryPermissionInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryRoleInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Permission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/mapper/PermissionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/mapper/RoleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/PermissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/PermissionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/common/componet/CustomMetaObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/common/componet/CustomMetaObjectHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/UserManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/UserManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/ChangePasswordInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/dto/ResetPasswordInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/xiaozhi-esp32-api.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/AdminApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/annotation/DataFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/annotation/DataFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/annotation/LogOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/annotation/LogOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/aspect/RedisAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/aspect/RedisAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/config/MybatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/config/MybatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/convert/DateConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/convert/DateConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/dao/BaseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/dao/BaseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/entity/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/exception/RenException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/exception/RenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/exception/RenExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/exception/RenExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/handler/FieldMetaObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/handler/FieldMetaObjectHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/interceptor/DataFilterInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/interceptor/DataFilterInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/interceptor/DataScope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/interceptor/DataScope.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/page/PageData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/page/PageData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/redis/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/redis/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/redis/RedisKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/redis/RedisKeys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/redis/RedisUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/redis/RedisUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/service/BaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/service/BaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/service/CrudService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/service/CrudService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/service/impl/BaseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/service/impl/BaseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/service/impl/CrudServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/service/impl/CrudServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/user/UserDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/user/UserDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/ConvertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/ConvertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/DateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/HttpContextUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/HttpContextUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/IpUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/IpUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/JsonUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/MessageUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/MessageUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/TreeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/utils/TreeUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/validator/AssertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/validator/AssertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/SqlFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/SqlFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssHttpServletRequestWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssHttpServletRequestWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/common/xss/XssUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/dao/AgentPluginMappingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/dao/AgentPluginMappingMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/device/dto/DeviceReportReqDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/device/dto/DeviceReportReqDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/FilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/FilterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/dao/SysUserTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/dao/SysUserTokenDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Filter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Realm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Realm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/TokenGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/TokenGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/password/PasswordUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/password/PasswordUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/service/CaptchaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/service/CaptchaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/service/ShiroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/service/ShiroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/service/SysUserTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/service/SysUserTokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/user/SecurityUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/user/SecurityUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/202512041515.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/202512041515.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/datatable.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/changelog/202512041515.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/changelog/202512041515.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/changelog/db.changelog-master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/changelog/db.changelog-master.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/datatable.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/AdminApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/AdminApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/config/SwaggerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/common/config/SwaggerConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/service/impl/DeviceServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/device/service/impl/DeviceServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mdtg-robot-server.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mdtg-robot-server.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management.7z" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/device/DeviceManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/java/com/mdtg/robot/module/device/DeviceManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_D:/workspace/WYwei/Java_/Java_21/manager-api" value="3BPqu83yJ3Sf9aGpyu0znd4BsT7" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -25,7 +141,8 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="userSettingsFile" value="D:\software\apache-maven-3.8.6\conf\settings.xml" />
+        <option name="useMavenConfig" value="false" />
+        <option name="userSettingsFile" value="C:\Program Files\apache-maven-3.8.8\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -33,56 +150,57 @@
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="3A8xoxrY2ZcNFFvg85uluaNM8hw" />
+  <component name="ProjectId" id="3BPqu83yJ3Sf9aGpyu0znd4BsT7" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AdminApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/workspace/WYwei/Java_/Java_21/manager-api_backup&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AdminApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/workspace/WYwei/Java_/Java_21/manager-api/src/main/java/mdtg/business/user/mapper",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="ReactorSettings">
-    <option name="notificationShown" value="true" />
-  </component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\resources\db\changelog" />
+      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\mapper" />
+      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\dto" />
+      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\entity" />
+      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\service\impl" />
+      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\service" />
     </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
-      <module name="manager-api" />
+      <module name="mdtg-esp32-api" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="manager-api" />
+      <module name="mdtg-esp32-api" />
       <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="mdtg-robot-server" />
+      <module name="mdtg-esp32-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="mdtg.AdminApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -100,24 +218,24 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="79360502-f8a5-4cea-89e7-c1c04653992a" name="Changes" comment="" />
-      <created>1771988180008</created>
+      <changelist id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="" />
+      <created>1774401273937</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1771988180008</updated>
-      <workItem from="1771988180010" duration="23989000" />
-      <workItem from="1772159317737" duration="5625000" />
-      <workItem from="1772433346877" duration="6610000" />
-      <workItem from="1772590386035" duration="628000" />
-      <workItem from="1773033654694" duration="8483000" />
-      <workItem from="1773221394183" duration="2948000" />
-      <workItem from="1773365321288" duration="11186000" />
-      <workItem from="1773711003517" duration="17000" />
-      <workItem from="1773826893599" duration="7846000" />
+      <updated>1774401273937</updated>
+      <workItem from="1774401276231" duration="13044000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

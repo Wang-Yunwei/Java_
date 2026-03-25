@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * 日期转换
- * Copyright (c) 人人开源 All rights reserved.
- * Website: https://www.renren.io
  */
 @Component
 public class DateConverter implements Converter<String, Date> {

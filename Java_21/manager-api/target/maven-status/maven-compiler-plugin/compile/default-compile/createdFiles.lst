@@ -23,6 +23,8 @@ mdtg\common\exception\RenException.class
 mdtg\modules\knowledge\controller\KnowledgeBaseController.class
 mdtg\modules\device\dto\DeviceReportReqDTO$Partition.class
 mdtg\common\utils\ResultUtils.class
+mdtg\business\user\dto\QueryPermissionInputDTO.class
+mdtg\business\user\entity\User.class
 mdtg\modules\device\dto\DeviceReportRespDTO$Firmware.class
 mdtg\modules\security\service\impl\CaptchaServiceImpl.class
 mdtg\modules\config\service\impl\ConfigServiceImpl.class
@@ -65,11 +67,13 @@ mdtg\modules\agent\service\impl\AgentVoicePrintServiceImpl$1.class
 mdtg\modules\sys\dao\SysDictDataDao.class
 mdtg\modules\model\dto\ModelProviderDTO.class
 mdtg\modules\agent\vo\AgentTemplateVO.class
+mdtg\business\user\UserManagerController.class
 mdtg\modules\voiceclone\service\VoiceCloneService.class
 mdtg\modules\voiceclone\service\impl\VoiceCloneServiceImpl$3.class
 mdtg\common\utils\Sm2DecryptUtil.class
 mdtg\modules\voiceclone\dto\VoiceCloneDTO.class
 mdtg\common\validator\group\AddGroup.class
+mdtg\business\user\dto\AddRoleInputDTO.class
 mdtg\common\validator\group\UpdateGroup.class
 mdtg\common\validator\AssertUtils.class
 mdtg\modules\security\oauth2\TokenGenerator.class
@@ -97,6 +101,7 @@ mdtg\modules\voiceclone\entity\VoiceCloneEntity.class
 mdtg\common\handler\FieldMetaObjectHandler.class
 mdtg\modules\agent\entity\AgentChatAudioEntity.class
 mdtg\modules\device\vo\DeviceOtaVO$Mqtt.class
+mdtg\business\user\mapper\RoleMapper.class
 mdtg\modules\agent\dto\IdentifyVoicePrintResponse.class
 mdtg\modules\agent\dto\ContextProviderDTO.class
 mdtg\modules\agent\dto\McpJsonRpcResponse$McpError.class
@@ -125,6 +130,7 @@ mdtg\modules\sys\vo\SysDictDataItem.class
 mdtg\modules\knowledge\entity\KnowledgeBaseEntity.class
 mdtg\modules\timbre\service\TimbreService.class
 mdtg\modules\llm\service\impl\OpenAIStyleLLMServiceImpl.class
+mdtg\business\user\mapper\UserMapper.class
 mdtg\common\redis\RedisUtils.class
 mdtg\common\validator\ValidatorUtils.class
 mdtg\common\utils\SM2Utils.class
@@ -145,12 +151,14 @@ mdtg\modules\knowledge\rag\impl\RAGFlowAdapter.class
 mdtg\common\config\AsyncConfig.class
 mdtg\common\redis\RedisKeys.class
 mdtg\modules\agent\Enums\XiaoZhiMcpJsonRpcJson.class
+mdtg\business\user\service\RoleService.class
 mdtg\modules\config\service\ConfigService.class
 mdtg\modules\device\dto\DeviceReportRespDTO$MQTT.class
 mdtg\modules\agent\entity\AgentTemplateEntity.class
 mdtg\common\config\MybatisPlusConfig.class
 mdtg\modules\agent\dto\AgentChatHistoryReportDTO.class
 mdtg\common\dao\BaseDao.class
+mdtg\business\user\service\PermissionService.class
 mdtg\modules\device\dto\DeviceReportReqDTO$OtaInfo.class
 mdtg\modules\sys\controller\SysParamsController.class
 mdtg\common\constant\Constant$SysBaseParam.class
@@ -181,8 +189,11 @@ mdtg\modules\sys\utils\WebSocketClientManager.class
 mdtg\modules\config\controller\ConfigController.class
 mdtg\modules\device\dto\DeviceUnBindDTO.class
 mdtg\modules\agent\entity\AgentPluginMapping.class
+mdtg\business\user\dto\QueryUserInputDTO.class
 mdtg\common\exception\RenExceptionHandler.class
 mdtg\modules\agent\Enums\AgentChatHistoryType.class
+mdtg\business\user\dto\AddPermissionInputDTO.class
+mdtg\business\user\service\impl\PermissionServiceImpl.class
 mdtg\common\config\SwaggerConfig.class
 mdtg\modules\timbre\vo\TimbreDetailsVO.class
 mdtg\modules\model\dao\ModelConfigDao.class
@@ -203,6 +214,8 @@ mdtg\modules\agent\service\AgentPluginMappingService.class
 mdtg\modules\security\password\PasswordEncoder.class
 mdtg\modules\knowledge\rag\KnowledgeBaseAdapter.class
 mdtg\modules\sms\service\imp\ALiYunSmsService.class
+mdtg\business\user\entity\Role.class
+mdtg\business\user\service\impl\UserServiceImpl.class
 mdtg\modules\sys\service\SysParamsService.class
 mdtg\modules\security\service\CaptchaService.class
 mdtg\modules\agent\dto\AgentChatSummaryDTO.class
@@ -242,8 +255,11 @@ mdtg\modules\sys\entity\SysUserEntity.class
 mdtg\modules\device\dto\DeviceReportReqDTO$Application.class
 mdtg\modules\security\password\BCryptPasswordEncoder.class
 mdtg\modules\sys\service\impl\SysDictDataServiceImpl.class
+mdtg\business\user\entity\Permission.class
 mdtg\modules\model\service\impl\ModelConfigServiceImpl.class
 mdtg\modules\agent\vo\AgentVoicePrintVO.class
+mdtg\business\user\dto\AddUserInputDTO.class
+mdtg\business\user\service\impl\RoleServiceImpl.class
 mdtg\common\service\BaseService.class
 mdtg\modules\sys\utils\WebSocketValidator.class
 mdtg\modules\sys\service\impl\SysUserUtilServiceImpl.class
@@ -262,9 +278,12 @@ mdtg\modules\llm\service\LLMService.class
 mdtg\common\constant\Constant$DataOperation.class
 mdtg\common\xss\XssUtils.class
 mdtg\modules\agent\dto\McpJsonRpcResponse$McpResult.class
+mdtg\business\user\service\UserService.class
 mdtg\modules\sys\dao\SysDictTypeDao.class
 mdtg\modules\device\dto\DeviceBindDTO.class
+mdtg\business\common\toolkits\ResponseDTO.class
 mdtg\modules\sys\dto\AdminPageUserDTO.class
+mdtg\business\user\dto\QueryRoleInputDTO.class
 mdtg\modules\knowledge\service\impl\KnowledgeBaseServiceImpl.class
 mdtg\modules\security\password\BCrypt.class
 mdtg\modules\agent\service\impl\AgentServiceImpl.class
@@ -281,6 +300,7 @@ mdtg\modules\agent\service\impl\AgentTemplateServiceImpl.class
 mdtg\modules\agent\service\impl\AgentChatAudioServiceImpl.class
 mdtg\modules\knowledge\service\impl\KnowledgeFilesServiceImpl$MultipartFileResource.class
 mdtg\modules\model\dto\ModelBasicInfoDTO.class
+mdtg\business\common\entity\BaseEntity.class
 mdtg\common\service\impl\BaseServiceImpl.class
 mdtg\modules\agent\dao\AgentVoicePrintDao.class
 mdtg\modules\device\controller\OTAMagController.class
@@ -296,6 +316,7 @@ mdtg\modules\voiceclone\dto\VoiceCloneResponseDTO.class
 mdtg\modules\model\service\ModelConfigService.class
 mdtg\modules\knowledge\rag\KnowledgeBaseAdapterFactory.class
 mdtg\modules\sys\service\SysDictDataService.class
+mdtg\business\user\mapper\PermissionMapper.class
 mdtg\modules\security\config\ShiroConfig.class
 mdtg\modules\device\dto\DeviceReportReqDTO$ChipInfo.class
 mdtg\modules\device\service\impl\DeviceServiceImpl.class
