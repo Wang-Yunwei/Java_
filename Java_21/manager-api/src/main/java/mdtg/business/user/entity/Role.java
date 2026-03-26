@@ -1,6 +1,8 @@
 package mdtg.business.user.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.entity.BaseEntity;
@@ -26,6 +28,7 @@ public class Role extends BaseEntity {
     /**
      * 权限列表
      */
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private Object permissionIds;
 
     /**

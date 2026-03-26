@@ -7,7 +7,6 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * @author WangYunwei [2026-03-25]
@@ -27,16 +26,11 @@ public final class ResponseDTO<T> implements Serializable {
     private int code = 0;
 
     @Schema(description = "执行信息")
-    private String message = "SUCCESS";
+    private String msg = "SUCCESS";
 
-    @Schema(description = "时间戳，精度: 毫秒")
-    private Long timestamp;
-
-    private T body;
+    private T data;
 
     public ResponseDTO() {
-//        this.timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
-        this.timestamp = Instant.now().toEpochMilli();
 
     }
 
@@ -47,16 +41,16 @@ public final class ResponseDTO<T> implements Serializable {
 
     public static <T> ResponseDTO<T> wrapSuccess(final T body) {
 
-        return new ResponseDTO<T>().setBody(body);
+        return new ResponseDTO<T>().setData(body);
     }
 
     public static <T> ResponseDTO<T> wrapException(String message) {
 
-        return new ResponseDTO<T>().setCode(-1).setMessage(message);
+        return new ResponseDTO<T>().setCode(-1).setMsg(message);
     }
 
     public static <T> ResponseDTO<T> wrapException(int code, String message) {
 
-        return new ResponseDTO<T>().setCode(code).setMessage(message);
+        return new ResponseDTO<T>().setCode(code).setMsg(message);
     }
 }

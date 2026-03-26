@@ -6,6 +6,7 @@ mdtg\modules\agent\service\AgentVoicePrintService.class
 mdtg\modules\agent\controller\AgentController.class
 mdtg\modules\model\dto\ModelConfigBodyDTO.class
 mdtg\modules\model\dto\ModelConfigDTO.class
+mdtg\business\attachment\service\AttachService.class
 mdtg\modules\agent\dto\McpJsonRpcResponse$McpTool.class
 mdtg\modules\device\controller\OTAController.class
 mdtg\modules\agent\service\AgentChatHistoryService.class
@@ -101,6 +102,7 @@ mdtg\modules\voiceclone\entity\VoiceCloneEntity.class
 mdtg\common\handler\FieldMetaObjectHandler.class
 mdtg\modules\agent\entity\AgentChatAudioEntity.class
 mdtg\modules\device\vo\DeviceOtaVO$Mqtt.class
+mdtg\business\attachment\service\impl\AttachServiceImpl.class
 mdtg\business\user\mapper\RoleMapper.class
 mdtg\modules\agent\dto\IdentifyVoicePrintResponse.class
 mdtg\modules\agent\dto\ContextProviderDTO.class
@@ -161,6 +163,7 @@ mdtg\common\dao\BaseDao.class
 mdtg\business\user\service\PermissionService.class
 mdtg\modules\device\dto\DeviceReportReqDTO$OtaInfo.class
 mdtg\modules\sys\controller\SysParamsController.class
+mdtg\business\attachment\dto\AddAttachmentInputDTO.class
 mdtg\common\constant\Constant$SysBaseParam.class
 mdtg\modules\security\oauth2\Oauth2Token.class
 mdtg\modules\voiceclone\controller\VoiceResourceController.class
@@ -168,6 +171,7 @@ mdtg\modules\agent\dao\AgentPluginMappingMapper.class
 mdtg\modules\security\dao\SysUserTokenDao.class
 mdtg\modules\sys\enums\SuperAdminEnum.class
 mdtg\common\page\TokenDTO.class
+mdtg\business\user\dto\VerifyTokenInputDTO.class
 mdtg\modules\device\dto\DeviceReportRespDTO$ServerTime.class
 mdtg\modules\model\service\impl\ModelProviderServiceImpl.class
 mdtg\modules\security\config\WebMvcConfig.class
@@ -180,6 +184,7 @@ mdtg\common\constant\Constant$SysMSMParam.class
 mdtg\modules\model\controller\ModelController.class
 mdtg\modules\device\vo\DeviceOtaVO$Activation.class
 mdtg\modules\agent\dto\AgentVoicePrintSaveDTO.class
+mdtg\business\user\dto\UpdateUserInputDTO.class
 mdtg\modules\voiceclone\service\impl\VoiceCloneServiceImpl$2.class
 mdtg\modules\security\config\WebMvcConfig$1.class
 mdtg\modules\device\dto\DeviceReportRespDTO$Activation.class
@@ -252,6 +257,7 @@ mdtg\modules\timbre\service\impl\TimbreServiceImpl.class
 mdtg\modules\sys\service\impl\SysDictTypeServiceImpl.class
 mdtg\modules\agent\dao\AgentDao.class
 mdtg\modules\device\vo\DeviceOtaVO.class
+mdtg\business\attachment\mapper\AttachMapper.class
 mdtg\modules\sys\entity\SysUserEntity.class
 mdtg\modules\device\dto\DeviceReportReqDTO$Application.class
 mdtg\modules\security\password\BCryptPasswordEncoder.class
@@ -259,7 +265,6 @@ mdtg\modules\sys\service\impl\SysDictDataServiceImpl.class
 mdtg\business\user\entity\Permission.class
 mdtg\modules\model\service\impl\ModelConfigServiceImpl.class
 mdtg\modules\agent\vo\AgentVoicePrintVO.class
-mdtg\business\user\dto\AddUserInputDTO.class
 mdtg\business\user\service\impl\RoleServiceImpl.class
 mdtg\common\service\BaseService.class
 mdtg\modules\sys\utils\WebSocketValidator.class
@@ -298,7 +303,10 @@ mdtg\common\redis\RedisConfig.class
 mdtg\common\utils\SpringContextUtils.class
 mdtg\modules\model\entity\ModelProviderEntity.class
 mdtg\modules\agent\service\impl\AgentTemplateServiceImpl.class
+mdtg\business\attachment\AttachmentController.class
 mdtg\modules\agent\service\impl\AgentChatAudioServiceImpl.class
+mdtg\business\attachment\entity\Attach.class
+mdtg\business\user\dto\VerifyTokenOutputDTO.class
 mdtg\modules\knowledge\service\impl\KnowledgeFilesServiceImpl$MultipartFileResource.class
 mdtg\modules\model\dto\ModelBasicInfoDTO.class
 mdtg\business\common\entity\BaseEntity.class
@@ -323,3 +331,4 @@ mdtg\modules\device\dto\DeviceReportReqDTO$ChipInfo.class
 mdtg\modules\device\service\impl\DeviceServiceImpl.class
 mdtg\modules\device\dto\DeviceManualAddDTO.class
 mdtg\modules\agent\dao\AgentTemplateDao.class
+mdtg\business\attachment\dto\QueryAttachmentInputDTO.class

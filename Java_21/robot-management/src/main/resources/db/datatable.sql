@@ -14,12 +14,12 @@ CREATE TABLE `mdtg_user`
     `type`            TINYINT      DEFAULT 0        COMMENT '类型(0-系统默认,1-自定义)',
     `status`          TINYINT      DEFAULT 0        COMMENT '状态(0-正常,1-锁定)',
     `sys_user_id`     BIGINT       NOT NULL         COMMENT '状态(0-正常,1-锁定)',
-    `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
-    `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名',
-    `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
     `update_by`       BIGINT       DEFAULT NULL     COMMENT '更新者ID',
     `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名',
     `update_date`     DATETIME     DEFAULT NOW()    COMMENT '更新时间',
+    `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
+    `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名',
+    `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
     `company_code`    VARCHAR(50)  DEFAULT NULL     COMMENT '单位编码',
     `company_name`    VARCHAR(100) DEFAULT NULL     COMMENT '单位简称',
     `second_org_code` VARCHAR(50)  DEFAULT NULL     COMMENT '二级组织编码',
@@ -40,12 +40,12 @@ CREATE TABLE `mdtg_role`(
     `description`     VARCHAR(200) DEFAULT NULL     COMMENT '描述',
     `permission_ids`  JSON         DEFAULT NULL     COMMENT '权限列表',
     `type`            TINYINT      DEFAULT 0        COMMENT '类型(0-系统默认,1-自定义)',
-    `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
-    `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名字',
-    `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
     `update_by`       BIGINT       DEFAULT NULL     COMMENT '更新者ID',
-    `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名字',
+    `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名',
     `update_date`     DATETIME     DEFAULT NOW()    COMMENT '更新时间',
+    `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
+    `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名',
+    `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
     `company_code`    VARCHAR(50)  DEFAULT NULL     COMMENT '单位编码',
     `company_name`    VARCHAR(100) DEFAULT NULL     COMMENT '单位简称',
     `second_org_code` VARCHAR(50)  DEFAULT NULL     COMMENT '二级组织编码',
@@ -66,12 +66,12 @@ CREATE TABLE `mdtg_permission`
     `level`           TINYINT      NOT NULL         COMMENT '路径级别',
     `plug_ids`        JSON         DEFAULT NULL     COMMENT '插件列表(字典表ID)',
     `type`            TINYINT      DEFAULT 0        COMMENT '类型(0-系统默认,1-自定义)',
+    `update_by`       BIGINT       DEFAULT NULL     COMMENT '更新者ID',
+    `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名',
+    `update_date`     DATETIME     DEFAULT NOW()    COMMENT '更新时间',
     `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
     `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名字',
     `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
-    `update_by`       BIGINT       DEFAULT NULL     COMMENT '更新者ID',
-    `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名字',
-    `update_date`     DATETIME     DEFAULT NOW()    COMMENT '更新时间',
     `company_code`    VARCHAR(50)  DEFAULT NULL     COMMENT '单位编码',
     `company_name`    VARCHAR(100) DEFAULT NULL     COMMENT '单位简称',
     `second_org_code` VARCHAR(50)  DEFAULT NULL     COMMENT '二级组织编码',
@@ -81,8 +81,24 @@ CREATE TABLE `mdtg_permission`
     `delete_flag`     TINYINT      DEFAULT 0        COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
     KEY `idx_mdtg_permission_parent_id` (`parent_id`) COMMENT '创建父级ID普通索引'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='权限表';
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='权限表';
+
+-- 附件表
+DROP TABLE IF EXISTS `mdtg_attach`;
+CREATE TABLE `mdtg_attach` (
+    `id`            BIGINT      NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `business_id`   BIGINT      NOT NULL        COMMENT '业务关联Id: 声音克隆Id、知识库Id',
+    `business_type` TINYINT     DEFAULT 0       COMMENT '附件业务类别: 0-声音克隆,1-知识库,2-...',
+    `content_type`  VARCHAR(20) DEFAULT NULL    COMMENT '附件类型:audio/way',
+    `file_name`     VARCHAR(50) DEFAULT NULL    COMMENT '附件名称',
+    `file_size`     BIGINT      DEFAULT NULL    COMMENT '文件大小',
+    `object_name`   VARCHAR(50) DEFAULT NULL    COMMENT 'minio的key',
+    `status`        TINYINT     DEFAULT 0       COMMENT '训练状态(0-审核中,1-待付费,2-训练中,3-训练成功,4-训练失败)',
+    `create_by`     BIGINT      DEFAULT NULL    COMMENT '创建者ID',
+    `create_name`   VARCHAR(50) DEFAULT NULL    COMMENT '创建者名',
+    `create_date`   DATETIME    DEFAULT NOW()   COMMENT '创建时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='附件表';
 
 -- 设备信息
 DROP TABLE IF EXISTS `mdtg_device`;

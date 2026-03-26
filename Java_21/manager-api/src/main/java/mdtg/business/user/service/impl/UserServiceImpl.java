@@ -4,12 +4,17 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import mdtg.business.common.toolkits.ResponseDTO;
-import mdtg.business.user.dto.UpdateUserInputDTO;
 import mdtg.business.user.dto.QueryUserInputDTO;
+import mdtg.business.user.dto.UpdateUserInputDTO;
+import mdtg.business.user.dto.VerifyTokenInputDTO;
+import mdtg.business.user.dto.VerifyTokenOutputDTO;
 import mdtg.business.user.entity.User;
 import mdtg.business.user.mapper.UserMapper;
 import mdtg.business.user.service.UserService;
+import mdtg.modules.security.entity.SysUserTokenEntity;
+import mdtg.modules.security.service.ShiroService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +27,30 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    @Resource
+    private ShiroService shiroService;
+
+    @Override
+    public ResponseDTO<?> verifyToken(VerifyTokenInputDTO inputDTO) {
+
+        VerifyTokenOutputDTO outputDTO = new VerifyTokenOutputDTO();
+        // 根据accessToken，查询用户信息
+        SysUserTokenEntity tokenEntity = shiroService.getByToken(inputDTO.getToken());
+        if (tokenEntity == null) {
+            outputDTO.setValid(false);
+            outputDTO.setMessage("Token无效!");
+        }
+        if (tokenEntity.getExpireDate().getTime() < System.currentTimeMillis()) {
+            outputDTO.setValid(false);
+            outputDTO.setMessage("Token已经过期!");
+        }
+        User user = this.baseMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getSysUserId, tokenEntity.getUserId()));
+        outputDTO.setUserId(user.getId().toString());
+        outputDTO.setPhone(user.getPhone());
+        outputDTO.setUsername(user.getUsername());
+        return ResponseDTO.wrapSuccess(outputDTO);
+    }
 
     @Override
     public ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO) {

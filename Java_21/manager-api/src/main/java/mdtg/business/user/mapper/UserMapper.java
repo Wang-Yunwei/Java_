@@ -5,8 +5,8 @@ import mdtg.business.user.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
-* @author WangYunwei
-*/
+ * @author WangYunwei
+ */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 

@@ -1,6 +1,8 @@
 package mdtg.business.user.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,6 +55,7 @@ public class User extends BaseEntity {
     /**
      * 角色列表
      */
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private Object roleIds;
 
     /**

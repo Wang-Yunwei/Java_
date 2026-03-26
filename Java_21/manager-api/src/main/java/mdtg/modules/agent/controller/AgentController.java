@@ -192,7 +192,7 @@ public class AgentController {
     }
 
     @GetMapping("/{id}/chat-history/{sessionId}")
-    @Operation(summary = "获取智能体聊天记录")
+    @Operation(summary = "获取智能体聊天记录(id-智能体ID,sessionId-会话ID)")
     @RequiresPermissions("sys:role:normal")
     public Result<List<AgentChatHistoryDTO>> getAgentChatHistory(
             @PathVariable("id") String id,

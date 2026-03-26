@@ -1,5 +1,6 @@
 package mdtg.business.user;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.common.toolkits.ResponseDTO;
@@ -7,6 +8,7 @@ import mdtg.business.user.dto.*;
 import mdtg.business.user.service.PermissionService;
 import mdtg.business.user.service.RoleService;
 import mdtg.business.user.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -29,14 +31,21 @@ public class UserManagerController {
         this.permissionService = permissionService;
     }
 
-    @Operation(summary = "用户 - 更新",hidden = true)
+    @Operation(summary = "验证Token")
+    @PostMapping("/verify-token")
+    public ResponseDTO<?> verifyToken(@RequestBody VerifyTokenInputDTO inputDTO) {
+
+        return userService.verifyToken(inputDTO);
+    }
+
+    @Operation(summary = "用户 - 更新")
     @PostMapping("/user/update")
     public ResponseDTO<?> updateUser(@RequestBody UpdateUserInputDTO inputDTO) {
 
         return userService.updateUser(inputDTO);
     }
 
-    @Operation(summary = "用户 - 删除",hidden = true)
+    @Operation(summary = "用户 - 删除")
     @PostMapping("/user/delete/{userId}")
     public ResponseDTO<?> deleteUser(@PathVariable String userId) {
 
