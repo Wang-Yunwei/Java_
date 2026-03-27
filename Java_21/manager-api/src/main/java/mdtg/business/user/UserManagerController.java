@@ -38,6 +38,13 @@ public class UserManagerController {
         return userService.verifyToken(inputDTO);
     }
 
+    @Operation(summary = "用户 - 注册",hidden = true)
+    @PostMapping("/user/v2/register")
+    public ResponseDTO<?> register(@RequestBody RegisterInputDTO inputDTO) {
+
+        return userService.register(inputDTO);
+    }
+
     @Operation(summary = "用户 - 更新")
     @PostMapping("/user/update")
     public ResponseDTO<?> updateUser(@RequestBody UpdateUserInputDTO inputDTO) {

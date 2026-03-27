@@ -78,7 +78,7 @@ public class UpdateUserInputDTO {
     /**
      * 状态(0-正常,1-锁定)
      */
-    @Schema(description = "状态(0-正常,1-锁定)",example = "0")
+    @Schema(description = "状态(0-锁定,1-正常)",example = "0")
     private Integer status;
 
     /**

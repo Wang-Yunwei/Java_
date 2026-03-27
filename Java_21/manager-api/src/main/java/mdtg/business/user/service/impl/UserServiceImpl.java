@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.common.toolkits.ResponseDTO;
-import mdtg.business.user.dto.QueryUserInputDTO;
-import mdtg.business.user.dto.UpdateUserInputDTO;
-import mdtg.business.user.dto.VerifyTokenInputDTO;
-import mdtg.business.user.dto.VerifyTokenOutputDTO;
+import mdtg.business.user.dto.*;
 import mdtg.business.user.entity.User;
 import mdtg.business.user.mapper.UserMapper;
 import mdtg.business.user.service.UserService;
@@ -57,6 +54,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         outputDTO.setPhone(user.getPhone());
         outputDTO.setUsername(user.getUsername());
         return ResponseDTO.wrapSuccess(outputDTO);
+    }
+
+    @Override
+    public ResponseDTO<?> register(RegisterInputDTO inputDTO) {
+
+
+        return null;
     }
 
     @Override

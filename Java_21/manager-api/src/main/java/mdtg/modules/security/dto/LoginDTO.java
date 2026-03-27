@@ -5,14 +5,13 @@ import java.io.Serializable;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import mdtg.business.user.dto.RegisterUserDTO;
 
 /**
  * 登录表单
  */
 @Data
 @Schema(description = "登录表单")
-public class LoginDTO  extends RegisterUserDTO implements Serializable {
+public class LoginDTO implements Serializable {
 
     @Schema(description = "手机号码")
     @NotBlank(message = "{sysuser.username.require}")

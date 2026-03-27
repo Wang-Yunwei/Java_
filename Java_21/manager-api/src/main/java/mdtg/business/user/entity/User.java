@@ -64,9 +64,9 @@ public class User extends BaseEntity {
     private Integer type;
 
     /**
-     * 状态(0-正常,1-锁定)
+     * 状态(0-锁定,1-正常)
      */
-    private Integer status;
+    private Integer status = 1;
 
     /**
      * 系统用户ID(关联系统用户表ID)

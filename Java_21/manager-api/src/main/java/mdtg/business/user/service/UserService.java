@@ -2,6 +2,7 @@ package mdtg.business.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.user.dto.RegisterInputDTO;
 import mdtg.business.user.dto.UpdateUserInputDTO;
 import mdtg.business.user.dto.QueryUserInputDTO;
 import mdtg.business.user.dto.VerifyTokenInputDTO;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface UserService extends IService<User> {
 
     ResponseDTO<?> verifyToken(VerifyTokenInputDTO inputDTO);
+
+    ResponseDTO<?> register(RegisterInputDTO inputDTO);
 
     ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO);
 

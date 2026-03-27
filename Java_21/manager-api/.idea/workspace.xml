@@ -5,20 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/dto/LoginV2DTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/RegisterInputDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/UserManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/UserManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/RegisterUserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/UpdateUserInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/UpdateUserInputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/controller/AgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/controller/AgentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/dto/LoginDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/dto/LoginDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/controller/AgentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/controller/AgentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/security/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +172,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1774401273937</updated>
-      <workItem from="1774401276231" duration="58160000" />
+      <workItem from="1774401276231" duration="67183000" />
     </task>
     <servers />
   </component>
