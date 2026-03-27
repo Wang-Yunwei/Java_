@@ -209,6 +209,7 @@ D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security\controller\LoginController.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security\dao\SysUserTokenDao.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security\dto\LoginDTO.java
+D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security\dto\LoginV2DTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security\dto\SmsVerificationDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security\entity\SysUserTokenEntity.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\modules\security\oauth2\Oauth2Filter.java

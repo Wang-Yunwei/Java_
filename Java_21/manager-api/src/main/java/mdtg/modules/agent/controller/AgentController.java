@@ -1,26 +1,6 @@
 package mdtg.modules.agent.controller;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -34,46 +14,55 @@ import mdtg.common.redis.RedisUtils;
 import mdtg.common.user.UserDetail;
 import mdtg.common.utils.Result;
 import mdtg.common.utils.ResultUtils;
-import mdtg.modules.agent.dto.AgentChatHistoryDTO;
-import mdtg.modules.agent.dto.AgentChatSessionDTO;
-import mdtg.modules.agent.dto.AgentCreateDTO;
-import mdtg.modules.agent.dto.AgentDTO;
-import mdtg.modules.agent.dto.AgentMemoryDTO;
-import mdtg.modules.agent.dto.AgentUpdateDTO;
+import mdtg.modules.agent.dto.*;
 import mdtg.modules.agent.entity.AgentEntity;
 import mdtg.modules.agent.entity.AgentTemplateEntity;
-import mdtg.modules.agent.service.AgentChatAudioService;
-import mdtg.modules.agent.service.AgentChatHistoryService;
-import mdtg.modules.agent.service.AgentChatSummaryService;
-import mdtg.modules.agent.service.AgentContextProviderService;
-import mdtg.modules.agent.service.AgentPluginMappingService;
-import mdtg.modules.agent.service.AgentService;
-import mdtg.modules.agent.service.AgentTemplateService;
+import mdtg.modules.agent.service.*;
 import mdtg.modules.agent.vo.AgentChatHistoryUserVO;
 import mdtg.modules.agent.vo.AgentInfoVO;
 import mdtg.modules.device.entity.DeviceEntity;
 import mdtg.modules.device.service.DeviceService;
 import mdtg.modules.security.user.SecurityUser;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Tag(name = "智能体管理")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/agent")
 public class AgentController {
+
     private final AgentService agentService;
+
     private final AgentTemplateService agentTemplateService;
+
     private final DeviceService deviceService;
+
     private final AgentChatHistoryService agentChatHistoryService;
+
     private final AgentChatAudioService agentChatAudioService;
+
     private final AgentPluginMappingService agentPluginMappingService;
+
     private final AgentContextProviderService agentContextProviderService;
+
     private final AgentChatSummaryService agentChatSummaryService;
+
     private final RedisUtils redisUtils;
 
     @GetMapping("/list")
     @Operation(summary = "获取用户智能体列表")
     @RequiresPermissions("sys:role:normal")
     public Result<List<AgentDTO>> getUserAgents() {
+
         UserDetail user = SecurityUser.getUser();
         List<AgentDTO> agents = agentService.getUserAgents(user.getId());
         return new Result<List<AgentDTO>>().ok(agents);
@@ -88,6 +77,7 @@ public class AgentController {
     })
     public Result<PageData<AgentEntity>> adminAgentList(
             @Parameter(hidden = true) @RequestParam Map<String, Object> params) {
+
         PageData<AgentEntity> page = agentService.adminAgentList(params);
         return new Result<PageData<AgentEntity>>().ok(page);
     }
@@ -96,6 +86,7 @@ public class AgentController {
     @Operation(summary = "获取智能体详情")
     @RequiresPermissions("sys:role:normal")
     public Result<AgentInfoVO> getAgentById(@PathVariable("id") String id) {
+
         AgentInfoVO agent = agentService.getAgentById(id);
         return ResultUtils.success(agent);
     }
@@ -104,6 +95,7 @@ public class AgentController {
     @Operation(summary = "创建智能体")
     @RequiresPermissions("sys:role:normal")
     public Result<String> save(@RequestBody @Valid AgentCreateDTO dto) {
+
         String agentId = agentService.createAgent(dto);
         return new Result<String>().ok(agentId);
     }
@@ -111,6 +103,7 @@ public class AgentController {
     @PutMapping("/saveMemory/{macAddress}")
     @Operation(summary = "根据设备id更新智能体")
     public Result<Void> updateByDeviceId(@PathVariable String macAddress, @RequestBody @Valid AgentMemoryDTO dto) {
+
         DeviceEntity device = deviceService.getDeviceByMacAddress(macAddress);
         if (device == null) {
             return new Result<>();
@@ -124,6 +117,7 @@ public class AgentController {
     @PostMapping("/chat-summary/{sessionId}/save")
     @Operation(summary = "根据会话ID生成聊天记录总结并保存（异步执行）")
     public Result<Void> generateAndSaveChatSummary(@PathVariable String sessionId) {
+
         try {
             // 异步执行总结生成任务，立即返回成功响应
             new Thread(() -> {
@@ -146,6 +140,7 @@ public class AgentController {
     @Operation(summary = "更新智能体")
     @RequiresPermissions("sys:role:normal")
     public Result<Void> update(@PathVariable String id, @RequestBody @Valid AgentUpdateDTO dto) {
+
         agentService.updateAgentById(id, dto);
         return new Result<>();
     }
@@ -171,6 +166,7 @@ public class AgentController {
     @Operation(summary = "智能体模板模板列表")
     @RequiresPermissions("sys:role:normal")
     public Result<List<AgentTemplateEntity>> templateList() {
+
         List<AgentTemplateEntity> list = agentTemplateService
                 .list(new QueryWrapper<AgentTemplateEntity>().orderByAsc("sort"));
         return new Result<List<AgentTemplateEntity>>().ok(list);
@@ -186,6 +182,7 @@ public class AgentController {
     public Result<PageData<AgentChatSessionDTO>> getAgentSessions(
             @PathVariable("id") String id,
             @Parameter(hidden = true) @RequestParam Map<String, Object> params) {
+
         params.put("agentId", id);
         PageData<AgentChatSessionDTO> page = agentChatHistoryService.getSessionListByAgentId(params);
         return new Result<PageData<AgentChatSessionDTO>>().ok(page);
@@ -242,6 +239,7 @@ public class AgentController {
     @Operation(summary = "获取音频下载ID")
     @RequiresPermissions("sys:role:normal")
     public Result<String> getAudioId(@PathVariable("audioId") String audioId) {
+
         byte[] audioData = agentChatAudioService.getAudio(audioId);
         if (audioData == null) {
             return new Result<String>().error("音频不存在");
@@ -265,6 +263,19 @@ public class AgentController {
             return ResponseEntity.notFound().build();
         }
         redisUtils.delete(RedisKeys.getAgentAudioIdKey(uuid));
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"play.wav\"")
+                .body(audioData);
+    }
+
+    @Operation(summary = "MDTG - 播放音频_V2")
+    @GetMapping("/v2/audio/{audioId}")
+    public ResponseEntity<byte[]> playAudioV2(@PathVariable String audioId) {
+        byte[] audioData = agentChatAudioService.getAudio(audioId);
+        if (audioData == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"play.wav\"")

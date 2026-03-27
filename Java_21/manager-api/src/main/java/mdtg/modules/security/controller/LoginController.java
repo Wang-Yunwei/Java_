@@ -8,6 +8,7 @@ import java.util.Map;
 
 import mdtg.business.user.entity.User;
 import mdtg.business.user.service.UserService;
+import mdtg.modules.security.dto.LoginV2DTO;
 import mdtg.modules.sys.entity.SysUserEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -102,6 +103,22 @@ public class LoginController {
 
         login.setPassword(actualPassword);
 
+        // 按照用户名获取用户
+        SysUserDTO userDTO = sysUserService.getByUsername(login.getUsername());
+        // 判断用户是否存在
+        if (userDTO == null) {
+            throw new RenException(ErrorCode.ACCOUNT_PASSWORD_ERROR);
+        }
+        // 判断密码是否正确，不一样则进入if
+        if (!PasswordUtils.matches(login.getPassword(), userDTO.getPassword())) {
+            throw new RenException(ErrorCode.ACCOUNT_PASSWORD_ERROR);
+        }
+        return sysUserTokenService.createToken(userDTO.getId());
+    }
+
+    @PostMapping("/v2/login")
+    @Operation(summary = "MDTG - 登录_V2")
+    public Result<TokenDTO> loginV2(@RequestBody LoginV2DTO login) {
         // 按照用户名获取用户
         SysUserDTO userDTO = sysUserService.getByUsername(login.getUsername());
         // 判断用户是否存在

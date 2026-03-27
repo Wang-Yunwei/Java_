@@ -128,6 +128,7 @@ mdtg\common\entity\BaseEntity.class
 mdtg\common\utils\ConvertUtils.class
 mdtg\modules\knowledge\dto\KnowledgeFilesDTO.class
 mdtg\modules\agent\service\AgentChatAudioService.class
+mdtg\modules\security\dto\LoginV2DTO.class
 mdtg\modules\sys\vo\SysDictDataItem.class
 mdtg\modules\knowledge\entity\KnowledgeBaseEntity.class
 mdtg\modules\timbre\service\TimbreService.class

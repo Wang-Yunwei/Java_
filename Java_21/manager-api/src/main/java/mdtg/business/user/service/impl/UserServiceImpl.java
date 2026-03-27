@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import jakarta.annotation.Resource;
 import mdtg.business.common.toolkits.ResponseDTO;
 import mdtg.business.user.dto.QueryUserInputDTO;
 import mdtg.business.user.dto.UpdateUserInputDTO;
@@ -13,6 +12,7 @@ import mdtg.business.user.dto.VerifyTokenOutputDTO;
 import mdtg.business.user.entity.User;
 import mdtg.business.user.mapper.UserMapper;
 import mdtg.business.user.service.UserService;
+import mdtg.modules.device.service.DeviceService;
 import mdtg.modules.security.entity.SysUserTokenEntity;
 import mdtg.modules.security.service.ShiroService;
 import org.springframework.beans.BeanUtils;
@@ -28,8 +28,15 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-    @Resource
+    private DeviceService deviceService;
+
     private ShiroService shiroService;
+
+    public UserServiceImpl( DeviceService deviceService,ShiroService shiroService) {
+
+        this.deviceService = deviceService;
+        this.shiroService = shiroService;
+    }
 
     @Override
     public ResponseDTO<?> verifyToken(VerifyTokenInputDTO inputDTO) {
@@ -86,7 +93,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         Optional.ofNullable(inputDTO.getUserName()).ifPresent(username -> queryWrapper.like(User::getUsername, username));
         Optional.ofNullable(inputDTO.getAddress()).ifPresent(address -> queryWrapper.like(User::getAddress, address));
-        return ResponseDTO.wrapSuccess(this.baseMapper.selectList(page, queryWrapper));
+        IPage<User> iPage = this.baseMapper.selectPage(page, queryWrapper);
+
+//        deviceService.selectCountByUserId();
+        return ResponseDTO.wrapSuccess(iPage);
     }
 }
 

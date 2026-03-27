@@ -12,7 +12,7 @@ import mdtg.business.user.dto.RegisterUserDTO;
  */
 @Data
 @Schema(description = "登录表单")
-public class LoginDTO extends RegisterUserDTO implements Serializable {
+public class LoginDTO  extends RegisterUserDTO implements Serializable {
 
     @Schema(description = "手机号码")
     @NotBlank(message = "{sysuser.username.require}")
