@@ -13,6 +13,7 @@ mdtg\modules\agent\service\AgentChatHistoryService.class
 mdtg\modules\agent\entity\AgentChatHistoryEntity.class
 mdtg\common\utils\JsonUtils.class
 mdtg\modules\sys\utils\WebSocketClientManager$InternalHandler.class
+mdtg\business\user\dto\RegisterInputDTO.class
 mdtg\modules\device\dto\DeviceReportReqDTO.class
 mdtg\AdminApplication.class
 mdtg\modules\security\oauth2\Oauth2Filter.class
@@ -122,6 +123,7 @@ mdtg\modules\model\service\ModelProviderService.class
 mdtg\modules\sys\utils\WebSocketTestHandler.class
 mdtg\modules\agent\dto\AgentChatSessionDTO.class
 mdtg\common\constant\Constant$ChatHistoryConfEnum.class
+mdtg\business\user\dto\QueryUserOutputDTO.class
 mdtg\common\config\AsyncConfig$1.class
 mdtg\modules\model\dto\VoiceDTO.class
 mdtg\common\entity\BaseEntity.class
@@ -221,7 +223,6 @@ mdtg\modules\security\password\PasswordEncoder.class
 mdtg\modules\knowledge\rag\KnowledgeBaseAdapter.class
 mdtg\modules\sms\service\imp\ALiYunSmsService.class
 mdtg\business\user\entity\Role.class
-mdtg\business\user\dto\RegisterUserDTO.class
 mdtg\business\user\service\impl\UserServiceImpl.class
 mdtg\modules\sys\service\SysParamsService.class
 mdtg\modules\security\service\CaptchaService.class

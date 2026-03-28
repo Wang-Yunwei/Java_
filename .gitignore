@@ -4,6 +4,8 @@
 # exclude patterns (uncomment them if you want to use them):
 # *.[oa]
 # *~
-/Java_21/manager-api/.idea/
-/Java_21/manager-api/logs/
-/Java_21/manager-api/target/
+/Java_21/manager-api/.idea/*
+/Java_21/manager-api/logs/*
+/Java_21/manager-api/target/*
+*.log
+*.log
