@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/logs/error.2026-03-25.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/mdtg-esp32-api.2026-03-25.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/mdtg-esp32-api.2026-03-26.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/mdtg-esp32-api.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/mdtg-esp32-api.log" afterDir="false" />
-    </list>
+    <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -155,7 +150,7 @@
       <updated>1774401273937</updated>
       <workItem from="1774401276231" duration="76797000" />
       <workItem from="1774703442879" duration="1605000" />
-      <workItem from="1774833676430" duration="6961000" />
+      <workItem from="1774833676430" duration="7729000" />
     </task>
     <servers />
   </component>
