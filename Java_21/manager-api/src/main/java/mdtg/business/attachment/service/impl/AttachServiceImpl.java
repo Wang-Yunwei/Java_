@@ -41,8 +41,8 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
     public ResponseDTO<?> queryAttachment(QueryAttachmentInputDTO inputDTO) {
 
         assert inputDTO != null : "参数不能为空";
-        if (inputDTO.getId() != null && inputDTO.getId() > 0) {
-            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getId()));
+        if (inputDTO.getAttachId() != null && inputDTO.getAttachId() > 0) {
+            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getAttachId()));
         }
         IPage<Attach> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         LambdaQueryWrapper<Attach> queryWrapper = new LambdaQueryWrapper<>();

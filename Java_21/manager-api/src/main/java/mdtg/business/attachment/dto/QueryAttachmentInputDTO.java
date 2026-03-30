@@ -12,10 +12,10 @@ import lombok.Setter;
 public class QueryAttachmentInputDTO {
 
     @Schema(description = "附件Id")
-    private Long id;
+    private Long attachId;
 
     @Schema(description = "业务关联Id: 声音克隆Id、知识库Id")
-    private Long businessId;
+    private String businessId;
 
     @Schema(description = "附件业务类别: 0-声音克隆,1-知识库,2-...")
     private Integer businessType;

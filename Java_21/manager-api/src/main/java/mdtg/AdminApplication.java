@@ -1,5 +1,6 @@
 package mdtg;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AdminApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(AdminApplication.class, args);
-        System.out.println("http://localhost:8002/mdtg/doc.html");
+        System.out.println("http://127.0.0.1:8002/mdtg/doc.html");
     }
 }

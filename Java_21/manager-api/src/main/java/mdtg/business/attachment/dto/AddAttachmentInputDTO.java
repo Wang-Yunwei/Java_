@@ -14,7 +14,7 @@ import java.util.Date;
 public class AddAttachmentInputDTO {
 
     @Schema(description = "业务关联Id: 声音克隆Id、知识库Id")
-    private Long businessId;
+    private String businessId;
 
     @Schema(description = "附件业务类别: 0-声音克隆,1-知识库,2-...")
     private Integer businessType;

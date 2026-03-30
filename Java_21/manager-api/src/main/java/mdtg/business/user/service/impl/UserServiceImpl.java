@@ -11,11 +11,11 @@ import mdtg.business.user.service.UserService;
 import mdtg.modules.device.service.DeviceService;
 import mdtg.modules.security.entity.SysUserTokenEntity;
 import mdtg.modules.security.service.ShiroService;
+import mdtg.modules.sys.entity.SysUserEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -87,7 +87,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseDTO<?> deleteUser(String userId) {
 
-        return this.baseMapper.deleteById(Long.valueOf(userId)) > 0 ? ResponseDTO.wrapSuccess() : ResponseDTO.wrapException("删除用户失败!");
+        Long id = Long.valueOf(userId);
+        User user = this.baseMapper.selectById(id);
+        if (user != null) {
+            int result = this.baseMapper.deleteById(user.getId());
+            if (result > 0) {
+                result = this.baseMapper.deleteSysUser(new LambdaQueryWrapper<SysUserEntity>().eq(SysUserEntity::getId, user.getSysUserId()));
+            }
+            return result > 0 ? ResponseDTO.wrapSuccess() : ResponseDTO.wrapException("删除用户失败!");
+        }
+        return ResponseDTO.wrapException("删除用户失败!");
     }
 
     @Override
@@ -102,9 +111,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Optional.ofNullable(inputDTO.getAddress()).ifPresent(address -> queryWrapper.like(User::getAddress, address));
 
         Page<QueryUserOutputDTO> dtoPage = this.baseMapper.queryUser(page, queryWrapper);
-        dtoPage.getRecords().forEach(record -> {
-            record.setDeviceCount(deviceService.selectCountByUserId(record.getId()));
-        });
+        dtoPage.getRecords().forEach(record -> record.setDeviceCount(deviceService.selectCountByUserId(record.getId())));
         return ResponseDTO.wrapSuccess(dtoPage);
     }
 }

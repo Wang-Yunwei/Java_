@@ -37,7 +37,7 @@ public class AttachmentController {
         return attachService.deleteAttachment(attachId);
     }
 
-    @Operation(summary = "附件 - 查询")
+    @Operation(summary = "附件 - 查询",description = "1.根据条件查询附件列表，支持分页; 2.如果attachId存在，则根据附件Id查询附件详情")
     @PostMapping("/query")
     public ResponseDTO<?> queryAttachment(@RequestBody QueryAttachmentInputDTO inputDTO) {
 
