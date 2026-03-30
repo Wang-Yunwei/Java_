@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error.2026-03-25.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mdtg-esp32-api.2026-03-25.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/mdtg-esp32-api.2026-03-26.0.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/mdtg-esp32-api.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/mdtg-esp32-api.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/AdminApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/AttachmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/AttachmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/dto/AddAttachmentInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/dto/AddAttachmentInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/dto/QueryAttachmentInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/dto/QueryAttachmentInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/entity/Attach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/entity/Attach.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/AdminApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/AdminApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/AttachmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/AttachmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/dto/AddAttachmentInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/dto/AddAttachmentInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/dto/QueryAttachmentInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/dto/QueryAttachmentInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/entity/Attach.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/entity/Attach.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/impl/AttachServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/impl/AttachServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +155,7 @@
       <updated>1774401273937</updated>
       <workItem from="1774401276231" duration="76797000" />
       <workItem from="1774703442879" duration="1605000" />
-      <workItem from="1774833676430" duration="6454000" />
+      <workItem from="1774833676430" duration="6961000" />
     </task>
     <servers />
   </component>
