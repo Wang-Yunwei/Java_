@@ -36,11 +36,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public ResponseDTO<?> verifyToken(VerifyTokenInputDTO inputDTO) {
+    public ResponseDTO<?> verifyToken(String token) {
 
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7); // 从第 8 个字符开始截取，去掉 "Bearer "
+        }
         VerifyTokenOutputDTO outputDTO = new VerifyTokenOutputDTO();
         // 根据accessToken，查询用户信息
-        SysUserTokenEntity tokenEntity = shiroService.getByToken(inputDTO.getToken());
+        SysUserTokenEntity tokenEntity = shiroService.getByToken(token);
         if (tokenEntity == null) {
             outputDTO.setValid(false);
             outputDTO.setMessage("Token无效!");
@@ -60,7 +63,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         outputDTO.setUserId(user.getId().toString());
         outputDTO.setPhone(user.getPhone());
         outputDTO.setUsername(user.getUsername());
-        outputDTO.setValid(true);
+        outputDTO.setOrgCode(user.getOrgCode());
         return ResponseDTO.wrapSuccess(outputDTO);
     }
 
@@ -85,7 +88,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public ResponseDTO<?> deleteUser(String userId) {
+    public ResponseDTO<?> deleteUser(Long userId) {
 
         Long id = Long.valueOf(userId);
         User user = this.baseMapper.selectById(id);
@@ -106,6 +109,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Page<QueryUserOutputDTO> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         Optional.ofNullable(inputDTO.getUserId()).ifPresent(userId -> queryWrapper.eq(User::getId, userId));
+        Optional.ofNullable(inputDTO.getSysUserId()).ifPresent(sysUserId -> queryWrapper.eq(User::getSysUserId, sysUserId));
         Optional.ofNullable(inputDTO.getPhone()).ifPresent(phone -> queryWrapper.eq(User::getPhone, phone));
         Optional.ofNullable(inputDTO.getUserName()).ifPresent(username -> queryWrapper.like(User::getUsername, username));
         Optional.ofNullable(inputDTO.getAddress()).ifPresent(address -> queryWrapper.like(User::getAddress, address));

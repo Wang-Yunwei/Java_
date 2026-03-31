@@ -12,10 +12,10 @@ import lombok.Setter;
 public class VerifyTokenOutputDTO {
 
     @Schema(description = "验证结果")
-    private Boolean valid=true;
+    private Boolean valid = true;
 
     @Schema(description = "Token验证信息")
-    private String message="SUCCESS";
+    private String message = "SUCCESS";
 
     @Schema(description = "用户ID")
     private String userId;

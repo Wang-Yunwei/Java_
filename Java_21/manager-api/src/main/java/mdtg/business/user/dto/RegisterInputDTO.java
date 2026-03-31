@@ -11,11 +11,11 @@ import lombok.Setter;
 @Setter
 public class RegisterInputDTO {
 
-    @Schema(description = "用户名", example = "mdtg")
-    private String username;
-
-    @Schema(description = "密码", example = "123456")
-    private String password;
+//    @Schema(description = "用户名", example = "mdtg")
+//    private String username;
+//
+//    @Schema(description = "密码", example = "123456")
+//    private String password;
 
     @Schema(description = "性别(0-未知,1-男,2-女)")
     private Integer gender;

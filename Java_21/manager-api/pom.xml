@@ -4,7 +4,7 @@
     <groupId>mdtg</groupId>
     <artifactId>mdtg-esp32-api</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <name>mdtg-esp32-api</name>
     <description>小麦后台管理系统</description>
 
@@ -138,6 +138,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
@@ -239,6 +243,19 @@
             <version>${okio-version}</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!-- 针对 Spring Boot 3.4.x，建议使用 Spring Cloud 2024.0.x 或更新版本 -->
+                <version>2024.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <!-- 阿里云maven仓库 -->
     <repositories>

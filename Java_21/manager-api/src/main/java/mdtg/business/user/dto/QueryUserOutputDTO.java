@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import mdtg.business.user.entity.Role;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author WangYunwei [2026-03-27]
@@ -25,7 +27,7 @@ public class QueryUserOutputDTO {
     @Schema(description = "手机号")
     private String phone;
 
-    @Schema(description = "角色列表")
+    @Schema(description = "角色ID列表")
     private Object roleIds;
 
     @Schema(description = "设备数量")
@@ -36,4 +38,7 @@ public class QueryUserOutputDTO {
 
     @Schema(description = "状态(0-锁定,1-正常)")
     private Integer status;
+
+    @Schema(description = "角色列表")
+    private List<Role> roleList;
 }

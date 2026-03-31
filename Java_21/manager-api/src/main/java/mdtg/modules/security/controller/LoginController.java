@@ -1,29 +1,20 @@
 package mdtg.modules.security.controller;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import mdtg.business.user.entity.User;
-import mdtg.business.user.service.UserService;
-import mdtg.modules.security.dto.LoginV2DTO;
-import mdtg.modules.sys.entity.SysUserEntity;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mdtg.business.user.dto.QueryUserOutputDTO;
+import mdtg.business.user.entity.Role;
+import mdtg.business.user.entity.User;
+import mdtg.business.user.service.RoleService;
+import mdtg.business.user.service.UserService;
 import mdtg.common.constant.Constant;
 import mdtg.common.exception.ErrorCode;
 import mdtg.common.exception.RenException;
@@ -35,6 +26,7 @@ import mdtg.common.utils.Sm2DecryptUtil;
 import mdtg.common.validator.AssertUtils;
 import mdtg.common.validator.ValidatorUtils;
 import mdtg.modules.security.dto.LoginDTO;
+import mdtg.modules.security.dto.LoginV2DTO;
 import mdtg.modules.security.dto.SmsVerificationDTO;
 import mdtg.modules.security.password.PasswordUtils;
 import mdtg.modules.security.service.CaptchaService;
@@ -43,10 +35,20 @@ import mdtg.modules.security.user.SecurityUser;
 import mdtg.modules.sys.dto.PasswordDTO;
 import mdtg.modules.sys.dto.RetrievePasswordDTO;
 import mdtg.modules.sys.dto.SysUserDTO;
+import mdtg.modules.sys.entity.SysUserEntity;
 import mdtg.modules.sys.service.SysDictDataService;
 import mdtg.modules.sys.service.SysParamsService;
 import mdtg.modules.sys.service.SysUserService;
 import mdtg.modules.sys.vo.SysDictDataItem;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 登录控制层
@@ -57,12 +59,22 @@ import mdtg.modules.sys.vo.SysDictDataItem;
 @RequestMapping("/user")
 @Tag(name = "登录管理")
 public class LoginController {
+
     private final SysUserService sysUserService;
+
     private final SysUserTokenService sysUserTokenService;
+
     private final CaptchaService captchaService;
+
     private final SysParamsService sysParamsService;
+
     private final SysDictDataService sysDictDataService;
+
     private final UserService userService;
+
+    private final RoleService roleService;
+
+    private final ObjectMapper om;
 
     @GetMapping("/captcha")
     @Operation(summary = "验证码")
@@ -94,7 +106,8 @@ public class LoginController {
 
     @PostMapping("/login")
     @Operation(summary = "登录")
-    public Result<TokenDTO> login(@RequestBody LoginDTO login) {
+    public Result<Map<String, Object>> login(@RequestBody LoginDTO login) {
+
         String password = login.getPassword();
 
         // 使用工具类解密并验证验证码
@@ -113,12 +126,38 @@ public class LoginController {
         if (!PasswordUtils.matches(login.getPassword(), userDTO.getPassword())) {
             throw new RenException(ErrorCode.ACCOUNT_PASSWORD_ERROR);
         }
-        return sysUserTokenService.createToken(userDTO.getId());
+
+        // TODO
+        Map<String, Object> hashMap = new HashMap<>();
+        User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getSysUserId, userDTO.getId()));
+        List<String> strings;
+        try {
+            strings = om.readValue((String) user.getRoleIds(), new TypeReference<List<String>>() {
+
+            });
+
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        if (strings != null && strings.size() > 0) {
+            List<Long> ids = strings.stream().map(Long::parseLong).toList();
+            List<Role> roles = roleService.listByIds(ids);
+            if (user != null) {
+                QueryUserOutputDTO outputDTO = new QueryUserOutputDTO();
+                BeanUtils.copyProperties(user, outputDTO);
+                outputDTO.setRoleList(roles);
+                hashMap.put("user", outputDTO);
+            }
+        }
+        Result<TokenDTO> token = sysUserTokenService.createToken(userDTO.getId());
+        Map<String, Object> dtoMap = BeanUtil.beanToMap(token.getData());
+        hashMap.putAll(dtoMap);
+        return new Result<Map<String, Object>>().ok(hashMap);
     }
 
     @PostMapping("/v2/login")
     @Operation(summary = "MDTG - 登录_V2")
-    public Result<TokenDTO> loginV2(@RequestBody LoginV2DTO login) {
+    public Result<Map<String,Object>> loginV2(@RequestBody LoginV2DTO login) {
         // 按照用户名获取用户
         SysUserDTO userDTO = sysUserService.getByUsername(login.getUsername());
         // 判断用户是否存在
@@ -129,12 +168,39 @@ public class LoginController {
         if (!PasswordUtils.matches(login.getPassword(), userDTO.getPassword())) {
             throw new RenException(ErrorCode.ACCOUNT_PASSWORD_ERROR);
         }
-        return sysUserTokenService.createToken(userDTO.getId());
+
+        // TODO
+        Map<String, Object> hashMap = new HashMap<>();
+        User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getSysUserId, userDTO.getId()));
+        List<String> strings;
+        try {
+            strings = om.readValue((String) user.getRoleIds(), new TypeReference<List<String>>() {
+
+            });
+
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        if (strings != null && strings.size() > 0) {
+            List<Long> ids = strings.stream().map(Long::parseLong).toList();
+            List<Role> roles = roleService.listByIds(ids);
+            if (user != null) {
+                QueryUserOutputDTO outputDTO = new QueryUserOutputDTO();
+                BeanUtils.copyProperties(user, outputDTO);
+                outputDTO.setRoleList(roles);
+                hashMap.put("user", outputDTO);
+            }
+        }
+        Result<TokenDTO> token = sysUserTokenService.createToken(userDTO.getId());
+        Map<String, Object> dtoMap = BeanUtil.beanToMap(token.getData());
+        hashMap.putAll(dtoMap);
+        return new Result<Map<String, Object>>().ok(hashMap);
     }
 
     @PostMapping("/register")
     @Operation(summary = "注册")
     public Result<?> register(@RequestBody LoginDTO login) {
+
         if (!sysUserService.getAllowUserRegister()) {
             throw new RenException(ErrorCode.USER_REGISTER_DISABLED);
         }
@@ -173,11 +239,12 @@ public class LoginController {
         userDTO.setUsername(login.getUsername());
         userDTO.setPassword(login.getPassword());
         SysUserEntity save = sysUserService.save(userDTO);
-        if(save.getId() != null && save.getId()>0){
+        if (save.getId() != null && save.getId() > 0) {
             User user = new User();
             BeanUtils.copyProperties(login, user);
-            BeanUtils.copyProperties(save, user,"id");
+            BeanUtils.copyProperties(save, user, "id");
             user.setSysUserId(save.getId());
+            user.setOrgCode(login.getPhone());
             userService.save(user);
             Result<User> result = new Result<>();
             return result.ok(user);
@@ -188,6 +255,7 @@ public class LoginController {
     @GetMapping("/info")
     @Operation(summary = "用户信息获取")
     public Result<UserDetail> info() {
+
         UserDetail user = SecurityUser.getUser();
         Result<UserDetail> result = new Result<>();
         result.setData(user);
@@ -248,6 +316,7 @@ public class LoginController {
     @GetMapping("/pub-config")
     @Operation(summary = "公共配置")
     public Result<Map<String, Object>> pubConfig() {
+
         Map<String, Object> config = new HashMap<>();
         config.put("enableMobileRegister", sysParamsService
                 .getValueObject(Constant.SysMSMParam.SERVER_ENABLE_MOBILE_REGISTER.getValue(), Boolean.class));

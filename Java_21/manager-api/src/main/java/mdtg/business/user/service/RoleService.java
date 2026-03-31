@@ -7,8 +7,8 @@ import mdtg.business.user.dto.QueryRoleInputDTO;
 import mdtg.business.user.entity.Role;
 
 /**
-* @author WangYunwei
-*/
+ * @author WangYunwei
+ */
 public interface RoleService extends IService<Role> {
 
     ResponseDTO<?> addRole(AddRoleInputDTO inputDTO);
