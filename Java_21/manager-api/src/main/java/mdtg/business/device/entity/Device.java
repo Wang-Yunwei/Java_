@@ -1,0 +1,62 @@
+package mdtg.business.device.entity;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Getter;
+import lombok.Setter;
+import mdtg.business.common.entity.BaseEntity;
+
+import java.util.Date;
+
+/**
+ * 设备信息表
+ */
+@Getter
+@Setter
+@TableName(value = "mdtg_device")
+public class Device extends BaseEntity {
+
+    /**
+     * 设备别名
+     */
+    private String alias;
+
+    /**
+     * MAC地址
+     */
+    private String macAddress;
+
+    /**
+     * 硬件型号
+     */
+    private String board;
+
+    /**
+     * 固件版本号
+     */
+    private String firmwareVersion;
+
+    /**
+     * 最后连接时间
+     */
+    private Date lastConnectionTime;
+
+    /**
+     * 自动更新开关(0-关闭,1-开启)
+     */
+    private Integer autoUpdate;
+
+    /**
+     * 类型(0-头,1-工牌,2-小车)
+     */
+    private Integer type;
+
+    /**
+     * 绑定ID(注: type为1、2时,绑定type为0的设备ID)
+     */
+    private Long bindingId;
+
+    /**
+     * ai_device表主键ID
+     */
+    private Long aiDeviceId;
+}

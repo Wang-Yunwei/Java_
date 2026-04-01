@@ -2,8 +2,6 @@ package mdtg.modules.security.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -130,18 +128,8 @@ public class LoginController {
         // TODO
         Map<String, Object> hashMap = new HashMap<>();
         User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getSysUserId, userDTO.getId()));
-        List<String> strings;
-        try {
-            strings = om.readValue((String) user.getRoleIds(), new TypeReference<List<String>>() {
-
-            });
-
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        if (strings != null && strings.size() > 0) {
-            List<Long> ids = strings.stream().map(Long::parseLong).toList();
-            List<Role> roles = roleService.listByIds(ids);
+        if (user.getRoleIds() != null && user.getRoleIds().size() > 0) {
+            List<Role> roles = roleService.listByIds(user.getRoleIds());
             if (user != null) {
                 QueryUserOutputDTO outputDTO = new QueryUserOutputDTO();
                 BeanUtils.copyProperties(user, outputDTO);
@@ -157,7 +145,7 @@ public class LoginController {
 
     @PostMapping("/v2/login")
     @Operation(summary = "MDTG - 登录_V2")
-    public Result<Map<String,Object>> loginV2(@RequestBody LoginV2DTO login) {
+    public Result<Map<String, Object>> loginV2(@RequestBody LoginV2DTO login) {
         // 按照用户名获取用户
         SysUserDTO userDTO = sysUserService.getByUsername(login.getUsername());
         // 判断用户是否存在
@@ -172,18 +160,8 @@ public class LoginController {
         // TODO
         Map<String, Object> hashMap = new HashMap<>();
         User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getSysUserId, userDTO.getId()));
-        List<String> strings;
-        try {
-            strings = om.readValue((String) user.getRoleIds(), new TypeReference<List<String>>() {
-
-            });
-
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        if (strings != null && strings.size() > 0) {
-            List<Long> ids = strings.stream().map(Long::parseLong).toList();
-            List<Role> roles = roleService.listByIds(ids);
+        if (user.getRoleIds() != null && user.getRoleIds().size() > 0) {
+            List<Role> roles = roleService.listByIds(user.getRoleIds());
             if (user != null) {
                 QueryUserOutputDTO outputDTO = new QueryUserOutputDTO();
                 BeanUtils.copyProperties(user, outputDTO);

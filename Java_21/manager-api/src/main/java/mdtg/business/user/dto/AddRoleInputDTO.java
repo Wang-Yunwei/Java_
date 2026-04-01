@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author WangYunwei [2026-03-17]
  */
@@ -21,7 +24,7 @@ public class AddRoleInputDTO {
     private String description;
 
     @Schema(description = "权限列表")
-    private Object permissionIds;
+    private List<Map<String,Object>> permissionIds;
 
     @Schema(description = "类型(0-系统默认,1-自定义)")
     private Integer type;

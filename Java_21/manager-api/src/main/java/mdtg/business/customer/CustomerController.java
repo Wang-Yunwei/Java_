@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.common.feign.CustomerFeign;
 import mdtg.business.common.toolkits.ResponseDTO;
 import mdtg.business.customer.dto.QueryVoiceInputDTO;
+import mdtg.common.utils.Result;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,6 +27,7 @@ public class CustomerController {
     @GetMapping("/voice-clone/query")
     public ResponseDTO<?> queryVoice(@RequestHeader("Authorization") String token, @RequestBody QueryVoiceInputDTO inputDTO) {
 
-        return ResponseDTO.wrapSuccess(customerFeign.page(token, inputDTO));
+        Result page = customerFeign.page(token, inputDTO);
+        return ResponseDTO.wrapSuccess(page.getData());
     }
 }

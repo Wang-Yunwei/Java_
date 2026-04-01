@@ -28,7 +28,7 @@ public class QueryUserOutputDTO {
     private String phone;
 
     @Schema(description = "角色ID列表")
-    private Object roleIds;
+    private List<Long> roleIds;
 
     @Schema(description = "设备数量")
     private Long deviceCount;
@@ -38,6 +38,9 @@ public class QueryUserOutputDTO {
 
     @Schema(description = "状态(0-锁定,1-正常)")
     private Integer status;
+
+    @Schema(description = "组织编码")
+    private String orgCode;
 
     @Schema(description = "角色列表")
     private List<Role> roleList;

@@ -7,12 +7,15 @@ import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.entity.BaseEntity;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 角色表
  */
 @Getter
 @Setter
-@TableName(value = "mdtg_role")
+@TableName(value = "mdtg_role", autoResultMap = true)
 public class Role extends BaseEntity {
 
     /**
@@ -29,7 +32,7 @@ public class Role extends BaseEntity {
      * 权限列表
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private Object permissionIds;
+    private List<Map<String, Object>> permissionIds;
 
     /**
      * 类型(0-系统默认,1-自定义)

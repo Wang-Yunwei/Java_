@@ -80,7 +80,6 @@ mdtg\common\validator\group\UpdateGroup.class
 mdtg\common\validator\AssertUtils.class
 mdtg\modules\security\oauth2\TokenGenerator.class
 mdtg\common\constant\Constant$TrainStatus.class
-mdtg\modules\security\controller\LoginController$1.class
 mdtg\modules\agent\controller\AgentTemplateController.class
 mdtg\modules\sys\controller\ServerSideManageController.class
 mdtg\modules\agent\service\biz\AgentChatHistoryBizService.class
@@ -198,6 +197,7 @@ mdtg\modules\sys\utils\WebSocketClientManager.class
 mdtg\modules\config\controller\ConfigController.class
 mdtg\modules\device\dto\DeviceUnBindDTO.class
 mdtg\modules\agent\entity\AgentPluginMapping.class
+mdtg\business\customer\CustomerController.class
 mdtg\business\user\dto\QueryUserInputDTO.class
 mdtg\common\exception\RenExceptionHandler.class
 mdtg\modules\agent\Enums\AgentChatHistoryType.class
@@ -218,7 +218,6 @@ mdtg\modules\agent\entity\AgentChatHistoryEntity$AgentChatHistoryEntityBuilder.c
 mdtg\modules\agent\service\biz\impl\AgentChatHistoryBizServiceImpl.class
 mdtg\common\constant\Constant$DictType.class
 mdtg\modules\agent\entity\AgentVoicePrintEntity.class
-mdtg\modules\security\controller\LoginController$2.class
 mdtg\modules\agent\dto\AgentMemoryDTO.class
 mdtg\modules\agent\service\AgentPluginMappingService.class
 mdtg\modules\security\password\PasswordEncoder.class
@@ -300,6 +299,7 @@ mdtg\modules\security\password\BCrypt.class
 mdtg\modules\agent\service\impl\AgentServiceImpl.class
 mdtg\modules\device\vo\DeviceOtaVO$Firmware.class
 mdtg\modules\sys\service\impl\TokenServiceImpl.class
+mdtg\business\customer\dto\QueryVoiceInputDTO.class
 mdtg\modules\sys\service\impl\SysParamsServiceImpl.class
 mdtg\common\service\impl\CrudServiceImpl.class
 mdtg\modules\agent\service\impl\AgentChatHistoryServiceImpl.class

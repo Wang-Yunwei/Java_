@@ -5,7 +5,7 @@ server:
     threads:
       max: 1000
       min-spare: 30
-  port: ${mdtg.port}
+  port: ${service-address.mdtg.port}
   servlet:
     context-path: /mdtg
     session:

@@ -1,115 +1,18 @@
 -- 用户
 DROP TABLE IF EXISTS `mdtg_user`;
 CREATE TABLE `mdtg_user` (
-    `id`              BIGINT       NOT NULL         COMMENT '主键',
-    `username`        VARCHAR(50)  NOT NULL         COMMENT '用户名',
-    `password`        VARCHAR(100) NOT NULL         COMMENT '密码',
-    `gender`          TINYINT      DEFAULT 0        COMMENT '性别(0-未知,1-男,2-女)',
-    `identity_card`   VARCHAR(50)  DEFAULT NULL     COMMENT '居民身份证',
-    `phone`           VARCHAR(20)  NOT NULL         COMMENT '手机号',
-    `email`           VARCHAR(20)  DEFAULT NULL     COMMENT '邮箱',
-    `address`         VARCHAR(300) DEFAULT NULL     COMMENT '住址',
-    `role_ids`        JSON         DEFAULT NULL     COMMENT '角色列表',
-    `type`            TINYINT      DEFAULT 0        COMMENT '类型(0-系统默认,1-自定义)',
-    `status`          TINYINT      DEFAULT 0        COMMENT '状态(0-正常,1-锁定)',
-    `sys_user_id`     BIGINT       NOT NULL         COMMENT '状态(0-正常,1-锁定)',
-    `update_by`       BIGINT       DEFAULT NULL     COMMENT '更新者ID',
-    `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名',
-    `update_date`     DATETIME     DEFAULT NOW()    COMMENT '更新时间',
-    `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
-    `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名',
-    `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
-    `company_code`    VARCHAR(50)  DEFAULT NULL     COMMENT '单位编码',
-    `company_name`    VARCHAR(100) DEFAULT NULL     COMMENT '单位简称',
-    `second_org_code` VARCHAR(50)  DEFAULT NULL     COMMENT '二级组织编码',
-    `second_org_name` VARCHAR(100) DEFAULT NULL     COMMENT '二级组织简称',
-    `org_code`        VARCHAR(50)  DEFAULT NULL     COMMENT '组织编码',
-    `org_name`        VARCHAR(100) DEFAULT NULL     COMMENT '组织简称',
-    `delete_flag`     TINYINT      DEFAULT 0        COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `udx_mdtg_user_phone` (`phone`) COMMENT '创建手机号唯一索引',
-    UNIQUE KEY `udx_mdtg_user_sys_user_id` (`sys_user_id`) COMMENT '创建系统用户ID唯一索引'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='用户表';
-
--- 角色
-DROP TABLE IF EXISTS `mdtg_role`;
-CREATE TABLE `mdtg_role` (
-    `id`              BIGINT       NOT NULL         COMMENT '主键',
-    `code`            VARCHAR(50)  DEFAULT NULL     COMMENT '角色编码(如: admin)',
-    `description`     VARCHAR(200) DEFAULT NULL     COMMENT '描述',
-    `permission_ids`  JSON         DEFAULT NULL     COMMENT '权限列表',
-    `type`            TINYINT      DEFAULT 0        COMMENT '类型(0-系统默认,1-自定义)',
-    `update_by`       BIGINT       DEFAULT NULL     COMMENT '更新者ID',
-    `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名',
-    `update_date`     DATETIME     DEFAULT NOW()    COMMENT '更新时间',
-    `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
-    `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名',
-    `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
-    `company_code`    VARCHAR(50)  DEFAULT NULL     COMMENT '单位编码',
-    `company_name`    VARCHAR(100) DEFAULT NULL     COMMENT '单位简称',
-    `second_org_code` VARCHAR(50)  DEFAULT NULL     COMMENT '二级组织编码',
-    `second_org_name` VARCHAR(100) DEFAULT NULL     COMMENT '二级组织简称',
-    `org_code`        VARCHAR(50)  DEFAULT NULL     COMMENT '组织编码',
-    `org_name`        VARCHAR(100) DEFAULT NULL     COMMENT '组织简称',
-    `delete_flag`     TINYINT      DEFAULT 0        COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='角色表';
-
--- 权限
-DROP TABLE IF EXISTS `mdtg_permission`;
-CREATE TABLE `mdtg_permission` (
-    `id`              BIGINT       NOT NULL         COMMENT '主键',
-    `parent_id`       BIGINT       DEFAULT NULL     COMMENT '父级ID',
-    `menu_path`       VARCHAR(100) NOT NULL         COMMENT '菜单路径(user_manage:list:read)',
-    `level`           TINYINT      NOT NULL         COMMENT '路径级别',
-    `plug_ids`        JSON         DEFAULT NULL     COMMENT '插件列表(字典表ID)',
-    `type`            TINYINT      DEFAULT 0        COMMENT '类型(0-系统默认,1-自定义)',
-    `update_by`       BIGINT       DEFAULT NULL     COMMENT '更新者ID',
-    `update_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '更新者名',
-    `update_date`     DATETIME     DEFAULT NOW()    COMMENT '更新时间',
-    `create_by`       BIGINT       DEFAULT NULL     COMMENT '创建者ID',
-    `create_name`     VARCHAR(50)  DEFAULT NULL     COMMENT '创建者名',
-    `create_date`     DATETIME     DEFAULT NOW()    COMMENT '创建时间',
-    `company_code`    VARCHAR(50)  DEFAULT NULL     COMMENT '单位编码',
-    `company_name`    VARCHAR(100) DEFAULT NULL     COMMENT '单位简称',
-    `second_org_code` VARCHAR(50)  DEFAULT NULL     COMMENT '二级组织编码',
-    `second_org_name` VARCHAR(100) DEFAULT NULL     COMMENT '二级组织简称',
-    `org_code`        VARCHAR(50)  DEFAULT NULL     COMMENT '组织编码',
-    `org_name`        VARCHAR(100) DEFAULT NULL     COMMENT '组织简称',
-    `delete_flag`     TINYINT      DEFAULT 0        COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`),
-    KEY `idx_mdtg_permission_parent_id` (`parent_id`) COMMENT '创建父级ID普通索引'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='权限表';
-
--- 附件表
-DROP TABLE IF EXISTS `mdtg_attach`;
-CREATE TABLE `mdtg_attach` (
-    `id`            BIGINT      NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `business_id`   BIGINT      NOT NULL        COMMENT '业务关联Id: 声音克隆Id、知识库Id',
-    `business_type` TINYINT     DEFAULT 0       COMMENT '附件业务类别: 0-声音克隆,1-知识库,2-...',
-    `content_type`  VARCHAR(20) DEFAULT NULL    COMMENT '附件类型:audio/way',
-    `file_name`     VARCHAR(50) DEFAULT NULL    COMMENT '附件名称',
-    `file_size`     BIGINT      DEFAULT NULL    COMMENT '文件大小',
-    `object_name`   VARCHAR(50) DEFAULT NULL    COMMENT 'minio的key',
-    `status`        TINYINT     DEFAULT 0       COMMENT '训练状态(0-审核中,1-待付费,2-训练中,3-训练成功,4-训练失败)',
-    `create_by`     BIGINT      DEFAULT NULL    COMMENT '创建者ID',
-    `create_name`   VARCHAR(50) DEFAULT NULL    COMMENT '创建者名',
-    `create_date`   DATETIME    DEFAULT NOW()   COMMENT '创建时间',
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='附件表';
-
--- 设备信息
-DROP TABLE IF EXISTS `mdtg_device`;
-CREATE TABLE `mdtg_device` (
     `id`                BIGINT          NOT NULL        COMMENT '主键',
-    `alias`             VARCHAR(64)     DEFAULT NULL    COMMENT '设备别名',
-    `board`             VARCHAR(50)     DEFAULT NULL    COMMENT '硬件型号',
-    `mac_address`       VARCHAR(50)     NOT NULL        COMMENT 'MAC地址',
-    `app_version`       VARCHAR(20)     DEFAULT NULL    COMMENT '固件版本号',
-    `last_connected_at` DATETIME        DEFAULT NULL    COMMENT '最后连接时间',
-    `auto_update`       TINYINT         DEFAULT '0'     COMMENT '自动更新开关(0-关闭,1-开启)',
-    `agent_id`          VARCHAR(32)     DEFAULT NULL    COMMENT '智能体 ID',
-    `type`              TINYINT         DEFAULT 0       COMMENT '类型(0-头,1-工牌,2-小车)',
+    `username`          VARCHAR(50)     NOT NULL        COMMENT '用户名',
+    `password`          VARCHAR(100)    NOT NULL        COMMENT '密码',
+    `gender`            TINYINT         DEFAULT 0       COMMENT '性别(0-未知,1-男,2-女)',
+    `identity_card`     VARCHAR(50)     DEFAULT NULL    COMMENT '居民身份证',
+    `phone`             VARCHAR(20)     NOT NULL        COMMENT '手机号',
+    `email`             VARCHAR(20)     DEFAULT NULL    COMMENT '邮箱',
+    `address`           VARCHAR(300)    DEFAULT NULL    COMMENT '住址',
+    `role_ids`          JSON            DEFAULT NULL    COMMENT '角色列表',
+    `type`              TINYINT         DEFAULT 0       COMMENT '类型(0-系统默认,1-自定义)',
+    `status`            TINYINT         DEFAULT 0       COMMENT '状态(0-正常,1-锁定)',
+    `sys_user_id`       BIGINT          NOT NULL        COMMENT 'sys_user表主键ID',
     `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
@@ -124,48 +27,144 @@ CREATE TABLE `mdtg_device` (
     `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    UNIQUE KEY `udx_mdtg_device_mac_address` (`mac_address`) COMMENT '创建mac地址唯一索引'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='设备信息表';
+    UNIQUE KEY `udx_mdtg_user_phone` (`phone`) COMMENT '创建手机号唯一索引',
+    UNIQUE KEY `udx_mdtg_user_sys_user_id` (`sys_user_id`) COMMENT '创建系统用户ID唯一索引'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='用户表';
 
--- 设备绑定表
-DROP TABLE IF EXISTS `mdtg_device_bind`;
-CREATE TABLE `mdtg_device_bind`
-(
-    `id`          BIGINT      NOT NULL COMMENT '主键',
-    `device_id`   BIGINT      NOT NULL COMMENT '设备ID',
-    `user_id`     BIGINT      NOT NULL COMMENT '用户ID',
+-- 角色
+DROP TABLE IF EXISTS `mdtg_role`;
+CREATE TABLE `mdtg_role` (
+    `id`                BIGINT          NOT NULL        COMMENT '主键',
+    `code`              VARCHAR(50)     DEFAULT NULL    COMMENT '角色编码(如: admin)',
+    `description`       VARCHAR(200)    DEFAULT NULL    COMMENT '描述',
+    `permission_ids`    JSON            DEFAULT NULL    COMMENT '权限列表',
+    `type`              TINYINT         DEFAULT 0       COMMENT '类型(0-系统默认,1-自定义)',
     `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
     `create_by`         BIGINT          DEFAULT NULL    COMMENT '创建者ID',
     `create_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
     `create_date`       DATETIME        DEFAULT NOW()   COMMENT '创建时间',
+    `company_code`      VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
+    `company_name`      VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
+    `second_org_code`   VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
+    `second_org_name`   VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
+    `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
+    `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
+    `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='角色表';
+
+-- 权限
+DROP TABLE IF EXISTS `mdtg_permission`;
+CREATE TABLE `mdtg_permission` (
+    `id`                BIGINT          NOT NULL        COMMENT '主键',
+    `parent_id`         BIGINT          DEFAULT NULL    COMMENT '父级ID',
+    `menu_path`         VARCHAR(100)    NOT NULL        COMMENT '菜单路径(user_manage:list:read)',
+    `level`             TINYINT         NOT NULL        COMMENT '路径级别',
+    `plug_ids`          JSON            DEFAULT NULL    COMMENT '插件列表(字典表ID)',
+    `type`              TINYINT         DEFAULT 0       COMMENT '类型(0-系统默认,1-自定义)',
+    `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
+    `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
+    `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
+    `create_by`         BIGINT          DEFAULT NULL    COMMENT '创建者ID',
+    `create_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
+    `create_date`       DATETIME        DEFAULT NOW()   COMMENT '创建时间',
+    `company_code`      VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
+    `company_name`      VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
+    `second_org_code`   VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
+    `second_org_name`   VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
+    `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
+    `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
+    `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    UNIQUE KEY `udx_mdtg_device_relevance_device_id_user_id` (`device_id`, `user_id`) COMMENT '设备用户唯一索引'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='设备绑定表';
+    KEY `idx_mdtg_permission_parent_id` (`parent_id`) COMMENT '创建父级ID普通索引'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='权限表';
+
+-- 附件表
+DROP TABLE IF EXISTS `mdtg_attach`;
+CREATE TABLE `mdtg_attach` (
+    `id`                BIGINT          NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `business_id`       BIGINT          NOT NULL        COMMENT '业务关联Id: 声音克隆Id、知识库Id',
+    `business_type`     TINYINT         DEFAULT 0       COMMENT '附件业务类别: 0-声音克隆,1-知识库,2-...',
+    `content_type`      VARCHAR(20)     DEFAULT NULL    COMMENT '附件类型:audio/way',
+    `file_name`         VARCHAR(50)     DEFAULT NULL    COMMENT '附件名称',
+    `file_size`         BIGINT          DEFAULT NULL    COMMENT '文件大小',
+    `object_name`       VARCHAR(50)     DEFAULT NULL    COMMENT 'minio的key',
+    `status`            TINYINT         DEFAULT 0       COMMENT '训练状态(0-审核中,1-待付费,2-训练中,3-训练成功,4-训练失败)',
+    `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
+    `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
+    `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
+    `create_by`         BIGINT          DEFAULT NULL    COMMENT '创建者ID',
+    `create_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
+    `create_date`       DATETIME        DEFAULT NOW()   COMMENT '创建时间',
+    `company_code`      VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
+    `company_name`      VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
+    `second_org_code`   VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
+    `second_org_name`   VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
+    `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
+    `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
+    `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='附件表';
+
+-- 设备信息
+DROP TABLE IF EXISTS `mdtg_device`;
+CREATE TABLE `mdtg_device` (
+    `id`                    BIGINT          NOT NULL        COMMENT '主键',
+    `alias`                 VARCHAR(64)     DEFAULT NULL    COMMENT '设备别名',
+    `mac_address`           VARCHAR(50)     NOT NULL        COMMENT 'MAC地址',
+    `board`                 VARCHAR(50)     DEFAULT NULL    COMMENT '硬件型号',
+    `firmware_version`      VARCHAR(20)     DEFAULT NULL    COMMENT '固件版本号',
+    `Last_connection_time`  DATETIME        DEFAULT NOW()   COMMENT '最后连接时间',
+    `auto_update`           TINYINT         DEFAULT 0       COMMENT '自动更新开关(0-关闭,1-开启)',
+    `type`                  TINYINT         DEFAULT 0       COMMENT '类型(0-头,1-工牌,2-小车)',
+    `binding_id`            BIGINT          DEFAULT NULL    COMMENT '绑定ID(注: type为1、2时,绑定type为0的设备ID)',
+    `ai_device_id`          BIGINT          DEFAULT NULL    COMMENT 'ai_device表主键ID',
+    `update_by`             BIGINT          DEFAULT NULL    COMMENT '更新者ID',
+    `update_name`           VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
+    `update_date`           DATETIME        DEFAULT NOW()   COMMENT '更新时间',
+    `create_by`             BIGINT          DEFAULT NULL    COMMENT '创建者ID',
+    `create_name`           VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
+    `create_date`           DATETIME        DEFAULT NOW()   COMMENT '创建时间',
+    `company_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
+    `company_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
+    `second_org_code`       VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
+    `second_org_name`       VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
+    `org_code`              VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
+    `org_name`              VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
+    `delete_flag`           TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `udx_mdtg_device_mac_address` (`mac_address`) COMMENT '创建mac地址唯一索引'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='设备信息表';
 
 -- 固件信息
 DROP TABLE IF EXISTS `mdtg_ota`;
-CREATE TABLE `mdtg_ota`
-(
-    `id`            BIGINT NOT NULL COMMENT '主键',
-    `firmware_name` VARCHAR(100) DEFAULT NULL COMMENT '名称',
-    `type`          VARCHAR(50)  DEFAULT NULL COMMENT '类型',
-    `version`       VARCHAR(50)  DEFAULT NULL COMMENT '版本号',
-    `size`          BIGINT       DEFAULT NULL COMMENT '文件大小(字节)',
-    `remark`        VARCHAR(255) DEFAULT NULL COMMENT '备注/说明',
-    `firmware_path` VARCHAR(255) DEFAULT NULL COMMENT '固件路径',
-    `create_by`     BIGINT       DEFAULT NULL COMMENT '创建者ID',
-    `create_name`   VARCHAR(50)  DEFAULT NULL COMMENT '创建者名字',
-    `create_date`   DATETIME     DEFAULT NOW() COMMENT '创建时间',
-    `update_by`     BIGINT       DEFAULT NULL COMMENT '更新者ID',
-    `update_name`   VARCHAR(50)  DEFAULT NULL COMMENT '更新者名字',
-    `update_date`   DATETIME     DEFAULT NOW() COMMENT '更新时间',
-    `delete_flag`   TINYINT      DEFAULT 0 COMMENT '删除标识(0-未删除,1-已删除)',
+CREATE TABLE `mdtg_ota` (
+    `id`                BIGINT          NOT NULL        COMMENT '主键',
+    `name`              VARCHAR(100)    DEFAULT NULL    COMMENT '名称',
+    `type`              VARCHAR(50)     DEFAULT NULL    COMMENT '类型',
+    `version`           VARCHAR(50)     DEFAULT NULL    COMMENT '版本号',
+    `size`              BIGINT          DEFAULT NULL    COMMENT '文件大小(字节)',
+    `remark`            VARCHAR(255)    DEFAULT NULL    COMMENT '备注/说明',
+    `firmware_path`     VARCHAR(255)    DEFAULT NULL    COMMENT '固件路径',
+    `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
+    `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
+    `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
+    `create_by`         BIGINT          DEFAULT NULL    COMMENT '创建者ID',
+    `create_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
+    `create_date`       DATETIME        DEFAULT NOW()   COMMENT '创建时间',
+    `company_code`      VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
+    `company_name`      VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
+    `second_org_code`   VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
+    `second_org_name`   VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
+    `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
+    `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
+    `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='固件信息表';
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='固件信息表';
+
+
 
 -- 智能体配置
 DROP TABLE IF EXISTS `mdtg_agent`;

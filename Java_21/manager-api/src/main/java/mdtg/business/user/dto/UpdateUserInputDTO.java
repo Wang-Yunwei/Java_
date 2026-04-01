@@ -1,12 +1,10 @@
 package mdtg.business.user.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * @author WangYunwei [2026-03-25]
@@ -67,7 +65,7 @@ public class UpdateUserInputDTO {
      * 角色列表
      */
     @Schema(description = "角色列表",example = "[1,2,3]")
-    private Object roleIds;
+    private List<Long> roleIds;
 
     /**
      * 类型(0-系统默认,1-自定义)

@@ -9,12 +9,14 @@ import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.entity.BaseEntity;
 
+import java.util.List;
+
 /**
  * 用户表
  */
 @Getter
 @Setter
-@TableName(value = "mdtg_user")
+@TableName(value = "mdtg_user", autoResultMap = true)
 public class User extends BaseEntity {
 
     /**
@@ -64,7 +66,7 @@ public class User extends BaseEntity {
      */
     @Schema(description = "角色列表")
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private Object roleIds;
+    private List<Long> roleIds;
 
     /**
      * 类型(0-系统默认,1-自定义)
