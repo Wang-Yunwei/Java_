@@ -5,47 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/AddDeviceInputDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/entity/Device.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/mapper/DeviceMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/DeviceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/resource/ResourceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/AddRoleInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/AddRoleInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/UpdateUserInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/UpdateUserInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/dao/AgentPluginMappingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/dao/AgentPluginMappingMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-linux.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-linux.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/feign/CustomerFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/common/feign/CustomerFeign.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/AddRoleInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/AddRoleInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryUserOutputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryUserOutputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/UpdateUserInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/UpdateUserInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/controller/LoginController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/controller/LoginController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/security/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/AddDeviceInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/AddDeviceInputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +165,7 @@
       <workItem from="1774401276231" duration="76797000" />
       <workItem from="1774703442879" duration="1605000" />
       <workItem from="1774833676430" duration="17556000" />
-      <workItem from="1774919456460" duration="37770000" />
+      <workItem from="1774919456460" duration="40599000" />
     </task>
     <servers />
   </component>

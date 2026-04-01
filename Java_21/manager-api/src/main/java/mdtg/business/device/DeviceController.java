@@ -27,20 +27,20 @@ public class DeviceController {
     @PostMapping("/add-or-update")
     public ResponseDTO<?> addDevice(@RequestBody AddDeviceInputDTO inputDTO) {
 
-        return ResponseDTO.wrapSuccess();
+        return deviceService.addDevice(inputDTO);
     }
 
     @Operation(summary = "设备 - 删除")
     @GetMapping("/delete/{deviceId}")
     public ResponseDTO<?> deleteDevice(@PathVariable Long deviceId) {
 
-        return ResponseDTO.wrapSuccess();
+        return deviceService.deleteDevice(deviceId);
     }
 
     @Operation(summary = "设备 - 查询")
     @PostMapping("/query")
     public ResponseDTO<?> queryDevice(@RequestBody QueryDeviceInputDTO inputDTO) {
 
-        return ResponseDTO.wrapSuccess();
+        return deviceService.queryDevice(inputDTO);
     }
 }
