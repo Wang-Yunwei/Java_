@@ -5,51 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/AttachPageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/AttachUpdateStatusDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/BaseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/KnowledgePageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/VoiceClonePageDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/AttachmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/AttachmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/feign/CustomerFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/feign/CustomerFeign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/QueryVoiceInputDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceManageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/AddDeviceInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/AddDeviceInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/entity/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/entity/Device.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/DeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/DeviceManageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceManageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/UpdateUserInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/UpdateUserInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/controller/ModelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/controller/ModelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/dto/ModelBasicInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/dto/ModelBasicInfoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/service/impl/ModelConfigServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/service/impl/ModelConfigServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-linux.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-linux.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-linux.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-linux.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/AttachmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/AttachmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/entity/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/common/entity/BaseEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/feign/CustomerFeign.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/QueryVoiceInputDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryUserOutputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryUserOutputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/UpdateUserInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/UpdateUserInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/controller/ModelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/model/controller/ModelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/ModelBasicInfoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/ModelBasicInfoDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/service/impl/ModelConfigServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/model/service/impl/ModelConfigServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +164,7 @@
       <workItem from="1774401276231" duration="76797000" />
       <workItem from="1774703442879" duration="1605000" />
       <workItem from="1774833676430" duration="17556000" />
-      <workItem from="1774919456460" duration="63006000" />
+      <workItem from="1774919456460" duration="67790000" />
     </task>
     <servers />
   </component>

@@ -5,3 +5,25 @@ spring:
     include: dev
   jackson:
     default-property-inclusion: non_null #序列化时忽略 null
+
+# Mybatis-plus 配置
+mybatis-plus:
+  configuration:
+    # 开启驼峰命名映射 (user_name -> userName)
+    map-underscore-to-camel-case: true
+    # 打印 SQL 日志 (开发环境开启，生产建议关闭或设为 debug 级别)
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: false # 关闭二级缓存 (分布式环境下建议关闭，避免数据不一致)
+    call-setters-on-nulls: true # 当查询结果为 null 时，MyBatis 会自动调用 Setter 方法 (防止 DTO 中 null 值不返回)
+    jdbc-type-for-null: null # 将 null 值作为 JDBC 的 NULL 传递，而不是 "null" 字符串
+  global-config:
+    db-config:
+      # 主键策略：ASSIGN_ID (雪花算法)，AUTO (自增)，UUID 等
+      id-type: assign_id
+      # 逻辑删除字段名 (全局默认)
+      logic-delete-field: deleteFlag
+      # 逻辑删除值：1=已删除，0=未删除
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  # Mapper XML 文件位置 (如果使用了 XML)
+  mapper-locations: classpath*:/mapper/**/*.xml
