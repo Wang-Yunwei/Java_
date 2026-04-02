@@ -66,7 +66,7 @@ public class User extends BaseEntity {
      */
     @Schema(description = "角色列表")
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Long> roleIds;
+    private List<String> roleIds;
 
     /**
      * 类型(0-系统默认,1-自定义)

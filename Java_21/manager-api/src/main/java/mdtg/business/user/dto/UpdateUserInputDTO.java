@@ -65,7 +65,7 @@ public class UpdateUserInputDTO {
      * 角色列表
      */
     @Schema(description = "角色列表",example = "[1,2,3]")
-    private List<Long> roleIds;
+    private List<String> roleIds;
 
     /**
      * 类型(0-系统默认,1-自定义)

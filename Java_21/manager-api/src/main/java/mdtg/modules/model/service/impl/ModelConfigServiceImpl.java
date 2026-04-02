@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -52,12 +53,12 @@ public class ModelConfigServiceImpl extends BaseServiceImpl<ModelConfigDao, Mode
 
     @Override
     public List<ModelBasicInfoDTO> getModelCodeList(String modelType, String modelName) {
-        List<ModelConfigEntity> entities = modelConfigDao.selectList(
-                new QueryWrapper<ModelConfigEntity>()
-                        .eq("model_type", modelType)
-                        .eq("is_enabled", 1)
-                        .like(StringUtils.isNotBlank(modelName), "model_name", "%" + modelName + "%")
-                        .select("id", "model_name"));
+
+        QueryWrapper<ModelConfigEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("is_enabled", 1).select("id", "model_name", "model_type");
+        Optional.ofNullable(modelType).ifPresent(type -> queryWrapper.eq("model_type", type));
+        Optional.ofNullable(modelName).ifPresent(name -> queryWrapper.like("model_name", "%" + name + "%"));
+        List<ModelConfigEntity> entities = modelConfigDao.selectList(queryWrapper);
         return ConvertUtils.sourceToTarget(entities, ModelBasicInfoDTO.class);
     }
 

@@ -1,6 +1,7 @@
 mdtg\modules\knowledge\dao\KnowledgeBaseDao.class
 mdtg\modules\sys\dao\SysParamsDao.class
 mdtg\modules\device\entity\DeviceEntity.class
+mdtg\business\device\mapper\DeviceMapper.class
 mdtg\modules\device\dto\DeviceUpdateDTO.class
 mdtg\modules\agent\service\AgentVoicePrintService.class
 mdtg\modules\agent\controller\AgentController.class
@@ -27,6 +28,7 @@ mdtg\modules\device\dto\DeviceReportReqDTO$Partition.class
 mdtg\common\utils\ResultUtils.class
 mdtg\business\user\dto\QueryPermissionInputDTO.class
 mdtg\business\user\entity\User.class
+mdtg\business\device\dto\QueryDeviceInputDTO.class
 mdtg\modules\device\dto\DeviceReportRespDTO$Firmware.class
 mdtg\modules\security\service\impl\CaptchaServiceImpl.class
 mdtg\modules\config\service\impl\ConfigServiceImpl.class
@@ -42,6 +44,7 @@ mdtg\modules\security\dto\LoginDTO.class
 mdtg\modules\timbre\controller\TimbreController.class
 mdtg\common\utils\PropertiesUtils.class
 mdtg\common\xss\XssHttpServletRequestWrapper$1.class
+mdtg\business\device\service\DeviceManageService.class
 mdtg\modules\device\dao\DeviceDao.class
 mdtg\modules\sys\dto\RetrievePasswordDTO.class
 mdtg\modules\sys\entity\SysDictTypeEntity.class
@@ -62,6 +65,7 @@ mdtg\common\utils\JsonRpcTwo.class
 mdtg\modules\timbre\dao\TimbreDao.class
 mdtg\modules\agent\dao\AgentContextProviderDao.class
 mdtg\modules\security\secret\ServerSecretToken.class
+mdtg\business\customer\feign\CustomerFeign.class
 mdtg\modules\agent\dao\AiAgentChatHistoryDao.class
 mdtg\modules\sys\utils\WebSocketClientManager$Builder.class
 mdtg\modules\sys\service\SysUserUtilService.class
@@ -123,6 +127,7 @@ mdtg\modules\model\service\ModelProviderService.class
 mdtg\modules\sys\utils\WebSocketTestHandler.class
 mdtg\modules\agent\dto\AgentChatSessionDTO.class
 mdtg\common\constant\Constant$ChatHistoryConfEnum.class
+mdtg\business\resource\ResourceController.class
 mdtg\business\user\dto\QueryUserOutputDTO.class
 mdtg\common\config\AsyncConfig$1.class
 mdtg\modules\model\dto\VoiceDTO.class
@@ -143,6 +148,7 @@ mdtg\common\utils\IpUtils.class
 mdtg\modules\agent\service\impl\AgentPluginMappingServiceImpl.class
 mdtg\modules\config\init\SystemInitConfig.class
 mdtg\modules\knowledge\service\KnowledgeBaseService.class
+mdtg\business\customer\dto\VoiceClonePageDTO.class
 mdtg\common\utils\AESUtils.class
 mdtg\modules\device\dao\OtaDao.class
 mdtg\common\aspect\RedisAspect.class
@@ -169,6 +175,7 @@ mdtg\modules\sys\controller\SysParamsController.class
 mdtg\business\attachment\dto\AddAttachmentInputDTO.class
 mdtg\common\constant\Constant$SysBaseParam.class
 mdtg\modules\security\oauth2\Oauth2Token.class
+mdtg\business\customer\dto\KnowledgePageDTO.class
 mdtg\modules\voiceclone\controller\VoiceResourceController.class
 mdtg\modules\agent\dao\AgentPluginMappingMapper.class
 mdtg\modules\security\dao\SysUserTokenDao.class
@@ -184,6 +191,7 @@ mdtg\modules\device\controller\DeviceController.class
 mdtg\modules\device\dto\DeviceReportRespDTO.class
 mdtg\modules\sys\enums\ServerActionEnum.class
 mdtg\common\constant\Constant$SysMSMParam.class
+mdtg\business\device\service\impl\DeviceManageServiceImpl.class
 mdtg\modules\model\controller\ModelController.class
 mdtg\modules\device\vo\DeviceOtaVO$Activation.class
 mdtg\modules\agent\dto\AgentVoicePrintSaveDTO.class
@@ -205,6 +213,7 @@ mdtg\business\user\dto\AddPermissionInputDTO.class
 mdtg\business\user\service\impl\PermissionServiceImpl.class
 mdtg\common\config\SwaggerConfig.class
 mdtg\modules\timbre\vo\TimbreDetailsVO.class
+mdtg\business\device\entity\Device.class
 mdtg\modules\model\dao\ModelConfigDao.class
 mdtg\modules\agent\dto\AgentUpdateDTO$FunctionInfo.class
 mdtg\modules\agent\controller\AgentChatHistoryController.class
@@ -218,6 +227,7 @@ mdtg\modules\agent\entity\AgentChatHistoryEntity$AgentChatHistoryEntityBuilder.c
 mdtg\modules\agent\service\biz\impl\AgentChatHistoryBizServiceImpl.class
 mdtg\common\constant\Constant$DictType.class
 mdtg\modules\agent\entity\AgentVoicePrintEntity.class
+mdtg\business\customer\dto\AttachUpdateStatusDTO.class
 mdtg\modules\agent\dto\AgentMemoryDTO.class
 mdtg\modules\agent\service\AgentPluginMappingService.class
 mdtg\modules\security\password\PasswordEncoder.class
@@ -228,6 +238,7 @@ mdtg\business\user\service\impl\UserServiceImpl.class
 mdtg\modules\sys\service\SysParamsService.class
 mdtg\modules\security\service\CaptchaService.class
 mdtg\modules\agent\dto\AgentChatSummaryDTO.class
+mdtg\business\device\DeviceManageController.class
 mdtg\common\xss\XssHttpServletRequestWrapper.class
 mdtg\common\utils\HashEncryptionUtil.class
 mdtg\modules\device\vo\DeviceOtaVO$ServerTime.class
@@ -242,11 +253,13 @@ mdtg\modules\sys\service\impl\SysUserServiceImpl.class
 mdtg\modules\device\dto\DevicePageUserDTO.class
 mdtg\modules\agent\service\AgentMcpAccessPointService.class
 mdtg\modules\sys\dto\ServerActionPayloadDTO.class
+mdtg\business\customer\dto\AttachPageDTO.class
 mdtg\common\config\RestTemplateConfig.class
 mdtg\modules\knowledge\service\impl\KnowledgeFilesServiceImpl.class
 mdtg\modules\sys\vo\SysDictTypeVO.class
 mdtg\common\interceptor\DataFilterInterceptor.class
 mdtg\modules\agent\service\impl\AgentChatSummaryServiceImpl.class
+mdtg\business\customer\dto\BaseDTO.class
 mdtg\common\interceptor\DataScope.class
 mdtg\modules\agent\service\impl\AgentChatSummaryServiceImpl$1.class
 mdtg\common\annotation\LogOperation.class
@@ -267,7 +280,6 @@ mdtg\modules\security\password\BCryptPasswordEncoder.class
 mdtg\modules\sys\service\impl\SysDictDataServiceImpl.class
 mdtg\business\user\entity\Permission.class
 mdtg\modules\model\service\impl\ModelConfigServiceImpl.class
-mdtg\business\common\feign\CustomerFeign.class
 mdtg\modules\agent\vo\AgentVoicePrintVO.class
 mdtg\business\user\service\impl\RoleServiceImpl.class
 mdtg\common\service\BaseService.class
@@ -299,7 +311,6 @@ mdtg\modules\security\password\BCrypt.class
 mdtg\modules\agent\service\impl\AgentServiceImpl.class
 mdtg\modules\device\vo\DeviceOtaVO$Firmware.class
 mdtg\modules\sys\service\impl\TokenServiceImpl.class
-mdtg\business\customer\dto\QueryVoiceInputDTO.class
 mdtg\modules\sys\service\impl\SysParamsServiceImpl.class
 mdtg\common\service\impl\CrudServiceImpl.class
 mdtg\modules\agent\service\impl\AgentChatHistoryServiceImpl.class
@@ -325,6 +336,7 @@ mdtg\modules\device\service\DeviceService.class
 mdtg\modules\sys\utils\WebSocketClientManager$1.class
 mdtg\modules\sys\dto\PasswordDTO.class
 mdtg\modules\voiceclone\service\impl\VoiceCloneServiceImpl.class
+mdtg\business\device\dto\AddDeviceInputDTO.class
 mdtg\modules\agent\dto\AgentDTO.class
 mdtg\modules\voiceclone\dto\VoiceCloneResponseDTO.class
 mdtg\modules\model\service\ModelConfigService.class

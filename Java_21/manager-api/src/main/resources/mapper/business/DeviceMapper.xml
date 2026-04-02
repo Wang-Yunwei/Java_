@@ -13,8 +13,7 @@
             <result property="lastConnectionTime" column="Last_connection_time" />
             <result property="autoUpdate" column="auto_update" />
             <result property="type" column="type" />
-            <result property="bindingId" column="binding_id" />
-            <result property="aiDeviceId" column="ai_device_id" />
+            <result property="parentId" column="parent_id" />
             <result property="updateBy" column="update_by" />
             <result property="updateName" column="update_name" />
             <result property="updateDate" column="update_date" />

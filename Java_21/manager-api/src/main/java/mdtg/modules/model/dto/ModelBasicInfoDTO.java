@@ -6,4 +6,5 @@ import lombok.Data;
 public class ModelBasicInfoDTO {
     private String id;
     private String modelName;
+    private String modelType;
 }

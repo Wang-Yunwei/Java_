@@ -27,8 +27,9 @@ public class QueryUserOutputDTO {
     @Schema(description = "手机号")
     private String phone;
 
+    // 注: 必须为 Object 类型, 否则会导致数据库的Json字段无法正确映射
     @Schema(description = "角色ID列表")
-    private List<Long> roleIds;
+    private Object roleIds;
 
     @Schema(description = "设备数量")
     private Long deviceCount;

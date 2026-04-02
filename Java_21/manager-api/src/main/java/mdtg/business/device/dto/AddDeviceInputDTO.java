@@ -37,6 +37,24 @@ public class AddDeviceInputDTO {
     @Schema(description = "类型(0-头,1-工牌,2-小车)")
     private Integer type;
 
-    @Schema(description = "设备ID(注: type为1、2时,绑定type为0的设备ID)")
-    private Long deviceId;
+    @Schema(description = "type为1、2时,绑定type为0的设备ID")
+    private Long parentId;
+
+    @Schema(description = "单位编码")
+    private String companyCode;
+
+    @Schema(description = "单位简称")
+    private String companyName;
+
+    @Schema(description = "二级组织编码")
+    private String secondOrgCode;
+
+    @Schema(description = "二级组织简称")
+    private String secondOrgName;
+
+    @Schema(description = "组织编码")
+    private String orgCode;
+
+    @Schema(description = "组织简称")
+    private String orgName;
 }

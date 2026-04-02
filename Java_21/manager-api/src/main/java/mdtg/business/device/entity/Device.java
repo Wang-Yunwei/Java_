@@ -51,12 +51,7 @@ public class Device extends BaseEntity {
     private Integer type;
 
     /**
-     * 绑定ID(注: type为1、2时,绑定type为0的设备ID)
+     * type为1、2时,绑定type为0的设备ID
      */
-    private Long bindingId;
-
-    /**
-     * ai_device表主键ID
-     */
-    private Long aiDeviceId;
+    private Long parentId;
 }

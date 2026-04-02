@@ -44,9 +44,7 @@
     <select id="queryUser" resultType="mdtg.business.user.dto.QueryUserOutputDTO">
         SELECT id, username, phone, role_ids, status, create_date FROM mdtg_user
         <!-- 使用 customSqlSegment 自动拼接 WHERE 条件 -->
-        <where>
-            ${ew.customSqlSegment}
-        </where>
+        ${ew.customSqlSegment}
     </select>
 
     <!-- 2. 统计查询：获取总数 (关键修复) -->
@@ -54,8 +52,6 @@
     <select id="queryUser_count" resultType="java.lang.Long">
         SELECT COUNT(*) FROM mdtg_user
         <!-- 复用同样的 WHERE 条件 -->
-        <where>
-            ${ew.customSqlSegment}
-        </where>
+        ${ew.customSqlSegment}
     </select>
 </mapper>
