@@ -45,8 +45,8 @@ public class AgentTemplateController {
     @Operation(summary = "获取模板分页列表")
     @RequiresPermissions("sys:role:superAdmin")
     @Parameters({
-            @Parameter(name = Constant.PAGE, description = "当前页码，从1开始", required = true),
-            @Parameter(name = Constant.LIMIT, description = "每页显示记录数", required = true),
+            @Parameter(name = Constant.PAGE, description = "当前页码，从1开始"),
+            @Parameter(name = Constant.LIMIT, description = "每页显示记录数"),
             @Parameter(name = "agentName", description = "模板名称，模糊查询")
     })
     public Result<PageData<AgentTemplateVO>> getAgentTemplatesPage(

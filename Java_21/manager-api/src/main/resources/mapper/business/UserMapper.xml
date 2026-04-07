@@ -42,7 +42,7 @@
 
     <!-- 1. 主查询：获取数据列表 -->
     <select id="queryUser" resultType="mdtg.business.user.dto.QueryUserOutputDTO">
-        SELECT id, username, phone, role_ids, status, create_date FROM mdtg_user
+        SELECT id, username, phone, role_ids, status, create_date, org_code, org_name FROM mdtg_user
         <!-- 使用 customSqlSegment 自动拼接 WHERE 条件 -->
         ${ew.customSqlSegment}
     </select>

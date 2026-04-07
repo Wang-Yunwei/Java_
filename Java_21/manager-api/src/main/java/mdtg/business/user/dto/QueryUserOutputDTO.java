@@ -43,6 +43,9 @@ public class QueryUserOutputDTO {
     @Schema(description = "组织编码")
     private String orgCode;
 
+    @Schema(description = "组织名称")
+    private String orgName;
+
     @Schema(description = "角色列表")
     private List<Role> roleList;
 }

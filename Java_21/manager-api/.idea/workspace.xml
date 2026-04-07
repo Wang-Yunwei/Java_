@@ -5,10 +5,385 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateAttachInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateDatasetIdDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateVoiceIdDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/AttachUpdateStatusDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/AttachUpdateStatusDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/feign/CustomerFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/feign/CustomerFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/controller/AgentTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/agent/controller/AgentTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/controller/ModelProviderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/model/controller/ModelProviderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Realm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/oauth2/Oauth2Realm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/AdminApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/AttachmentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/dto/AddAttachmentInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/dto/QueryAttachmentInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/entity/Attach.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/mapper/AttachMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/AttachService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/impl/AttachServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/entity/BaseEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/ResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/AttachPageDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/AttachUpdateStatusDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/BaseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/KnowledgePageDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/VoiceClonePageDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/feign/CustomerFeign.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/DeviceManageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/dto/AddDeviceInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/dto/QueryDeviceInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/entity/Device.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/mapper/DeviceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/service/DeviceManageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/service/impl/DeviceManageServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/resource/ResourceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/UserManagerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/AddPermissionInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/AddRoleInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryPermissionInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryRoleInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryUserInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/QueryUserOutputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/RegisterInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/UpdateUserInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/VerifyTokenInputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/dto/VerifyTokenOutputDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Permission.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/mapper/PermissionMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/mapper/RoleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/mapper/UserMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/PermissionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/RoleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/PermissionServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/RoleServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/UserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/annotation/DataFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/annotation/LogOperation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/aspect/RedisAspect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/config/AsyncConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/config/AsyncConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/config/MybatisPlusConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/config/RestTemplateConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/config/SwaggerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant$ChatHistoryConfEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant$DataOperation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant$DictType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant$SysBaseParam.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant$SysMSMParam.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant$TrainStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/constant/Constant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/convert/DateConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/dao/BaseDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/entity/BaseEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/exception/ErrorCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/exception/RenException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/exception/RenExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/handler/FieldMetaObjectHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/interceptor/DataFilterInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/interceptor/DataScope.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/page/PageData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/page/TokenDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/redis/RedisConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/redis/RedisKeys.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/redis/RedisUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/service/BaseService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/service/CrudService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/service/impl/BaseServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/service/impl/CrudServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/user/UserDetail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/AESUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/ConvertUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/DateUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/HashEncryptionUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/HttpContextUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/IpUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/JsonRpcTwo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/JsonUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/MessageUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/PropertiesUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/ResourcesUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/Result.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/ResultUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/SM2Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/SensitiveDataUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/Sm2DecryptUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/SpringContextUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/TreeNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/utils/TreeUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/validator/AssertUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/validator/ValidatorUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/validator/group/AddGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/validator/group/DefaultGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/validator/group/UpdateGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/xss/SqlFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/xss/XssConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/xss/XssFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/xss/XssHttpServletRequestWrapper$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/xss/XssHttpServletRequestWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/xss/XssProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/common/xss/XssUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/Enums/AgentChatHistoryType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/Enums/XiaoZhiMcpJsonRpcJson.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/controller/AgentChatHistoryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/controller/AgentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/controller/AgentMcpAccessPointController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/controller/AgentTemplateController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/controller/AgentVoicePrintController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dao/AgentContextProviderDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dao/AgentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dao/AgentPluginMappingMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dao/AgentTemplateDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dao/AgentVoicePrintDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dao/AiAgentChatAudioDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dao/AiAgentChatHistoryDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentChatHistoryDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentChatHistoryReportDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentChatSessionDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentChatSummaryDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentCreateDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentMemoryDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentUpdateDTO$FunctionInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentUpdateDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentVoicePrintSaveDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/AgentVoicePrintUpdateDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/ContextProviderDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/IdentifyVoicePrintResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/McpJsonRpcResponse$McpError.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/McpJsonRpcResponse$McpResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/McpJsonRpcResponse$McpTool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/dto/McpJsonRpcResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentChatAudioEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentChatHistoryEntity$AgentChatHistoryEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentChatHistoryEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentContextProviderEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentPluginMapping.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentTemplateEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/entity/AgentVoicePrintEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentChatAudioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentChatHistoryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentChatSummaryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentContextProviderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentMcpAccessPointService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentPluginMappingService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentTemplateService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/AgentVoicePrintService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/biz/AgentChatHistoryBizService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/biz/impl/AgentChatHistoryBizServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentChatAudioServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentChatHistoryServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentChatSummaryServiceImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentChatSummaryServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentContextProviderServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentMcpAccessPointServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentPluginMappingServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentTemplateServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentVoicePrintServiceImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/service/impl/AgentVoicePrintServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/vo/AgentChatHistoryUserVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/vo/AgentInfoVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/vo/AgentTemplateVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/agent/vo/AgentVoicePrintVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/config/controller/ConfigController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/config/dto/AgentModelsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/config/init/SystemInitConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/config/service/ConfigService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/config/service/impl/ConfigServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/controller/DeviceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/controller/OTAController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/controller/OTAMagController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dao/DeviceDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dao/OtaDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceBindDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceManualAddDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DevicePageUserDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceRegisterDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$BoardInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$ChipInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$OtaInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$Partition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportRespDTO$Activation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportRespDTO$Firmware.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportRespDTO$MQTT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportRespDTO$ServerTime.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportRespDTO$Websocket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportRespDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceUnBindDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceUpdateDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/entity/DeviceEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/entity/OtaEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/service/DeviceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/service/OtaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/service/impl/DeviceServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/service/impl/OtaServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/vo/DeviceOtaVO$Activation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/vo/DeviceOtaVO$Firmware.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/vo/DeviceOtaVO$Mqtt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/vo/DeviceOtaVO$ServerTime.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/vo/DeviceOtaVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/vo/UserShowDeviceListVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/config/KnowledgeBaseConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/controller/KnowledgeBaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/controller/KnowledgeFilesController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/controller/KnowledgeFilesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/dao/KnowledgeBaseDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/dto/KnowledgeBaseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/dto/KnowledgeFilesDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/entity/KnowledgeBaseEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/rag/KnowledgeBaseAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/rag/KnowledgeBaseAdapterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/rag/impl/RAGFlowAdapter$MultipartFileResource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/rag/impl/RAGFlowAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/service/KnowledgeBaseService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/service/KnowledgeFilesService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/service/impl/KnowledgeBaseServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/service/impl/KnowledgeFilesServiceImpl$MultipartFileResource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/knowledge/service/impl/KnowledgeFilesServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/llm/service/LLMService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/llm/service/impl/OpenAIStyleLLMServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/controller/ModelController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/controller/ModelProviderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dao/ModelConfigDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dao/ModelProviderDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/LlmModelBasicInfoDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/ModelBasicInfoDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/ModelConfigBodyDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/ModelConfigDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/ModelProviderDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/dto/VoiceDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/entity/ModelConfigEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/entity/ModelProviderEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/service/ModelConfigService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/service/ModelProviderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/service/impl/ModelConfigServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/model/service/impl/ModelProviderServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/FilterConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/ShiroConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/WebMvcConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/WebMvcConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/dao/SysUserTokenDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/dto/LoginDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/dto/LoginV2DTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/dto/SmsVerificationDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/entity/SysUserTokenEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/oauth2/Oauth2Filter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/oauth2/Oauth2Realm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/oauth2/Oauth2Token.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/oauth2/TokenGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/password/BCrypt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/password/BCryptPasswordEncoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/password/PasswordEncoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/password/PasswordUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/secret/ServerSecretFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/secret/ServerSecretToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/service/CaptchaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/service/ShiroService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/service/SysUserTokenService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/service/impl/CaptchaServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/service/impl/ShiroServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/service/impl/SysUserTokenServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/user/SecurityUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sms/service/SmsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sms/service/imp/ALiYunSmsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/controller/AdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/controller/ServerSideManageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/controller/SysDictDataController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/controller/SysDictTypeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/controller/SysParamsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dao/SysDictDataDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dao/SysDictTypeDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dao/SysParamsDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dao/SysUserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/AdminPageUserDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/EmitSeverActionDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/PasswordDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/RetrievePasswordDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/ServerActionPayloadDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/ServerActionResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/SysDictDataDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/SysDictTypeDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/SysParamsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/dto/SysUserDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/entity/SysDictDataEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/entity/SysDictTypeEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/entity/SysParamsEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/entity/SysUserEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/enums/ServerActionEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/enums/ServerActionResponseEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/enums/SuperAdminEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/redis/SysParamsRedis.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/SysDictDataService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/SysDictTypeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/SysParamsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/SysUserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/SysUserUtilService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/TokenService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/impl/SysDictDataServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/impl/SysDictTypeServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/impl/SysParamsServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/impl/SysUserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/impl/SysUserUtilServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/service/impl/TokenServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketClientManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketClientManager$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketClientManager$InternalHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketClientManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketTestHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/vo/AdminPageUserVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/vo/SysDictDataItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/vo/SysDictDataVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/vo/SysDictTypeVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/controller/TimbreController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/dao/TimbreDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/dto/TimbreDataDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/dto/TimbrePageDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/entity/TimbreEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/service/TimbreService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/service/impl/TimbreServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/timbre/vo/TimbreDetailsVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/controller/VoiceCloneController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/controller/VoiceResourceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/dao/VoiceCloneDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/dto/VoiceCloneDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/dto/VoiceCloneResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/entity/VoiceCloneEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/VoiceCloneService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/mdtg/common/utils/AESUtilsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/mdtg/modules/device/DeviceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/mdtg/modules/sys/loginControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +436,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AdminApplication.executor": "Debug",
+    "Spring Boot.AdminApplication.executor": "Run",
     "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -94,7 +469,7 @@
       <recent name="mdtg.business.user.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Deploy to Host.47.101.196.164">
+  <component name="RunManager" selected="Spring Boot.AdminApplication">
     <configuration name="47.101.196.164" type="DEPLOY_HOST_RUN_CONFIGURATION" factoryName="Deploy to Host">
       <option name="accountModel" />
       <option name="accountModels" />
@@ -164,7 +539,10 @@
       <workItem from="1774401276231" duration="76797000" />
       <workItem from="1774703442879" duration="1605000" />
       <workItem from="1774833676430" duration="17556000" />
-      <workItem from="1774919456460" duration="67790000" />
+      <workItem from="1774919456460" duration="68756000" />
+      <workItem from="1775179415148" duration="25963000" />
+      <workItem from="1775304236731" duration="2332000" />
+      <workItem from="1775524871818" duration="602000" />
     </task>
     <servers />
   </component>

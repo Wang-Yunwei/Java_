@@ -223,6 +223,7 @@ public class LoginController {
             BeanUtils.copyProperties(save, user, "id");
             user.setSysUserId(save.getId());
             user.setOrgCode(login.getPhone());
+            user.setOrgName(login.getUsername());
             userService.save(user);
             Result<User> result = new Result<>();
             return result.ok(user);

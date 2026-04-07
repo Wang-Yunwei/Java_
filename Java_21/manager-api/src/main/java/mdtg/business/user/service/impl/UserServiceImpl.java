@@ -108,6 +108,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         assert inputDTO != null : "入参为空!";
         Page<QueryUserOutputDTO> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(User::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getUserId()).ifPresent(userId -> queryWrapper.eq(User::getId, userId));
         Optional.ofNullable(inputDTO.getSysUserId()).ifPresent(sysUserId -> queryWrapper.eq(User::getSysUserId, sysUserId));
         Optional.ofNullable(inputDTO.getPhone()).ifPresent(phone -> queryWrapper.eq(User::getPhone, phone));

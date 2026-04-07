@@ -3,12 +3,11 @@ package mdtg.business.customer;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.common.toolkits.ResponseDTO;
-import mdtg.business.customer.dto.AttachPageDTO;
-import mdtg.business.customer.dto.AttachUpdateStatusDTO;
-import mdtg.business.customer.dto.KnowledgePageDTO;
-import mdtg.business.customer.dto.VoiceClonePageDTO;
+import mdtg.business.customer.dto.*;
 import mdtg.business.customer.feign.CustomerFeign;
 import mdtg.common.utils.Result;
+import mdtg.modules.voiceclone.dto.VoiceCloneDTO;
+import mdtg.modules.voiceclone.service.VoiceCloneService;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
 
     CustomerFeign customerFeign;
+    VoiceCloneService voiceCloneService;
 
     public CustomerController(CustomerFeign customerFeign) {
 
@@ -31,6 +31,14 @@ public class CustomerController {
     public ResponseDTO<?> queryVoice(@RequestHeader("Authorization") String token, @RequestBody VoiceClonePageDTO inputDTO) {
 
         Result page = customerFeign.voiceClonePage(token, inputDTO);
+        return ResponseDTO.wrapSuccess(page.getData());
+    }
+
+    @Operation(summary = "声音克隆 - 更新VoiceId")
+    @PostMapping("/voice-clone/update-voiceId")
+    public ResponseDTO<?> updateVoiceId(@RequestHeader("Authorization") String token, @RequestBody UpdateVoiceIdDTO inputDTO) {
+
+        Result page = customerFeign.updateVoiceId(token, inputDTO);
         return ResponseDTO.wrapSuccess(page.getData());
     }
 
@@ -52,9 +60,31 @@ public class CustomerController {
 
     @Operation(summary = "附件 - 更新状态")
     @PostMapping("/attach/update-status")
-    public ResponseDTO<?> updateStatusAttach(@RequestHeader("Authorization") String token, @RequestBody AttachUpdateStatusDTO inputDTO) {
+    public ResponseDTO<?> updateAttach(@RequestHeader("Authorization") String token, @RequestBody UpdateAttachInputDTO inputDTO) {
 
-        Result page = customerFeign.attachUpdateStatus(token, inputDTO);
+        if (inputDTO.getAttachStatus() == 3) {
+            if (inputDTO.getKnowledgeBaseId() != null && inputDTO.getKnowledgeBaseId() > 0) {
+
+            }
+            if (inputDTO.getVoiceCloneId() != null && inputDTO.getVoiceCloneId() > 0) {
+                VoiceCloneDTO voiceCloneDTO = new VoiceCloneDTO();
+                voiceCloneDTO.setModelId(inputDTO.getModelId());
+                voiceCloneDTO.setUserId(inputDTO.getOrgCode());
+                voiceCloneDTO.setVoiceIds(inputDTO.getVoiceIds());
+                voiceCloneService.save(voiceCloneDTO);
+            }
+        }
+        AttachUpdateStatusDTO dto = new AttachUpdateStatusDTO().setId(inputDTO.getAttachId()).setStatus(inputDTO.getAttachStatus());
+        Result page = customerFeign.updateAttach(token, dto);
+
+        return ResponseDTO.wrapSuccess(page.getData());
+    }
+
+    @Operation(summary = "附件 - 下载链接")
+    @GetMapping("/attach/dow-link")
+    public ResponseDTO<?> attachInfo(@RequestParam String fileName) {
+
+        Result page = customerFeign.fileInfo(fileName);
         return ResponseDTO.wrapSuccess(page.getData());
     }
 }

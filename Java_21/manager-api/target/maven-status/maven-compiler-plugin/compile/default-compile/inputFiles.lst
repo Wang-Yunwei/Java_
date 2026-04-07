@@ -13,6 +13,9 @@ D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\custome
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\AttachUpdateStatusDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\BaseDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\KnowledgePageDTO.java
+D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\UpdateAttachInputDTO.java
+D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\UpdateDatasetIdDTO.java
+D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\UpdateVoiceIdDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\VoiceClonePageDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\feign\CustomerFeign.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\device\DeviceManageController.java

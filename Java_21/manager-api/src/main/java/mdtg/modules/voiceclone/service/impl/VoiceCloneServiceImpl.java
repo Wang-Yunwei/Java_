@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mdtg.business.user.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +49,7 @@ public class VoiceCloneServiceImpl extends BaseServiceImpl<VoiceCloneDao, VoiceC
     private final ModelConfigService modelConfigService;
     private final SysUserService sysUserService;
     private final ObjectMapper objectMapper;
+    private final UserService userService;
 
     @Override
     public PageData<VoiceCloneEntity> page(Map<String, Object> params) {
@@ -198,7 +200,8 @@ public class VoiceCloneServiceImpl extends BaseServiceImpl<VoiceCloneDao, VoiceC
 
             // 设置用户名称
             if (entity.getUserId() != null) {
-                dto.setUserName(sysUserService.getByUserId(entity.getUserId()).getUsername());
+
+                dto.setUserName(userService.getById(entity.getUserId()).getUsername());
             }
             
             // 确保trainStatus字段被正确设置，前端需要这个字段来判断是否为克隆音频

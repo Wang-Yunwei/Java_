@@ -94,6 +94,7 @@ mdtg\modules\model\entity\ModelConfigEntity.class
 mdtg\modules\agent\dto\AgentCreateDTO.class
 mdtg\modules\agent\controller\AgentMcpAccessPointController.class
 mdtg\common\utils\TreeNode.class
+mdtg\business\customer\dto\UpdateVoiceIdDTO.class
 mdtg\modules\security\service\impl\SysUserTokenServiceImpl.class
 mdtg\modules\sys\entity\SysDictDataEntity.class
 META-INF\spring-configuration-metadata.json
@@ -220,6 +221,7 @@ mdtg\modules\agent\controller\AgentChatHistoryController.class
 mdtg\modules\sys\dto\EmitSeverActionDTO.class
 mdtg\common\convert\DateConverter.class
 mdtg\modules\security\service\ShiroService.class
+mdtg\business\customer\dto\UpdateDatasetIdDTO.class
 mdtg\common\validator\group\DefaultGroup.class
 mdtg\modules\model\dao\ModelProviderDao.class
 mdtg\modules\device\dto\DeviceReportReqDTO$BoardInfo.class
@@ -237,6 +239,7 @@ mdtg\business\user\entity\Role.class
 mdtg\business\user\service\impl\UserServiceImpl.class
 mdtg\modules\sys\service\SysParamsService.class
 mdtg\modules\security\service\CaptchaService.class
+mdtg\business\customer\dto\UpdateAttachInputDTO.class
 mdtg\modules\agent\dto\AgentChatSummaryDTO.class
 mdtg\business\device\DeviceManageController.class
 mdtg\common\xss\XssHttpServletRequestWrapper.class

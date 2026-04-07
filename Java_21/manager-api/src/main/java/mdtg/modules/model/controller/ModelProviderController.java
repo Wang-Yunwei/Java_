@@ -67,7 +67,7 @@ public class ModelProviderController {
     }
 
     @GetMapping("/plugin/names")
-    @Tag(name = "获取插件名称列表")
+    @Operation(summary = "获取插件名称列表")
     public Result<List<ModelProviderDTO>> getPluginNameList() {
         return ResultUtils.success(modelProviderService.getPluginList());
     }

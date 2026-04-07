@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import mdtg.business.user.dto.QueryUserOutputDTO;
 import mdtg.business.user.entity.User;
 import mdtg.modules.sys.entity.SysUserEntity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -20,7 +21,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     Page<QueryUserOutputDTO> queryUser(IPage<QueryUserOutputDTO> page, @Param(Constants.WRAPPER) Wrapper<User> queryWrapper);
 
-    @Select("DELETE FROM `sys_user` WHERE ${ew.sqlSegment}")
+    @Delete("DELETE FROM `sys_user` WHERE ${ew.sqlSegment}")
     int deleteSysUser(@Param(Constants.WRAPPER) Wrapper<SysUserEntity> queryWrapper);
 }
 
