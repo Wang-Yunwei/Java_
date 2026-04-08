@@ -5,40 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/config/CustomBeans.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/CustomMultipartFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/entity/Attach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/entity/Attach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/config/CustomBeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/config/CustomBeans.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/AttachPageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/AttachPageDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/BaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/BaseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateAttachInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateAttachInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateDatasetIdDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateDatasetIdDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateVoiceIdDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/dto/UpdateVoiceIdDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/feign/CustomerFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/customer/feign/CustomerFeign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/voiceclone/service/VoiceCloneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/voiceclone/service/VoiceCloneService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/entity/Attach.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/entity/Attach.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/AttachPageDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/AttachPageDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/BaseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/BaseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/UpdateAttachInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/UpdateAttachInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/UpdateDatasetIdDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/UpdateDatasetIdDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/UpdateVoiceIdDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/dto/UpdateVoiceIdDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/feign/CustomerFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/feign/CustomerFeign.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/controller/VoiceResourceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/controller/VoiceResourceController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/VoiceCloneService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/VoiceCloneService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/voiceclone/service/impl/VoiceCloneServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/PermissionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/PermissionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,33 +53,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Deploy to Host.47.101.196.164.executor": "Run",
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "HTTP Request.manager_api-endpoints | #1.executor": "Run",
-    "Maven.mdtg-esp32-api [clean,package].executor": "Run",
-    "Maven.mdtg-esp32-api [clean].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AdminApplication.executor": "Debug",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/workspace/WYwei/Java_/Java_21/manager-api/src/main/resources/mapper/business",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Deploy to Host.47.101.196.164.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.manager_api-endpoints | #1.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.mdtg-esp32-api [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.mdtg-esp32-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/workspace/WYwei/Java_/Java_21/manager-api/src/main/resources/mapper/business&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -124,7 +99,7 @@
       <recent name="mdtg.business.user.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AdminApplication">
+  <component name="RunManager" selected="Deploy to Host.47.101.196.164">
     <configuration name="47.101.196.164" type="DEPLOY_HOST_RUN_CONFIGURATION" factoryName="Deploy to Host">
       <option name="accountModel" />
       <option name="accountModels" />
@@ -198,6 +173,7 @@
       <workItem from="1775179415148" duration="25963000" />
       <workItem from="1775304236731" duration="2332000" />
       <workItem from="1775524871818" duration="32692000" />
+      <workItem from="1775611216913" duration="3111000" />
     </task>
     <servers />
   </component>

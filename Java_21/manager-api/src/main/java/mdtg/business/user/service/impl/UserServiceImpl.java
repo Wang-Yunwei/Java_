@@ -106,15 +106,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO) {
 
         assert inputDTO != null : "入参为空!";
+        if(inputDTO.getUserId() != null && inputDTO.getUserId() > 0){
+            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getUserId()));
+        }
         Page<QueryUserOutputDTO> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
-        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getDeleteFlag, 0);
-        Optional.ofNullable(inputDTO.getUserId()).ifPresent(userId -> queryWrapper.eq(User::getId, userId));
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<User>().eq(User::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getSysUserId()).ifPresent(sysUserId -> queryWrapper.eq(User::getSysUserId, sysUserId));
         Optional.ofNullable(inputDTO.getPhone()).ifPresent(phone -> queryWrapper.eq(User::getPhone, phone));
         Optional.ofNullable(inputDTO.getUserName()).ifPresent(username -> queryWrapper.like(User::getUsername, username));
         Optional.ofNullable(inputDTO.getAddress()).ifPresent(address -> queryWrapper.like(User::getAddress, address));
-
         Page<QueryUserOutputDTO> dtoPage = this.baseMapper.queryUser(page, queryWrapper);
         dtoPage.getRecords().forEach(record -> record.setDeviceCount(deviceService.selectCountByUserId(record.getId())));
         return ResponseDTO.wrapSuccess(dtoPage);

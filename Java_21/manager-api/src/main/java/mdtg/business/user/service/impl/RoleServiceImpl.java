@@ -51,7 +51,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         }
         // 查询列表
         IPage<Role> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
-        LambdaQueryWrapper<Role> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<Role> queryWrapper = new LambdaQueryWrapper<Role>().eq(Role::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getCode()).ifPresent(code -> queryWrapper.eq(Role::getCode, code));
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.eq(Role::getType, type));
         IPage<Role> roleIPage = this.baseMapper.selectPage(page, queryWrapper);

@@ -2,9 +2,6 @@ package mdtg.business.customer;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.minio.MinioClient;
-import io.minio.StatObjectResponse;
-import io.minio.errors.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.common.toolkits.ResponseDTO;
@@ -24,8 +21,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 /**
@@ -35,8 +30,6 @@ import java.util.Map;
 @RequestMapping("/customer-service")
 @RestController
 public class CustomerController {
-
-    private final MinioClient minioClient;
 
     private final CustomerFeign customerFeign;
 
@@ -48,9 +41,7 @@ public class CustomerController {
 
     private final ObjectMapper om = new ObjectMapper();
 
-    public CustomerController(MinioClient minioClient, CustomerFeign customerFeign, VoiceCloneService voiceCloneService, KnowledgeBaseService knowledgeBaseService) {
-
-        this.minioClient = minioClient;
+    public CustomerController(CustomerFeign customerFeign, VoiceCloneService voiceCloneService, KnowledgeBaseService knowledgeBaseService) {
 
         this.customerFeign = customerFeign;
 
@@ -110,9 +101,10 @@ public class CustomerController {
                         jsonNode.get("records").forEach(attach -> {
                             Result<Map<String, String>> fileInfo = customerFeign.fileInfo(attach.get("fileName").asText());
                             if (fileInfo.getCode() == 0) {
-                                StatObjectResponse stat = minioClient.statObject(
-                                        io.minio.StatObjectArgs.builder().bucket(fileInfo.getData().get("bucketName")).object(fileInfo.getData().get("objectName")).build()
-                                );
+
+//                                StatObjectResponse stat = minioClient.statObject(
+//                                        io.minio.StatObjectArgs.builder().bucket(fileInfo.getData().get("bucketName")).object(fileInfo.getData().get("objectName")).build()
+//                                );
                             }
                         });
                     }

@@ -125,6 +125,7 @@ mdtg\common\user\UserDetail.class
 mdtg\modules\security\entity\SysUserTokenEntity.class
 mdtg\modules\agent\service\impl\AgentContextProviderServiceImpl.class
 mdtg\modules\model\service\ModelProviderService.class
+mdtg\business\common\config\CustomBeans.class
 mdtg\modules\sys\utils\WebSocketTestHandler.class
 mdtg\modules\agent\dto\AgentChatSessionDTO.class
 mdtg\common\constant\Constant$ChatHistoryConfEnum.class

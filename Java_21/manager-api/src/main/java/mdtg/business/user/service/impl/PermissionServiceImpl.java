@@ -50,10 +50,10 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             // 详情
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getId()));
         }
-        IPage<Permission> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
-        LambdaQueryWrapper<Permission> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<Permission> queryWrapper = new LambdaQueryWrapper<Permission>().eq(Permission::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getParentId()).ifPresent(parentId -> queryWrapper.eq(Permission::getParentId, parentId));
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.eq(Permission::getType, type));
+        IPage<Permission> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
     }
 }
