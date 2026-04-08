@@ -75,7 +75,7 @@ public class VoiceCloneServiceImpl extends BaseServiceImpl<VoiceCloneDao, VoiceC
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(VoiceCloneDTO dto) {
+    public VoiceCloneEntity save(VoiceCloneDTO dto) {
         ModelConfigEntity modelConfig = modelConfigService.getModelByIdFromCache(dto.getModelId());
         if (modelConfig == null || modelConfig.getConfigJson() == null) {
             throw new RenException(ErrorCode.VOICE_CLONE_MODEL_CONFIG_NOT_FOUND);
@@ -119,7 +119,9 @@ public class VoiceCloneServiceImpl extends BaseServiceImpl<VoiceCloneDao, VoiceC
             entity.setTrainStatus(0); // 默认训练中
 
             baseDao.insert(entity);
+            return entity;
         }
+        return null;
     }
 
     @Override

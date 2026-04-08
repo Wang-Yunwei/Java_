@@ -265,6 +265,7 @@ mdtg\modules\agent\service\impl\AgentChatSummaryServiceImpl.class
 mdtg\business\customer\dto\BaseDTO.class
 mdtg\common\interceptor\DataScope.class
 mdtg\modules\agent\service\impl\AgentChatSummaryServiceImpl$1.class
+mdtg\business\customer\dto\UpdateAttachInputDTO$VoiceCloneInfo.class
 mdtg\common\annotation\LogOperation.class
 mdtg\modules\sys\enums\ServerActionResponseEnum.class
 mdtg\modules\agent\dto\AgentUpdateDTO.class
@@ -307,12 +308,14 @@ mdtg\business\user\service\UserService.class
 mdtg\modules\sys\dao\SysDictTypeDao.class
 mdtg\modules\device\dto\DeviceBindDTO.class
 mdtg\business\common\toolkits\ResponseDTO.class
+mdtg\business\customer\dto\UpdateAttachInputDTO$KnowledgeBaseInfo.class
 mdtg\modules\sys\dto\AdminPageUserDTO.class
 mdtg\business\user\dto\QueryRoleInputDTO.class
 mdtg\modules\knowledge\service\impl\KnowledgeBaseServiceImpl.class
 mdtg\modules\security\password\BCrypt.class
 mdtg\modules\agent\service\impl\AgentServiceImpl.class
 mdtg\modules\device\vo\DeviceOtaVO$Firmware.class
+mdtg\business\common\toolkits\CustomMultipartFile.class
 mdtg\modules\sys\service\impl\TokenServiceImpl.class
 mdtg\modules\sys\service\impl\SysParamsServiceImpl.class
 mdtg\common\service\impl\CrudServiceImpl.class

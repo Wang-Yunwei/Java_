@@ -7,6 +7,7 @@ D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\attachm
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\attachment\service\AttachService.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\attachment\service\impl\AttachServiceImpl.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\common\entity\BaseEntity.java
+D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\common\toolkits\CustomMultipartFile.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\common\toolkits\ResponseDTO.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\CustomerController.java
 D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\customer\dto\AttachPageDTO.java

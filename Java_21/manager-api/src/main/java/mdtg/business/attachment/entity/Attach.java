@@ -62,9 +62,9 @@ public class Attach {
     private String objectName;
 
     /**
-     * 训练状态(0-审核中,1-待付费,2-训练中,3-训练成功,4-训练失败)
+     * 附件状态 0-驳回,1-待审核,2-审核中,3-待付费,4-训练中,5-训练成功,6-训练失败
      */
-    @Schema(description = "训练状态(0-审核中,1-待付费,2-训练中,3-训练成功,4-训练失败)",example = "0")
+    @Schema(description = "附件状态 0-驳回,1-待审核,2-审核中,3-待付费,4-训练中,5-训练成功,6-训练失败",example = "1")
     private Integer status;
 
     /**

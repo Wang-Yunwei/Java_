@@ -64,3 +64,8 @@ mybatis-plus:
     prefix:
     blobType: BLOB
     boolValue: TRUE
+
+minio:
+  endpoint: http://192.168.0.96:9000
+  access-key: minio_mdsd
+  secret-key: minio_mdsd

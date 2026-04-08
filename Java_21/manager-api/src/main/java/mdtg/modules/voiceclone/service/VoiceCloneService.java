@@ -24,7 +24,7 @@ public interface VoiceCloneService extends BaseService<VoiceCloneEntity> {
     /**
      * 保存声音克隆
      */
-    void save(VoiceCloneDTO dto);
+    VoiceCloneEntity save(VoiceCloneDTO dto);
 
     /**
      * 批量删除
