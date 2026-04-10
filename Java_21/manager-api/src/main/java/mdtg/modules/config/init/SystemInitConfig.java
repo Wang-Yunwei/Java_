@@ -8,9 +8,10 @@ import mdtg.modules.config.service.ConfigService;
 import mdtg.modules.sys.service.SysParamsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 @Configuration
-//@DependsOn("liquibase")
+@DependsOn("liquibase") // TODO_W
 public class SystemInitConfig {
 
     @Autowired

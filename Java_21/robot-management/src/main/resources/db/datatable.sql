@@ -6,7 +6,7 @@ CREATE TABLE `mdtg_user` (
     `password`          VARCHAR(100)    NOT NULL        COMMENT '密码',
     `gender`            TINYINT         DEFAULT 0       COMMENT '性别(0-未知,1-男,2-女)',
     `identity_card`     VARCHAR(50)     DEFAULT NULL    COMMENT '居民身份证',
-    `phone`             VARCHAR(20)     NOT NULL        COMMENT '手机号',
+    `phone`             VARCHAR(20)     DEFAULT NULL    COMMENT '手机号',
     `email`             VARCHAR(20)     DEFAULT NULL    COMMENT '邮箱',
     `address`           VARCHAR(300)    DEFAULT NULL    COMMENT '住址',
     `role_ids`          JSON            DEFAULT NULL    COMMENT '角色列表',
@@ -142,7 +142,8 @@ DROP TABLE IF EXISTS `mdtg_space_point`;
 CREATE TABLE `mdtg_space_point` (
     `id`                BIGINT          NOT NULL        COMMENT '主键',
     `name`              VARCHAR(50)     DEFAULT NULL    COMMENT '点位名称',
-    `point`             JSON            DEFAULT NULL    COMMENT '坐标点([3.455, -12.921,  1.725])',
+    `point`             JSON            DEFAULT NULL    COMMENT '坐标点{"x":"3.455", "y":"-12.921", "yaw":"1.725"}',
+    `map_name`          VARCHAR(50)     DEFAULT NULL    COMMENT '地图名称',
     `device_id`         BIGINT          DEFAULT NULL    COMMENT '关联设备ID',
     `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
@@ -157,7 +158,8 @@ CREATE TABLE `mdtg_space_point` (
     `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
     `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    KEY `idx_mdtg_space_point_map_name` (`map_name`) COMMENT '创建地图名称普通索引',
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='空间点';
 
 -- 任务

@@ -78,7 +78,6 @@
             <version>${captcha.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
@@ -173,11 +172,11 @@
             <artifactId>druid-spring-boot-3-starter</artifactId>
             <version>${druid.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.liquibase</groupId>-->
-<!--            <artifactId>liquibase-core</artifactId>-->
-<!--            <version>${liquibase-core.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase-core.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -289,6 +288,25 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <!-- 定义属性，用于替换 application.yml 中的占位符 -->
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault> <!-- 默认激活 dev 环境 -->
+            </activation>
+        </profile>
+        <profile>
+            <id>linux</id>
+            <properties>
+                <spring.profiles.active>linux</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -304,5 +322,12 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!-- 2. 配置资源过滤 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering> <!-- 关键：开启过滤，允许替换占位符 -->
+            </resource>
+        </resources>
     </build>
 </project>

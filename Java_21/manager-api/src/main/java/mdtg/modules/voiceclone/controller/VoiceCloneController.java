@@ -35,7 +35,7 @@ import mdtg.modules.voiceclone.dto.VoiceCloneResponseDTO;
 import mdtg.modules.voiceclone.entity.VoiceCloneEntity;
 import mdtg.modules.voiceclone.service.VoiceCloneService;
 
-@Tag(name = "音色资源管理", description = "音色资源开通相关接口")
+@Tag(name = "音色克隆", description = "音色资源开通相关接口")
 @Slf4j
 @RestController
 @RequiredArgsConstructor
