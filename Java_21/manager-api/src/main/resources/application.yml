@@ -66,6 +66,7 @@ mybatis-plus:
     boolValue: TRUE
 
 minio:
-  endpoint: http://127.0.0.1:9000
+  endpoint: http://58.211.186.6:9000
   access-key: minio_mdtg
   secret-key: minio_mdtg
+  bucket-name: mdtg-esp32-api

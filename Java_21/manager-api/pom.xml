@@ -8,11 +8,11 @@
     <name>mdtg-esp32-api</name>
     <description>小麦后台管理系统</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.3</version>
-	</parent>
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -236,13 +236,12 @@
             <artifactId>dysmsapi20170525</artifactId>
             <version>${aliyun-sms-version}</version>
         </dependency>
-        <!-- 阿里云短信sdk使用的okio:1.15.0版本有安全漏洞：GHSA-w33c-445m-f8w7 现在升级成3.4.0安全版本-->
-        <dependency>
-            <groupId>com.squareup.okio</groupId>
-            <artifactId>okio</artifactId>
-            <version>${okio-version}</version>
-        </dependency>
-
+        <!--        &lt;!&ndash; 阿里云短信sdk使用的okio:1.15.0版本有安全漏洞：GHSA-w33c-445m-f8w7 现在升级成3.4.0安全版本&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.squareup.okio</groupId>-->
+        <!--            <artifactId>okio</artifactId>-->
+        <!--            <version>${okio-version}</version>-->
+        <!--        </dependency>-->
         <!-- 文件服务 -->
         <dependency>
             <groupId>io.minio</groupId>
@@ -260,6 +259,11 @@
                 <version>2024.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.12.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

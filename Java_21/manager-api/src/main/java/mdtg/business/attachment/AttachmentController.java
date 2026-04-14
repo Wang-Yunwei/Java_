@@ -66,11 +66,10 @@ public class AttachmentController {
 
     @Operation(summary = "多文件上传")
     @PostMapping(path = "/upload-files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseDTO<?> uploadFiles(@Parameter(description = "要上传的多个文件", required = true)
-                                      @RequestParam(value = "files") MultipartFile[] files,
-                                      @RequestParam(value = "name", required = true) String name,
-                                      @RequestParam(value = "deviceId", required = true) String deviceId) {
+    public ResponseDTO<?> uploadFiles(@RequestParam(value = "files") MultipartFile[] files,
+                                      @RequestParam(value = "name") String name,
+                                      @RequestParam(value = "deviceId") String deviceId) {
 
-        return null;
+        return attachService.uploadFiles(files, name, deviceId);
     }
 }

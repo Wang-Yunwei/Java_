@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.minio.MinioClient;
 import mdtg.business.attachment.dto.QueryAttachmentInputDTO;
 import mdtg.business.attachment.entity.Attach;
 import mdtg.business.attachment.mapper.AttachMapper;
@@ -11,6 +12,7 @@ import mdtg.business.attachment.service.AttachService;
 import mdtg.business.common.toolkits.ResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
@@ -20,6 +22,13 @@ import java.util.Optional;
 @Service
 @Transactional
 public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> implements AttachService {
+
+    private final MinioClient minioClient;
+
+    public AttachServiceImpl(MinioClient minioClient) {
+
+        this.minioClient = minioClient;
+    }
 
     @Override
     public ResponseDTO<?> addAttachment(Attach inputDTO) {
@@ -51,6 +60,13 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
         Optional.ofNullable(inputDTO.getContentType()).ifPresent(contentType -> queryWrapper.eq(Attach::getContentType, contentType));
         Optional.ofNullable(inputDTO.getFileName()).ifPresent(fileName -> queryWrapper.like(Attach::getFileName, fileName));
         return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
+    }
+
+    @Override
+    public ResponseDTO<?> uploadFiles(MultipartFile[] files, String name, String deviceId) {
+
+        minioClient
+        return null;
     }
 }
 
