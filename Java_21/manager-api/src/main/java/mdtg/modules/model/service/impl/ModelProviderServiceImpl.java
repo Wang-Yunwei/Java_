@@ -85,7 +85,7 @@ public class ModelProviderServiceImpl extends BaseServiceImpl<ModelProviderDao, 
     public List<ModelProviderDTO> getPluginListByIds(Collection<String> ids) {
         LambdaQueryWrapper<ModelProviderEntity> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.in(ModelProviderEntity::getId, ids);
-        queryWrapper.eq(ModelProviderEntity::getModelType, "Plugin");
+//        queryWrapper.eq(ModelProviderEntity::getModelType, "Plugin");
         List<ModelProviderEntity> providerEntities = modelProviderDao.selectList(queryWrapper);
         return ConvertUtils.sourceToTarget(providerEntities, ModelProviderDTO.class);
     }

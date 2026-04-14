@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 @Configuration
-@DependsOn("liquibase") // TODO_W
+//@DependsOn("liquibase") // TODO_W
 public class SystemInitConfig {
 
     @Autowired

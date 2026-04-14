@@ -32,10 +32,10 @@ public class AgentUpdateDTO implements Serializable {
     @Schema(description = "大语言模型标识", example = "llm_model_02", nullable = true)
     private String llmModelId;
 
-    @Schema(description = "VLLM模型标识", example = "vllm_model_02", required = false)
+    @Schema(description = "VLLM模型标识", example = "vllm_model_02")
     private String vllmModelId;
 
-    @Schema(description = "语音合成模型标识", example = "tts_model_02", required = false)
+    @Schema(description = "语音合成模型标识", example = "tts_model_02")
     private String ttsModelId;
 
     @Schema(description = "音色标识", example = "voice_02", nullable = true)

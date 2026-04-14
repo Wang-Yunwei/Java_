@@ -15,7 +15,7 @@ server:
 spring:
   # 环境 dev|test|prod
   profiles:
-    active: linux
+    active: dev
   messages:
     encoding: UTF-8
     basename: i18n/messages
@@ -66,6 +66,6 @@ mybatis-plus:
     boolValue: TRUE
 
 minio:
-  endpoint: http://192.168.0.96:9000
-  access-key: minio_mdsd
-  secret-key: minio_mdsd
+  endpoint: http://127.0.0.1:9000
+  access-key: minio_mdtg
+  secret-key: minio_mdtg

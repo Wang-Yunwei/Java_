@@ -1,5 +1,6 @@
 package mdtg.modules.agent.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -7,6 +8,7 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import mdtg.business.common.toolkits.ResponseDTO;
 import mdtg.common.constant.Constant;
 import mdtg.common.page.PageData;
 import mdtg.common.redis.RedisKeys;
@@ -16,6 +18,7 @@ import mdtg.common.utils.Result;
 import mdtg.common.utils.ResultUtils;
 import mdtg.modules.agent.dto.*;
 import mdtg.modules.agent.entity.AgentEntity;
+import mdtg.modules.agent.entity.AgentPluginMapping;
 import mdtg.modules.agent.entity.AgentTemplateEntity;
 import mdtg.modules.agent.service.*;
 import mdtg.modules.agent.vo.AgentChatHistoryUserVO;
@@ -272,6 +275,7 @@ public class AgentController {
     @Operation(summary = "MDTG - 播放音频_V2")
     @GetMapping("/v2/audio/{audioId}")
     public ResponseEntity<byte[]> playAudioV2(@PathVariable String audioId) {
+
         byte[] audioData = agentChatAudioService.getAudio(audioId);
         if (audioData == null) {
             return ResponseEntity.notFound().build();
@@ -282,4 +286,10 @@ public class AgentController {
                 .body(audioData);
     }
 
+    @Operation(summary = "MDTG - 根据插件ID获取智能体插件映射数据")
+    @GetMapping("/get-agent-plugin-mapping")
+    public ResponseDTO<?> getAgentPluginMapping(@RequestParam List<String> pluginIds) {
+
+        return ResponseDTO.wrapSuccess(agentPluginMappingService.list(new LambdaQueryWrapper<AgentPluginMapping>().in(AgentPluginMapping::getPluginId, pluginIds)));
+    }
 }

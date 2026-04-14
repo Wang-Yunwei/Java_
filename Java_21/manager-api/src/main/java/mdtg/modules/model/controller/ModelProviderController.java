@@ -1,27 +1,21 @@
 package mdtg.modules.model.controller;
 
-import java.util.List;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import mdtg.business.common.toolkits.ResponseDTO;
 import mdtg.common.page.PageData;
 import mdtg.common.utils.Result;
 import mdtg.common.utils.ResultUtils;
 import mdtg.common.validator.group.UpdateGroup;
 import mdtg.modules.model.dto.ModelProviderDTO;
 import mdtg.modules.model.service.ModelProviderService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -35,8 +29,9 @@ public class ModelProviderController {
     @Operation(summary = "获取模型供应器列表")
     @RequiresPermissions("sys:role:superAdmin")
     public Result<PageData<ModelProviderDTO>> getListPage(ModelProviderDTO modelProviderDTO,
-            @RequestParam(required = true, defaultValue = "0") String page,
-            @RequestParam(required = true, defaultValue = "10") String limit) {
+                                                          @RequestParam(required = true, defaultValue = "0") String page,
+                                                          @RequestParam(required = true, defaultValue = "10") String limit) {
+
         return new Result<PageData<ModelProviderDTO>>()
                 .ok(modelProviderService.getListPage(modelProviderDTO, page, limit));
     }
@@ -45,6 +40,7 @@ public class ModelProviderController {
     @Operation(summary = "新增模型供应器")
     @RequiresPermissions("sys:role:superAdmin")
     public Result<ModelProviderDTO> add(@RequestBody @Validated ModelProviderDTO modelProviderDTO) {
+
         ModelProviderDTO resp = modelProviderService.add(modelProviderDTO);
         return new Result<ModelProviderDTO>().ok(resp);
     }
@@ -53,6 +49,7 @@ public class ModelProviderController {
     @Operation(summary = "修改模型供应器")
     @RequiresPermissions("sys:role:superAdmin")
     public Result<ModelProviderDTO> edit(@RequestBody @Validated(UpdateGroup.class) ModelProviderDTO modelProviderDTO) {
+
         ModelProviderDTO resp = modelProviderService.edit(modelProviderDTO);
         return new Result<ModelProviderDTO>().ok(resp);
     }
@@ -62,6 +59,7 @@ public class ModelProviderController {
     @RequiresPermissions("sys:role:superAdmin")
     @Parameter(name = "ids", description = "ID数组", required = true)
     public Result<Void> delete(@RequestBody List<String> ids) {
+
         modelProviderService.delete(ids);
         return new Result<>();
     }
@@ -69,7 +67,15 @@ public class ModelProviderController {
     @GetMapping("/plugin/names")
     @Operation(summary = "获取插件名称列表")
     public Result<List<ModelProviderDTO>> getPluginNameList() {
+
         return ResultUtils.success(modelProviderService.getPluginList());
+    }
+
+    @Operation(summary = "MDTG - 根据Id列表获取模型供应器")
+    @GetMapping("/get-provider-by-ids")
+    public ResponseDTO<?> getProviderByIds(@RequestParam List<String> ids) {
+
+        return ResponseDTO.wrapSuccess(modelProviderService.getPluginListByIds(ids));
     }
 
 }

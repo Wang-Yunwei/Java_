@@ -13,8 +13,8 @@ spring:
       #MySQL
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://${service-address.mdtg.ip}:3306/mdtg_esp32_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
-      username: mdtg
-      password: mdtg@123
+      username: xiaomai
+      password: xiaomai@123
       initial-size: 10
       max-active: 100
       min-idle: 10
@@ -40,7 +40,7 @@ spring:
     redis:
       host: ${service-address.mdtg.ip}         # Redis服务器地址
       port: 6379              # Redis服务器连接端口
-      password: '3ECW7L$j6vaoZhwcpwV%mvBA' # Redis服务器连接密码（默认为空）
+      password: # Redis服务器连接密码（默认为空）
       database: 0            # Redis数据库索引（默认为0）
       timeout: 10000ms       # 连接超时时间（毫秒）
       lettuce:
@@ -52,8 +52,8 @@ spring:
 
 service-address:
   mdtg:
-    ip: 47.101.196.164
+    ip: 58.211.186.6
     port: 8002
   customer:
-    ip: 192.168.0.96
-    port: 8003
+    ip: 58.211.186.6
+    port: 8085

@@ -13,9 +13,9 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class UpdateVoiceIdDTO {
 
-    @Schema(description = "mdtg_voice_clone表主键", required = true)
+    @Schema(description = "mdtg_voice_clone表主键")
     private Long id;
 
-    @Schema(description = "ai_voice_clone表主键", required = true)
+    @Schema(description = "ai_voice_clone表主键")
     private String voiceId;
 }

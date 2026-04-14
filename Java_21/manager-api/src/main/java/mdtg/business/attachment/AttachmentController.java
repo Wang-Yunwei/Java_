@@ -2,11 +2,15 @@ package mdtg.business.attachment;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.attachment.dto.QueryAttachmentInputDTO;
 import mdtg.business.attachment.entity.Attach;
 import mdtg.business.attachment.service.AttachService;
 import mdtg.business.common.toolkits.ResponseDTO;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +19,7 @@ import java.util.Map;
 /**
  * @author WangYunwei [2026-03-26]
  */
-//@Tag(name = "MDTG - 附件管理")
+@Tag(name = "MDTG - 附件管理")
 @RestController
 @RequestMapping("/v2/attachment")
 public class AttachmentController {
@@ -58,5 +62,15 @@ public class AttachmentController {
             result.put(businessId, count);
         });
         return ResponseDTO.wrapSuccess(result);
+    }
+
+    @Operation(summary = "多文件上传")
+    @PostMapping(path = "/upload-files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseDTO<?> uploadFiles(@Parameter(description = "要上传的多个文件", required = true)
+                                      @RequestParam(value = "files") MultipartFile[] files,
+                                      @RequestParam(value = "name", required = true) String name,
+                                      @RequestParam(value = "deviceId", required = true) String deviceId) {
+
+        return null;
     }
 }

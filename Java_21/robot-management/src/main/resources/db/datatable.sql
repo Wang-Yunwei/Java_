@@ -85,13 +85,13 @@ CREATE TABLE `mdtg_permission` (
 DROP TABLE IF EXISTS `mdtg_attach`;
 CREATE TABLE `mdtg_attach` (
     `id`                BIGINT          NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `name`              VARCHAR(50)     DEFAULT NULL    COMMENT '附件名称',
+    `size`              BIGINT          DEFAULT NULL    COMMENT '文件大小',
+    `type`              VARCHAR(20)     DEFAULT NULL    COMMENT '附件类型:audio/way',
+    `object_name`       VARCHAR(50)     DEFAULT NULL    COMMENT 'minio的key',
     `business_id`       BIGINT          NOT NULL        COMMENT '业务关联Id: 声音克隆Id、知识库Id',
     `business_type`     TINYINT         DEFAULT 0       COMMENT '附件业务类别: 0-声音克隆,1-知识库,2-...',
-    `content_type`      VARCHAR(20)     DEFAULT NULL    COMMENT '附件类型:audio/way',
-    `file_name`         VARCHAR(50)     DEFAULT NULL    COMMENT '附件名称',
-    `file_size`         BIGINT          DEFAULT NULL    COMMENT '文件大小',
-    `object_name`       VARCHAR(50)     DEFAULT NULL    COMMENT 'minio的key',
-    `status`            TINYINT         DEFAULT 0       COMMENT '训练状态(0-审核中,1-待付费,2-训练中,3-训练成功,4-训练失败)',
+    `status`            TINYINT         DEFAULT 0       COMMENT '状态(0-审核中,1-待付费,2-训练中,3-训练成功,4-训练失败)',
     `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
@@ -137,14 +137,13 @@ CREATE TABLE `mdtg_device` (
     UNIQUE KEY `udx_mdtg_device_mac_address` (`mac_address`) COMMENT '创建mac地址唯一索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='设备信息表';
 
--- 空间点
-DROP TABLE IF EXISTS `mdtg_space_point`;
-CREATE TABLE `mdtg_space_point` (
+-- 坐标点
+DROP TABLE IF EXISTS `mdtg_coordinate_point`;
+CREATE TABLE `mdtg_coordinate_point` (
     `id`                BIGINT          NOT NULL        COMMENT '主键',
     `name`              VARCHAR(50)     DEFAULT NULL    COMMENT '点位名称',
     `point`             JSON            DEFAULT NULL    COMMENT '坐标点{"x":"3.455", "y":"-12.921", "yaw":"1.725"}',
     `map_name`          VARCHAR(50)     DEFAULT NULL    COMMENT '地图名称',
-    `device_id`         BIGINT          DEFAULT NULL    COMMENT '关联设备ID',
     `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
@@ -159,36 +158,36 @@ CREATE TABLE `mdtg_space_point` (
     `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`),
-    KEY `idx_mdtg_space_point_map_name` (`map_name`) COMMENT '创建地图名称普通索引',
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='空间点';
+    KEY `idx_mdtg_space_point_map_name` (`map_name`) COMMENT '创建地图名称普通索引'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='坐标点表';
 
 -- 任务
 DROP TABLE IF EXISTS `mdtg_task`;
 CREATE TABLE `mdtg_task` (
-    `id`                BIGINT          NOT NULL        COMMENT '主键',
-    `name`              VARCHAR(100)    DEFAULT NULL    COMMENT '任务名称',
-    `type`              VARCHAR(50)     DEFAULT NULL    COMMENT '任务类型',
-    `status`            TINYINT         DEFAULT 0       COMMENT '任务状态(0-待执行,1-执行中,2-已完成,3-执行失败)',
-    `execute_num`       DATETIME        DEFAULT NULL    COMMENT '执行次数',
-    `execute_time`      DATETIME        DEFAULT NULL    COMMENT '计划执行时间',
-    `finish_time`       DATETIME        DEFAULT NULL    COMMENT '实际完成时间',
-    `start_index`       INTEGER         DEFAULT NULL    COMMENT '起始坐标点索引',
-    `space_point_ids`   JSON            DEFAULT NULL    COMMENT '关联空间点ID列表',
-    `device_id`         BIGINT          DEFAULT NULL    COMMENT '关联设备ID',
-    `remark`            VARCHAR(255)    DEFAULT NULL    COMMENT '备注',
-    `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
-    `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
-    `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
-    `create_by`         BIGINT          DEFAULT NULL    COMMENT '创建者ID',
-    `create_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
-    `create_date`       DATETIME        DEFAULT NOW()   COMMENT '创建时间',
-    `company_code`      VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
-    `company_name`      VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
-    `second_org_code`   VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
-    `second_org_name`   VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
-    `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
-    `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
-    `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
+    `id`                    BIGINT          NOT NULL        COMMENT '主键',
+    `name`                  VARCHAR(100)    DEFAULT NULL    COMMENT '任务名称',
+    `type`                  VARCHAR(50)     DEFAULT NULL    COMMENT '任务类型(0-手动,1-定时)',
+    `status`                TINYINT         DEFAULT 0       COMMENT '任务状态(0-待执行,1-执行中,2-已完成,3-执行失败)',
+    `execute_num`           TINYINT         DEFAULT 0       COMMENT '执行次数',
+    `execute_time`          DATETIME        DEFAULT NULL    COMMENT '计划执行时间',
+    `finish_time`           DATETIME        DEFAULT NULL    COMMENT '实际完成时间',
+    `start_index`           INTEGER         DEFAULT NULL    COMMENT '起始坐标点索引',
+    `coordinate_point_ids`  JSON            DEFAULT NULL    COMMENT '关联坐标点ID列表',
+    `device_id`             BIGINT          DEFAULT NULL    COMMENT '关联设备ID',
+    `remark`                VARCHAR(255)    DEFAULT NULL    COMMENT '备注',
+    `update_by`             BIGINT          DEFAULT NULL    COMMENT '更新者ID',
+    `update_name`           VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
+    `update_date`           DATETIME        DEFAULT NOW()   COMMENT '更新时间',
+    `create_by`             BIGINT          DEFAULT NULL    COMMENT '创建者ID',
+    `create_name`           VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
+    `create_date`           DATETIME        DEFAULT NOW()   COMMENT '创建时间',
+    `company_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
+    `company_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
+    `second_org_code`       VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
+    `second_org_name`       VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
+    `org_code`              VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
+    `org_name`              VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
+    `delete_flag`           TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='任务表';
 
