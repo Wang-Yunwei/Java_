@@ -248,6 +248,12 @@
             <artifactId>minio</artifactId>
             <version>${minio.version}</version>
         </dependency>
+        <!-- mqtt client -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.mqttv5.client</artifactId>
+            <version>1.2.5</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -268,7 +274,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <!-- 阿里云maven仓库 -->
+    <!-- 项目依赖仓库 -->
     <repositories>
         <repository>
             <id>public</id>
@@ -278,7 +284,13 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>Eclipse Paho Repository</id>
+            <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
+        </repository>
     </repositories>
+
+    <!-- 插件库 -->
     <pluginRepositories>
         <pluginRepository>
             <id>public</id>

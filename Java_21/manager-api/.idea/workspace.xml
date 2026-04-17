@@ -5,56 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/AgvController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddPointInputDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryPointInputDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/CoordinatePoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/mapper/CoordinatePointMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/CoordinatePointService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/CoordinatePointServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/CoordinatePointMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/exception/BusinessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/MQClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_17/SocketTransferServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_17/SocketTransferServer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_17/SocketTransferServer/src/main/java/wywei/business/controller/auth/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_17/SocketTransferServer/src/main/java/wywei/business/controller/auth/service/IAuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_17/SocketTransferServer/src/main/java/wywei/business/controller/auth/service/impl/AuthServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_17/SocketTransferServer/src/main/java/wywei/security/CustomRealm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_17/SocketTransferServer/src/main/java/wywei/security/ShiroConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/AddDeviceInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/AddDeviceInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/entity/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/entity/Device.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceManageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceManageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Permission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/sys/utils/WebSocketValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/sys/utils/WebSocketValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/AttachMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/AttachMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/PermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/PermissionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/AttachMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/AttachMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/DeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/DeviceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/PermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/PermissionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/AttachmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/AttachmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/AttachService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/AttachService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/impl/AttachServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/attachment/service/impl/AttachServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/config/CustomBeans.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/common/config/CustomBeans.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/entity/BaseEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/customer/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/dto/AddDeviceInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/device/dto/AddDeviceInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/dto/QueryDeviceInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/device/dto/QueryDeviceInputDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/entity/Device.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/device/entity/Device.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/device/service/impl/DeviceManageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/device/service/impl/DeviceManageServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Permission.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Permission.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/PermissionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/PermissionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/RoleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/user/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/sys/utils/WebSocketValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,45 +58,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Deploy to Host.47.101.196.164.executor&quot;: &quot;Run&quot;,
-    &quot;Deploy to Host.58.211.186.6.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.manager_api-endpoints | #1.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mdtg-esp32-api [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mdtg-esp32-api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mdtg-esp32-api [compile].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AdminApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/workspace/WYwei/Java_/Java_21/manager-api/src/main/resources/mapper/business&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Deploy to Host.47.101.196.164.executor": "Run",
+    "Deploy to Host.58.211.186.6.executor": "Run",
+    "HTTP Request.generated-requests | #1.executor": "Run",
+    "HTTP Request.manager_api-endpoints | #1.executor": "Run",
+    "Maven.mdtg-esp32-api [clean,package].executor": "Run",
+    "Maven.mdtg-esp32-api [clean].executor": "Run",
+    "Maven.mdtg-esp32-api [compile].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AdminApplication.executor": "Debug",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/workspace/WYwei/Java_/Java_21/manager-api/src/main/java/mdtg/business/common",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.14140625",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\common" />
       <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\resources\mapper\business" />
       <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\resources" />
       <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\mapper" />
       <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\dto" />
-      <recent name="D:\workspace\WYwei\Java_\Java_21\manager-api\src\main\java\mdtg\business\user\entity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="mdtg.business.agv.service.impl" />
@@ -262,7 +229,7 @@
       <workItem from="1776154949368" duration="5704000" />
       <workItem from="1776215974269" duration="14440000" />
       <workItem from="1776301813852" duration="16443000" />
-      <workItem from="1776391097252" duration="1474000" />
+      <workItem from="1776391097252" duration="13283000" />
     </task>
     <servers />
   </component>
