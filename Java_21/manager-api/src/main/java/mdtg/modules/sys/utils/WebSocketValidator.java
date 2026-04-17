@@ -1,10 +1,5 @@
 package mdtg.modules.sys.utils;
 
-import java.net.URI;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +7,13 @@ import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 
+import java.net.URI;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
+
 public class WebSocketValidator {
+
     private static final Logger logger = LoggerFactory.getLogger(WebSocketValidator.class);
 
     // WebSocket URL正则表达式
@@ -21,11 +22,12 @@ public class WebSocketValidator {
 
     /**
      * 验证WebSocket地址格式
-     * 
+     *
      * @param url WebSocket地址
      * @return 是否有效
      */
     public static boolean validateUrlFormat(String url) {
+
         if (StringUtils.isBlank(url)) {
             return false;
         }
@@ -34,11 +36,13 @@ public class WebSocketValidator {
 
     /**
      * 测试WebSocket连接
-     * 
+     *
      * @param url WebSocket地址
      * @return 是否可连接
      */
     public static boolean testConnection(String url) {
+
+        System.out.println("正在测试WebSocket连接: " + url);
         if (!validateUrlFormat(url)) {
             return false;
         }

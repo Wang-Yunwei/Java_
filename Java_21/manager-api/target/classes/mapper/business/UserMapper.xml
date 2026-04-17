@@ -32,14 +32,6 @@
         <result property="deleteFlag" column="delete_flag"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,username,password,gender,identity_card,phone,
-        email,address,role_ids,type,status,
-        sys_user_id,create_by,create_name,create_date,update_by,
-        update_name,update_date,company_code,company_name,second_org_code,
-        second_org_name,org_code,org_name,delete_flag
-    </sql>
-
     <!-- 1. 主查询：获取数据列表 -->
     <select id="queryUser" resultType="mdtg.business.user.dto.QueryUserOutputDTO">
         SELECT id, username, phone, role_ids, status, create_date, org_code, org_name FROM mdtg_user

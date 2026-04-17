@@ -11,7 +11,8 @@
       "name": "renren.xss.enabled",
       "type": "java.lang.Boolean",
       "description": "是否开启 XSS",
-      "sourceType": "mdtg.common.xss.XssProperties"
+      "sourceType": "mdtg.common.xss.XssProperties",
+      "defaultValue": false
     },
     {
       "name": "renren.xss.exclude-urls",

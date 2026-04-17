@@ -3,7 +3,7 @@ package mdtg.business.device.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import mdtg.business.common.entity.BaseEntity;
+import mdtg.business.common.toolkits.BaseEntity;
 
 import java.util.Date;
 
@@ -51,7 +51,7 @@ public class Device extends BaseEntity {
     private Integer type;
 
     /**
-     * type为1、2时,绑定type为0的设备ID
+     * type为1、2时,绑定type为0的设备MAC地址
      */
-    private Long parentId;
+    private String parentMac;
 }

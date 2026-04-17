@@ -26,10 +26,4 @@
             <result property="deleteFlag" column="delete_flag" />
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,parent_id,menu_path,level,plug_ids,type,
-        create_by,create_name,create_date,update_by,update_name,
-        update_date,company_code,company_name,second_org_code,second_org_name,
-        org_code,org_name,delete_flag
-    </sql>
 </mapper>

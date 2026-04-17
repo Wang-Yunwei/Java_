@@ -119,7 +119,7 @@ CREATE TABLE `mdtg_device` (
     `last_connection_time`  DATETIME        DEFAULT NOW()   COMMENT '最后连接时间',
     `auto_update`           TINYINT         DEFAULT 0       COMMENT '自动更新开关(0-关闭,1-开启)',
     `type`                  TINYINT         DEFAULT 0       COMMENT '类型(0-头,1-工牌,2-小车)',
-    `parent_id`             BIGINT          DEFAULT NULL    COMMENT '绑定ID(注: type为1、2时,绑定type为0的设备ID)',
+    `parent_mac`            VARCHAR(50)     DEFAULT NULL    COMMENT 'MAC地址(注: type为1、2时,绑定type为0的设备MAC地址)',
     `update_by`             BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`           VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
     `update_date`           DATETIME        DEFAULT NOW()   COMMENT '更新时间',

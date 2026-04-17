@@ -29,6 +29,9 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
             return this.baseMapper.updateById(device) > 0 ? ResponseDTO.wrapSuccess("更新设备成功!") : ResponseDTO.wrapException("更新设备失败!");
         }
+        if(inputDTO.getType() == 0){
+            Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(inputDTO::setParentMac);
+        }
         return this.baseMapper.insert(device) > 0 ? ResponseDTO.wrapSuccess("添加设备成功!") : ResponseDTO.wrapException("添加设备失败!");
     }
 
@@ -53,7 +56,7 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
         Optional.ofNullable(inputDTO.getLastConnectionTime()).ifPresent(lastConnectionTime -> queryWrapper.eq(Device::getLastConnectionTime, lastConnectionTime));
         Optional.ofNullable(inputDTO.getAutoUpdate()).ifPresent(autoUpdate -> queryWrapper.eq(Device::getAutoUpdate, autoUpdate));
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.eq(Device::getType, type));
-        Optional.ofNullable(inputDTO.getParentId()).ifPresent(parentId -> queryWrapper.eq(Device::getParentId, parentId));
+        Optional.ofNullable(inputDTO.getParentMac()).ifPresent(parentMac -> queryWrapper.eq(Device::getParentMac, parentMac));
         Page<Device> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
     }

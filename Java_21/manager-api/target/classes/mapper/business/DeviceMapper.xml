@@ -13,7 +13,7 @@
             <result property="lastConnectionTime" column="Last_connection_time" />
             <result property="autoUpdate" column="auto_update" />
             <result property="type" column="type" />
-            <result property="parentId" column="parent_id" />
+            <result property="parentMac" column="parent_mac" />
             <result property="updateBy" column="update_by" />
             <result property="updateName" column="update_name" />
             <result property="updateDate" column="update_date" />
@@ -29,11 +29,4 @@
             <result property="deleteFlag" column="delete_flag" />
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,alias,mac_address,board,firmware_version,Last_connection_time,
-        auto_update,type,binding_id,ai_device_id,update_by,
-        update_name,update_date,create_by,create_name,create_date,
-        company_code,company_name,second_org_code,second_org_name,org_code,
-        org_name,delete_flag
-    </sql>
 </mapper>

@@ -65,7 +65,6 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
     @Override
     public ResponseDTO<?> uploadFiles(MultipartFile[] files, String name, String deviceId) {
 
-        minioClient
         return null;
     }
 }

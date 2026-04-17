@@ -37,8 +37,8 @@ public class QueryDeviceInputDTO {
     @Schema(description = "类型(0-头,1-工牌,2-小车)")
     private Integer type;
 
-    @Schema(description = "type为1、2时,绑定type为0的设备ID")
-    private Long parentId;
+    @Schema(description = "type为1、2时,绑定type为0的设备MAC地址")
+    private String parentMac;
 
     @Schema(description = "页码")
     private Long pageNum = 0L;
