@@ -111,11 +111,13 @@ public class MQClient {
 
         @Override
         public void messageArrived(String topic, MqttMessage message) {
+            // 消息到达
 //            log.info(">>> Topic: {}, Qos: {}, Retained: {}, message: {}", topic, message.getQos(), message.isRetained(), new String(message.getPayload()));
         }
 
         @Override
         public void deliveryComplete(IMqttToken token) {
+            // 已投递
 //            log.info("deliveryComplete --------- {}", token.isComplete());
         }
 
