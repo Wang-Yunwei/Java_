@@ -41,9 +41,9 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
     }
 
     @Override
-    public ResponseDTO<?> deleteAttachment(Long attachId) {
+    public ResponseDTO<?> deleteAttachment(Long id) {
 
-        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(attachId));
+        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(id));
     }
 
     @Override

@@ -52,10 +52,10 @@ public class UserManagerController {
     }
 
     @Operation(summary = "用户 - 删除")
-    @PostMapping("/user/delete/{userId}")
-    public ResponseDTO<?> deleteUser(@PathVariable Long userId) {
+    @PostMapping("/user/delete/{id}")
+    public ResponseDTO<?> deleteUser(@PathVariable Long id) {
 
-        return userService.deleteUser(userId);
+        return userService.deleteUser(id);
     }
 
     @Operation(summary = "用户 - 查询")

@@ -169,7 +169,7 @@ CREATE TABLE `mdtg_task` (
     `type`                  VARCHAR(50)     DEFAULT NULL    COMMENT '任务类型(0-手动,1-定时)',
     `status`                TINYINT         DEFAULT 0       COMMENT '任务状态(0-待执行,1-执行中,2-已完成,3-执行失败)',
     `execute_num`           TINYINT         DEFAULT 0       COMMENT '执行次数',
-    `execute_time`          DATETIME        DEFAULT NULL    COMMENT '计划执行时间',
+    `execute_time`          VARCHAR(20)     DEFAULT NULL    COMMENT '计划执行时间(cron: 0 0 18 ? * WED)',
     `finish_time`           DATETIME        DEFAULT NULL    COMMENT '实际完成时间',
     `start_index`           INTEGER         DEFAULT NULL    COMMENT '起始坐标点索引',
     `coordinate_point_ids`  JSON            DEFAULT NULL    COMMENT '关联坐标点ID列表',

@@ -7,6 +7,7 @@ import org.eclipse.paho.mqttv5.client.persist.MemoryPersistence;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
 import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,6 +24,18 @@ public class MQClient {
     public static final String userContent = "{\"userId\":\"%s\",\"isConnect\":%b}";
 
     private static MqttClient mqClient;
+
+    @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
+    private String serverURI;
+
+    @Value("${spring.application.name}")
+    private String clientId;
+
+    @Value("${service-address.mqtt.username}")
+    private String userName;
+
+    @Value("${service-address.mqtt.password}")
+    private String password;
 
     /**
      * 发布
@@ -49,15 +62,12 @@ public class MQClient {
     }
 
     /**
-     * 单层通配符: STS/M350/PUBLISH/+
-     * <p>
-     * - STS/M350/PUBLISH/+ 将匹配 TS/M350/PUBLISH/x26123 和 TS/M350/PUBLISH/x26127，但不会匹配 TS/M350/PUBLISH/x26123/subtopic
-     * </p>
-     * <p>
-     * 多层通配符: STS/M350/PUBLISH/#
-     * <p>
-     * - TS/M350/PUBLISH/# 将匹配 TS/M350/PUBLISH/x26123、TS/M350/PUBLISH/x26127 和 TS/M350/PUBLISH/x26123/subtopic
-     * </p>
+     * <dl>
+     *   <dt>单层通配符: STS/M350/PUBLISH/+</dt>
+     *   <dd>STS/M350/PUBLISH/+ 将匹配 TS/M350/PUBLISH/x26123 和 TS/M350/PUBLISH/x26127，但不会匹配 TS/M350/PUBLISH/x26123/subtopic</dd>
+     *   <dt>多层通配符: STS/M350/PUBLISH/#</dt>
+     *   <dd>dTS/M350/PUBLISH/# 将匹配 TS/M350/PUBLISH/x26123、TS/M350/PUBLISH/x26127 和 TS/M350/PUBLISH/x26123/subtopic</dd>
+     * </dl>
      */
     public static void main(String[] args) {
 
@@ -80,6 +90,24 @@ public class MQClient {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void mqttClient() {
+
+        try {
+            mqClient = new MqttClient(serverURI, clientId, new MemoryPersistence());
+            // 设置连接选项
+            MqttConnectionOptions connOpts = new MqttConnectionOptions();
+            connOpts.setUserName(userName);
+            connOpts.setPassword(password.getBytes());
+            connOpts.setAutomaticReconnect(true);
+            // 设置回调函数
+            mqClient.setCallback(new MqttCallbackImpl());
+            // 建立连接
+            mqClient.connect(connOpts);
+        } catch (MqttException e) {
+            throw new BusinessException("创建MQTTClient失败!");
+        }
     }
 
     static class MqttCallbackImpl implements MqttCallback {

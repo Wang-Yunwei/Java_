@@ -88,9 +88,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public ResponseDTO<?> deleteUser(Long userId) {
+    public ResponseDTO<?> deleteUser(Long id) {
 
-        Long id = Long.valueOf(userId);
         User user = this.baseMapper.selectById(id);
         if (user != null) {
             int result = this.baseMapper.deleteById(user.getId());

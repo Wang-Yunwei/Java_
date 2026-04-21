@@ -19,7 +19,7 @@ public interface UserService extends IService<User> {
 
     ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO);
 
-    ResponseDTO<?> deleteUser(Long userId);
+    ResponseDTO<?> deleteUser(Long id);
 
     ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO);
 }

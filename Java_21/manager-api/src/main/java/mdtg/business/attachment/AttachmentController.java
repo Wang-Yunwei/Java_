@@ -39,10 +39,10 @@ public class AttachmentController {
     }
 
     @Operation(hidden = true, summary = "附件 - 删除")
-    @GetMapping("/delete/{attachId}")
-    public ResponseDTO<?> deleteAttachment(@PathVariable Long attachId) {
+    @GetMapping("/delete/{id}")
+    public ResponseDTO<?> deleteAttachment(@PathVariable Long id) {
 
-        return attachService.deleteAttachment(attachId);
+        return attachService.deleteAttachment(id);
     }
 
     @Operation(hidden = true, summary = "附件 - 查询", description = "1.根据条件查询附件列表，支持分页；<p>2.如果attachId存在，则根据附件Id查询附件详情；</p>")

@@ -31,10 +31,10 @@ public class DeviceManageController {
     }
 
     @Operation(summary = "设备 - 删除")
-    @GetMapping("/delete/{deviceId}")
-    public ResponseDTO<?> deleteDevice(@PathVariable Long deviceId) {
+    @GetMapping("/delete/{id}")
+    public ResponseDTO<?> deleteDevice(@PathVariable Long id) {
 
-        return deviceService.deleteDevice(deviceId);
+        return deviceService.deleteDevice(id);
     }
 
     @Operation(summary = "设备 - 查询")

@@ -36,9 +36,9 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
     }
 
     @Override
-    public ResponseDTO<?> deleteDevice(Long deviceId) {
+    public ResponseDTO<?> deleteDevice(Long id) {
 
-        return this.baseMapper.deleteById(deviceId) > 0 ? ResponseDTO.wrapSuccess("删除设备成功!") : ResponseDTO.wrapException("删除设备失败!");
+        return this.baseMapper.deleteById(id) > 0 ? ResponseDTO.wrapSuccess("删除设备成功!") : ResponseDTO.wrapException("删除设备失败!");
     }
 
     @Override

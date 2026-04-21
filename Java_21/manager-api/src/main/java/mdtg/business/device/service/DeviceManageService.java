@@ -13,7 +13,7 @@ public interface DeviceManageService extends IService<Device> {
 
     ResponseDTO<?> addDevice(AddDeviceInputDTO inputDTO);
 
-    ResponseDTO<?> deleteDevice(Long deviceId);
+    ResponseDTO<?> deleteDevice(Long id);
 
     ResponseDTO<?> queryDevice(QueryDeviceInputDTO inputDTO);
 }

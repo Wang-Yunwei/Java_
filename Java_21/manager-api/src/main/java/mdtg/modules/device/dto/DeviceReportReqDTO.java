@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +13,10 @@ import java.util.List;
 @Getter
 @Schema(description = "设备固件信息上报求请求体")
 public class DeviceReportReqDTO implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = 1L;
+
     // region 实体属性
     @Schema(description = "板子固件版本号")
     private Integer version;
@@ -59,6 +63,7 @@ public class DeviceReportReqDTO implements Serializable {
     @Setter
     @Schema(description = "芯片信息")
     public static class ChipInfo {
+
         @Schema(description = "芯片模型代码")
         private Integer model;
 
@@ -76,6 +81,7 @@ public class DeviceReportReqDTO implements Serializable {
     @Setter
     @Schema(description = "板子编译信息")
     public static class Application {
+
         @Schema(description = "名称")
         private String name;
 
@@ -99,6 +105,7 @@ public class DeviceReportReqDTO implements Serializable {
     @Setter
     @Schema(description = "分区信息")
     public static class Partition {
+
         @Schema(description = "分区标签名")
         private String label;
 
@@ -119,6 +126,7 @@ public class DeviceReportReqDTO implements Serializable {
     @Setter
     @Schema(description = "OTA信息")
     public static class OtaInfo {
+
         @Schema(description = "当前OTA标签")
         private String label;
     }
@@ -127,6 +135,7 @@ public class DeviceReportReqDTO implements Serializable {
     @Setter
     @Schema(description = "板子连接和网络信息")
     public static class BoardInfo {
+
         @Schema(description = "板子类型")
         private String type;
 

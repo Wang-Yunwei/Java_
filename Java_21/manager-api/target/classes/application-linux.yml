@@ -51,6 +51,11 @@ spring:
         shutdown-timeout: 100ms  # 客户端优雅关闭的等待时间
 
 service-address:
+  mqtt:
+    ip: 127.0.0.1
+    port: 1883
+    username: mdtg
+    password: mdtg@123
   mdtg:
     ip: 127.0.0.1
     port: 8002
