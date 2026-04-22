@@ -5,44 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddTaskInputDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryTaskInputDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/mapper/TaskMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/TaskService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/TaskServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/TaskMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/AgvController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/AgvController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/CoordinatePoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/CoordinatePoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/AttachmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/AttachmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/AttachService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/AttachService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/MQClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/MQClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceManageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceManageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/DeviceManageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/DeviceManageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceManageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceManageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/UserManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/UserManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/device/dto/DeviceReportReqDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/device/dto/DeviceReportReqDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-linux.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-linux.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-linux.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-linux.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/MQClient$MqttCallbackImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/MQClient$MqttCallbackImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/MQClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/MQClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$BoardInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$BoardInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$ChipInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$ChipInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$OtaInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$OtaInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$Partition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO$Partition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/device/dto/DeviceReportReqDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/agv/entity/CoordinatePoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/agv/entity/CoordinatePoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/BaseEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/ShiroConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
@@ -258,7 +227,7 @@
       <workItem from="1776301813852" duration="16443000" />
       <workItem from="1776391097252" duration="13283000" />
       <workItem from="1776648933386" duration="9539000" />
-      <workItem from="1776735197983" duration="9704000" />
+      <workItem from="1776735197983" duration="16054000" />
     </task>
     <servers />
   </component>

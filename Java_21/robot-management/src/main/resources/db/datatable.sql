@@ -137,13 +137,13 @@ CREATE TABLE `mdtg_device` (
     UNIQUE KEY `udx_mdtg_device_mac_address` (`mac_address`) COMMENT '创建mac地址唯一索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='设备信息表';
 
--- 坐标点
-DROP TABLE IF EXISTS `mdtg_coordinate_point`;
+-- 地图
+DROP TABLE IF EXISTS `mdtg_map`;
 CREATE TABLE `mdtg_coordinate_point` (
     `id`                BIGINT          NOT NULL        COMMENT '主键',
-    `name`              VARCHAR(50)     DEFAULT NULL    COMMENT '点位名称',
-    `point`             JSON            DEFAULT NULL    COMMENT '坐标点{"x":"3.455", "y":"-12.921", "yaw":"1.725"}',
-    `map_name`          VARCHAR(50)     DEFAULT NULL    COMMENT '地图名称',
+    `alias`             VARCHAR(50)     DEFAULT NULL    COMMENT '别名',
+    `name`              VARCHAR(50)     DEFAULT NULL    COMMENT '地图名',
+    `attach_id`         BIGINT          DEFAULT NULL    COMMENT '附件ID',
     `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
     `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
@@ -157,8 +157,32 @@ CREATE TABLE `mdtg_coordinate_point` (
     `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
     `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`),
-    KEY `idx_mdtg_space_point_map_name` (`map_name`) COMMENT '创建地图名称普通索引'
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='地图表';
+
+-- 坐标点
+DROP TABLE IF EXISTS `mdtg_coordinate_point`;
+CREATE TABLE `mdtg_coordinate_point` (
+    `id`                BIGINT          NOT NULL        COMMENT '主键',
+    `name`              VARCHAR(50)     DEFAULT NULL    COMMENT '名称',
+    `type`              TINYINT         DEFAULT NULL    COMMENT '类别(0-点位,1-轨迹)',
+    `point`             JSON            DEFAULT NULL    COMMENT '坐标点{"x": 3.803025, "y": -7.810509, "yaw": -2.950007, "updated_at": 1776265404}或[{xx,xx}]',
+    `mac_address`       VARCHAR(50)     NOT NULL        COMMENT 'MAC地址',
+    `map_id`            BIGINT          DEFAULT NULL    COMMENT '地图ID',
+    `update_by`         BIGINT          DEFAULT NULL    COMMENT '更新者ID',
+    `update_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
+    `update_date`       DATETIME        DEFAULT NOW()   COMMENT '更新时间',
+    `create_by`         BIGINT          DEFAULT NULL    COMMENT '创建者ID',
+    `create_name`       VARCHAR(50)     DEFAULT NULL    COMMENT '创建者名',
+    `create_date`       DATETIME        DEFAULT NOW()   COMMENT '创建时间',
+    `company_code`      VARCHAR(50)     DEFAULT NULL    COMMENT '单位编码',
+    `company_name`      VARCHAR(100)    DEFAULT NULL    COMMENT '单位简称',
+    `second_org_code`   VARCHAR(50)     DEFAULT NULL    COMMENT '二级组织编码',
+    `second_org_name`   VARCHAR(100)    DEFAULT NULL    COMMENT '二级组织简称',
+    `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
+    `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
+    `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
+    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='坐标点表';
 
 -- 任务
@@ -173,7 +197,8 @@ CREATE TABLE `mdtg_task` (
     `finish_time`           DATETIME        DEFAULT NULL    COMMENT '实际完成时间',
     `start_index`           INTEGER         DEFAULT NULL    COMMENT '起始坐标点索引',
     `coordinate_point_ids`  JSON            DEFAULT NULL    COMMENT '关联坐标点ID列表',
-    `device_id`             BIGINT          DEFAULT NULL    COMMENT '关联设备ID',
+    `device_id`             BIGINT          DEFAULT NULL    COMMENT '设备ID',
+    `map_id`                BIGINT          DEFAULT NULL    COMMENT '地图ID',
     `remark`                VARCHAR(255)    DEFAULT NULL    COMMENT '备注',
     `update_by`             BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`           VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',

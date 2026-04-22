@@ -1,7 +1,6 @@
 package mdtg.business.agv.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.toolkits.BaseEntity;

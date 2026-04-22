@@ -92,6 +92,6 @@ public class BaseEntity implements Serializable {
     /**
      * 删除标识(0-未删除,1-已删除)
      */
-    @TableLogic(value = "0", delval = "1")
+//    @TableLogic(value = "0", delval = "1")
     private Integer deleteFlag;
 }
