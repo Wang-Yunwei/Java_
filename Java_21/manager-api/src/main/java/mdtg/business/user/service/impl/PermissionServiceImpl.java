@@ -31,22 +31,20 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             // 执行更新
             return ResponseDTO.wrapSuccess(this.baseMapper.updateById(permission));
         }
-        return this.baseMapper.insert(permission) > 0 ? ResponseDTO.wrapSuccess(permission.getId()) : ResponseDTO.wrapException("新增权限失败!");
+        return ResponseDTO.wrapSuccess(this.baseMapper.insert(permission));
     }
 
     @Override
     public ResponseDTO<?> deletePermission(String permissionId) {
 
-        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(permissionId)>0);
+        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(permissionId));
     }
 
     @Override
     public ResponseDTO<?> queryPermission(QueryPermissionInputDTO inputDTO) {
 
         assert inputDTO != null : "入参为空!";
-        Permission permission = new Permission();
-        BeanUtils.copyProperties(inputDTO, permission);
-        if(inputDTO.getId()!=null && inputDTO.getId()>0){
+        if (inputDTO.getId() != null && inputDTO.getId() > 0) {
             // 详情
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getId()));
         }

@@ -23,7 +23,7 @@ public class DeviceManageController {
         this.deviceService = deviceService;
     }
 
-    @Operation(summary = "设备 - 添加or更新")
+    @Operation(summary = "设备 - 新增or更新")
     @PostMapping("/add-or-update")
     public ResponseDTO<?> addDevice(@RequestBody AddDeviceInputDTO inputDTO) {
 

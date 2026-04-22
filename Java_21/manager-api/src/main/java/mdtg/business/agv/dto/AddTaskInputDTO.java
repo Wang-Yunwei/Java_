@@ -40,8 +40,11 @@ public class AddTaskInputDTO {
     @Schema(description = "关联坐标点ID列表")
     private Object coordinatePointIds;
 
-    @Schema(description = "关联设备ID")
+    @Schema(description = "设备ID")
     private Long deviceId;
+
+    @Schema(description = "地图ID")
+    private Long mapId;
 
     @Schema(description = "备注")
     private String remark;

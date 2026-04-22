@@ -27,18 +27,18 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
         Device device = new Device();
         BeanUtils.copyProperties(inputDTO, device);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
-            return this.baseMapper.updateById(device) > 0 ? ResponseDTO.wrapSuccess("更新设备成功!") : ResponseDTO.wrapException("更新设备失败!");
+            ResponseDTO.wrapSuccess(this.baseMapper.updateById(device));
         }
-        if(inputDTO.getType() == 0){
+        if (inputDTO.getType() == 0) {
             Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(inputDTO::setParentMac);
         }
-        return this.baseMapper.insert(device) > 0 ? ResponseDTO.wrapSuccess("添加设备成功!") : ResponseDTO.wrapException("添加设备失败!");
+        return ResponseDTO.wrapSuccess(this.baseMapper.insert(device));
     }
 
     @Override
     public ResponseDTO<?> deleteDevice(Long id) {
 
-        return this.baseMapper.deleteById(id) > 0 ? ResponseDTO.wrapSuccess("删除设备成功!") : ResponseDTO.wrapException("删除设备失败!");
+        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(id));
     }
 
     @Override
@@ -49,9 +49,9 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getId()));
         }
         LambdaQueryWrapper<Device> queryWrapper = new LambdaQueryWrapper<>();
-        Optional.ofNullable(inputDTO.getAlias()).ifPresent(alias -> queryWrapper.eq(Device::getAlias, alias));
+        Optional.ofNullable(inputDTO.getAlias()).ifPresent(alias -> queryWrapper.like(Device::getAlias, alias));
         Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(macAddress -> queryWrapper.eq(Device::getMacAddress, macAddress));
-        Optional.ofNullable(inputDTO.getBoard()).ifPresent(board -> queryWrapper.eq(Device::getBoard, board));
+        Optional.ofNullable(inputDTO.getBoard()).ifPresent(board -> queryWrapper.like(Device::getBoard, board));
         Optional.ofNullable(inputDTO.getFirmwareVersion()).ifPresent(firmwareVersion -> queryWrapper.eq(Device::getFirmwareVersion, firmwareVersion));
         Optional.ofNullable(inputDTO.getLastConnectionTime()).ifPresent(lastConnectionTime -> queryWrapper.eq(Device::getLastConnectionTime, lastConnectionTime));
         Optional.ofNullable(inputDTO.getAutoUpdate()).ifPresent(autoUpdate -> queryWrapper.eq(Device::getAutoUpdate, autoUpdate));

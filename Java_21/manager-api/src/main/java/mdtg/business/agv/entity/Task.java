@@ -56,9 +56,14 @@ public class Task extends BaseEntity {
     private Object coordinatePointIds;
 
     /**
-     * 关联设备ID
+     * 设备ID
      */
     private Long deviceId;
+
+    /**
+     * 地图ID
+     */
+    private Long mapId;
 
     /**
      * 备注

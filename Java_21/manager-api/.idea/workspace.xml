@@ -5,15 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddMapInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryMapInputDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/Map.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/mapper/MapMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/MapService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/MapServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/MapMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/AgvController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/AgvController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddPointInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddPointInputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddTaskInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddTaskInputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryPointInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryPointInputDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/CoordinatePoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/CoordinatePoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/common/toolkits/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/config/ShiroConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/agv/entity/CoordinatePoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/agv/entity/CoordinatePoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/business/common/toolkits/BaseEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mdtg/modules/security/config/ShiroConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/CoordinatePointServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/CoordinatePointServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/attachment/service/impl/AttachServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceManageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/DeviceManageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceManageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/service/impl/DeviceManageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/PermissionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/PermissionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/CoordinatePointMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/CoordinatePointMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/TaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/TaskMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,38 +69,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Deploy to Host.47.101.196.164.executor": "Run",
-    "Deploy to Host.58.211.186.6.executor": "Run",
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "HTTP Request.manager_api-endpoints | #1.executor": "Run",
-    "Maven.mdtg-esp32-api [clean,package].executor": "Run",
-    "Maven.mdtg-esp32-api [clean].executor": "Run",
-    "Maven.mdtg-esp32-api [compile].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AdminApplication.executor": "Debug",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/workspace/WYwei/Java_/Java_21/manager-api/src/main/resources/mapper/business",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.14140625",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Deploy to Host.47.101.196.164.executor&quot;: &quot;Run&quot;,
+    &quot;Deploy to Host.58.211.186.6.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.manager_api-endpoints | #1.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.mdtg-esp32-api [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.mdtg-esp32-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.mdtg-esp32-api [compile].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/workspace/WYwei/Java_/Java_21/manager-api/src/main/resources/mapper/business&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.14140625&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -228,6 +243,7 @@
       <workItem from="1776391097252" duration="13283000" />
       <workItem from="1776648933386" duration="9539000" />
       <workItem from="1776735197983" duration="16054000" />
+      <workItem from="1776838437275" duration="6246000" />
     </task>
     <servers />
   </component>

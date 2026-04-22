@@ -53,12 +53,12 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
         if (inputDTO.getAttachId() != null && inputDTO.getAttachId() > 0) {
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getAttachId()));
         }
-        IPage<Attach> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         LambdaQueryWrapper<Attach> queryWrapper = new LambdaQueryWrapper<>();
         Optional.ofNullable(inputDTO.getBusinessId()).ifPresent(businessId -> queryWrapper.eq(Attach::getBusinessId, businessId));
         Optional.ofNullable(inputDTO.getBusinessType()).ifPresent(businessType -> queryWrapper.eq(Attach::getBusinessType, businessType));
         Optional.ofNullable(inputDTO.getContentType()).ifPresent(contentType -> queryWrapper.eq(Attach::getContentType, contentType));
         Optional.ofNullable(inputDTO.getFileName()).ifPresent(fileName -> queryWrapper.like(Attach::getFileName, fileName));
+        IPage<Attach> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
     }
 

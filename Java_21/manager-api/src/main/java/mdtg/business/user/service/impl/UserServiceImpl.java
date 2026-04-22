@@ -76,15 +76,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO) {
 
-        assert inputDTO != null : "入参为空!";
+        assert inputDTO != null : "参数不能为 NULL！";
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
             // 1.如果传入了id,则说明是修改用户
-            return this.baseMapper.updateById(user) > 0 ? ResponseDTO.wrapSuccess() : ResponseDTO.wrapException("修改用户失败!");
+            return ResponseDTO.wrapSuccess(this.baseMapper.updateById(user));
         }
         // 2.如果没有传入id,则说明是新增用户
-        return this.baseMapper.insert(user) > 0 ? ResponseDTO.wrapSuccess() : ResponseDTO.wrapException("新增用户失败!");
+        ResponseDTO.wrapSuccess(this.baseMapper.insert(user));
     }
 
     @Override
@@ -104,16 +104,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO) {
 
-        assert inputDTO != null : "入参为空!";
-        if(inputDTO.getUserId() != null && inputDTO.getUserId() > 0){
+        assert inputDTO != null : "参数不能为 NULL！";
+        if (inputDTO.getUserId() != null && inputDTO.getUserId() > 0) {
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getUserId()));
         }
-        Page<QueryUserOutputDTO> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<User>().eq(User::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getSysUserId()).ifPresent(sysUserId -> queryWrapper.eq(User::getSysUserId, sysUserId));
         Optional.ofNullable(inputDTO.getPhone()).ifPresent(phone -> queryWrapper.eq(User::getPhone, phone));
         Optional.ofNullable(inputDTO.getUserName()).ifPresent(username -> queryWrapper.like(User::getUsername, username));
         Optional.ofNullable(inputDTO.getAddress()).ifPresent(address -> queryWrapper.like(User::getAddress, address));
+        Page<QueryUserOutputDTO> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         Page<QueryUserOutputDTO> dtoPage = this.baseMapper.queryUser(page, queryWrapper);
         dtoPage.getRecords().forEach(record -> record.setDeviceCount(deviceService.selectCountByUserId(record.getId())));
         return ResponseDTO.wrapSuccess(dtoPage);

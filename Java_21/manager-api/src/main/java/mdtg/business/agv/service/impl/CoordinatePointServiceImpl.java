@@ -46,9 +46,10 @@ public class CoordinatePointServiceImpl extends ServiceImpl<CoordinatePointMappe
 
         assert inputDTO != null : "参数不能为NULL!";
         LambdaQueryWrapper<CoordinatePoint> queryWrapper = new LambdaQueryWrapper<CoordinatePoint>().eq(CoordinatePoint::getDeleteFlag, 0);
-        Optional.ofNullable(inputDTO.getId()).ifPresent(id -> queryWrapper.eq(CoordinatePoint::getId, id));
-        Optional.ofNullable(inputDTO.getName()).ifPresent(name -> queryWrapper.eq(CoordinatePoint::getName, name));
-        Optional.ofNullable(inputDTO.getMapName()).ifPresent(mapName -> queryWrapper.eq(CoordinatePoint::getMapName, mapName));
+        Optional.ofNullable(inputDTO.getPointId()).ifPresent(pointId -> queryWrapper.eq(CoordinatePoint::getId, pointId));
+        Optional.ofNullable(inputDTO.getName()).ifPresent(name -> queryWrapper.like(CoordinatePoint::getName, name));
+        Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.like(CoordinatePoint::getType, type));
+        Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(macAddress -> queryWrapper.eq(CoordinatePoint::getMacAddress, macAddress));
         IPage<CoordinatePoint> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         return ResponseDTO.wrapSuccess(this.baseMapper.selectList(page, queryWrapper));
     }

@@ -19,12 +19,22 @@ public class CoordinatePoint extends BaseEntity {
     private String name;
 
     /**
-     * 坐标点{"x":"3.455", "y":"-12.921", "yaw":"1.725"}
+     * 类别(0-点位,1-轨迹)
+     */
+    private Integer type;
+
+    /**
+     * 坐标点{"x": 3.803025, "y": -7.810509, "yaw": -2.950007, "updated_at": 1776265404}或[{xx,xx}]
      */
     private Object point;
 
     /**
-     * 地图名称
+     * MAC地址
      */
-    private String mapName;
+    private String macAddress;
+
+    /**
+     * 地图ID
+     */
+    private Long mapId;
 }

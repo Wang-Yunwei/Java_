@@ -32,13 +32,13 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
             return ResponseDTO.wrapSuccess(this.baseMapper.updateById(role) != 0);
         }
         // 2.执行新增
-        return this.baseMapper.insert(role) > 0 ? ResponseDTO.wrapSuccess(role.getId()) : ResponseDTO.wrapException("新增角色失败");
+        return ResponseDTO.wrapSuccess(this.baseMapper.insert(role));
     }
 
     @Override
     public ResponseDTO<?> deleteRole(String roleId) {
 
-        return this.baseMapper.deleteById(roleId) > 0 ? ResponseDTO.wrapSuccess() : ResponseDTO.wrapException("删除角色失败!");
+        return ResponseDTO.wrapSuccess(this.baseMapper.deleteById(roleId));
     }
 
     @Override
@@ -54,8 +54,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         LambdaQueryWrapper<Role> queryWrapper = new LambdaQueryWrapper<Role>().eq(Role::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getCode()).ifPresent(code -> queryWrapper.eq(Role::getCode, code));
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.eq(Role::getType, type));
-        IPage<Role> roleIPage = this.baseMapper.selectPage(page, queryWrapper);
-        return ResponseDTO.wrapSuccess(roleIPage);
+        return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
     }
 }
 

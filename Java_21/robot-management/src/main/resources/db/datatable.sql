@@ -119,6 +119,7 @@ CREATE TABLE `mdtg_device` (
     `last_connection_time`  DATETIME        DEFAULT NOW()   COMMENT '最后连接时间',
     `auto_update`           TINYINT         DEFAULT 0       COMMENT '自动更新开关(0-关闭,1-开启)',
     `type`                  TINYINT         DEFAULT 0       COMMENT '类型(0-头,1-工牌,2-小车)',
+    `status`                TINYINT         DEFAULT 1       COMMENT '状态(0-故障,1-正常(离线),2-在线)',
     `parent_mac`            VARCHAR(50)     DEFAULT NULL    COMMENT 'MAC地址(注: type为1、2时,绑定type为0的设备MAC地址)',
     `update_by`             BIGINT          DEFAULT NULL    COMMENT '更新者ID',
     `update_name`           VARCHAR(50)     DEFAULT NULL    COMMENT '更新者名',
@@ -157,7 +158,8 @@ CREATE TABLE `mdtg_coordinate_point` (
     `org_code`          VARCHAR(50)     DEFAULT NULL    COMMENT '组织编码',
     `org_name`          VARCHAR(100)    DEFAULT NULL    COMMENT '组织简称',
     `delete_flag`       TINYINT         DEFAULT 0       COMMENT '删除标识(0-未删除,1-已删除)',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `udx_mdtg_map_name` (`name`) COMMENT '创建地图名唯一索引'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='地图表';
 
 -- 坐标点

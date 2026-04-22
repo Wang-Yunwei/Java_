@@ -17,9 +17,15 @@ public class AddPointInputDTO {
     @Schema(description = "点位名称")
     private String name;
 
+    @Schema(description = "类别(0-点位,1-轨迹)")
+    private Integer type;
+
     @Schema(description = "坐标点，格式示例：{x: 3.455, y: -12.921, yaw: 1.725}")
     private Object point;
 
-    @Schema(description = "地图名称")
-    private String mapName;
+    @Schema(description = "MAC地址")
+    private String macAddress;
+
+    @Schema(description = "地图ID")
+    private String mapId;
 }
