@@ -12,19 +12,22 @@ spring:
     druid:
       #MySQL
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://${service-address.mdtg.ip}:3306/mdtg_esp32_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+      url: jdbc:mysql://localhost:3306/mdtg_esp32_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
       username: mdtg
       password: mdtg@123
+      keep-alive: true # 开启后，连接池会主动维护连接活性，防止被 MySQL 服务端断开
+      keep-alive-between-time-millis: 120000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-on-borrow: true
+      test-while-idle: true
+      validation-query: SELECT 1
       initial-size: 10
       max-active: 100
       min-idle: 10
       max-wait: 6000
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 20
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 300000
-      test-while-idle: true
-      test-on-borrow: false
       test-on-return: false
       stat-view-servlet:
         enabled: false

@@ -84,7 +84,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return ResponseDTO.wrapSuccess(this.baseMapper.updateById(user));
         }
         // 2.如果没有传入id,则说明是新增用户
-        ResponseDTO.wrapSuccess(this.baseMapper.insert(user));
+        return ResponseDTO.wrapSuccess(this.baseMapper.insert(user));
     }
 
     @Override

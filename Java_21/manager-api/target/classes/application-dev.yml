@@ -15,27 +15,33 @@ spring:
       url: jdbc:mysql://${service-address.mdtg.ip}:3306/mdtg_esp32_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
       username: xiaomai
       password: xiaomai@123
-      initial-size: 10
-      max-active: 100
-      min-idle: 10
-      max-wait: 6000
-      pool-prepared-statements: true
-      max-pool-prepared-statement-per-connection-size: 20
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 300000
-      test-while-idle: true
-      test-on-borrow: false
+      keep-alive: true # 开启后，连接池会主动维护连接活性，防止被 MySQL 服务端断开
+      keep-alive-between-time-millis: 120000 # 连接空闲超过120000ms这个时间，就会执行一次保活检测
+      time-between-eviction-runs-millis: 60000 # 后台线程每隔 60 秒运行一次，检测空闲连接
+      min-evictable-idle-time-millis: 300000 # 注意：建议 300000ms ~ 10分钟，这个值必须小于 MySQL 的 wait_timeout (默认8小时)
+      test-on-borrow: true # 申请连接时检测有效性 (生产环境建议开启，虽然轻微影响性能但更稳定)
+      test-while-idle: true # 空闲时检测有效性 (必须开启，配合回收机制使用)
+      validation-query: SELECT 1 # 验证查询语句
+      initial-size: 10 # 应用启动时，Druid 会立即创建 10 个物理连接。这能避免应用刚启动时，第一个请求因创建连接过慢而超时（“冷启动”问题）。
+      max-active: 100 # 连接池允许同时存在的最大连接数。如果业务并发量极高，超过 100 个线程同时操作数据库，多余的线程就需要等待
+      min-idle: 10 # 连接池会尽力保持至少 10 个空闲连接随时待命。当连接被使用后，如果空闲数低于 10，Druid 会在后台异步创建新连接补充，保证下次请求能“秒级”响应
+      max-wait: 6000 # 当连接池满了（达到 100 个）且没有空闲连接时，新请求会排队等待。如果等待超过 6000 毫秒（6秒）还没拿到连接，就会抛出超时异常。这能防止线程无限期阻塞
+      pool-prepared-statements: true # 开启 PSCache。MySQL 和 Oracle 等数据库在执行 SQL 前会进行预编译。开启此功能后，Druid 会在客户端（应用层）缓存这些预编译的语句对象
+      max-pool-prepared-statement-per-connection-size: 20 # 每个连接缓存 20 个。指每个物理数据库连接最多缓存 20 个预编译语句
       test-on-return: false
       stat-view-servlet:
-        enabled: false
+        enabled: false # 关闭监控网页。Druid 自带一个可视化的监控网页（Druid Monitor），可以实时查看连接数、SQL 统计等。这里设为 false 表示不启动这个网页（通常在生产环境为了安全会关闭，或者通过专门的监控平台采集数据）
       filter:
         stat:
-          log-slow-sql: true
-          slow-sql-millis: 1000
-          merge-sql: false
+          log-slow-sql: true # 记录慢 SQL。开启后，Druid 会自动记录执行时间超过阈值的 SQL 语句
+          slow-sql-millis: 1000 # 慢 SQL 阈值 (1秒)。任何执行时间超过 1000 毫秒的 SQL 都会被标记为“慢 SQL”并记录在监控日志中。这是排查数据库性能问题的关键指标
+          merge-sql: false # 设为 false 的原因：通常为了排查具体的慢 SQL 参数，或者为了看到每一条具体的执行记录，开发者会选择不合并，这样能看到最原始的 SQL 执行情况
         wall:
           config:
-            multi-statement-allow: true
+            # 这部分是 Druid 的 SQL 防火墙，用于防止 SQL 注入攻击
+            # 默认情况下，Druid 防火墙会拦截包含分号 ; 的 SQL，以防止 SQL 注入（例如 DROP TABLE user; --）
+            # 设为 true 的场景：如果你的业务代码中确实需要一次性执行多条 SQL（例如 MyBatis 的批量更新，或者存储过程调用），就需要开启此选项，否则会被误判为攻击而拦截
+            multi-statement-allow: true # 允许分号批量执行
   data:
     redis:
       host: ${service-address.mdtg.ip}         # Redis服务器地址

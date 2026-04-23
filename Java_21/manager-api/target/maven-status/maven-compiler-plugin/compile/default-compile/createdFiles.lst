@@ -67,6 +67,7 @@ mdtg\business\agv\service\impl\CoordinatePointServiceImpl.class
 mdtg\modules\device\vo\UserShowDeviceListVO.class
 mdtg\common\utils\JsonRpcTwo.class
 mdtg\modules\timbre\dao\TimbreDao.class
+mdtg\business\agv\dto\AddMapInputDTO.class
 mdtg\modules\agent\dao\AgentContextProviderDao.class
 mdtg\modules\security\secret\ServerSecretToken.class
 mdtg\business\customer\feign\CustomerFeign.class
@@ -112,6 +113,7 @@ mdtg\common\utils\TreeUtils.class
 mdtg\common\utils\Result.class
 mdtg\common\page\PageData.class
 mdtg\modules\voiceclone\entity\VoiceCloneEntity.class
+mdtg\business\agv\service\MapService.class
 mdtg\common\handler\FieldMetaObjectHandler.class
 mdtg\modules\agent\entity\AgentChatAudioEntity.class
 mdtg\modules\device\vo\DeviceOtaVO$Mqtt.class
@@ -225,6 +227,7 @@ mdtg\modules\agent\Enums\AgentChatHistoryType.class
 mdtg\business\user\dto\AddPermissionInputDTO.class
 mdtg\business\user\service\impl\PermissionServiceImpl.class
 mdtg\common\config\SwaggerConfig.class
+mdtg\business\agv\service\impl\MapServiceImpl.class
 mdtg\modules\timbre\vo\TimbreDetailsVO.class
 mdtg\business\device\entity\Device.class
 mdtg\modules\model\dao\ModelConfigDao.class
@@ -299,6 +302,7 @@ mdtg\business\user\entity\Permission.class
 mdtg\modules\model\service\impl\ModelConfigServiceImpl.class
 mdtg\modules\agent\vo\AgentVoicePrintVO.class
 mdtg\business\user\service\impl\RoleServiceImpl.class
+mdtg\business\agv\dto\QueryMapInputDTO.class
 mdtg\common\service\BaseService.class
 mdtg\modules\sys\utils\WebSocketValidator.class
 mdtg\modules\sys\service\impl\SysUserUtilServiceImpl.class
@@ -368,7 +372,9 @@ mdtg\modules\knowledge\rag\KnowledgeBaseAdapterFactory.class
 mdtg\modules\sys\service\SysDictDataService.class
 mdtg\business\user\mapper\PermissionMapper.class
 mdtg\modules\security\config\ShiroConfig.class
+mdtg\business\agv\entity\Map.class
 mdtg\modules\device\dto\DeviceReportReqDTO$ChipInfo.class
+mdtg\business\agv\mapper\MapMapper.class
 mdtg\modules\device\service\impl\DeviceServiceImpl.class
 mdtg\modules\device\dto\DeviceManualAddDTO.class
 mdtg\modules\agent\dao\AgentTemplateDao.class
