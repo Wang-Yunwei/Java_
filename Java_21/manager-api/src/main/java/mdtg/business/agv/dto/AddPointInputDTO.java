@@ -27,5 +27,5 @@ public class AddPointInputDTO {
     private String macAddress;
 
     @Schema(description = "地图ID")
-    private String mapId;
+    private Long mapId;
 }

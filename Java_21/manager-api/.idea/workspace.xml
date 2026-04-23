@@ -6,15 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryPointInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryPointInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryTaskInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/QueryTaskInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/entity/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/CoordinatePointServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/CoordinatePointServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/service/impl/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/modules/security/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddPointInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddPointInputDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddTaskInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/agv/dto/AddTaskInputDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mdtg-esp32-api.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../robot-management/src/main/resources/db/datatable.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +100,7 @@
       <recent name="mdtg.business.device.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AdminApplication">
+  <component name="RunManager" selected="Deploy to Host.58.211.186.6">
     <configuration name="47.101.196.164" type="DEPLOY_HOST_RUN_CONFIGURATION" factoryName="Deploy to Host">
       <option name="accountModel" />
       <option name="accountModels" />
@@ -229,7 +224,7 @@
       <workItem from="1776648933386" duration="9539000" />
       <workItem from="1776735197983" duration="16054000" />
       <workItem from="1776838437275" duration="10324000" />
-      <workItem from="1776908509184" duration="9687000" />
+      <workItem from="1776908509184" duration="11420000" />
     </task>
     <servers />
   </component>
