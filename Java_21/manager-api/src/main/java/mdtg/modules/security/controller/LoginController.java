@@ -117,12 +117,8 @@ public class LoginController {
         // 按照用户名获取用户
         SysUserDTO userDTO = sysUserService.getByUsername(login.getUsername());
         // 判断用户是否存在
-        if (userDTO == null) {
-            throw new RenException(ErrorCode.ACCOUNT_PASSWORD_ERROR);
-        }
-        // 判断密码是否正确，不一样则进入if
-        if (!PasswordUtils.matches(login.getPassword(), userDTO.getPassword())) {
-            throw new RenException(ErrorCode.ACCOUNT_PASSWORD_ERROR);
+        if (userDTO == null && !PasswordUtils.matches(login.getPassword(), userDTO.getPassword())) {
+            return new Result().error(ErrorCode.ACCOUNT_PASSWORD_ERROR,"用户名或密码错误!");
         }
 
         // TODO

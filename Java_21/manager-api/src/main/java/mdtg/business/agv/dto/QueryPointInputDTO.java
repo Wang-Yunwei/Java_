@@ -23,6 +23,9 @@ public class QueryPointInputDTO {
     @Schema(description = "MAC地址")
     private String macAddress;
 
+    @Schema(description = "地图ID")
+    private Long mapId;
+
     @Schema(description = "页码")
     private Long pageNum = 0L;
 

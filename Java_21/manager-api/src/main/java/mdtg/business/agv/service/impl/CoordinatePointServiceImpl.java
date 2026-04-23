@@ -50,6 +50,7 @@ public class CoordinatePointServiceImpl extends ServiceImpl<CoordinatePointMappe
         Optional.ofNullable(inputDTO.getName()).ifPresent(name -> queryWrapper.like(CoordinatePoint::getName, name));
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.like(CoordinatePoint::getType, type));
         Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(macAddress -> queryWrapper.eq(CoordinatePoint::getMacAddress, macAddress));
+        Optional.ofNullable(inputDTO.getMapId()).ifPresent(mapId -> queryWrapper.eq(CoordinatePoint::getMapId, mapId));
         IPage<CoordinatePoint> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         return ResponseDTO.wrapSuccess(this.baseMapper.selectList(page, queryWrapper));
     }

@@ -51,6 +51,11 @@ public class Task extends BaseEntity {
     private Integer startIndex;
 
     /**
+     * 备注
+     */
+    private String remark;
+
+    /**
      * 关联坐标点ID列表
      */
     private Object coordinatePointIds;
@@ -64,9 +69,4 @@ public class Task extends BaseEntity {
      * 地图ID
      */
     private Long mapId;
-
-    /**
-     * 备注
-     */
-    private String remark;
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.agv.dto.AddTaskInputDTO;
 import mdtg.business.agv.dto.QueryTaskInputDTO;
+import mdtg.business.agv.entity.CoordinatePoint;
 import mdtg.business.agv.entity.Task;
 import mdtg.business.agv.mapper.TaskMapper;
 import mdtg.business.agv.service.TaskService;
@@ -48,8 +49,9 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task> implements Ta
         Optional.ofNullable(inputDTO.getName()).ifPresent(name -> queryWrapper.like(Task::getName, name));
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.eq(Task::getType, type));
         Optional.ofNullable(inputDTO.getStatus()).ifPresent(status -> queryWrapper.eq(Task::getStatus, status));
-        Optional.ofNullable(inputDTO.getDeviceId()).ifPresent(deviceId -> queryWrapper.eq(Task::getDeviceId, deviceId));
         Optional.ofNullable(inputDTO.getRemark()).ifPresent(remark -> queryWrapper.like(Task::getRemark, remark));
+        Optional.ofNullable(inputDTO.getDeviceId()).ifPresent(deviceId -> queryWrapper.eq(Task::getDeviceId, deviceId));
+        Optional.ofNullable(inputDTO.getMapId()).ifPresent(mapId -> queryWrapper.eq(Task::getMapId, mapId));
         IPage<Task> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
     }

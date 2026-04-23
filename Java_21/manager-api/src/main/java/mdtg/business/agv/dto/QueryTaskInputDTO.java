@@ -23,11 +23,14 @@ public class QueryTaskInputDTO {
     @Schema(description = "任务状态(0-待执行,1-执行中,2-已完成,3-执行失败)")
     private Integer status;
 
+    @Schema(description = "备注")
+    private String remark;
+
     @Schema(description = "关联设备ID")
     private Long deviceId;
 
-    @Schema(description = "备注")
-    private String remark;
+    @Schema(description = "地图ID")
+    private Long mapId;
 
     @Schema(description = "页码")
     private Long pageNum = 0L;
