@@ -57,7 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = this.baseMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getSysUserId, tokenEntity.getUserId()));
         if (user == null) {
             outputDTO.setValid(false);
-            outputDTO.setMessage("未找到对应用户");
+            outputDTO.setMessage("未找到对应用户!");
             return ResponseDTO.wrapSuccess(outputDTO);
         }
         outputDTO.setUserId(user.getId().toString());

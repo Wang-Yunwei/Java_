@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8addac1a-6d53-44f9-9c76-faf913e5c713" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/device/dto/QueryDeviceInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryPermissionInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryPermissionInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryRoleInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryRoleInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/dto/QueryUserOutputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/PermissionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/PermissionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/RoleServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mdtg/business/user/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -227,7 +220,7 @@
       <workItem from="1776648933386" duration="9539000" />
       <workItem from="1776735197983" duration="16054000" />
       <workItem from="1776838437275" duration="10324000" />
-      <workItem from="1776908509184" duration="11868000" />
+      <workItem from="1776908509184" duration="11942000" />
     </task>
     <servers />
   </component>
