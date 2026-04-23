@@ -12,7 +12,7 @@ import lombok.Setter;
 public class QueryRoleInputDTO {
 
     @Schema(description = "角色ID")
-    private Long id;
+    private Long roleId;
 
     @Schema(description = "角色编码(如: admin)")
     private String code;

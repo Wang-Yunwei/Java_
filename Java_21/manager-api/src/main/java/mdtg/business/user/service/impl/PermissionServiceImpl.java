@@ -44,9 +44,9 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     public ResponseDTO<?> queryPermission(QueryPermissionInputDTO inputDTO) {
 
         assert inputDTO != null : "入参为空!";
-        if (inputDTO.getId() != null && inputDTO.getId() > 0) {
+        if (inputDTO.getPermissionId() != null && inputDTO.getPermissionId() > 0) {
             // 详情
-            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getId()));
+            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getPermissionId()));
         }
         LambdaQueryWrapper<Permission> queryWrapper = new LambdaQueryWrapper<Permission>().eq(Permission::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getParentId()).ifPresent(parentId -> queryWrapper.eq(Permission::getParentId, parentId));

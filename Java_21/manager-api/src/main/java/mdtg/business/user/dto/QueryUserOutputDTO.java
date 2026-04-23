@@ -19,7 +19,7 @@ public class QueryUserOutputDTO {
 
     @Schema(description = "用户ID")
     @JsonSerialize(using = ToStringSerializer.class)
-    private Long id;
+    private Long userId;
 
     @Schema(description = "用户名")
     private String username;

@@ -45,9 +45,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     public ResponseDTO<?> queryRole(QueryRoleInputDTO inputDTO) {
 
         assert inputDTO != null : "入参为空!";
-        if (inputDTO.getId() != null && inputDTO.getId() > 0) {
+        if (inputDTO.getRoleId() != null && inputDTO.getRoleId() > 0) {
             // 查详情
-            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getId()));
+            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getRoleId()));
         }
         // 查询列表
         IPage<Role> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());

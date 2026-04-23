@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class QueryPermissionInputDTO {
     @Schema(description = "权限ID")
-    private Long id;
+    private Long permissionId;
 
     @Schema(description = "父级ID")
     private Long parentId;

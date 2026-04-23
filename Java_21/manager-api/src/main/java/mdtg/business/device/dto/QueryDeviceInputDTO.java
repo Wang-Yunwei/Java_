@@ -14,7 +14,7 @@ import java.util.Date;
 public class QueryDeviceInputDTO {
 
     @Schema(description = "主键")
-    private Long id;
+    private Long deviceId;
 
     @Schema(description = "设备别名")
     private String alias;
