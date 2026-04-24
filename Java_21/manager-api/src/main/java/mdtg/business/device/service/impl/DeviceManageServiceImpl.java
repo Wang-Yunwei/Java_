@@ -45,10 +45,10 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
     public ResponseDTO<?> queryDevice(QueryDeviceInputDTO inputDTO) {
 
         assert inputDTO != null : "输入参数不能为空!";
-        if (inputDTO.getId() != null && inputDTO.getId() > 0) {
-            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getId()));
+        if (inputDTO.getDeviceId() != null && inputDTO.getDeviceId() > 0) {
+            return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getDeviceId()));
         }
-        LambdaQueryWrapper<Device> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<Device> queryWrapper = new LambdaQueryWrapper<Device>().eq(Device::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getAlias()).ifPresent(alias -> queryWrapper.like(Device::getAlias, alias));
         Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(macAddress -> queryWrapper.eq(Device::getMacAddress, macAddress));
         Optional.ofNullable(inputDTO.getBoard()).ifPresent(board -> queryWrapper.like(Device::getBoard, board));

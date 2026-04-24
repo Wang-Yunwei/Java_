@@ -1,6 +1,8 @@
 package mdtg.business.agv.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.toolkits.BaseEntity;
@@ -58,6 +60,7 @@ public class Task extends BaseEntity {
     /**
      * 关联坐标点ID列表
      */
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private Object coordinatePointIds;
 
     /**

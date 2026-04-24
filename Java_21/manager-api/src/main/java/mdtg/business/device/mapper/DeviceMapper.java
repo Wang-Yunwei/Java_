@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DeviceMapper extends BaseMapper<Device> {
 
+
+    select
 }
 
 
