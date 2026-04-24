@@ -24,14 +24,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
     public ResponseDTO<?> addRole(AddRoleInputDTO inputDTO) {
 
-        assert inputDTO != null : "入参为空!";
+        assert inputDTO != null : "入参不能为 NULL！";
         Role role = new Role();
         BeanUtils.copyProperties(inputDTO, role);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
-            // 1.执行更新(存在角色ID)
             return ResponseDTO.wrapSuccess(this.baseMapper.updateById(role) != 0);
         }
-        // 2.执行新增
         return ResponseDTO.wrapSuccess(this.baseMapper.insert(role));
     }
 
@@ -44,7 +42,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
     public ResponseDTO<?> queryRole(QueryRoleInputDTO inputDTO) {
 
-        assert inputDTO != null : "入参为空!";
+        assert inputDTO != null : "入参不能为 NULL！";
         if (inputDTO.getRoleId() != null && inputDTO.getRoleId() > 0) {
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getRoleId()));
         }

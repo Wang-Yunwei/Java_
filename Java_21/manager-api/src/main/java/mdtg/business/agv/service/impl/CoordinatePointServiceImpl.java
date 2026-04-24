@@ -24,7 +24,7 @@ public class CoordinatePointServiceImpl extends ServiceImpl<CoordinatePointMappe
     @Override
     public ResponseDTO<?> addPoint(AddPointInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为NULL!";
+        assert inputDTO != null : "参数不能为 NULL！";
         CoordinatePoint coordinatePoint = new CoordinatePoint();
         BeanUtils.copyProperties(inputDTO, coordinatePoint);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
@@ -44,7 +44,7 @@ public class CoordinatePointServiceImpl extends ServiceImpl<CoordinatePointMappe
     @Override
     public ResponseDTO<?> queryPoint(QueryPointInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为NULL!";
+        assert inputDTO != null : "参数不能为 NULL！";
         LambdaQueryWrapper<CoordinatePoint> queryWrapper = new LambdaQueryWrapper<CoordinatePoint>().eq(CoordinatePoint::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getPointId()).ifPresent(pointId -> queryWrapper.eq(CoordinatePoint::getId, pointId));
         Optional.ofNullable(inputDTO.getName()).ifPresent(name -> queryWrapper.like(CoordinatePoint::getName, name));

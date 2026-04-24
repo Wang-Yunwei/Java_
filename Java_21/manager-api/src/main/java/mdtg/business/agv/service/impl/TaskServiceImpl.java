@@ -25,7 +25,7 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task> implements Ta
     @Override
     public ResponseDTO<?> addTask(AddTaskInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为null";
+        assert inputDTO != null : "参数不能为 NULL！";
         Task task = new Task();
         BeanUtils.copyProperties(inputDTO, task);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
@@ -43,7 +43,7 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task> implements Ta
     @Override
     public ResponseDTO<?> queryTask(QueryTaskInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为null";
+        assert inputDTO != null : "参数不能为 NULL！";
         LambdaQueryWrapper<Task> queryWrapper = new LambdaQueryWrapper<Task>().eq(Task::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getTaskId()).ifPresent(taskId -> queryWrapper.eq(Task::getId, taskId));
         Optional.ofNullable(inputDTO.getName()).ifPresent(name -> queryWrapper.like(Task::getName, name));

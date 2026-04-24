@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -38,5 +39,5 @@ public class AddAttachmentInputDTO {
     private String createName;
 
     @Schema(description = "创建时间")
-    private Date createDate;
+    private LocalDateTime createDate;
 }

@@ -80,10 +80,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
-            // 1.如果传入了id,则说明是修改用户
             return ResponseDTO.wrapSuccess(this.baseMapper.updateById(user));
         }
-        // 2.如果没有传入id,则说明是新增用户
         return ResponseDTO.wrapSuccess(this.baseMapper.insert(user));
     }
 

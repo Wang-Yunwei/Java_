@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -29,7 +30,7 @@ public class QueryDeviceInputDTO {
     private String firmwareVersion;
 
     @Schema(description = "最后连接时间")
-    private Date lastConnectionTime;
+    private LocalDateTime lastConnectionTime;
 
     @Schema(description = "自动更新开关(0-关闭,1-开启)")
     private Integer autoUpdate;

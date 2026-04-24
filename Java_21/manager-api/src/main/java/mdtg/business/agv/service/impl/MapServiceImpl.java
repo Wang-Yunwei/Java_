@@ -24,14 +24,12 @@ public class MapServiceImpl extends ServiceImpl<MapMapper, Map> implements MapSe
     @Override
     public ResponseDTO<?> addMap(AddMapInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为NULL！";
+        assert inputDTO != null : "参数不能为 NULL！";
         Map map = new Map();
         BeanUtils.copyProperties(inputDTO, map);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
-            // 执行更新
             return ResponseDTO.wrapSuccess(this.baseMapper.updateById(map));
         }
-        // 执行新增
         return ResponseDTO.wrapSuccess(this.baseMapper.insert(map));
     }
 

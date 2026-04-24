@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.toolkits.BaseEntity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -38,7 +39,7 @@ public class Device extends BaseEntity {
     /**
      * 最后连接时间
      */
-    private Date lastConnectionTime;
+    private LocalDateTime lastConnectionTime;
 
     /**
      * 自动更新开关(0-关闭,1-开启)

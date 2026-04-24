@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.toolkits.BaseEntity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 任务表
@@ -40,12 +40,12 @@ public class Task extends BaseEntity {
     /**
      * 计划执行时间
      */
-    private Date executeTime;
+    private String executeTime;
 
     /**
      * 实际完成时间
      */
-    private Date finishTime;
+    private LocalDateTime finishTime;
 
     /**
      * 起始坐标点索引

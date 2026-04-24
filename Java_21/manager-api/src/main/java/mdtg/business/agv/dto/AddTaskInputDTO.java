@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -32,7 +33,7 @@ public class AddTaskInputDTO {
     private String executeTime;
 
     @Schema(description = "实际完成时间")
-    private Date finishTime;
+    private LocalDateTime finishTime;
 
     @Schema(description = "起始坐标点索引")
     private Integer startIndex;

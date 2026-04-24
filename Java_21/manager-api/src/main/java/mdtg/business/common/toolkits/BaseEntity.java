@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -39,7 +40,7 @@ public class BaseEntity implements Serializable {
      * 更新时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     /**
      * 创建者ID
@@ -57,7 +58,7 @@ public class BaseEntity implements Serializable {
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private Date createDate;
+    private LocalDateTime createDate;
 
     /**
      * 单位编码
