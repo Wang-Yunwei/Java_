@@ -9,7 +9,7 @@ import mdtg.business.agv.dto.QueryPointInputDTO;
 import mdtg.business.agv.entity.CoordinatePoint;
 import mdtg.business.agv.mapper.CoordinatePointMapper;
 import mdtg.business.agv.service.CoordinatePointService;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 

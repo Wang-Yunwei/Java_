@@ -1,4 +1,4 @@
-package mdtg.business.common.toolkits;
+package mdtg.business.common;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author WangYunwei [2026-03-25]

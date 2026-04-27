@@ -8,6 +8,8 @@ knife4j:
   setting:
     enableFooter: false
 spring:
+  application:
+    name: mdtg-esp32-api
   datasource:
     druid:
       #MySQL

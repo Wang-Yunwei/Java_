@@ -2,7 +2,7 @@ package mdtg.business.user;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import mdtg.business.user.dto.*;
 import mdtg.business.user.service.PermissionService;
 import mdtg.business.user.service.RoleService;

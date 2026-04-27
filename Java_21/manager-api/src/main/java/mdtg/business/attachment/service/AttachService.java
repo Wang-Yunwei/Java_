@@ -3,7 +3,7 @@ package mdtg.business.attachment.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import mdtg.business.attachment.dto.QueryAttachmentInputDTO;
 import mdtg.business.attachment.entity.Attach;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 /**

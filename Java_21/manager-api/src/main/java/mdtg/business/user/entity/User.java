@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
-import mdtg.business.common.toolkits.BaseEntity;
+import mdtg.business.common.BaseEntity;
 
 import java.util.List;
 

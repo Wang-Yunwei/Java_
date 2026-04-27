@@ -1,4 +1,4 @@
-package mdtg.business.common.toolkits;
+package mdtg.business.common;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

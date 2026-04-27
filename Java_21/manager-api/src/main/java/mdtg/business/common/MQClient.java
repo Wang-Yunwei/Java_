@@ -1,13 +1,12 @@
-package mdtg.business.common.toolkits;
+package mdtg.business.common;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import mdtg.business.common.exception.BusinessException;
 import org.eclipse.paho.mqttv5.client.*;
 import org.eclipse.paho.mqttv5.client.persist.MemoryPersistence;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
 import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,33 +16,55 @@ import org.springframework.stereotype.Component;
 @Component
 public class MQClient {
 
-    public static final String taskTopic = "STS/%s/PUBLISH/%s";
+    /**
+     * 订阅|发布 / HEAD|WORK_CARD|AGV / 操作 /
+     * <p>
+     * mdtg/m_api/agv/%s/heartbeat/
+     * <p>
+     * mdtg/m_api/agv/%s/current-position/
+     */
+    public static final String M_API_TOPIC = "mdtg/m_api/agv/%s/current-position/";
 
-    public static final String userTopic = "STS_PUBLISH/USER";
+    public static final String PUB_AGV_CONTROL_CMD = "mdtg/control_cmd/%s";
 
     public static final String userContent = "{\"userId\":\"%s\",\"isConnect\":%b}";
 
-    private static MqttClient mqClient;
+    @Resource
+    private MqttClient mqttClient;
 
-    @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
-    private String serverURI;
+    /**
+     * <dl>
+     *   <dt>单层通配符: STS/M350/PUBLISH/+</dt>
+     *   <dd>STS/M350/PUBLISH/+ 将匹配 STS/M350/PUBLISH/x26123 和 STS/M350/PUBLISH/x26127，但不会匹配 STS/M350/PUBLISH/x26123/subtopic</dd>
+     *   <dt>多层通配符: STS/M350/PUBLISH/#</dt>
+     *   <dd>dTS/M350/PUBLISH/# 将匹配 TS/M350/PUBLISH/x26123、TS/M350/PUBLISH/x26127 和 TS/M350/PUBLISH/x26123/subtopic</dd>
+     * </dl>
+     */
+    public static void main(String[] args) throws MqttException {
 
-    @Value("${spring.application.name}")
-    private String clientId;
-
-    @Value("${service-address.mqtt.username}")
-    private String userName;
-
-    @Value("${service-address.mqtt.password}")
-    private String password;
+        MqttClient mqClient = new MqttClient("tcp://58.211.186.6:1883", "M_API", new MemoryPersistence());
+        // 设置连接选项
+        MqttConnectionOptions connOpts = new MqttConnectionOptions();
+        connOpts.setUserName("mdtg");
+        connOpts.setPassword("mdtg@123".getBytes());
+        connOpts.setAutomaticReconnect(true);
+        // 设置回调函数
+        mqClient.setCallback(new MqttCallbackImpl());
+        // 建立连接
+        mqClient.connect(connOpts);
+        // 订阅
+        mqClient.subscribe("M_API/TEST", 0);
+        // 发布
+        mqClient.publish("M_API/TEST", String.format(userContent, "1850816877849214976", Boolean.FALSE).getBytes(), 1, false);
+    }
 
     /**
      * 发布
      */
-    public static void publish(String topic, byte[] payload, int qos, boolean retained) {
+    public void publish(String topic, byte[] payload, int qos, boolean retained) {
 
         try {
-            mqClient.publish(topic, payload, qos, retained);
+            mqttClient.publish(topic, payload, qos, retained);
         } catch (MqttException e) {
             throw new BusinessException("发布消息到主题 %s 失败!".formatted(topic));
         }
@@ -52,64 +73,18 @@ public class MQClient {
     /**
      * 订阅
      */
-    public static void subscribe(String topicFilter, int qos) {
+    public void subscribe(String topicFilter, int qos) {
 
         try {
-            mqClient.subscribe(topicFilter, qos);
+            mqttClient.subscribe(topicFilter, qos);
         } catch (MqttException e) {
             throw new BusinessException("订阅主题 %s 失败!".formatted(topicFilter));
         }
     }
 
     /**
-     * <dl>
-     *   <dt>单层通配符: STS/M350/PUBLISH/+</dt>
-     *   <dd>STS/M350/PUBLISH/+ 将匹配 TS/M350/PUBLISH/x26123 和 TS/M350/PUBLISH/x26127，但不会匹配 TS/M350/PUBLISH/x26123/subtopic</dd>
-     *   <dt>多层通配符: STS/M350/PUBLISH/#</dt>
-     *   <dd>dTS/M350/PUBLISH/# 将匹配 TS/M350/PUBLISH/x26123、TS/M350/PUBLISH/x26127 和 TS/M350/PUBLISH/x26123/subtopic</dd>
-     * </dl>
+     * 回调函数
      */
-    public static void main(String[] args) {
-
-        try {
-            mqClient = new MqttClient("tcp://192.168.0.221:1883", "STS_MAIN", new MemoryPersistence());
-            // 设置连接选项
-            MqttConnectionOptions connOpts = new MqttConnectionOptions();
-            connOpts.setUserName("mdsd");
-            connOpts.setPassword("mdsd@123".getBytes());
-            connOpts.setAutomaticReconnect(true);
-            // 设置回调函数
-            mqClient.setCallback(new MqttCallbackImpl());
-            // 建立连接
-            mqClient.connect(connOpts);
-            // 订阅
-            subscribe(userTopic, 0);
-            // 发布
-            publish(userTopic, String.format(userContent, "1850816877849214976", Boolean.FALSE).getBytes(), 1, false);
-        } catch (MqttException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void mqttClient() {
-
-        try {
-            mqClient = new MqttClient(serverURI, clientId, new MemoryPersistence());
-            // 设置连接选项
-            MqttConnectionOptions connOpts = new MqttConnectionOptions();
-            connOpts.setUserName(userName);
-            connOpts.setPassword(password.getBytes());
-            connOpts.setAutomaticReconnect(true);
-            // 设置回调函数
-            mqClient.setCallback(new MqttCallbackImpl());
-            // 建立连接
-            mqClient.connect(connOpts);
-        } catch (MqttException e) {
-            throw new BusinessException("创建MQTTClient失败!");
-        }
-    }
-
     static class MqttCallbackImpl implements MqttCallback {
 
         /**

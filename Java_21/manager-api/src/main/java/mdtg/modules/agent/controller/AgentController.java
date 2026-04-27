@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import mdtg.common.constant.Constant;
 import mdtg.common.page.PageData;
 import mdtg.common.redis.RedisKeys;

@@ -3,7 +3,7 @@ package mdtg.business.device.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import mdtg.business.device.dto.AddDeviceInputDTO;
 import mdtg.business.device.dto.QueryDeviceInputDTO;
 import mdtg.business.device.entity.Device;

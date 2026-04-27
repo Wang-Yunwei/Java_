@@ -1,7 +1,7 @@
 package mdtg.business.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import mdtg.business.user.dto.AddRoleInputDTO;
 import mdtg.business.user.dto.QueryRoleInputDTO;
 import mdtg.business.user.entity.Role;

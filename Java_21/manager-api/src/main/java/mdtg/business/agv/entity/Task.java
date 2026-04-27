@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Getter;
 import lombok.Setter;
-import mdtg.business.common.toolkits.BaseEntity;
+import mdtg.business.common.BaseEntity;
 
 import java.time.LocalDateTime;
 

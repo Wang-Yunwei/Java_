@@ -6,7 +6,7 @@ import mdtg.business.agv.dto.*;
 import mdtg.business.agv.service.CoordinatePointService;
 import mdtg.business.agv.service.MapService;
 import mdtg.business.agv.service.TaskService;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import org.springframework.web.bind.annotation.*;
 
 /**

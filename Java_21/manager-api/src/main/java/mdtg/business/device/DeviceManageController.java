@@ -2,7 +2,7 @@ package mdtg.business.device;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import mdtg.business.device.dto.AddDeviceInputDTO;
 import mdtg.business.device.dto.QueryDeviceInputDTO;
 import mdtg.business.device.service.DeviceManageService;

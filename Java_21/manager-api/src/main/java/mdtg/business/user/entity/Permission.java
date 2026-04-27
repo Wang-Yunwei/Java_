@@ -3,7 +3,7 @@ package mdtg.business.user.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import mdtg.business.common.toolkits.BaseEntity;
+import mdtg.business.common.BaseEntity;
 
 /**
  * 权限表

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import mdtg.business.agv.dto.AddPointInputDTO;
 import mdtg.business.agv.dto.QueryPointInputDTO;
 import mdtg.business.agv.entity.CoordinatePoint;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 
 /**
  * @author WangYunwei

@@ -2,12 +2,11 @@ package mdtg.business.attachment;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.attachment.dto.QueryAttachmentInputDTO;
 import mdtg.business.attachment.entity.Attach;
 import mdtg.business.attachment.service.AttachService;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

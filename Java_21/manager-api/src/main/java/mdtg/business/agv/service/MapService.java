@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import mdtg.business.agv.dto.AddMapInputDTO;
 import mdtg.business.agv.dto.QueryMapInputDTO;
 import mdtg.business.agv.entity.Map;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 
 /**
  * @author WangYunwei

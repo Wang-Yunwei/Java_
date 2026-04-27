@@ -1,4 +1,4 @@
-package mdtg.business.common.exception;
+package mdtg.business.common;
 
 import lombok.Getter;
 

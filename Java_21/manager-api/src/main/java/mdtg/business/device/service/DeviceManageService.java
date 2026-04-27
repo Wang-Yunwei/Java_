@@ -1,7 +1,7 @@
 package mdtg.business.device.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import mdtg.business.device.dto.AddDeviceInputDTO;
 import mdtg.business.device.dto.QueryDeviceInputDTO;
 import mdtg.business.device.entity.Device;

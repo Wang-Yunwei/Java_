@@ -9,7 +9,7 @@ import mdtg.business.agv.dto.QueryMapInputDTO;
 import mdtg.business.agv.entity.Map;
 import mdtg.business.agv.mapper.MapMapper;
 import mdtg.business.agv.service.MapService;
-import mdtg.business.common.toolkits.ResponseDTO;
+import mdtg.business.common.ResponseDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
