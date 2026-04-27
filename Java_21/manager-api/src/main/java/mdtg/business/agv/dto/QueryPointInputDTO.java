@@ -17,7 +17,7 @@ public class QueryPointInputDTO {
     @Schema(description = "点位名称")
     private String name;
 
-    @Schema(description = "类别(0-点位,1-轨迹)")
+    @Schema(description = "类别(0-点位,1-轨迹,2-最后点位)")
     private Integer type;
 
     @Schema(description = "MAC地址")

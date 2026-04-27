@@ -1,31 +1,16 @@
 package mdtg.modules.sys.controller;
 
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import mdtg.common.annotation.LogOperation;
 import mdtg.common.constant.Constant;
-import mdtg.common.exception.RenException;
 import mdtg.common.exception.ErrorCode;
+import mdtg.common.exception.RenException;
 import mdtg.common.page.PageData;
 import mdtg.common.utils.Result;
 import mdtg.common.validator.AssertUtils;
@@ -37,6 +22,14 @@ import mdtg.modules.config.service.ConfigService;
 import mdtg.modules.sys.dto.SysParamsDTO;
 import mdtg.modules.sys.service.SysParamsService;
 import mdtg.modules.sys.utils.WebSocketValidator;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 /**
  * 参数管理
@@ -44,13 +37,17 @@ import mdtg.modules.sys.utils.WebSocketValidator;
  * @author Mark sunlightcs@gmail.com
  * @since 1.0.0
  */
+@Slf4j
 @RestController
 @RequestMapping("admin/params")
 @Tag(name = "参数管理")
 @AllArgsConstructor
 public class SysParamsController {
+
     private final SysParamsService sysParamsService;
+
     private final ConfigService configService;
+
     private final RestTemplate restTemplate;
 
     @GetMapping("page")
@@ -64,6 +61,7 @@ public class SysParamsController {
     })
     @RequiresPermissions("sys:role:superAdmin")
     public Result<PageData<SysParamsDTO>> page(@Parameter(hidden = true) @RequestParam Map<String, Object> params) {
+
         PageData<SysParamsDTO> page = sysParamsService.page(params);
 
         return new Result<PageData<SysParamsDTO>>().ok(page);
@@ -73,6 +71,7 @@ public class SysParamsController {
     @Operation(summary = "信息")
     @RequiresPermissions("sys:role:superAdmin")
     public Result<SysParamsDTO> get(@PathVariable("id") Long id) {
+
         SysParamsDTO data = sysParamsService.get(id);
 
         return new Result<SysParamsDTO>().ok(data);
@@ -126,6 +125,7 @@ public class SysParamsController {
      * @return 验证结果
      */
     private void validateWebSocketUrls(String paramCode, String urls) {
+
         if (!paramCode.equals(Constant.SERVER_WEBSOCKET)) {
             return;
         }
@@ -170,6 +170,7 @@ public class SysParamsController {
      * 验证OTA地址
      */
     private void validateOtaUrl(String paramCode, String url) {
+
         if (!paramCode.equals(Constant.SERVER_OTA)) {
             return;
         }
@@ -207,6 +208,7 @@ public class SysParamsController {
     }
 
     private void validateMcpUrl(String paramCode, String url) {
+
         if (!paramCode.equals(Constant.SERVER_MCP_ENDPOINT)) {
             return;
         }
@@ -238,15 +240,17 @@ public class SysParamsController {
 
     // 验证声纹接口地址是否正常
     private void validateVoicePrint(String paramCode, String url) {
+
         if (!paramCode.equals(Constant.SERVER_VOICE_PRINT)) {
             return;
         }
         if (StringUtils.isBlank(url) || url.equals("null")) {
             return;
         }
-        if (url.contains("localhost") || url.contains("127.0.0.1")) {
-            throw new RenException(ErrorCode.VOICEPRINT_URL_LOCALHOST);
-        }
+        // TODO_W
+//        if (url.contains("localhost") || url.contains("127.0.0.1")) {
+//            throw new RenException(ErrorCode.VOICEPRINT_URL_LOCALHOST);
+//        }
         if (!url.toLowerCase().contains("key")) {
             throw new RenException(ErrorCode.VOICEPRINT_URL_INVALID);
         }
@@ -256,7 +260,9 @@ public class SysParamsController {
         }
         try {
             // 发送GET请求
+            log.info("==> {}", url);
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+            log.info("==> {}", response);
             if (response.getStatusCode() != HttpStatus.OK) {
                 throw new RenException(ErrorCode.VOICEPRINT_INTERFACE_ACCESS_FAILED);
             }
@@ -272,6 +278,7 @@ public class SysParamsController {
 
     // 校验mqtt密钥长度和复杂度
     private void validateMqttSecretLength(String paramCode, String secret) {
+
         if (!paramCode.equals(Constant.SERVER_MQTT_SECRET)) {
             return;
         }
@@ -286,7 +293,7 @@ public class SysParamsController {
             throw new RenException(ErrorCode.MQTT_SECRET_CHARACTER_INSECURE);
         }
         // 不允许包含弱密码
-        String[] weakPasswords = { "test", "1234", "admin", "password", "qwerty", "mdtg"};
+        String[] weakPasswords = {"test", "1234", "admin", "password", "qwerty", "mdtg"};
         for (String weakPassword : weakPasswords) {
             if (secret.toLowerCase().contains(weakPassword)) {
                 throw new RenException(ErrorCode.MQTT_SECRET_WEAK_PASSWORD);

@@ -45,8 +45,7 @@ public class CustomRealm extends AuthorizingRealm {
 
         log.info("doGetAuthenticationInfo");
         String token = (String) authenticationToken.getCredentials();
-        // 获取jwt中关于用户名
-        String phone = jwtUtil.getClaimsByToken(token).getSubject();
+        // 获取jwt中关于用户名        String phone = jwtUtil.getClaimsByToken(token).getSubject();
         // 查询用户
         User user = userService.getOne(new LambdaQueryWrapper<User>().eq(User::getPhone, phone));
         if (user == null) {
