@@ -22,7 +22,7 @@ import java.util.Optional;
  * @author WangYunwei
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     private final DeviceService deviceService;

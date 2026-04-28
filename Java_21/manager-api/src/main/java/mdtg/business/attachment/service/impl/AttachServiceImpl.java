@@ -11,7 +11,6 @@ import mdtg.business.attachment.mapper.AttachMapper;
 import mdtg.business.attachment.service.AttachService;
 import mdtg.business.common.ResponseDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
@@ -20,7 +19,6 @@ import java.util.Optional;
  * @author WangYunwei
  */
 @Service
-@Transactional
 public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> implements AttachService {
 
     private final MinioClient minioClient;

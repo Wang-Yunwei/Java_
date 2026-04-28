@@ -23,7 +23,6 @@ mdtg\modules\agent\dto\McpJsonRpcResponse.class
 mdtg\common\utils\HttpContextUtils.class
 mdtg\modules\security\secret\ServerSecretFilter.class
 mdtg\modules\device\dto\DeviceReportRespDTO$Websocket.class
-mdtg\business\common\toolkits\MQClient.class
 mdtg\common\exception\RenException.class
 mdtg\modules\knowledge\controller\KnowledgeBaseController.class
 mdtg\modules\device\dto\DeviceReportReqDTO$Partition.class
@@ -53,12 +52,14 @@ mdtg\modules\sys\dto\RetrievePasswordDTO.class
 mdtg\modules\sys\entity\SysDictTypeEntity.class
 mdtg\modules\sys\dao\SysUserDao.class
 mdtg\modules\security\config\FilterConfig.class
+mdtg\business\common\CustomBeans$1.class
 mdtg\modules\agent\dto\AgentVoicePrintUpdateDTO.class
 mdtg\modules\agent\entity\AgentEntity.class
 mdtg\modules\security\controller\LoginController.class
 mdtg\modules\sys\controller\AdminController.class
 mdtg\modules\voiceclone\service\impl\VoiceCloneServiceImpl$1.class
 mdtg\modules\sys\redis\SysParamsRedis.class
+mdtg\business\common\BusinessException.class
 mdtg\common\utils\ResourcesUtils.class
 mdtg\modules\sms\service\SmsService.class
 mdtg\common\xss\XssProperties.class
@@ -71,6 +72,7 @@ mdtg\business\agv\dto\AddMapInputDTO.class
 mdtg\modules\agent\dao\AgentContextProviderDao.class
 mdtg\modules\security\secret\ServerSecretToken.class
 mdtg\business\customer\feign\CustomerFeign.class
+mdtg\business\common\GlobalExceptionHandler.class
 mdtg\modules\agent\dao\AiAgentChatHistoryDao.class
 mdtg\modules\sys\utils\WebSocketClientManager$Builder.class
 mdtg\modules\sys\service\SysUserUtilService.class
@@ -79,7 +81,6 @@ mdtg\modules\sys\dao\SysDictDataDao.class
 mdtg\modules\model\dto\ModelProviderDTO.class
 mdtg\modules\agent\vo\AgentTemplateVO.class
 mdtg\business\user\UserManagerController.class
-mdtg\business\common\exception\GlobalExceptionHandler.class
 mdtg\modules\voiceclone\service\VoiceCloneService.class
 mdtg\modules\voiceclone\service\impl\VoiceCloneServiceImpl$3.class
 mdtg\common\utils\Sm2DecryptUtil.class
@@ -97,10 +98,10 @@ mdtg\modules\agent\dto\AgentChatHistoryDTO.class
 mdtg\modules\agent\service\impl\AgentMcpAccessPointServiceImpl.class
 mdtg\modules\agent\service\AgentChatSummaryService.class
 mdtg\modules\model\entity\ModelConfigEntity.class
-mdtg\business\common\toolkits\BaseEntity.class
 mdtg\modules\agent\dto\AgentCreateDTO.class
 mdtg\modules\agent\controller\AgentMcpAccessPointController.class
 mdtg\common\utils\TreeNode.class
+mdtg\business\agv\dto\ControlCmdDTO.class
 mdtg\business\customer\dto\UpdateVoiceIdDTO.class
 mdtg\modules\security\service\impl\SysUserTokenServiceImpl.class
 mdtg\modules\sys\entity\SysDictDataEntity.class
@@ -124,6 +125,7 @@ mdtg\modules\agent\dto\ContextProviderDTO.class
 mdtg\modules\agent\dto\McpJsonRpcResponse$McpError.class
 mdtg\modules\agent\entity\AgentContextProviderEntity.class
 mdtg\modules\sys\dto\SysDictDataDTO.class
+mdtg\business\common\MQClient.class
 mdtg\modules\sys\entity\SysParamsEntity.class
 mdtg\common\xss\XssConfig.class
 mdtg\modules\knowledge\rag\impl\RAGFlowAdapter$MultipartFileResource.class
@@ -134,7 +136,6 @@ mdtg\common\user\UserDetail.class
 mdtg\modules\security\entity\SysUserTokenEntity.class
 mdtg\modules\agent\service\impl\AgentContextProviderServiceImpl.class
 mdtg\modules\model\service\ModelProviderService.class
-mdtg\business\common\config\CustomBeans.class
 mdtg\modules\sys\utils\WebSocketTestHandler.class
 mdtg\modules\agent\dto\AgentChatSessionDTO.class
 mdtg\common\constant\Constant$ChatHistoryConfEnum.class
@@ -158,6 +159,7 @@ mdtg\common\redis\RedisUtils.class
 mdtg\common\validator\ValidatorUtils.class
 mdtg\common\utils\SM2Utils.class
 mdtg\common\utils\IpUtils.class
+mdtg\business\common\CustomMultipartFile.class
 mdtg\modules\agent\service\impl\AgentPluginMappingServiceImpl.class
 mdtg\modules\config\init\SystemInitConfig.class
 mdtg\modules\knowledge\service\KnowledgeBaseService.class
@@ -199,6 +201,7 @@ mdtg\business\user\dto\VerifyTokenInputDTO.class
 mdtg\modules\device\dto\DeviceReportRespDTO$ServerTime.class
 mdtg\modules\model\service\impl\ModelProviderServiceImpl.class
 mdtg\modules\security\config\WebMvcConfig.class
+mdtg\business\common\CustomBeans.class
 mdtg\modules\sys\controller\SysDictDataController.class
 mdtg\modules\agent\controller\AgentVoicePrintController.class
 mdtg\modules\device\controller\DeviceController.class
@@ -217,7 +220,6 @@ mdtg\modules\security\password\PasswordUtils.class
 mdtg\modules\agent\vo\AgentInfoVO.class
 mdtg\modules\sys\utils\WebSocketClientManager.class
 mdtg\modules\config\controller\ConfigController.class
-mdtg\business\common\exception\BusinessException.class
 mdtg\modules\device\dto\DeviceUnBindDTO.class
 mdtg\modules\agent\entity\AgentPluginMapping.class
 mdtg\business\customer\CustomerController.class
@@ -237,6 +239,7 @@ mdtg\modules\sys\dto\EmitSeverActionDTO.class
 mdtg\common\convert\DateConverter.class
 mdtg\modules\security\service\ShiroService.class
 mdtg\business\customer\dto\UpdateDatasetIdDTO.class
+mdtg\business\agv\dto\ControlCmdDTO$Parameter.class
 mdtg\common\validator\group\DefaultGroup.class
 mdtg\modules\model\dao\ModelProviderDao.class
 mdtg\modules\device\dto\DeviceReportReqDTO$BoardInfo.class
@@ -253,12 +256,14 @@ mdtg\modules\sms\service\imp\ALiYunSmsService.class
 mdtg\business\user\entity\Role.class
 mdtg\business\user\service\impl\UserServiceImpl.class
 mdtg\modules\sys\service\SysParamsService.class
+mdtg\business\common\BaseEntity.class
 mdtg\modules\security\service\CaptchaService.class
 mdtg\business\customer\dto\UpdateAttachInputDTO.class
 mdtg\modules\agent\dto\AgentChatSummaryDTO.class
 mdtg\business\device\DeviceManageController.class
 mdtg\common\xss\XssHttpServletRequestWrapper.class
 mdtg\common\utils\HashEncryptionUtil.class
+mdtg\business\common\ResponseDTO.class
 mdtg\modules\device\vo\DeviceOtaVO$ServerTime.class
 mdtg\modules\sys\vo\SysDictDataVO.class
 mdtg\modules\device\service\OtaService.class
@@ -277,6 +282,7 @@ mdtg\modules\knowledge\service\impl\KnowledgeFilesServiceImpl.class
 mdtg\modules\sys\vo\SysDictTypeVO.class
 mdtg\common\interceptor\DataFilterInterceptor.class
 mdtg\modules\agent\service\impl\AgentChatSummaryServiceImpl.class
+mdtg\business\common\MQClient$1.class
 mdtg\business\customer\dto\BaseDTO.class
 mdtg\common\interceptor\DataScope.class
 mdtg\modules\agent\service\impl\AgentChatSummaryServiceImpl$1.class
@@ -324,7 +330,6 @@ mdtg\modules\agent\dto\McpJsonRpcResponse$McpResult.class
 mdtg\business\user\service\UserService.class
 mdtg\modules\sys\dao\SysDictTypeDao.class
 mdtg\modules\device\dto\DeviceBindDTO.class
-mdtg\business\common\toolkits\ResponseDTO.class
 mdtg\business\customer\dto\UpdateAttachInputDTO$KnowledgeBaseInfo.class
 mdtg\modules\sys\dto\AdminPageUserDTO.class
 mdtg\business\user\dto\QueryRoleInputDTO.class
@@ -333,7 +338,6 @@ mdtg\modules\knowledge\service\impl\KnowledgeBaseServiceImpl.class
 mdtg\modules\security\password\BCrypt.class
 mdtg\modules\agent\service\impl\AgentServiceImpl.class
 mdtg\modules\device\vo\DeviceOtaVO$Firmware.class
-mdtg\business\common\toolkits\CustomMultipartFile.class
 mdtg\modules\sys\service\impl\TokenServiceImpl.class
 mdtg\business\agv\dto\QueryPointInputDTO.class
 mdtg\modules\sys\service\impl\SysParamsServiceImpl.class
@@ -347,7 +351,6 @@ mdtg\modules\model\entity\ModelProviderEntity.class
 mdtg\modules\agent\service\impl\AgentTemplateServiceImpl.class
 mdtg\business\attachment\AttachmentController.class
 mdtg\modules\agent\service\impl\AgentChatAudioServiceImpl.class
-mdtg\business\common\toolkits\MQClient$MqttCallbackImpl.class
 mdtg\business\attachment\entity\Attach.class
 mdtg\business\agv\dto\AddTaskInputDTO.class
 mdtg\business\user\dto\VerifyTokenOutputDTO.class

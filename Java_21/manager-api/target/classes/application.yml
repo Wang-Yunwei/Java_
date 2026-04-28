@@ -13,8 +13,6 @@ server:
         http-only: true
 
 spring:
-  application:
-    name: mdtg-esp32-api
   # 环境 dev|test|prod
   profiles:
     active: dev

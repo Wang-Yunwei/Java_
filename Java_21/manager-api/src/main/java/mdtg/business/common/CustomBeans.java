@@ -34,6 +34,9 @@ public class CustomBeans {
     @Value("${minio.secret-key}")
     private String secretKey;
 
+    @Value("${minio.bucket-name:mdtg-esp32-api}")
+    private String bucket;
+
     @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
     private String serverURI;
 
@@ -50,11 +53,11 @@ public class CustomBeans {
     public MinioClient minioClient() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
 
         MinioClient minioClient = MinioClient.builder().endpoint(endpoint).credentials(accessKey, secretKey).build();
-        boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket("minio_manager_api").build());
+        boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucket).build());
         if (!found) {
-            minioClient.makeBucket(MakeBucketArgs.builder().bucket("minio_manager_api").build());
+            minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());
         } else {
-            System.out.println("Bucket 'minio_manager_api' already exists.");
+            System.out.println("Bucket 'mdtg-esp32-api' already exists.");
         }
         return minioClient;
     }
@@ -67,65 +70,66 @@ public class CustomBeans {
         MqttConnectionOptions connOpts = new MqttConnectionOptions();
         connOpts.setUserName(userName);
         connOpts.setPassword(password.getBytes());
-        connOpts.setAutomaticReconnect(true);
-        mqClient.setCallback(new CustomBeans.MqttCallbackImpl());
-        mqClient.connect(connOpts);
-        return mqClient;
-    }
+        connOpts.setAutomaticReconnect(true);// 自动重连
+        mqClient.setCallback(new MqttCallback() {
 
-    static class MqttCallbackImpl implements MqttCallback {
+            @Override
+            public void disconnected(MqttDisconnectResponse disconnectResponse) {
 
-        /**
-         * 当与服务器的连接成功完成时调用
-         * Called when the connection to the server is completed successfully.
-         *
-         * @param reconnect If true, the connection was the result of automatic reconnect.
-         * @param serverURI The server URI that the connection was made to.
-         */
-        @Override
-        public void connectComplete(boolean reconnect, String serverURI) {
+                log.info("disconnected --------- {}", disconnectResponse.getReturnCode());
+            }
 
-            log.info("connectComplete --------- {}", serverURI);
-        }
+            @Override
+            public void mqttErrorOccurred(MqttException exception) {
 
-        @Override
-        public void disconnected(MqttDisconnectResponse disconnectResponse) {
+                log.info("mqttErrorOccurred --------- {}", exception.getMessage());
+            }
 
-            log.info("disconnected --------- {}", disconnectResponse.getReturnCode());
-        }
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
 
-        @Override
-        public void mqttErrorOccurred(MqttException exception) {
+                // 消息到达
+                log.info(">>> Topic: {}, Qos: {}, Retained: {}, message: {}", topic, message.getQos(), message.isRetained(), new String(message.getPayload()));
 
-            log.info("mqttErrorOccurred --------- {}", exception.getMessage());
-        }
+            }
 
-        @Override
-        public void messageArrived(String topic, MqttMessage message) {
-            // 消息到达
-//            log.info(">>> Topic: {}, Qos: {}, Retained: {}, message: {}", topic, message.getQos(), message.isRetained(), new String(message.getPayload()));
-        }
+            @Override
+            public void deliveryComplete(IMqttToken token) {
 
-        @Override
-        public void deliveryComplete(IMqttToken token) {
-            // 已投递
+                // 已投递
 //            log.info("deliveryComplete --------- {}", token.isComplete());
-        }
+            }
 
-        /**
-         * 当客户端接收到 AUTH 包时调用
-         * Called when an AUTH packet is received by the client.
-         *
-         * @param reasonCode The Reason code, can be Success (0), Continue authentication (24)
-         *                   or Re-authenticate (25).
-         * @param properties The {@link MqttProperties} to be sent, containing the
-         *                   Authentication Method, Authentication Data and any required User
-         *                   Defined Properties.
-         */
-        @Override
-        public void authPacketArrived(int reasonCode, MqttProperties properties) {
+            /**
+             * 当与服务器的连接成功完成时调用
+             * Called when the connection to the server is completed successfully.
+             *
+             * @param reconnect If true, the connection was the result of automatic reconnect.
+             * @param serverURI The server URI that the connection was made to.
+             */
+            @Override
+            public void connectComplete(boolean reconnect, String serverURI) {
 
-            log.info("authPacketArrived --------- {}", reasonCode);
-        }
+                log.info("connectComplete --------- {}", serverURI);
+            }
+
+            /**
+             * 当客户端接收到 AUTH 包时调用
+             * Called when an AUTH packet is received by the client.
+             *
+             * @param reasonCode The Reason code, can be Success (0), Continue authentication (24)
+             *                   or Re-authenticate (25).
+             * @param properties The {@link MqttProperties} to be sent, containing the
+             *                   Authentication Method, Authentication Data and any required User
+             *                   Defined Properties.
+             */
+            @Override
+            public void authPacketArrived(int reasonCode, MqttProperties properties) {
+
+                log.info("authPacketArrived --------- {}", reasonCode);
+            }
+        });
+        mqClient.connect(connOpts); // 建立连接
+        return mqClient;
     }
 }

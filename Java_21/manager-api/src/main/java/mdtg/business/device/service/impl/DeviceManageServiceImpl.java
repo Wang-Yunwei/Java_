@@ -11,6 +11,7 @@ import mdtg.business.device.mapper.DeviceMapper;
 import mdtg.business.device.service.DeviceManageService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
  * @author WangYunwei
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> implements DeviceManageService {
 
     @Override

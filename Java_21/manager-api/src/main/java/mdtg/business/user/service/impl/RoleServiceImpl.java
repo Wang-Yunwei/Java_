@@ -12,6 +12,7 @@ import mdtg.business.user.mapper.RoleMapper;
 import mdtg.business.user.service.RoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
  * @author WangYunwei
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
     @Override
