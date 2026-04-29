@@ -52,7 +52,6 @@ mdtg\modules\sys\dto\RetrievePasswordDTO.class
 mdtg\modules\sys\entity\SysDictTypeEntity.class
 mdtg\modules\sys\dao\SysUserDao.class
 mdtg\modules\security\config\FilterConfig.class
-mdtg\business\common\CustomBeans$1.class
 mdtg\modules\agent\dto\AgentVoicePrintUpdateDTO.class
 mdtg\modules\agent\entity\AgentEntity.class
 mdtg\modules\security\controller\LoginController.class
@@ -80,6 +79,7 @@ mdtg\modules\agent\service\impl\AgentVoicePrintServiceImpl$1.class
 mdtg\modules\sys\dao\SysDictDataDao.class
 mdtg\modules\model\dto\ModelProviderDTO.class
 mdtg\modules\agent\vo\AgentTemplateVO.class
+mdtg\business\common\MQClient$2.class
 mdtg\business\user\UserManagerController.class
 mdtg\modules\voiceclone\service\VoiceCloneService.class
 mdtg\modules\voiceclone\service\impl\VoiceCloneServiceImpl$3.class

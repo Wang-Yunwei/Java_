@@ -6,7 +6,13 @@ import org.eclipse.paho.mqttv5.client.persist.MemoryPersistence;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
 import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author WangYunwei [2026-04-17]
@@ -44,12 +50,26 @@ public class MQClient {
 
     public static final String PUB_AGV_CONTROL_CMD = "mdtg/control_cmd/%s";
 
+    public static final Set<String> onlineSet = new HashSet<>();
+
+    @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
+    private String serverURI;
+
+    @Value("${spring.application.name}")
+    private String clientId;
+
+    @Value("${service-address.mqtt.username}")
+    private String userName;
+
+    @Value("${service-address.mqtt.password}")
+    private String password;
+
     /**
      * <dl>
      *   <dt>单层通配符: STS/M350/PUBLISH/+</dt>
      *   <dd>STS/M350/PUBLISH/+ 将匹配 STS/M350/PUBLISH/x26123 和 STS/M350/PUBLISH/x26127，但不会匹配 STS/M350/PUBLISH/x26123/subtopic</dd>
      *   <dt>多层通配符: STS/M350/PUBLISH/#</dt>
-     *   <dd>dTS/M350/PUBLISH/# 将匹配 TS/M350/PUBLISH/x26123、TS/M350/PUBLISH/x26127 和 TS/M350/PUBLISH/x26123/subtopic</dd>
+     *   <dd>STS/M350/PUBLISH/# 将匹配 STS/M350/PUBLISH/x26123、STS/M350/PUBLISH/x26127 和 STS/M350/PUBLISH/x26123/subtopic</dd>
      * </dl>
      */
     public static void main(String[] args) throws MqttException {
@@ -153,6 +173,68 @@ public class MQClient {
         // 订阅
         mqClient.subscribe("mdtg/m_api/agv/status/+", 0);
         mqClient.subscribe("mdtg/m_api/agv/heartbeat/+", 0);
+    }
 
+    public MqttClient mqttClient() throws MqttException {
+
+        MqttClient mqClient = new MqttClient(serverURI, clientId, new MemoryPersistence());
+        // 设置连接选项
+        MqttConnectionOptions connOpts = new MqttConnectionOptions();
+        connOpts.setUserName(userName);
+        connOpts.setPassword(password.getBytes());
+        connOpts.setAutomaticReconnect(true);// 自动重连
+        mqClient.setCallback(new MqttCallback() {
+
+            @Override
+            public void disconnected(MqttDisconnectResponse disconnectResponse) {
+
+            }
+
+            @Override
+            public void mqttErrorOccurred(MqttException exception) {
+
+            }
+
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+
+                // 筛选所有以 "mdtg/m_api/agv/status/" 和 "mdtg/m_api/agv/heartbeat/" 开头的主题
+                if (topic.startsWith("mdtg/m_api/agv/status/") || topic.startsWith("mdtg/m_api/badge/status/")) {
+                    String deviceId = topic.substring(topic.lastIndexOf("/") + 1);
+                    if (new String(message.getPayload()).contains("online")) {
+                        onlineSet.add(deviceId);
+                    }
+                    if (new String(message.getPayload()).contains("offline")) {
+                        onlineSet.remove(deviceId);
+                    }
+                    log.info("当前在线设备列表: {}", onlineSet);
+                }
+            }
+
+            @Override
+            public void deliveryComplete(IMqttToken token) {
+
+            }
+
+            @Override
+            public void connectComplete(boolean reconnect, String serverURI) {
+
+                try {
+                    mqClient.subscribe("mdtg/m_api/agv/status/+", 0);
+                    mqClient.subscribe("mdtg/m_api/agv/heartbeat/+", 0);
+                    mqClient.subscribe("mdtg/m_api/badge/status/+", 0);
+                    mqClient.subscribe("mdtg/m_api/badge/heartbeat/+", 0);
+                } catch (MqttException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void authPacketArrived(int reasonCode, MqttProperties properties) {
+
+            }
+        });
+        mqClient.connect(connOpts); // 建立连接
+        return mqClient;
     }
 }

@@ -5,12 +5,8 @@ import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.errors.*;
 import lombok.extern.slf4j.Slf4j;
-import org.eclipse.paho.mqttv5.client.*;
-import org.eclipse.paho.mqttv5.client.persist.MemoryPersistence;
-import org.eclipse.paho.mqttv5.common.MqttException;
-import org.eclipse.paho.mqttv5.common.MqttMessage;
-import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,6 +21,8 @@ import java.security.NoSuchAlgorithmException;
 @Configuration
 public class CustomBeans {
 
+    private final MQClient mqClient;
+
     @Value("${minio.endpoint}")
     private String endpoint;
 
@@ -37,17 +35,21 @@ public class CustomBeans {
     @Value("${minio.bucket-name:mdtg-esp32-api}")
     private String bucket;
 
-    @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
-    private String serverURI;
+    public CustomBeans(MQClient mqClient) {
 
-    @Value("${spring.application.name}")
-    private String clientId;
+        this.mqClient = mqClient;
+    }
 
-    @Value("${service-address.mqtt.username}")
-    private String userName;
+    @Bean
+    ApplicationRunner startImmediatelyExecute() {
 
-    @Value("${service-address.mqtt.password}")
-    private String password;
+        return args -> {
+            log.info("================== 【START-UP SUCCESSFUL】 ==================");
+            if ("Linux".equals(System.getProperties().getProperty("os.name"))) {
+                mqClient.mqttClient();
+            }
+        };
+    }
 
     @Bean
     public MinioClient minioClient() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
@@ -60,76 +62,5 @@ public class CustomBeans {
             System.out.println("Bucket 'mdtg-esp32-api' already exists.");
         }
         return minioClient;
-    }
-
-    @Bean
-    public MqttClient mqttClient() throws MqttException {
-
-        MqttClient mqClient = new MqttClient(serverURI, clientId, new MemoryPersistence());
-        // 设置连接选项
-        MqttConnectionOptions connOpts = new MqttConnectionOptions();
-        connOpts.setUserName(userName);
-        connOpts.setPassword(password.getBytes());
-        connOpts.setAutomaticReconnect(true);// 自动重连
-        mqClient.setCallback(new MqttCallback() {
-
-            @Override
-            public void disconnected(MqttDisconnectResponse disconnectResponse) {
-
-                log.info("disconnected --------- {}", disconnectResponse.getReturnCode());
-            }
-
-            @Override
-            public void mqttErrorOccurred(MqttException exception) {
-
-                log.info("mqttErrorOccurred --------- {}", exception.getMessage());
-            }
-
-            @Override
-            public void messageArrived(String topic, MqttMessage message) {
-
-                // 消息到达
-                log.info(">>> Topic: {}, Qos: {}, Retained: {}, message: {}", topic, message.getQos(), message.isRetained(), new String(message.getPayload()));
-
-            }
-
-            @Override
-            public void deliveryComplete(IMqttToken token) {
-
-                // 已投递
-//            log.info("deliveryComplete --------- {}", token.isComplete());
-            }
-
-            /**
-             * 当与服务器的连接成功完成时调用
-             * Called when the connection to the server is completed successfully.
-             *
-             * @param reconnect If true, the connection was the result of automatic reconnect.
-             * @param serverURI The server URI that the connection was made to.
-             */
-            @Override
-            public void connectComplete(boolean reconnect, String serverURI) {
-
-                log.info("connectComplete --------- {}", serverURI);
-            }
-
-            /**
-             * 当客户端接收到 AUTH 包时调用
-             * Called when an AUTH packet is received by the client.
-             *
-             * @param reasonCode The Reason code, can be Success (0), Continue authentication (24)
-             *                   or Re-authenticate (25).
-             * @param properties The {@link MqttProperties} to be sent, containing the
-             *                   Authentication Method, Authentication Data and any required User
-             *                   Defined Properties.
-             */
-            @Override
-            public void authPacketArrived(int reasonCode, MqttProperties properties) {
-
-                log.info("authPacketArrived --------- {}", reasonCode);
-            }
-        });
-        mqClient.connect(connOpts); // 建立连接
-        return mqClient;
     }
 }

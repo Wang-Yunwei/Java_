@@ -3,6 +3,7 @@ package mdtg.business.device.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import mdtg.business.common.MQClient;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.device.dto.AddDeviceInputDTO;
 import mdtg.business.device.dto.QueryDeviceInputDTO;
@@ -11,7 +12,6 @@ import mdtg.business.device.mapper.DeviceMapper;
 import mdtg.business.device.service.DeviceManageService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -19,8 +19,14 @@ import java.util.Optional;
  * @author WangYunwei
  */
 @Service
-@Transactional(rollbackFor = Exception.class)
 public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> implements DeviceManageService {
+
+    private final MQClient mqClient;
+
+    public DeviceManageServiceImpl(MQClient mqClient) {
+
+        this.mqClient = mqClient;
+    }
 
     @Override
     public ResponseDTO<?> addDevice(AddDeviceInputDTO inputDTO) {
@@ -60,7 +66,13 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.eq(Device::getType, type));
         Optional.ofNullable(inputDTO.getParentMac()).ifPresent(parentMac -> queryWrapper.eq(Device::getParentMac, parentMac));
         Page<Device> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
-        return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
+        Page<Device> devicePage = this.baseMapper.selectPage(page, queryWrapper);
+        devicePage.getRecords().forEach(dto -> {
+            if (MQClient.onlineSet.contains(dto.getMacAddress())) {
+                dto.setStatus(1);
+            }
+        });
+        return ResponseDTO.wrapSuccess(devicePage);
     }
 }
 
