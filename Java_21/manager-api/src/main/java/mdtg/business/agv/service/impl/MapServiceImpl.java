@@ -35,7 +35,6 @@ public class MapServiceImpl extends ServiceImpl<MapMapper, Map> implements MapSe
     @Override
     public ResponseDTO<?> addMap(AddMapInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为 NULL！";
         Map map = new Map();
         BeanUtils.copyProperties(inputDTO, map);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
@@ -57,7 +56,6 @@ public class MapServiceImpl extends ServiceImpl<MapMapper, Map> implements MapSe
     @Override
     public ResponseDTO<?> queryMap(QueryMapInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为 NULL！";
         LambdaQueryWrapper<Map> queryWrapper = new LambdaQueryWrapper<Map>().eq(Map::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getMapId()).ifPresent(mapId -> queryWrapper.eq(Map::getId, mapId));
         Optional.ofNullable(inputDTO.getAlias()).ifPresent(id -> queryWrapper.eq(Map::getId, id));

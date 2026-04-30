@@ -76,7 +76,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseDTO<?> updateUser(UpdateUserInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为 NULL！";
         User user = new User();
         BeanUtils.copyProperties(inputDTO, user);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
@@ -102,7 +101,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ResponseDTO<?> queryUser(QueryUserInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为 NULL！";
         if (inputDTO.getUserId() != null && inputDTO.getUserId() > 0) {
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getUserId()));
         }

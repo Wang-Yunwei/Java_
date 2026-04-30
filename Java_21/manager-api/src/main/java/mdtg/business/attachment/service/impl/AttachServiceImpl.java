@@ -31,7 +31,6 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
     @Override
     public ResponseDTO<?> addAttachment(Attach inputDTO) {
 
-        assert inputDTO != null : "参数不能为 NULL！";
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
             return ResponseDTO.wrapSuccess(this.baseMapper.updateById(inputDTO));
         }
@@ -47,7 +46,6 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
     @Override
     public ResponseDTO<?> queryAttachment(QueryAttachmentInputDTO inputDTO) {
 
-        assert inputDTO != null : "参数不能为 NULL！";
         if (inputDTO.getAttachId() != null && inputDTO.getAttachId() > 0) {
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getAttachId()));
         }

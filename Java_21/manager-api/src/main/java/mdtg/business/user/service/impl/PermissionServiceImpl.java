@@ -26,7 +26,6 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public ResponseDTO<?> addPermission(AddPermissionInputDTO inputDTO) {
 
-        assert inputDTO != null : "入参不能为 NULL！";
         Permission permission = new Permission();
         BeanUtils.copyProperties(inputDTO, permission);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
@@ -44,7 +43,6 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public ResponseDTO<?> queryPermission(QueryPermissionInputDTO inputDTO) {
 
-        assert inputDTO != null : "入参不能为 NULL！";
         if (inputDTO.getPermissionId() != null && inputDTO.getPermissionId() > 0) {
             // 详情
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getPermissionId()));

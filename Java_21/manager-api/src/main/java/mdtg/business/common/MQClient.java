@@ -83,11 +83,11 @@ public class MQClient {
 
         /*
           --- 核心策略 A: Keepalive ---
-          设置 60 秒心跳间隔。
+          设置 60秒心跳间隔。
           如果 60秒内无通信，客户端自动发 PINGREQ；若 1.5倍时间(90s)无响应，Broker判定掉线。
          */
         connOpts.setConnectionTimeout(30);
-        connOpts.setKeepAliveInterval(60);
+        connOpts.setKeepAliveInterval(60 * 3);
 
         /*
           --- 核心策略 B: 遗愿消息 ---
@@ -182,7 +182,8 @@ public class MQClient {
         MqttConnectionOptions connOpts = new MqttConnectionOptions();
         connOpts.setUserName(userName);
         connOpts.setPassword(password.getBytes());
-        connOpts.setAutomaticReconnect(true);// 自动重连
+        connOpts.setAutomaticReconnect(true);
+        connOpts.setKeepAliveInterval(60 * 5);
         mqClient.setCallback(new MqttCallback() {
 
             @Override
@@ -200,7 +201,7 @@ public class MQClient {
 
                 // 筛选所有以 "mdtg/m_api/agv/status/" 和 "mdtg/m_api/agv/heartbeat/" 开头的主题
                 if (topic.startsWith("mdtg/m_api/agv/status/") || topic.startsWith("mdtg/m_api/badge/status/")) {
-                    String deviceId = topic.substring(topic.lastIndexOf("/") + 1);
+                    String deviceId = topic.substring(topic.lastIndexOf("/") + 1).toLowerCase();
                     if (new String(message.getPayload()).contains("online")) {
                         onlineSet.add(deviceId);
                     }
@@ -220,10 +221,12 @@ public class MQClient {
             public void connectComplete(boolean reconnect, String serverURI) {
 
                 try {
-                    mqClient.subscribe("mdtg/m_api/agv/status/+", 0);
-                    mqClient.subscribe("mdtg/m_api/agv/heartbeat/+", 0);
+                    mqClient.subscribe("mdtg/m_api/head/status/+", 0);
+                    mqClient.subscribe("mdtg/m_api/head/heartbeat/+", 0);
                     mqClient.subscribe("mdtg/m_api/badge/status/+", 0);
                     mqClient.subscribe("mdtg/m_api/badge/heartbeat/+", 0);
+                    mqClient.subscribe("mdtg/m_api/agv/status/+", 0);
+                    mqClient.subscribe("mdtg/m_api/agv/heartbeat/+", 0);
                 } catch (MqttException e) {
                     throw new RuntimeException(e);
                 }

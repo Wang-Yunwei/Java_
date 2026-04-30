@@ -27,6 +27,9 @@ public class DeviceManageController {
     @PostMapping("/add-or-update")
     public ResponseDTO<?> addDevice(@RequestBody AddDeviceInputDTO inputDTO) {
 
+        if(inputDTO.getMacAddress() != null ) {
+            inputDTO.setMacAddress(inputDTO.getMacAddress().toLowerCase());
+        }
         return deviceService.addDevice(inputDTO);
     }
 

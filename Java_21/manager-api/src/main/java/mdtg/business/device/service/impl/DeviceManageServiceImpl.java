@@ -31,11 +31,10 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
     @Override
     public ResponseDTO<?> addDevice(AddDeviceInputDTO inputDTO) {
 
-        assert inputDTO != null : "输入参数不能为空!";
         Device device = new Device();
         BeanUtils.copyProperties(inputDTO, device);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
-            ResponseDTO.wrapSuccess(this.baseMapper.updateById(device));
+            return ResponseDTO.wrapSuccess(this.baseMapper.updateById(device));
         }
         if (inputDTO.getType() == 0) {
             Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(inputDTO::setParentMac);
@@ -52,13 +51,12 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
     @Override
     public ResponseDTO<?> queryDevice(QueryDeviceInputDTO inputDTO) {
 
-        assert inputDTO != null : "输入参数不能为空!";
         if (inputDTO.getDeviceId() != null && inputDTO.getDeviceId() > 0) {
             return ResponseDTO.wrapSuccess(this.baseMapper.selectById(inputDTO.getDeviceId()));
         }
         LambdaQueryWrapper<Device> queryWrapper = new LambdaQueryWrapper<Device>().eq(Device::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getAlias()).ifPresent(alias -> queryWrapper.like(Device::getAlias, alias));
-        Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(macAddress -> queryWrapper.eq(Device::getMacAddress, macAddress));
+        Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(macAddress -> queryWrapper.like(Device::getMacAddress, macAddress));
         Optional.ofNullable(inputDTO.getBoard()).ifPresent(board -> queryWrapper.like(Device::getBoard, board));
         Optional.ofNullable(inputDTO.getFirmwareVersion()).ifPresent(firmwareVersion -> queryWrapper.eq(Device::getFirmwareVersion, firmwareVersion));
         Optional.ofNullable(inputDTO.getLastConnectionTime()).ifPresent(lastConnectionTime -> queryWrapper.eq(Device::getLastConnectionTime, lastConnectionTime));
@@ -67,11 +65,13 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
         Optional.ofNullable(inputDTO.getParentMac()).ifPresent(parentMac -> queryWrapper.eq(Device::getParentMac, parentMac));
         Page<Device> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         Page<Device> devicePage = this.baseMapper.selectPage(page, queryWrapper);
-        devicePage.getRecords().forEach(dto -> {
-            if (MQClient.onlineSet.contains(dto.getMacAddress())) {
-                dto.setStatus(1);
-            }
-        });
+        if (MQClient.onlineSet.size() > 0) {
+            devicePage.getRecords().forEach(dto -> {
+                if (MQClient.onlineSet.contains(dto.getMacAddress())) {
+                    dto.setStatus(1);
+                }
+            });
+        }
         return ResponseDTO.wrapSuccess(devicePage);
     }
 }
