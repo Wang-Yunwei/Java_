@@ -9,10 +9,9 @@ import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author WangYunwei [2026-04-17]
@@ -34,23 +33,20 @@ public class MQClient {
      * </dl>
      * {"map_name": "WHEELTEC", "x": 3.803025, "y": -7.810509, "yaw": -2.950007, "updated_at": 1776265404, mac_address: "xx"}
      */
-    public static final String TOPIC_AGV_HEARTBEAT = "mdtg/m_api/agv/heartbeat/%s";
-
-    public static final String TOPIC_AGV_STATUS = "mdtg/m_api/agv/status/%s";
-
-    public static final String TOPIC_BADGE_HEARTBEAT = "mdtg/m_api/badge/heartbeat/%s";
-
-    public static final String TOPIC_BADGE_STATUS = "mdtg/m_api/badge/status/%s";
-
-    public static final String AGV_HEARTBEAT_JSON = "{\"currentPosition\":{\"x\":%f,\"y\":%f,\"yaw\":%f},\"battery\":%b,\"cpuLoad\":%.1f}";
-
     public static final String ONLINE_JSON = "{\"status\":\"online\",\"version\":\"1.0.0\"}";
 
     public static final String OFFLINE_JSON = "{\"status\":\"offline\",\"reason\":\"unexpected_disconnect\"}";
 
-    public static final String PUB_AGV_CONTROL_CMD = "mdtg/control_cmd/%s";
-
     public static final Set<String> onlineSet = new HashSet<>();
+
+    private final String[] subTopic = new String[]{
+            "mdtg/m_api/agv/status/+",
+            "mdtg/m_api/agv/heartbeat/+",
+            "mdtg/m_api/badge/status/+",
+            "mdtg/m_api/badge/heartbeat/+",
+            "mdtg/m_api/head/status/+",
+            "mdtg/m_api/head/heartbeat/+"
+    };
 
     @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
     private String serverURI;
@@ -84,7 +80,7 @@ public class MQClient {
         /*
           --- 核心策略 A: Keepalive ---
           设置 60秒心跳间隔。
-          如果 60秒内无通信，客户端自动发 PINGREQ；若 1.5倍时间(90s)无响应，Broker判定掉线。
+          如果 60 * 3 秒内无通信，客户端自动发 PINGREQ；若 1.5倍时间(90s)无响应，Broker判定掉线。
          */
         connOpts.setConnectionTimeout(30);
         connOpts.setKeepAliveInterval(60 * 3);
@@ -97,7 +93,7 @@ public class MQClient {
         MqttMessage message = new MqttMessage(OFFLINE_JSON.getBytes());
         message.setQos(1);
         message.setRetained(true);
-        connOpts.setWill(TOPIC_AGV_STATUS, message);
+        connOpts.setWill("mdtg/m_api/test/status", message);
 
         // 设置回调
         mqClient.setCallback(new MqttCallback() {
@@ -200,7 +196,7 @@ public class MQClient {
             public void messageArrived(String topic, MqttMessage message) {
 
                 // 筛选所有以 "mdtg/m_api/agv/status/" 和 "mdtg/m_api/agv/heartbeat/" 开头的主题
-                if (topic.startsWith("mdtg/m_api/agv/status/") || topic.startsWith("mdtg/m_api/badge/status/")) {
+                if (topic.startsWith("mdtg/m_api/agv/status/") || topic.startsWith("mdtg/m_api/badge/status/") || topic.startsWith("mdtg/m_api/head/status/")) {
                     String deviceId = topic.substring(topic.lastIndexOf("/") + 1).toLowerCase();
                     if (new String(message.getPayload()).contains("online")) {
                         onlineSet.add(deviceId);
@@ -220,16 +216,13 @@ public class MQClient {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
 
-                try {
-                    mqClient.subscribe("mdtg/m_api/head/status/+", 0);
-                    mqClient.subscribe("mdtg/m_api/head/heartbeat/+", 0);
-                    mqClient.subscribe("mdtg/m_api/badge/status/+", 0);
-                    mqClient.subscribe("mdtg/m_api/badge/heartbeat/+", 0);
-                    mqClient.subscribe("mdtg/m_api/agv/status/+", 0);
-                    mqClient.subscribe("mdtg/m_api/agv/heartbeat/+", 0);
-                } catch (MqttException e) {
-                    throw new RuntimeException(e);
-                }
+                    Arrays.stream(subTopic).forEach(topic -> {
+                        try {
+                            mqClient.subscribe(topic, 0);
+                        } catch (MqttException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
             }
 
             @Override

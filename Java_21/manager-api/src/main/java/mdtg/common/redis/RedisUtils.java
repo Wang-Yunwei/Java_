@@ -19,7 +19,7 @@ import mdtg.common.utils.ResourcesUtils;
  * Redis工具类
  */
 @Component
-public class RedisUtils {
+public class  {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 

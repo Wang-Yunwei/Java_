@@ -66,8 +66,8 @@ public class Device extends BaseEntity {
     private String parentMac;
 
     /**
-     * 设备状态(0-离线,1-在线)
+     * 设备状态(0-离线,1-在线,2-故障)
      */
-    @Schema(description = "设备状态(0-离线,1-在线)")
+    @Schema(description = "设备状态(0-离线,1-在线,2-故障)")
     private Integer status;
 }
