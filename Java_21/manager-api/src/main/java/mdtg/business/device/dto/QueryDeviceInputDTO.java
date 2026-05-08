@@ -1,6 +1,7 @@
 package mdtg.business.device.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,6 +40,12 @@ public class QueryDeviceInputDTO {
 
     @Schema(description = "type为1、2时,绑定type为0的设备MAC地址")
     private String parentMac;
+
+    @Schema(description = "设备状态(0-故障,1-正常[2-离线,3-在线])")
+    private Integer status;
+
+    @Schema(description = "组织编码")
+    private String orgCode;
 
     @Schema(description = "页码")
     private Long pageNum = 0L;

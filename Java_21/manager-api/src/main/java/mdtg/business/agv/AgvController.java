@@ -92,4 +92,11 @@ public class AgvController {
 
         return taskService.queryTask(inputDTO);
     }
+
+    @Operation(summary = "任务 - 执行")
+    @PostMapping("/execute-task")
+    public ResponseDTO<?> executeTask(@RequestBody ExecuteTaskInputDTO inputDTO) {
+
+        return taskService.executeTask(inputDTO);
+    }
 }

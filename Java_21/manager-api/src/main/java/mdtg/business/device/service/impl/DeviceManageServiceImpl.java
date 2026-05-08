@@ -14,19 +14,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author WangYunwei
  */
 @Service
 public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> implements DeviceManageService {
-
-    private final MQClient mqClient;
-
-    public DeviceManageServiceImpl(MQClient mqClient) {
-
-        this.mqClient = mqClient;
-    }
 
     @Override
     public ResponseDTO<?> addDevice(AddDeviceInputDTO inputDTO) {
@@ -63,12 +57,17 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
         Optional.ofNullable(inputDTO.getAutoUpdate()).ifPresent(autoUpdate -> queryWrapper.eq(Device::getAutoUpdate, autoUpdate));
         Optional.ofNullable(inputDTO.getType()).ifPresent(type -> queryWrapper.eq(Device::getType, type));
         Optional.ofNullable(inputDTO.getParentMac()).ifPresent(parentMac -> queryWrapper.eq(Device::getParentMac, parentMac));
+        // 返回在线设备Mac地址列表
+        if (inputDTO.getStatus() != null && inputDTO.getStatus() == 3) {
+            Optional.ofNullable(inputDTO.getOrgCode()).ifPresent(orgCode -> queryWrapper.eq(Device::getOrgCode, orgCode));
+            return ResponseDTO.wrapSuccess(this.baseMapper.selectList(queryWrapper).stream().map(Device::getMacAddress).filter(MQClient.onlineSet::contains).collect(Collectors.toSet()));
+        }
         Page<Device> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         Page<Device> devicePage = this.baseMapper.selectPage(page, queryWrapper);
-        if (MQClient.onlineSet.size() > 0) {
+        if (!MQClient.onlineSet.isEmpty()) {
             devicePage.getRecords().forEach(dto -> {
                 if (MQClient.onlineSet.contains(dto.getMacAddress())) {
-                    dto.setStatus(1);
+                    dto.setStatus(3);
                 }
             });
         }

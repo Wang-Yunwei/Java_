@@ -87,6 +87,7 @@ public class ShiroConfig {
         filterMap.put("/models/provider/get-provider-by-ids", "anon");
         filterMap.put("/agent/get-agent-plugin-mapping", "anon");
         filterMap.put("/v2/agv/**", "anon");
+        filterMap.put("/v2/device/query", "anon");
 
         // 将config路径使用server服务过滤器
         filterMap.put("/config/**", "server");

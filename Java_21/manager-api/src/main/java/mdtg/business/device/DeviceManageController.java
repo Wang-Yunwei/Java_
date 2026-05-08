@@ -2,10 +2,12 @@ package mdtg.business.device;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.device.dto.AddDeviceInputDTO;
 import mdtg.business.device.dto.QueryDeviceInputDTO;
 import mdtg.business.device.service.DeviceManageService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
