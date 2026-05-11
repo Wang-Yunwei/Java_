@@ -1,8 +1,10 @@
 package mdtg.business.agv;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.agv.dto.*;
+import mdtg.business.agv.entity.CoordinatePoint;
 import mdtg.business.agv.service.CoordinatePointService;
 import mdtg.business.agv.service.MapService;
 import mdtg.business.agv.service.TaskService;
@@ -94,9 +96,13 @@ public class AgvController {
     }
 
     @Operation(summary = "任务 - 执行")
-    @PostMapping("/execute-task")
-    public ResponseDTO<?> executeTask(@RequestBody ExecuteTaskInputDTO inputDTO) {
+    @GetMapping("/execute-task")
+    public ResponseDTO<?> executeTask(@RequestParam String pointName) {
 
-        return taskService.executeTask(inputDTO);
+        CoordinatePoint one = coordinatePointService.getOne(new LambdaQueryWrapper<CoordinatePoint>().eq(CoordinatePoint::getDeleteFlag, 0).eq(CoordinatePoint::getName, pointName));
+        if (one == null) {
+            return ResponseDTO.wrapException("坐标点不存在！");
+        }
+        return ResponseDTO.wrapSuccess();
     }
 }
