@@ -24,6 +24,16 @@ public class Map extends BaseEntity {
     private String name;
 
     /**
+     * MAC地址
+     */
+    private String macAddress;
+
+    /**
+     * 坐标点[{"name": "办公室","x": 3.803025, "y": -7.810509, "yaw": -2.950007, "updated_at": 1776265404}]
+     */
+    private Object points;
+
+    /**
      * 附件ID
      */
     private Long attachId;

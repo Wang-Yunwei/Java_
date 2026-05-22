@@ -1,5 +1,6 @@
 package mdtg.business.common;
 
+import com.google.common.primitives.Bytes;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.mqttv5.client.*;
 import org.eclipse.paho.mqttv5.client.persist.MemoryPersistence;
@@ -9,8 +10,9 @@ import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -19,6 +21,10 @@ import java.util.Set;
 @Slf4j
 @Component
 public class MQClient {
+
+    public static final Set<String> ONLINE_HASH_SET = new HashSet<>();
+
+    public static final Map<String, String> CURRENT_POINT_HASH_MAP = new HashMap<>();
 
     /**
      * <dl>
@@ -33,20 +39,25 @@ public class MQClient {
      * </dl>
      * {"map_name": "WHEELTEC", "x": 3.803025, "y": -7.810509, "yaw": -2.950007, "updated_at": 1776265404, mac_address: "xx"}
      */
-    public static final String ONLINE_JSON = "{\"status\":\"online\",\"version\":\"1.0.0\"}";
+    public final String ONLINE_JSON = "{\"status\":\"online\",\"version\":\"1.0.0\"}";
 
-    public static final String OFFLINE_JSON = "{\"status\":\"offline\",\"reason\":\"unexpected_disconnect\"}";
+    public final String OFFLINE_JSON = "{\"status\":\"offline\",\"reason\":\"unexpected_disconnect\"}";
 
-    public static final Set<String> onlineSet = new HashSet<>();
+    private final byte[] STATUS_ONLINE_BYTES = {0x6f, 0x6e, 0x6c, 0x69, 0x6e, 0x65};
 
-    private final String[] subTopic = new String[]{
+    private final byte[] STATUS_OFFLINE_BYTES = {0x6f, 0x66, 0x66, 0x6c, 0x69, 0x6e, 0x65};
+
+    private final String[] topicFilters = {
             "mdtg/m_api/agv/status/+",
             "mdtg/m_api/agv/heartbeat/+",
+            "mdtg/m_api/agv/current_point/+",
             "mdtg/m_api/badge/status/+",
             "mdtg/m_api/badge/heartbeat/+",
             "mdtg/m_api/head/status/+",
             "mdtg/m_api/head/heartbeat/+"
     };
+
+    private final int[] qos = {0, 0, 0, 0, 0, 0, 0};
 
     @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
     private String serverURI;
@@ -68,7 +79,16 @@ public class MQClient {
      *   <dd>STS/M350/PUBLISH/# 将匹配 STS/M350/PUBLISH/x26123、STS/M350/PUBLISH/x26127 和 STS/M350/PUBLISH/x26123/subtopic</dd>
      * </dl>
      */
-    public static void main(String[] args) throws MqttException {
+    public static void main(String[] args) {
+
+        try {
+            new MQClient().testFun();
+        } catch (MqttException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void testFun() throws MqttException {
 
         MqttClient mqClient = new MqttClient("tcp://58.211.186.6:1883", "M_API", new MemoryPersistence());
         // 设置连接选项
@@ -171,10 +191,9 @@ public class MQClient {
         mqClient.subscribe("mdtg/m_api/agv/heartbeat/+", 0);
     }
 
-    public MqttClient mqttClient() throws MqttException {
+    public void mqttClient() throws MqttException {
 
         MqttClient mqClient = new MqttClient(serverURI, clientId, new MemoryPersistence());
-        // 设置连接选项
         MqttConnectionOptions connOpts = new MqttConnectionOptions();
         connOpts.setUserName(userName);
         connOpts.setPassword(password.getBytes());
@@ -195,16 +214,17 @@ public class MQClient {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
 
-                // 筛选所有以 "mdtg/m_api/agv/status/" 和 "mdtg/m_api/agv/heartbeat/" 开头的主题
+                String macAddress = topic.substring(topic.lastIndexOf("/") + 1).toLowerCase();
                 if (topic.startsWith("mdtg/m_api/agv/status/") || topic.startsWith("mdtg/m_api/badge/status/") || topic.startsWith("mdtg/m_api/head/status/")) {
-                    String deviceId = topic.substring(topic.lastIndexOf("/") + 1).toLowerCase();
-                    if (new String(message.getPayload()).contains("online")) {
-                        onlineSet.add(deviceId);
+                    if (Bytes.indexOf(message.getPayload(), STATUS_ONLINE_BYTES) >= 0) {
+                        ONLINE_HASH_SET.add(macAddress);
+                    } else if (Bytes.indexOf(message.getPayload(), STATUS_OFFLINE_BYTES) >= 0) {
+                        ONLINE_HASH_SET.remove(macAddress);
                     }
-                    if (new String(message.getPayload()).contains("offline")) {
-                        onlineSet.remove(deviceId);
-                    }
-                    log.info("当前在线设备列表: {}", onlineSet);
+                    log.info("当前在线设备列表: {}", ONLINE_HASH_SET);
+                } else if (topic.startsWith("mdtg/m_api/agv/current_point/")) {
+                    CURRENT_POINT_HASH_MAP.put(macAddress, new String(message.getPayload()));
+                    log.info("当前设备最新坐标点: {}", CURRENT_POINT_HASH_MAP);
                 }
             }
 
@@ -216,13 +236,11 @@ public class MQClient {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
 
-                    Arrays.stream(subTopic).forEach(topic -> {
-                        try {
-                            mqClient.subscribe(topic, 0);
-                        } catch (MqttException e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
+                try {
+                    mqClient.subscribe(topicFilters, qos);
+                } catch (MqttException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             @Override
@@ -231,6 +249,5 @@ public class MQClient {
             }
         });
         mqClient.connect(connOpts); // 建立连接
-        return mqClient;
     }
 }

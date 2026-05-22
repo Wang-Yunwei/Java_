@@ -1,13 +1,11 @@
 package mdtg.business.agv;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mdtg.business.agv.dto.*;
-import mdtg.business.agv.entity.CoordinatePoint;
-import mdtg.business.agv.service.CoordinatePointService;
 import mdtg.business.agv.service.MapService;
 import mdtg.business.agv.service.TaskService;
+import mdtg.business.common.MQClient;
 import mdtg.business.common.ResponseDTO;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,14 +19,11 @@ public class AgvController {
 
     private final MapService mapService;
 
-    private final CoordinatePointService coordinatePointService;
-
     private final TaskService taskService;
 
-    public AgvController(MapService mapService, CoordinatePointService coordinatePointService, TaskService taskService) {
+    public AgvController(MapService mapService, TaskService taskService) {
 
         this.mapService = mapService;
-        this.coordinatePointService = coordinatePointService;
         this.taskService = taskService;
     }
 
@@ -51,27 +46,6 @@ public class AgvController {
     public ResponseDTO<?> queryMap(@RequestBody QueryMapInputDTO inputDTO) {
 
         return mapService.queryMap(inputDTO);
-    }
-
-    @Operation(summary = "坐标点 - 新增or更新")
-    @PostMapping("/add-point")
-    public ResponseDTO<?> addPoint(@RequestBody AddPointInputDTO inputDTO) {
-
-        return coordinatePointService.addPoint(inputDTO);
-    }
-
-    @Operation(summary = "坐标点 - 删除")
-    @GetMapping("/delete-point/{id}")
-    public ResponseDTO<?> deletePoint(@PathVariable Long id) {
-
-        return coordinatePointService.deletePoint(id);
-    }
-
-    @Operation(summary = "坐标点 - 查询")
-    @PostMapping("/query-point")
-    public ResponseDTO<?> queryPoint(@RequestBody QueryPointInputDTO inputDTO) {
-
-        return coordinatePointService.queryPoint(inputDTO);
     }
 
     @Operation(summary = "任务 - 新增or更新")
@@ -99,10 +73,13 @@ public class AgvController {
     @GetMapping("/execute-task")
     public ResponseDTO<?> executeTask(@RequestParam String pointName) {
 
-        CoordinatePoint one = coordinatePointService.getOne(new LambdaQueryWrapper<CoordinatePoint>().eq(CoordinatePoint::getDeleteFlag, 0).eq(CoordinatePoint::getName, pointName));
-        if (one == null) {
-            return ResponseDTO.wrapException("坐标点不存在！");
-        }
         return ResponseDTO.wrapSuccess();
+    }
+
+    @Operation(summary = "AGV - 获取当前坐标点")
+    @GetMapping("/current-point")
+    public ResponseDTO<?> getCurrentPoint(@RequestParam String macAddress) {
+
+        return ResponseDTO.wrapSuccess(MQClient.CURRENT_POINT_HASH_MAP.get(macAddress));
     }
 }

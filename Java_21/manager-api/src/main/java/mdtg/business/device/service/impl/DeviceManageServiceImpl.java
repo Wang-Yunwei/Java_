@@ -60,13 +60,13 @@ public class DeviceManageServiceImpl extends ServiceImpl<DeviceMapper, Device> i
         // 返回在线设备Mac地址列表
         if (inputDTO.getStatus() != null && inputDTO.getStatus() == 3) {
             Optional.ofNullable(inputDTO.getOrgCode()).ifPresent(orgCode -> queryWrapper.eq(Device::getOrgCode, orgCode));
-            return ResponseDTO.wrapSuccess(this.baseMapper.selectList(queryWrapper).stream().map(Device::getMacAddress).filter(MQClient.onlineSet::contains).collect(Collectors.toSet()));
+            return ResponseDTO.wrapSuccess(this.baseMapper.selectList(queryWrapper).stream().map(Device::getMacAddress).filter(MQClient.ONLINE_HASH_SET::contains).collect(Collectors.toSet()));
         }
         Page<Device> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         Page<Device> devicePage = this.baseMapper.selectPage(page, queryWrapper);
-        if (!MQClient.onlineSet.isEmpty()) {
+        if (!MQClient.ONLINE_HASH_SET.isEmpty()) {
             devicePage.getRecords().forEach(dto -> {
-                if (MQClient.onlineSet.contains(dto.getMacAddress())) {
+                if (MQClient.ONLINE_HASH_SET.contains(dto.getMacAddress())) {
                     dto.setStatus(3);
                 }
             });

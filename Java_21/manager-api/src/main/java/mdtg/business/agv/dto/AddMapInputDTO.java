@@ -20,6 +20,12 @@ public class AddMapInputDTO {
     @Schema(description = "地图名")
     private String name;
 
+    @Schema(description = "MAC地址")
+    private String macAddress;
+
+    @Schema(description = "坐标点", example = "[{'name': '办公室','x': 3.803025, 'y': -7.810509, 'yaw': -2.950007, 'updated_at': 1776265404}]")
+    private Object points;
+
     @Schema(description = "附件ID")
     private Long attachId;
 }
