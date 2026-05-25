@@ -8,6 +8,8 @@
             <id property="id" column="id" />
             <result property="alias" column="alias" />
             <result property="name" column="name" />
+            <result property="macAddress" column="mac_address" />
+            <result property="points" column="points" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
             <result property="attachId" column="attach_id" />
             <result property="updateBy" column="update_by" />
             <result property="updateName" column="update_name" />

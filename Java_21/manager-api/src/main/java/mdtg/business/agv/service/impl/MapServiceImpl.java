@@ -47,8 +47,9 @@ public class MapServiceImpl extends ServiceImpl<MapMapper, Map> implements MapSe
 
         LambdaQueryWrapper<Map> queryWrapper = new LambdaQueryWrapper<Map>().eq(Map::getDeleteFlag, 0);
         Optional.ofNullable(inputDTO.getMapId()).ifPresent(mapId -> queryWrapper.eq(Map::getId, mapId));
-        Optional.ofNullable(inputDTO.getAlias()).ifPresent(id -> queryWrapper.eq(Map::getId, id));
-        Optional.ofNullable(inputDTO.getName()).ifPresent(id -> queryWrapper.eq(Map::getId, id));
+        Optional.ofNullable(inputDTO.getAlias()).ifPresent(alias -> queryWrapper.eq(Map::getAlias, alias));
+        Optional.ofNullable(inputDTO.getName()).ifPresent(name -> queryWrapper.eq(Map::getName, name));
+        Optional.ofNullable(inputDTO.getMacAddress()).ifPresent(macAddress -> queryWrapper.eq(Map::getMacAddress, macAddress));
         IPage<Map> page = new Page<>(inputDTO.getPageNum(), inputDTO.getPageSize());
         return ResponseDTO.wrapSuccess(this.baseMapper.selectPage(page, queryWrapper));
     }

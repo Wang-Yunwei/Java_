@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-@TableName(value = "mdtg_map")
+@TableName(value = "mdtg_map",autoResultMap = true)
 public class Map extends BaseEntity {
 
     /**
