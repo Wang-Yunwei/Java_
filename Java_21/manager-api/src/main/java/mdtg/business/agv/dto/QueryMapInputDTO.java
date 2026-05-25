@@ -20,6 +20,9 @@ public class QueryMapInputDTO {
     @Schema(description = "地图名")
     private String name;
 
+    @Schema(description = "MAC地址")
+    private String macAddress;
+
     @Schema(description = "页码")
     private Long pageNum = 0L;
 

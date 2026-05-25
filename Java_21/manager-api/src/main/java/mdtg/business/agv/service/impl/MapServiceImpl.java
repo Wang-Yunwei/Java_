@@ -30,7 +30,7 @@ public class MapServiceImpl extends ServiceImpl<MapMapper, Map> implements MapSe
         BeanUtils.copyProperties(inputDTO, map);
         if (inputDTO.getId() != null && inputDTO.getId() > 0) {
             int result = this.baseMapper.updateById(map);
-            
+
             return ResponseDTO.wrapSuccess(result);
         }
         return ResponseDTO.wrapSuccess(this.baseMapper.insert(map));

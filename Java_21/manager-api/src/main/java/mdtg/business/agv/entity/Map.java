@@ -1,9 +1,13 @@
 package mdtg.business.agv.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Getter;
 import lombok.Setter;
 import mdtg.business.common.BaseEntity;
+
+import java.util.List;
 
 /**
  * 地图表
@@ -31,7 +35,8 @@ public class Map extends BaseEntity {
     /**
      * 坐标点[{"name": "办公室","x": 3.803025, "y": -7.810509, "yaw": -2.950007, "updated_at": 1776265404}]
      */
-    private Object points;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<java.util.Map<String, Object>> points;
 
     /**
      * 附件ID
