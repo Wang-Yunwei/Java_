@@ -1,6 +1,6 @@
 spring:
   application:
-    name: mdtg_robot_server
+    name: mdtg-robot-server
   profiles:
     include: dev
   jackson:
