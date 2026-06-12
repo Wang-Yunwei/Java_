@@ -9,7 +9,7 @@ import mdtg.business.common.CustomMultipartFile;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.customer.dto.*;
 import mdtg.business.customer.feign.CustomerFeign;
-import mdtg.business.user.entity.User;
+import mdtg.business.common.entity.User;
 import mdtg.business.user.service.UserService;
 import mdtg.common.utils.Result;
 import mdtg.modules.knowledge.dto.KnowledgeBaseDTO;

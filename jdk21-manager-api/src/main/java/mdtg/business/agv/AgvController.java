@@ -89,4 +89,20 @@ public class AgvController {
 
         return ResponseDTO.wrapSuccess();
     }
+
+    @Operation(summary = "AGV - 上传固件")
+    @PostMapping("/upload-firmware")
+    public ResponseDTO<?> uploadFirmware() {
+
+        return ResponseDTO.wrapSuccess();
+    }
+
+    @Operation(summary = "AGV - 下载固件")
+    @GetMapping("/download-firmware")
+    public ResponseDTO<?> downloadFirmware() {
+
+        return ResponseDTO.wrapSuccess();
+    }
+
+
 }

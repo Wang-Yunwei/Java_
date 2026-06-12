@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.agv.dto.AddMapInputDTO;
 import mdtg.business.agv.dto.QueryMapInputDTO;
-import mdtg.business.agv.entity.Map;
+import mdtg.business.common.entity.Map;
 import mdtg.business.agv.mapper.MapMapper;
 import mdtg.business.agv.service.MapService;
 import mdtg.business.common.ResponseDTO;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.user.dto.AddPermissionInputDTO;
 import mdtg.business.user.dto.QueryPermissionInputDTO;
-import mdtg.business.user.entity.Permission;
+import mdtg.business.common.entity.Permission;
 
 /**
  * @author WangYunwei

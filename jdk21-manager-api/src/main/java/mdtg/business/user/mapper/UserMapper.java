@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import mdtg.business.user.dto.QueryUserOutputDTO;
-import mdtg.business.user.entity.User;
+import mdtg.business.common.entity.User;
 import mdtg.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;

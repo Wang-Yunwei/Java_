@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
+import io.minio.errors.*;
 import mdtg.business.attachment.dto.QueryAttachmentInputDTO;
 import mdtg.business.attachment.entity.Attach;
 import mdtg.business.attachment.mapper.AttachMapper;
@@ -13,6 +15,9 @@ import mdtg.business.common.ResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 /**
@@ -60,7 +65,32 @@ public class AttachServiceImpl extends ServiceImpl<AttachMapper, Attach> impleme
 
     @Override
     public ResponseDTO<?> uploadFiles(MultipartFile[] files, String name, String deviceId) {
-
+//        try {
+//            minioClient.putObject(PutObjectArgs.builder()
+//                    .bucket("xx")
+//                    .object("xx")
+//                    .stream(files[0].getInputStream(), 12, -1) // 这里传入的是 InputStream
+//                    .contentType("application/octet-stream")
+//                    .build());
+//        } catch (ErrorResponseException e) {
+//            throw new RuntimeException(e);
+//        } catch (InsufficientDataException e) {
+//            throw new RuntimeException(e);
+//        } catch (InternalException e) {
+//            throw new RuntimeException(e);
+//        } catch (InvalidKeyException e) {
+//            throw new RuntimeException(e);
+//        } catch (InvalidResponseException e) {
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        } catch (NoSuchAlgorithmException e) {
+//            throw new RuntimeException(e);
+//        } catch (ServerException e) {
+//            throw new RuntimeException(e);
+//        } catch (XmlParserException e) {
+//            throw new RuntimeException(e);
+//        }
         return null;
     }
 }

@@ -3,7 +3,7 @@ package mdtg.business.agv.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import mdtg.business.agv.dto.AddTaskInputDTO;
 import mdtg.business.agv.dto.QueryTaskInputDTO;
-import mdtg.business.agv.entity.Task;
+import mdtg.business.common.entity.Task;
 import mdtg.business.common.ResponseDTO;
 
 /**

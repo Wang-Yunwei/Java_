@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.agv.dto.AddTaskInputDTO;
 import mdtg.business.agv.dto.QueryTaskInputDTO;
-import mdtg.business.agv.entity.Task;
+import mdtg.business.common.entity.Task;
 import mdtg.business.agv.mapper.TaskMapper;
 import mdtg.business.agv.service.TaskService;
 import mdtg.business.common.ResponseDTO;
@@ -77,7 +77,6 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task> implements Ta
         if (taskHolder.containsKey(taskCode)) {
             cancelTask(taskCode);
         }
-
         // 定义要执行的业务逻辑
         Runnable taskLogic = () -> {
             // 这里通过 taskCode 找到对应的业务 Bean 执行逻辑

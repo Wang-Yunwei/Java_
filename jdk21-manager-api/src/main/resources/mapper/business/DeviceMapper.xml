@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mdtg.business.device.mapper.DeviceMapper">
 
-    <resultMap id="BaseResultMap" type="mdtg.business.device.entity.Device">
+    <resultMap id="BaseResultMap" type="mdtg.business.common.entity.Device">
             <id property="id" column="id" />
             <result property="alias" column="alias" />
             <result property="macAddress" column="mac_address" />

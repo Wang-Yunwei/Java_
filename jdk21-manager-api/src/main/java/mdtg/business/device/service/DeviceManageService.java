@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.device.dto.AddDeviceInputDTO;
 import mdtg.business.device.dto.QueryDeviceInputDTO;
-import mdtg.business.device.entity.Device;
+import mdtg.business.common.entity.Device;
 
 /**
  * @author WangYunwei

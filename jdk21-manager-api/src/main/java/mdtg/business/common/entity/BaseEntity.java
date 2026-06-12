@@ -1,4 +1,4 @@
-package mdtg.business.common;
+package mdtg.business.common.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -94,4 +94,6 @@ public class BaseEntity implements Serializable {
      */
 //    @TableLogic(value = "0", delval = "1")
     private Integer deleteFlag;
+
+    private static final long serialVersionUID = 1L;
 }

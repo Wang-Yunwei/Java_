@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.user.dto.*;
-import mdtg.business.user.entity.User;
+import mdtg.business.common.entity.User;
 import mdtg.business.user.mapper.UserMapper;
 import mdtg.business.user.service.UserService;
 import mdtg.modules.device.service.DeviceService;

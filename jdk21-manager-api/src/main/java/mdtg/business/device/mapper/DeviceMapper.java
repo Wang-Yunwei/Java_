@@ -3,7 +3,7 @@ package mdtg.business.device.mapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
-import mdtg.business.device.entity.Device;
+import mdtg.business.common.entity.Device;
 import mdtg.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

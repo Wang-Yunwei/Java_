@@ -1,9 +1,8 @@
-package mdtg.business.user.entity;
+package mdtg.business.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import mdtg.business.common.BaseEntity;
 
 /**
  * 权限表

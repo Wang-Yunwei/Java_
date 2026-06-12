@@ -1,11 +1,9 @@
-package mdtg.business.device.entity;
+package mdtg.business.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
-import mdtg.business.common.BaseEntity;
 
 import java.time.LocalDateTime;
 

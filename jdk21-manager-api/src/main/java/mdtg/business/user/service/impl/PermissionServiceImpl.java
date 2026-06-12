@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.user.dto.AddPermissionInputDTO;
 import mdtg.business.user.dto.QueryPermissionInputDTO;
-import mdtg.business.user.entity.Permission;
+import mdtg.business.common.entity.Permission;
 import mdtg.business.user.mapper.PermissionMapper;
 import mdtg.business.user.service.PermissionService;
 import org.springframework.beans.BeanUtils;

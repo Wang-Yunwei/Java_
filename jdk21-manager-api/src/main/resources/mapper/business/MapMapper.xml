@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mdtg.business.agv.mapper.MapMapper">
 
-    <resultMap id="BaseResultMap" type="mdtg.business.agv.entity.Map">
+    <resultMap id="BaseResultMap" type="mdtg.business.common.entity.Map">
             <id property="id" column="id" />
             <result property="alias" column="alias" />
             <result property="name" column="name" />

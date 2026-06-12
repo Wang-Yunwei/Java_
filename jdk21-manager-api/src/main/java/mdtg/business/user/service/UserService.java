@@ -5,7 +5,7 @@ import mdtg.business.common.ResponseDTO;
 import mdtg.business.user.dto.QueryUserInputDTO;
 import mdtg.business.user.dto.RegisterInputDTO;
 import mdtg.business.user.dto.UpdateUserInputDTO;
-import mdtg.business.user.entity.User;
+import mdtg.business.common.entity.User;
 
 /**
  * @author WangYunwei

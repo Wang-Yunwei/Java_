@@ -1,7 +1,7 @@
 package mdtg.business.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import mdtg.business.user.entity.Role;
+import mdtg.business.common.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

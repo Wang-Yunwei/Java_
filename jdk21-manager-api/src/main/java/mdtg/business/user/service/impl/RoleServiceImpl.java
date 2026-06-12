@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import mdtg.business.common.ResponseDTO;
 import mdtg.business.user.dto.AddRoleInputDTO;
 import mdtg.business.user.dto.QueryRoleInputDTO;
-import mdtg.business.user.entity.Role;
+import mdtg.business.common.entity.Role;
 import mdtg.business.user.mapper.RoleMapper;
 import mdtg.business.user.service.RoleService;
 import org.springframework.beans.BeanUtils;

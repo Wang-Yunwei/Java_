@@ -1,7 +1,7 @@
 package mdtg.business.agv.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import mdtg.business.agv.entity.Map;
+import mdtg.business.common.entity.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

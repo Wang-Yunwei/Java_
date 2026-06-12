@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
-import mdtg.business.user.entity.Role;
+import mdtg.business.common.entity.Role;
 
 import java.util.Date;
 import java.util.List;
