@@ -46,8 +46,8 @@ spring:
             multi-statement-allow: true # 允许分号批量执行
   data:
     redis:
-      host: ${service-address.mdtg.ip}         # Redis服务器地址
-      port: 6379              # Redis服务器连接端口
+      host: ${service-address.redis.ip}   # Redis服务器地址
+      port: ${service-address.redis.port} # Redis服务器连接端口
       password: # Redis服务器连接密码（默认为空）
       database: 0            # Redis数据库索引（默认为0）
       timeout: 10000ms       # 连接超时时间（毫秒）
@@ -59,14 +59,22 @@ spring:
         shutdown-timeout: 100ms  # 客户端优雅关闭的等待时间
 
 service-address:
-  mqtt:
-    ip: 58.211.186.6
-    port: 1883
-    username: mdtg
-    password: mdtg@123
   mdtg:
     ip: 58.211.186.6
     port: 8002
   customer:
     ip: 58.211.186.6
     port: 8085
+  minio:
+    endpoint: http://58.211.186.6:9000
+    access-key: minio_mdtg
+    secret-key: minio_mdtg
+    bucket-name: mdtg-esp32-api
+  mqtt:
+    ip: 58.211.186.6
+    port: 1883
+    username: mdtg
+    password: mdtg@123
+  redis:
+    ip: 58.211.186.6
+    port: 6379

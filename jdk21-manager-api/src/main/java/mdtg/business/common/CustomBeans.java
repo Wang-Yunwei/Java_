@@ -25,17 +25,17 @@ public class CustomBeans {
 
     private final MQClient mqClient;
 
-    @Value("${minio.endpoint}")
+    @Value("${service-address.minio.endpoint}")
     private String endpoint;
 
-    @Value("${minio.access-key}")
+    @Value("${service-address.minio.access-key}")
     private String accessKey;
 
-    @Value("${minio.secret-key}")
+    @Value("${service-address.minio.secret-key}")
     private String secretKey;
 
-    @Value("${minio.bucket-name:mdtg-esp32-api}")
-    private String bucket;
+    @Value("${service-address.minio.bucket-name}")
+    private String bucketName;
 
     public CustomBeans(MQClient mqClient) {
 
@@ -57,9 +57,9 @@ public class CustomBeans {
     public MinioClient minioClient() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
 
         MinioClient minioClient = MinioClient.builder().endpoint(endpoint).credentials(accessKey, secretKey).build();
-        boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucket).build());
+        boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
         if (!found) {
-            minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());
+            minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
         } else {
             System.out.println("Bucket 'mdtg-esp32-api' already exists.");
         }
