@@ -8,6 +8,7 @@ import lombok.Setter;
 @Data
 @Schema(description = "设备OTA检测版本返回体，包含激活码要求")
 public class DeviceReportRespDTO {
+
     @Schema(description = "服务器时间")
     private ServerTime server_time;
 
@@ -26,24 +27,28 @@ public class DeviceReportRespDTO {
     @Schema(description = "MQTT Gateway配置")
     private MQTT mqtt;
 
-    @Getter
-    @Setter
-    public static class Firmware {
-        @Schema(description = "版本号")
-        private String version;
-        @Schema(description = "下载地址")
-        private String url;
-    }
-
     public static DeviceReportRespDTO createError(String message) {
+
         DeviceReportRespDTO resp = new DeviceReportRespDTO();
         resp.setError(message);
         return resp;
     }
 
+    @Getter
+    @Setter
+    public static class Firmware {
+
+        @Schema(description = "版本号")
+        private String version;
+
+        @Schema(description = "下载地址")
+        private String url;
+    }
+
     @Setter
     @Getter
     public static class Activation {
+
         @Schema(description = "激活码")
         private String code;
 
@@ -57,6 +62,7 @@ public class DeviceReportRespDTO {
     @Getter
     @Setter
     public static class ServerTime {
+
         @Schema(description = "时间戳")
         private Long timestamp;
 
@@ -70,8 +76,10 @@ public class DeviceReportRespDTO {
     @Getter
     @Setter
     public static class Websocket {
+
         @Schema(description = "WebSocket服务器地址")
         private String url;
+
         @Schema(description = "WebSocket 认证 token")
         private String token;
     }
@@ -79,16 +87,22 @@ public class DeviceReportRespDTO {
     @Getter
     @Setter
     public static class MQTT {
+
         @Schema(description = "MQTT 配置网址")
         private String endpoint;
+
         @Schema(description = "MQTT 客户端唯一标识符")
         private String client_id;
+
         @Schema(description = "MQTT 认证用户名")
         private String username;
+
         @Schema(description = "MQTT 认证密码")
         private String password;
+
         @Schema(description = "ESP32 发布消息的主题")
         private String publish_topic;
+
         @Schema(description = "ESP32 订阅的主题")
         private String subscribe_topic;
     }
