@@ -8,8 +8,6 @@ knife4j:
   setting:
     enableFooter: false
 spring:
-  application:
-    name: mdtg-esp32-api
   datasource:
     druid:
       #MySQL
@@ -68,10 +66,10 @@ service-address:
     secret-key: minio_mdtg
     bucket-name: mdtg-esp32-api
   mqtt:
-    ip: 127.0.0.1
-    port: 1883
+    uri: tcp://127.0.0.1:1883
     username: mdtg
     password: mdtg@123
+    client-id: mdtg-esp32-api
   redis:
     ip: 127.0.0.1
     port: 6379

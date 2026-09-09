@@ -59,10 +59,10 @@ public class MQClient {
 
     private final int[] qos = {0, 0, 0, 0, 0, 0, 0};
 
-    @Value("tcp://${service-address.mqtt.ip}:${service-address.mqtt.port}")
-    private String serverURI;
+    @Value("${service-address.mqtt.uri}")
+    private String serverUri;
 
-    @Value("${spring.application.name}")
+    @Value("${service-address.mqtt.client-id}")
     private String clientId;
 
     @Value("${service-address.mqtt.username}")
@@ -193,7 +193,7 @@ public class MQClient {
 
     public void mqttClient() throws MqttException {
 
-        MqttClient mqClient = new MqttClient(serverURI, clientId, new MemoryPersistence());
+        MqttClient mqClient = new MqttClient(serverUri, clientId, new MemoryPersistence());
         MqttConnectionOptions connOpts = new MqttConnectionOptions();
         connOpts.setUserName(userName);
         connOpts.setPassword(password.getBytes());

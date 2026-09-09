@@ -12,8 +12,10 @@ server:
       cookie:
         http-only: true
 spring:
+  application:
+    name: mdtg-esp32-api
   profiles:
-    active: online
+    active: dev
   messages:
     encoding: UTF-8
     basename: i18n/messages

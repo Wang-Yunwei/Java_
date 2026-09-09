@@ -8,8 +8,6 @@ knife4j:
   setting:
     enableFooter: false
 spring:
-  application:
-    name: mdtg-esp32-api
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -61,18 +59,18 @@ service-address:
   customer:
     ip: 127.0.0.1
     port: 8002
-  mqtt:
-    ip: 127.0.0.1
-    port: 1883
-    username: mdtg
-    password: mdtg@123
-  redis:
-    ip: 192.168.0.12
-    port: 6379
-    password: Mdsd@2026
-    database: 0
   minio:
     endpoint: http://192.168.0.12:9000
     access-key: Medical@Robot
     secret-key: Medical@Robot
     bucket-name: mdtg-esp32-api
+  mqtt:
+    uri: tcp://robot.medicalsystem.com.cn:1883
+    username: admin
+    password: Medical@123
+    client-id: mdtg-esp32-api
+  redis:
+    ip: 192.168.0.12
+    port: 6379
+    password: Mdsd@2026
+    database: 0

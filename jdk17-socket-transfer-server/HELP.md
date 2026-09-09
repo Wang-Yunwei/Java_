@@ -1,5 +1,7 @@
 # Socket_Transfer_Server
 
+> mvn dependency:tree > dep_tree.txt
+
 ## auth
 
 ## cloud_box
