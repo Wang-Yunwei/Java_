@@ -29,11 +29,14 @@ public class SocketUtil {
      * BossGroup: 负责监听客户端连接请求 (通常单线程即可)
      * WorkerGroup: 负责处理已建立连接的I/O操作和业务逻辑 (多线程)
      * <p>
+     * - NioEventLoopGroup(1)：显式指定创建 1 个 EventLoop（即 1 个线程）。
+     * - NioEventLoopGroup()：不指定线程数，使用 Netty 的默认值，即创建 CPU核心数 × 2 个 EventLoop。
+     * <p>
      * 通道类型(Channel)
      * 使用 NioServerSocketChannel 作为服务器通道,支持非阻塞I/O
      * <p>
      * 网络参数配置
-     * SO_BACKLOG: 控制操作系统连接队列大小,建议设为 1024 或更高(受系统限制)
+     * SO_BACKLOG: 控制操作系统连接队列大小,建议设为 1024 或更高(受系统限制,检查系统的文件描述符限制（ulimit -n）是否足够大)
      * SO_REUSEADDR: 允许地址复用,避免端口占用问题
      * SO_KEEPALIVE: 启用TCP保活机制,检测空闲连接
      * TCP_NODELAY: 禁用Nagle算法,减少小数据包的延迟(适合WebSocket实时性需求)
@@ -58,16 +61,19 @@ public class SocketUtil {
      */
     public static void createWebSocketServer(ChannelHandler handler, int port) {
         // 创建服务端启动引导器, 配置线程模型  EventLoop 等于 Thread
-        ServerBootstrap serverBootstrap = new ServerBootstrap()
-                .group(new NioEventLoopGroup(1), new NioEventLoopGroup()) // Boss线程组(监听连接), Worker线程组 (处理I/O)
+        ServerBootstrap serverBootstrap = new ServerBootstrap()// Boss线程组(监听连接), Worker线程组 (处理I/O)
+                .group(new NioEventLoopGroup(1),// 显式指定创建 1 个 EventLoop(即1个线程)
+                        new NioEventLoopGroup()) // 不指定线程数,使用 Netty 的默认值,即创建 CPU核心数 × 2 个 EventLoop
                 .channel(NioServerSocketChannel.class) // 使用NIO服务器通道
                 .option(ChannelOption.SO_BACKLOG, 32) // 设置线程队列连接个数, 受Linux的 /proc/sys/net/core/somaxconn 影响
                 .option(ChannelOption.SO_REUSEADDR, true) // 允许地址复用
                 .childOption(ChannelOption.SO_RCVBUF, 128 * 1024) // 接收缓冲区大小
                 .childOption(ChannelOption.SO_SNDBUF, 128 * 1024) // 发送缓冲区大小
                 .childHandler(new ChannelInitializer<NioSocketChannel>() { // 添加一个 ChannelInitializer 来初始化每一个新的Channel
+
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
+
                         ch.pipeline()
                                 .addLast(new HttpServerCodec()) // 1.HTTP 编解码器
                                 .addLast(new ChunkedWriteHandler()) // 2.支持大文件分块写入
@@ -115,14 +121,17 @@ public class SocketUtil {
      * - 允许立即发送小数据包,无需等待前面的数据被确认
      */
     public static ChannelFuture createTcpClient(ChannelHandler handler, String host, int port) {
+
         Bootstrap bootstrap = new Bootstrap().group(new NioEventLoopGroup())
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.SO_SNDBUF, 64 * 1024)
                 .option(ChannelOption.SO_RCVBUF, 64 * 1024)
                 .option(ChannelOption.TCP_NODELAY, true) // 禁用Nagle算法,减少小数据包的延迟
                 .handler(new ChannelInitializer<SocketChannel>() {
+
                     @Override
                     protected void initChannel(SocketChannel ch) {
+
                         ch.pipeline()
                                 .addLast(new LengthFieldBasedFrameDecoder(10 * 1024, 2, 2, 0, 0)) // 自定义协议解码器
                                 .addLast(handler);
@@ -168,6 +177,7 @@ public class SocketUtil {
      * - 告诉 Netty 在连接远程主机时不使用内置的 DNS 解析机制（如解析域名到 IP），而是直接使用你传入的地址（必须是 IP 地址或已解析好的地址）
      */
     public static Channel createUdpServer(ChannelHandler handler, int port) {
+
         Bootstrap bootstrap = new Bootstrap().group(new NioEventLoopGroup())
                 .channel(NioDatagramChannel.class)
                 .option(ChannelOption.SO_SNDBUF, 128 * 1024)
