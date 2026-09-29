@@ -5,19 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
-import wywei.business.controller.tyjw.dto.*;
-import wywei.business.controller.tyjw.service.ITyjwService;
-import wywei.business.controller.websocket.dto.WsChannelDetails;
-import wywei.business.controller.websocket.service.IWebSocketService;
-import wywei.business.controller.websocket.service.impl.WebSocketServiceImpl;
-import wywei.business.enums.CommonEnum;
-import wywei.business.enums.TyjwEnum;
-import wywei.business.enums.TyjwReturnCodeEnum;
-import wywei.business.event.CommonEvent;
-import wywei.business.feign.EApiFeign;
-import wywei.business.response.BusinessException;
-import wywei.business.response.ResponseTy;
-import wywei.business.util.*;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.Unpooled;
@@ -31,6 +18,19 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import wywei.business.controller.tyjw.dto.*;
+import wywei.business.controller.tyjw.service.ITyjwService;
+import wywei.business.controller.websocket.dto.WsChannelDetails;
+import wywei.business.controller.websocket.service.IWebSocketService;
+import wywei.business.controller.websocket.service.impl.WebSocketServiceImpl;
+import wywei.business.enums.CommonEnum;
+import wywei.business.enums.TyjwEnum;
+import wywei.business.enums.TyjwReturnCodeEnum;
+import wywei.business.event.CommonEvent;
+import wywei.business.feign.EApiFeign;
+import wywei.business.response.BusinessException;
+import wywei.business.response.ResponseTy;
+import wywei.business.util.*;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -45,14 +45,6 @@ import static java.lang.String.valueOf;
 @Service
 public class TyjwServiceImpl implements ITyjwService {
 
-    @Value("${env.ip.tyjw}")
-    private String host;
-
-    @Value("${env.port.tyjw.tcp}")
-    private int port;
-
-    private Channel tcpChannel;
-
     private final AuthSingleton auth = AuthSingleton.getInstance();
 
     private final JsonFormat.Printer printer = JsonFormat.printer();
@@ -62,28 +54,57 @@ public class TyjwServiceImpl implements ITyjwService {
     private final PooledByteBufAllocator aDefault = PooledByteBufAllocator.DEFAULT;
 
     private final EApiFeign feign;
+
     private final ApplicationEventPublisher publisher;
+
     private final IWebSocketService webSocketService;
 
+    @Value("${env.ip.tyjw}")
+    private String host;
+
+    @Value("${env.port.tyjw.tcp}")
+    private int port;
+
+    private Channel tcpChannel;
+
     public TyjwServiceImpl(EApiFeign feign, ApplicationEventPublisher publisher, IWebSocketService webSocketService) {
+
         this.feign = feign;
         this.publisher = publisher;
         this.webSocketService = webSocketService;
     }
 
-    @FunctionalInterface
-    private interface WebSocketFunction<T1, T2, T3> {
-        void dataHandle(T1 arg1, T2 arg2, T3 arg3);
-    }
-
+    /**
+     * Supplier(供给型函数式接口)的核心作用是 "无中生有" 地提供数据
+     * <p>
+     * - 它代表一个不接受任何输入参数，但会返回一个泛型类型结果(T)的函数
+     * <p>
+     * - 接口位置：属于 java.util.function 包。
+     * <p>
+     * - 唯一抽象方法：T get()。
+     * <p>
+     * - 特点：只出不进 (无输入参数,有返回值)。
+     * <p>
+     * 示例1: 定义一个 Supplier,每次调用 get() 都会返回当前的最新时间
+     * <p>
+     * Supplier<LocalDateTime> timeSupplier = () -> LocalDateTime.now();
+     * System.out.println(timeSupplier.get()); // 输出当前时间
+     * <p>
+     * 示例2: 结合 Stream 生成数据流,使用 Supplier 生成 5 个 0-99 的随机数
+     * Supplier<Integer> randomSupplier = () -> ThreadLocalRandom.current().nextInt(100);
+     * Stream.generate(randomSupplier).limit(5).forEach(System.out::println);
+     */
     private <T> T handleAuth(Supplier<T> supplier) {
+
         if (auth.getCompanyId() == null || !StringUtils.isNoneBlank(auth.getAccessToken())) {
             getToken(new GetTokenInp());
         }
         return supplier.get();
     }
 
+    // 明确函数入参ResponseTy<T> result
     private <T> T processResult(ResponseTy<T> result) {
+
         if (result.getState() == 0) {
             return result.getContent();
         } else {
@@ -93,6 +114,7 @@ public class TyjwServiceImpl implements ITyjwService {
     }
 
     private void sendMessage(ByteBuf byteBuf) {
+
         if (tcpChannel == null || !tcpChannel.isActive()) {
             throw new BusinessException("TCP 连接不存在!");
         }
@@ -101,6 +123,7 @@ public class TyjwServiceImpl implements ITyjwService {
     }
 
     private void sendByteBuf(ByteBuf buf, TyjwEnum anEnum, JsonNode jsonNode, TyjwServiceImpl.WebSocketFunction<ByteBuf, String, JsonNode> fun) {
+
         buf.writeShort(TyjwEnum.请求帧头.getInstruct());// 帧头
         buf.writeShort(0);// 数据长度,占位临时赋值为0
         buf.writeBytes(ByteUtil.stringToByte(jsonNode.get("云盒编号").asText()));// 云盒编号
@@ -114,6 +137,7 @@ public class TyjwServiceImpl implements ITyjwService {
 
     @Override
     public void handleWebSocket(JsonNode jsonNode) {
+
         String boxNumber = jsonNode.get("云盒编号").asText();
         String instruct = jsonNode.get("指令编号").asText();
         String action = jsonNode.get("动作编号").asText();
@@ -180,36 +204,11 @@ public class TyjwServiceImpl implements ITyjwService {
         }
     }
 
-    @ChannelHandler.Sharable
-    class TyjwChannelInboundHandler extends SimpleChannelInboundHandler<ByteBuf> {
-        @Override
-        protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-            publisher.publishEvent(new CommonEvent(CommonEnum.TCP_TO_TYJW, msg));
-        }
-
-        @Override
-        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) {
-            // 发送心跳
-            if (evt instanceof IdleStateEvent) {
-                ByteBuf buf = Unpooled.buffer();
-                buf.writeShort(TyjwEnum.请求帧头.getInstruct());
-                buf.writeShort(0x09);
-                buf.writeByte(TyjwEnum.心跳.getInstruct());
-                buf.writeLong(System.currentTimeMillis());
-                ctx.writeAndFlush(buf);
-            }
-        }
-
-        @Override
-        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-            log.error(cause.getMessage());
-        }
-    }
-
     @Override
     public void startTcpConnect() {
+
         ChannelFuture tcpClient = SocketUtil.createTcpClient(new TyjwChannelInboundHandler(), host, port);
-        if(null != tcpClient){
+        if (null != tcpClient) {
             tcpChannel = tcpClient.channel();
             ByteBuf buf = Unpooled.buffer();
             byte[] bytes = AuthSingleton.getInstance().getAccessToken().getBytes();
@@ -224,6 +223,7 @@ public class TyjwServiceImpl implements ITyjwService {
 
     @Override
     public void handleTcpClient(ByteBuf buf) {
+
         if (buf.getShort(0) == 0x6A77) {
             int instruct = buf.getByte(4) & 0xFF;
             TyjwEnum anEnum;
@@ -453,6 +453,7 @@ public class TyjwServiceImpl implements ITyjwService {
     @Scheduled(cron = "0 0 2 * * ?")
     @Override
     public void getToken() {
+
         if (!"windows10".equals(ExecShell.exec("hostname")) && Strings.isBlank(auth.getAccessToken())) {
             getToken(new GetTokenInp());
             log.info("GetAccessToken: 0 0 2 * * ?");
@@ -464,6 +465,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public GetTokenOup getToken(GetTokenInp param) {
+
         String str = param.getAccessKeyId() + param.getAccessKeySecret() + param.getTimeStamp();
         param.setEncryptStr(MD5HashGenerator.generateMD5(str));
         ResponseTy<GetTokenOup> result = feign.getToken(param);
@@ -481,6 +483,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public List<GetCloudBoxListOup> getCloudBoxList() {
+
         return handleAuth(() -> {
             ResponseTy<List<GetCloudBoxListOup>> result = feign.cloudBoxList(auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -492,6 +495,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String updateCloudBox(UpdateCloudBoxInp param) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.updateCloudBox(param, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -503,6 +507,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public List<HistoryOup> history(HistoryInp param) {
+
         return handleAuth(() -> {
             ResponseTy<List<HistoryOup>> result = feign.history(param, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -514,6 +519,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String updateLive(UpdateLiveInp param) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.updateLive(param, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -525,6 +531,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String openLive(String boxSn) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.openLive(boxSn, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -536,6 +543,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String closeLive(String boxSn) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.closeLive(boxSn, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -547,6 +555,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public GetLiveAddressOup getLiveAddress(String boxSn) {
+
         return handleAuth(() -> {
             ResponseTy<GetLiveAddressOup> result = feign.getLiveAddress(boxSn, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -558,6 +567,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public List<GetPhotosOup> getPhotos(GetPhotosInp param) {
+
         return handleAuth(() -> {
             ResponseTy<List<GetPhotosOup>> result = feign.getPhotos(param, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -569,6 +579,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String convert(MultipartFile file) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.convert(file, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -592,6 +603,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public List<RechargeDTO> hangarList() {
+
         return handleAuth(() -> {
             ResponseTy<List<RechargeDTO>> result = feign.hangarList(auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -603,6 +615,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String hangarControl(String hangarId, Integer instructId) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.hangarControl(hangarId, instructId, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -614,6 +627,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String line(PlanLineDataDTO param) {
+
         return handleAuth(() -> {
             Map<String, String> lineData = Map.of("lineData", Base64.getEncoder().encodeToString(TyjwParameterMapping.getPlanLineData(param).toByteArray()));
             ResponseTy<String> result = feign.line(lineData, auth.getCompanyId(), auth.getAccessToken());
@@ -626,6 +640,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String updateAirport(UpdateAirportInp param) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.updateHangar(param, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -637,6 +652,7 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String videoOut(String hangarId, String type) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.videoOut(hangarId, type, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
@@ -648,9 +664,45 @@ public class TyjwServiceImpl implements ITyjwService {
      */
     @Override
     public String videoIn(String hangarId, String type) {
+
         return handleAuth(() -> {
             ResponseTy<String> result = feign.videoIn(hangarId, type, auth.getCompanyId(), auth.getAccessToken());
             return processResult(result);
         });
+    }
+
+    @FunctionalInterface
+    private interface WebSocketFunction<T1, T2, T3> {
+
+        void dataHandle(T1 arg1, T2 arg2, T3 arg3);
+    }
+
+    @ChannelHandler.Sharable
+    class TyjwChannelInboundHandler extends SimpleChannelInboundHandler<ByteBuf> {
+
+        @Override
+        protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
+
+            publisher.publishEvent(new CommonEvent(CommonEnum.TCP_TO_TYJW, msg));
+        }
+
+        @Override
+        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) {
+            // 发送心跳
+            if (evt instanceof IdleStateEvent) {
+                ByteBuf buf = Unpooled.buffer();
+                buf.writeShort(TyjwEnum.请求帧头.getInstruct());
+                buf.writeShort(0x09);
+                buf.writeByte(TyjwEnum.心跳.getInstruct());
+                buf.writeLong(System.currentTimeMillis());
+                ctx.writeAndFlush(buf);
+            }
+        }
+
+        @Override
+        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+
+            log.error(cause.getMessage());
+        }
     }
 }
