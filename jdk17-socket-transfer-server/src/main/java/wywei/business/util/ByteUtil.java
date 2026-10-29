@@ -30,6 +30,8 @@ public class ByteUtil {
         return result;
     }
 
+
+
     public static byte[] stringToByte(String str) {
 
         return str.getBytes(StandardCharsets.UTF_8);

@@ -4,14 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.util.JsonFormat;
-import wywei.business.controller.dji.dto.AircraftDto;
-import wywei.business.controller.dji.service.IDjiService;
-import wywei.business.controller.websocket.service.IWebSocketService;
-import wywei.business.controller.websocket.service.impl.WebSocketServiceImpl;
-import wywei.business.enums.CommonEnum;
-import wywei.business.enums.DjiEnum;
-import wywei.business.event.CommonEvent;
-import wywei.business.util.SocketUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -25,6 +17,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import wywei.business.controller.dji.dto.AircraftDto;
+import wywei.business.controller.dji.service.IDjiService;
+import wywei.business.controller.websocket.service.IWebSocketService;
+import wywei.business.controller.websocket.service.impl.WebSocketServiceImpl;
+import wywei.business.enums.CommonEnum;
+import wywei.business.enums.DjiEnum;
+import wywei.business.event.CommonEvent;
+import wywei.business.util.SocketUtil;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,76 +42,21 @@ public class DjiServiceImpl implements IDjiService {
     private final static String STREAM_PATH = "rtmp://192.168.0.221/live/%s";
 
     private final static String PAYLOAD = "{\"serialNumber\":\"%s\",\"module\":%d,\"directive\":%d%s}";
-
-    @Value("${env.port.sts.udp}")
-    private int port;
-
-    private int mountPosition;
-
     private final ConcurrentHashMap<String, AircraftDto> aircraftMap = new ConcurrentHashMap<>();
     private final ObjectMapper obm = new ObjectMapper();
     private final JsonFormat.Printer printer = JsonFormat.printer();
     private final StringBuilder stringBuilder = new StringBuilder();
-
     private final BlockingQueue<byte[]> videoQueue = new LinkedBlockingQueue<>();
-
-    private Channel udpChannel;
     private final ApplicationEventPublisher publisher;
     private final IWebSocketService webSocketService;
+    @Value("${env.port.sts.udp}")
+    private int port;
+    private int mountPosition;
+    private Channel udpChannel;
 
     public DjiServiceImpl(ApplicationEventPublisher publisher, IWebSocketService webSocketService) {
         this.publisher = publisher;
         this.webSocketService = webSocketService;
-    }
-
-    @ChannelHandler.Sharable
-    class DjiChannelInboundHandler extends SimpleChannelInboundHandler<DatagramPacket> {
-        @Override
-        protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket pak) {
-            ByteBuf content = pak.content();
-            int i = content.readableBytes();
-            ByteBuf buffer = Unpooled.buffer(i);
-            content.readBytes(buffer);
-
-            String str = buffer.toString(CharsetUtil.UTF_8);
-            try {
-                JsonNode jsonNode = obm.readTree(str);
-                log.info("size: {}, body: {}", i, jsonNode);
-
-                // 当接收到心跳后解析地址和端口号
-                String serialNumber = jsonNode.get("serialNumber").asText();
-                int module = jsonNode.get("module").asInt();
-
-                if (module == DjiEnum.心跳.getModule()) {
-                    if (aircraftMap.containsKey(serialNumber)) {
-                        udpChannel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(buffer.array()), aircraftMap.get(serialNumber).getInetSocketAddress()));
-                    } else {
-                        log.info("{} 注册到系统!", serialNumber);
-                        AircraftDto aircraftDto = new AircraftDto();
-                        aircraftDto.setInetSocketAddress(pak.sender());
-//                        aircraftDto.setProcess(FFmpegUtil.startProcess(String.format(STREAM_PATH, payload.getSerialNumber())));
-                        aircraftMap.put(serialNumber, aircraftDto);
-
-                        // 消费线程
-//                        new Thread(() -> {
-//                            try {
-//                                while (!Thread.interrupted()) {
-//                                    byte[] packet = videoQueue.take(); // 取出一个完整的UDP包（约33656字节）
-//                                    aircraftDto.getProcess().getOutputStream().write(packet);
-//                                    aircraftDto.getProcess().getOutputStream().flush();
-//                                }
-//                            } catch (IOException | InterruptedException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }).start();
-                    }
-                } else {
-                    publisher.publishEvent(new CommonEvent(CommonEnum.UDP_TO_DJI, jsonNode));
-                }
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     @Override
@@ -237,16 +182,66 @@ public class DjiServiceImpl implements IDjiService {
                         case 航点_上传任务 -> {
                             if (jsonNode.get("waypoint") != null) {
                                 JsonNode waypoint = jsonNode.withArray("waypoint");
-                                body = String.format(anEnum.getArguments(), waypoint.size(), waypoint.toString());
+                                body = String.format(anEnum.getArguments(), waypoint.size(), waypoint);
                             }
                         }
                         default -> log.error("未知指令!");
                     }
                     String payload = String.format(PAYLOAD, serialNumber, module, directive, StringUtils.isEmpty(body) ? null : body);
-                    log.info("发送数据: {}",payload);
+                    log.info("发送数据: {}", payload);
                     // 发送数据
 //                    udpChannel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(ByteUtil.stringToByte(payload)), aircraftDto.getInetSocketAddress()));
                 }
+            }
+        }
+    }
+
+    @ChannelHandler.Sharable
+    class DjiChannelInboundHandler extends SimpleChannelInboundHandler<DatagramPacket> {
+        @Override
+        protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket pak) {
+            ByteBuf content = pak.content();
+            int i = content.readableBytes();
+            ByteBuf buffer = Unpooled.buffer(i);
+            content.readBytes(buffer);
+
+            String str = buffer.toString(CharsetUtil.UTF_8);
+            try {
+                JsonNode jsonNode = obm.readTree(str);
+                log.info("size: {}, body: {}", i, jsonNode);
+
+                // 当接收到心跳后解析地址和端口号
+                String serialNumber = jsonNode.get("serialNumber").asText();
+                int module = jsonNode.get("module").asInt();
+
+                if (module == DjiEnum.心跳.getModule()) {
+                    if (aircraftMap.containsKey(serialNumber)) {
+                        udpChannel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(buffer.array()), aircraftMap.get(serialNumber).getInetSocketAddress()));
+                    } else {
+                        log.info("{} 注册到系统!", serialNumber);
+                        AircraftDto aircraftDto = new AircraftDto();
+                        aircraftDto.setInetSocketAddress(pak.sender());
+//                        aircraftDto.setProcess(FFmpegUtil.startProcess(String.format(STREAM_PATH, payload.getSerialNumber())));
+                        aircraftMap.put(serialNumber, aircraftDto);
+
+                        // 消费线程
+//                        new Thread(() -> {
+//                            try {
+//                                while (!Thread.interrupted()) {
+//                                    byte[] packet = videoQueue.take(); // 取出一个完整的UDP包（约33656字节）
+//                                    aircraftDto.getProcess().getOutputStream().write(packet);
+//                                    aircraftDto.getProcess().getOutputStream().flush();
+//                                }
+//                            } catch (IOException | InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }).start();
+                    }
+                } else {
+                    publisher.publishEvent(new CommonEvent(CommonEnum.UDP_TO_DJI, jsonNode));
+                }
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
             }
         }
     }

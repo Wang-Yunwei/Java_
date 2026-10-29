@@ -52,19 +52,13 @@ public class TyjwServiceImpl implements ITyjwService {
     private final ObjectMapper obm = new ObjectMapper();
 
     private final PooledByteBufAllocator aDefault = PooledByteBufAllocator.DEFAULT;
-
     private final EApiFeign feign;
-
     private final ApplicationEventPublisher publisher;
-
     private final IWebSocketService webSocketService;
-
     @Value("${env.ip.tyjw}")
     private String host;
-
     @Value("${env.port.tyjw.tcp}")
     private int port;
-
     private Channel tcpChannel;
 
     public TyjwServiceImpl(EApiFeign feign, ApplicationEventPublisher publisher, IWebSocketService webSocketService) {
